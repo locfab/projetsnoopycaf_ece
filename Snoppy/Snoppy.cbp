@@ -23,9 +23,6 @@
 				<Compiler>
 					<Add option="-O2" />
 				</Compiler>
-				<Linker>
-					<Add option="-s" />
-				</Linker>
 			</Target>
 		</Build>
 		<Compiler>
@@ -36,8 +33,14 @@
 		<Unit filename="Balle.h" />
 		<Unit filename="Oiseau.cpp" />
 		<Unit filename="Oiseau.h" />
-		<Unit filename="Snoopy.cpp" />
-		<Unit filename="Snoopy.h" />
+		<Unit filename="PersoSnoopy.cpp" />
+		<Unit filename="PersoSnoopy.h" />
+		<Unit filename="Snoopy.cpp">
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="Snoopy.h">
+			<Option target="Release" />
+		</Unit>
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

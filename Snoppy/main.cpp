@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Snoopy.h"
+#include "PersoSnoopy.h"
 
 using namespace std;
 

@@ -1,5 +1,7 @@
-#ifndef SNOOPY_H_INCLUDED
-#define SNOOPY_H_INCLUDED
+#ifndef PERSOSNOOPY_H_INCLUDED
+#define PERSOSNOOPY_H_INCLUDED
+
+
 #include <string>
 
 class Snoopy
@@ -41,4 +43,5 @@ class Snoopy
     char m_saLetrre;
 };
 
-#endif // SNOOPY_H_INCLUDED
+
+#endif // PERSOSNOOPY_H_INCLUDED
