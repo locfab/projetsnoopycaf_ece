@@ -1,0 +1,37 @@
+# depslib dependency file v1.0
+1446154325 source:c:\users\maxiloc\desktop\snoppy\main.cpp
+	<iostream>
+	"Snoopy.h"
+
+1446154139 
+
+1446154474 source:c:\users\maxiloc\desktop\snoppy\snoopy.cpp
+	<iostream>
+	"Snoopy.h"
+
+1446154139 c:\users\maxiloc\desktop\snoppy\snoopy.h
+	<string>
+
+1446155914 source:/Users/fabricelocqueville/Desktop/Snoppy/Balle.cpp
+	<iostream>
+	"Balle.h"
+
+1446155810 /Users/fabricelocqueville/Desktop/Snoppy/Balle.h
+
+1446332244 source:/Users/fabricelocqueville/Desktop/Snoppy/main.cpp
+	<iostream>
+	"Snoopy.h"
+
+1446332398 /Users/fabricelocqueville/Desktop/Snoppy/Snoopy.h
+	<string>
+
+1446156260 source:/Users/fabricelocqueville/Desktop/Snoppy/Oiseau.cpp
+	<iostream>
+	"Oiseau.h"
+
+1446156278 /Users/fabricelocqueville/Desktop/Snoppy/Oiseau.h
+
+1446331931 source:/Users/fabricelocqueville/Desktop/Snoppy/Snoopy.cpp
+	<iostream>
+	"Snoopy.h"
+
