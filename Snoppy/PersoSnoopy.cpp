@@ -21,7 +21,7 @@ int Snoopy::getNbOiseauAttrap() const
 
 void Snoopy::setVivant(bool vivant)
 {
-    if (vivant==false)
+    if (!vivant)
     m_vivant=false;
 }
 
