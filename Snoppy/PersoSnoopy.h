@@ -23,10 +23,10 @@ class Snoopy
     void setX(int x);
     void setY(int y);
 
-    int getNbOiseauAttrap();
-    bool getVivant();
-    int getX();
-    int getY();
+    int getNbOiseauAttrap() const;
+    bool getVivant() const;
+    int getX() const;
+    int getY() const;
 
 
 

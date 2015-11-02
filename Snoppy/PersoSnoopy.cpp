@@ -14,7 +14,7 @@ void Snoopy::setPlusOiseau()
     cout << "Niveau suivant" << endl;
 }
 
-int Snoopy::getNbOiseauAttrap()
+int Snoopy::getNbOiseauAttrap() const
 {
     return m_nbOiseauxAttrap;
 }
@@ -25,7 +25,7 @@ void Snoopy::setVivant(bool vivant)
     m_vivant=false;
 }
 
-bool Snoopy::getVivant()
+bool Snoopy::getVivant() const
 {
     return m_vivant;
 }
