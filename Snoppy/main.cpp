@@ -5,7 +5,7 @@ using namespace std;
 
 int main()
 {
-    Snoopy* snoopy = new Snoopy();
+    PersoSnoopy* snoopy = new PersoSnoopy();
     cout << snoopy->getNbOiseauAttrap() << endl;
     snoopy->setPlusOiseau();
     cout << snoopy->getVivant() << endl;

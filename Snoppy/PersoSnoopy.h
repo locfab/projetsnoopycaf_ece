@@ -4,11 +4,11 @@
 
 #include <string>
 
-class Snoopy
+class PersoSnoopy
 {
     public:
 
-    Snoopy();
+    PersoSnoopy();
 
     void deplacement(int x, int y);
     void poussBloc();

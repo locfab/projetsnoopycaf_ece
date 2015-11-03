@@ -3,10 +3,10 @@
 
 using namespace std;
 
-Snoopy::Snoopy(): m_nbOiseauxAttrap(0),m_vivant(true), m_vie(3),m_saLetrre('S')
+PersoSnoopy::PersoSnoopy(): m_nbOiseauxAttrap(0),m_vivant(true), m_vie(3),m_saLetrre('S')
 {}
 
-void Snoopy::setPlusOiseau()
+void PersoSnoopy::setPlusOiseau()
 {
     if(m_nbOiseauxAttrap<4)
     m_nbOiseauxAttrap+=1;
@@ -14,18 +14,18 @@ void Snoopy::setPlusOiseau()
     cout << "Niveau suivant" << endl;
 }
 
-int Snoopy::getNbOiseauAttrap() const
+int PersoSnoopy::getNbOiseauAttrap() const
 {
     return m_nbOiseauxAttrap;
 }
 
-void Snoopy::setVivant(bool vivant)
+void PersoSnoopy::setVivant(bool vivant)
 {
     if (!vivant)
     m_vivant=false;
 }
 
-bool Snoopy::getVivant() const
+bool PersoSnoopy::getVivant() const
 {
     return m_vivant;
 }
