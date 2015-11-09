@@ -65,3 +65,26 @@
 	<iostream>
 	"PersoSnoopy.h"
 
+1447103928 source:c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\balle.cpp
+	<iostream>
+	"Balle.h"
+
+1447103928 c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\balle.h
+
+1447103928 source:c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\main.cpp
+	<iostream>
+	"PersoSnoopy.h"
+
+1447103928 c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\persosnoopy.h
+	<string>
+
+1447103928 source:c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\oiseau.cpp
+	<iostream>
+	"Oiseau.h"
+
+1447103928 c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\oiseau.h
+
+1447103928 source:c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\persosnoopy.cpp
+	<iostream>
+	"PersoSnoopy.h"
+
