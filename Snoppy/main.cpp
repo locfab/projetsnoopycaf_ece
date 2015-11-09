@@ -8,6 +8,7 @@ int main()
     PersoSnoopy* snoopy = new PersoSnoopy();
     cout << snoopy->getNbOiseauAttrap() << endl;
     snoopy->setPlusOiseau();
+    snoopy->setPlusOiseau();
     cout << snoopy->getVivant() << endl;
     snoopy->setVivant(false);
     cout << snoopy->getNbOiseauAttrap() << endl;
