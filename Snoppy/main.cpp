@@ -3,6 +3,7 @@
 #include "BlocsPoussables.h"
 #include "BlocsCassables.h"
 #include "BlocsPieges.h"
+#include "Menu.h"
 
 
 int main()
@@ -21,5 +22,10 @@ int main()
     snoopy->setVivant(false);
     std::cout << snoopy->getNbOiseauAttrap() << std::endl;
     std::cout << snoopy->getVivant() << std::endl;
+
+    Menu* menu = new Menu;
+    menu->afficherMenu();
+
+
     return 0;
 }
