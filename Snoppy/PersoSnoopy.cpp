@@ -1,7 +1,6 @@
 #include <iostream>
 #include "PersoSnoopy.h"
 
-using namespace std;
 
 PersoSnoopy::PersoSnoopy(): m_nbOiseauxAttrap(0), m_vie(3)
 {}
@@ -11,7 +10,7 @@ void PersoSnoopy::setPlusOiseau()
     if(m_nbOiseauxAttrap<4)
     m_nbOiseauxAttrap+=1;
     else
-    cout << "Niveau suivant" << endl;
+    std::cout << "Niveau suivant" << std::endl;
 }
 
 int PersoSnoopy::getNbOiseauAttrap() const

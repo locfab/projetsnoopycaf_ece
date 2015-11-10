@@ -5,12 +5,13 @@
 class Blocs
 {
     public:
-    Blocs();
-    protected:
 
+    Blocs();
+    Blocs(int x, int y);
+
+    protected:
     int m_x;
     int m_y;
-    char m_saLetrre;
 };
 
 

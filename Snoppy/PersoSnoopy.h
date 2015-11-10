@@ -1,8 +1,8 @@
 #ifndef PERSOSNOOPY_H_INCLUDED
 #define PERSOSNOOPY_H_INCLUDED
-
-
 #include <string>
+
+
 
 class PersoSnoopy
 {

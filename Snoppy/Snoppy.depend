@@ -90,32 +90,56 @@
 	<iostream>
 	"PersoSnoopy.h"
 
-1447107522 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Balle.cpp
+1447184084 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Balle.cpp
 	<iostream>
 	"Balle.h"
 
-1447107522 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Balle.h
+1447181138 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Balle.h
 
-1447108348 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/main.cpp
+1447186433 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/main.cpp
 	<iostream>
 	"PersoSnoopy.h"
+	"BlocsPoussables.h"
+	"BlocsCassables.h"
+	"BlocsPieges.h"
 
-1447178596 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/PersoSnoopy.h
+1447184125 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/PersoSnoopy.h
 	<string>
 
-1447177419 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Oiseau.cpp
+1447184076 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Oiseau.cpp
 	<iostream>
 	"Oiseau.h"
 
 1447177418 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Oiseau.h
 
-1447177758 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/PersoSnoopy.cpp
+1447184178 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/PersoSnoopy.cpp
 	<iostream>
 	"PersoSnoopy.h"
 
-1447179555 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Blocs.cpp
+1447184091 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Blocs.cpp
 	<iostream>
 	"Blocs.h"
 
-1447179557 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Blocs.h
+1447183639 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Blocs.h
+
+1447184746 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/BlocsPoussables.cpp
+	<iostream>
+	"BlocsPoussables.h"
+
+1447184747 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/BlocsPoussables.h
+	"Blocs.h"
+
+1447186942 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/BlocsCassables.cpp
+	<iostream>
+	"BlocsCassables.h"
+
+1447185751 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/BlocsCassables.h
+	"Blocs.h"
+
+1447185821 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/BlocsPieges.cpp
+	<iostream>
+	"BlocsPieges.h"
+
+1447185727 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/BlocsPieges.h
+	"Blocs.h"
 

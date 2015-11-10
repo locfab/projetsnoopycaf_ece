@@ -33,6 +33,12 @@
 		<Unit filename="Balle.h" />
 		<Unit filename="Blocs.cpp" />
 		<Unit filename="Blocs.h" />
+		<Unit filename="BlocsCassables.cpp" />
+		<Unit filename="BlocsCassables.h" />
+		<Unit filename="BlocsPieges.cpp" />
+		<Unit filename="BlocsPieges.h" />
+		<Unit filename="BlocsPoussables.cpp" />
+		<Unit filename="BlocsPoussables.h" />
 		<Unit filename="Oiseau.cpp" />
 		<Unit filename="Oiseau.h" />
 		<Unit filename="PersoSnoopy.cpp" />
