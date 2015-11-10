@@ -3,7 +3,7 @@
 
 using namespace std;
 
-PersoSnoopy::PersoSnoopy(): m_nbOiseauxAttrap(0),m_vivant(true), m_vie(3),m_saLetrre('S')
+PersoSnoopy::PersoSnoopy(): m_nbOiseauxAttrap(0), m_vie(3)
 {}
 
 void PersoSnoopy::setPlusOiseau()

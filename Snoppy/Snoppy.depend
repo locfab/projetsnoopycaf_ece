@@ -5,8 +5,6 @@
 
 1447103928 
 
-1447103928 
-
 1446154474 source:c:\users\maxiloc\desktop\snoppy\snoopy.cpp
 	<iostream>
 	"Snoopy.h"
@@ -98,20 +96,26 @@
 
 1447107522 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Balle.h
 
-1447107522 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/main.cpp
+1447108348 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/main.cpp
 	<iostream>
 	"PersoSnoopy.h"
 
-1447107522 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/PersoSnoopy.h
+1447178596 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/PersoSnoopy.h
 	<string>
 
-1447107522 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Oiseau.cpp
+1447177419 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Oiseau.cpp
 	<iostream>
 	"Oiseau.h"
 
-1447107522 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Oiseau.h
+1447177418 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Oiseau.h
 
-1447107522 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/PersoSnoopy.cpp
+1447177758 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/PersoSnoopy.cpp
 	<iostream>
 	"PersoSnoopy.h"
+
+1447179555 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Blocs.cpp
+	<iostream>
+	"Blocs.h"
+
+1447179557 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Blocs.h
 

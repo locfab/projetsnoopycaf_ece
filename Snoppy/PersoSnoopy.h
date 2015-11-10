@@ -10,15 +10,15 @@ class PersoSnoopy
 
     PersoSnoopy();
 
-    void deplacement(int x, int y);
+    void deplacement(bool droite, bool haut);
     void poussBloc();
     void cassBloc();
     void touchePiegeBloc();
     void toucheBalle();
+    void touchOiseau();
 
     void setPlusOiseau();
     void setVivant(bool vivant);
-    void setDemolitionModeA();
     void setCoordonnees(int x, int y);
     void setX(int x);
     void setY(int y);
@@ -38,9 +38,8 @@ class PersoSnoopy
     int m_vie;
     int m_x;
     int m_y;
-    bool m_vivant;
-    bool m_demolotionMode;
-    char m_saLetrre;
+    bool m_vivant = true;
+    char m_saLetrre = 'S';
 };
 
 

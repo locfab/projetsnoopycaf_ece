@@ -7,8 +7,8 @@ class Oiseau
     Oiseau(int x, int y);
     void setX(int x);
     void setY(int y);
-    int getX();
-    int getY();
+    int getX() const;
+    int getY() const;
 
     protected:
 
