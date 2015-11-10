@@ -8,6 +8,12 @@
 
 int main()
 {
+
+    Menu* menu = new Menu;
+    menu->afficherMenu();
+
+
+    /*
     PersoSnoopy* snoopy = new PersoSnoopy();
     BlocsPoussables* blocsPoussables = new BlocsPoussables(2,2,true);
     BlocsPoussables* sblocsPoussables = new BlocsPoussables();
@@ -21,10 +27,7 @@ int main()
     std::cout << snoopy->getVivant() << std::endl;
     snoopy->setVivant(false);
     std::cout << snoopy->getNbOiseauAttrap() << std::endl;
-    std::cout << snoopy->getVivant() << std::endl;
-
-    Menu* menu = new Menu;
-    menu->afficherMenu();
+    std::cout << snoopy->getVivant() << std::endl;*/
 
 
     return 0;
