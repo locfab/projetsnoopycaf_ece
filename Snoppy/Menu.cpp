@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Menu.h"
 #include "PersoSnoopy.h"
+#include "Niveau.h"
 
 
 
@@ -17,7 +18,7 @@ void Menu::afficherMenu()
 	std::cout << "4- Score" << std::endl;
 	std::cout << "5- Quitter" << std::endl;
 
-    std::cout << "Faites votre choix: " << std::endl; // A blinder ou ˆ faire autre part
+  std::cout << "Faites votre choix: " << std::endl; // A blinder ou ˆ faire autre part
 	std::cin >> this->m_choixMenu;
 	this->choix(m_choixMenu);
 }
@@ -41,6 +42,8 @@ void Menu::choix(char decisionJoueur)
 
 void Menu::creerPartie()
 {
-    PersoSnoopy* m_snoopy = new PersoSnoopy(5,5);
+    PersoSnoopy* m_snoopy = new PersoSnoopy();
+    Niveau* m_niveau = new Niveau();
+
 
 }

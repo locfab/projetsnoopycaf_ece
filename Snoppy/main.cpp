@@ -1,9 +1,6 @@
 #include <iostream>
-#include "PersoSnoopy.h"
-#include "BlocsPoussables.h"
-#include "BlocsCassables.h"
-#include "BlocsPieges.h"
 #include "Menu.h"
+
 
 
 int main()
@@ -11,6 +8,8 @@ int main()
 
     Menu* menu = new Menu;
     menu->afficherMenu();
+    return 0;
+}
 
 
     /*
@@ -28,7 +27,3 @@ int main()
     snoopy->setVivant(false);
     std::cout << snoopy->getNbOiseauAttrap() << std::endl;
     std::cout << snoopy->getVivant() << std::endl;*/
-
-
-    return 0;
-}
