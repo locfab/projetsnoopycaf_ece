@@ -4,9 +4,12 @@
 class Oiseau
 {
     public:
+    Oiseau();
     Oiseau(int x, int y);
+
     void setX(int x);
     void setY(int y);
+
     int getX() const;
     int getY() const;
 
@@ -14,7 +17,7 @@ class Oiseau
 
     int m_x;
     int m_y;
-    char m_saLetrre;
+    char m_saLetrre = 'O';
 };
 
 #endif // OISEAU_H_INCLUDED

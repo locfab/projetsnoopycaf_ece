@@ -2,6 +2,9 @@
 #include "Balle.h"
 
 
-Balle::Balle(): m_saLetrre('B')
+Balle::Balle()
+{
+}
+Balle::Balle(int x, int y) : m_x(x), m_y(y)
 {
 }

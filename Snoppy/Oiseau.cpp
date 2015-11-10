@@ -2,6 +2,10 @@
 #include "Oiseau.h"
 
 
-Oiseau::Oiseau(int x, int y): m_saLetrre('O'), m_x(x),m_y(y)
+Oiseau::Oiseau()
+{
+}
+
+Oiseau::Oiseau(int x, int y): m_x(x),m_y(y)
 {
 }

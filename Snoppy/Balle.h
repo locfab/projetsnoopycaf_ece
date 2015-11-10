@@ -5,6 +5,7 @@ class Balle
 {
     public:
     Balle();
+    Balle(int x, int y);
     void deplacement(int x, int y);
     void setCoordonnees(int x, int y);
     void setX(int x);
@@ -16,7 +17,7 @@ class Balle
 
     int m_x;
     int m_y;
-    char m_saLetrre;
+    char m_saLetrre = 'B';
 };
 
 #endif // BALLE_H_INCLUDED

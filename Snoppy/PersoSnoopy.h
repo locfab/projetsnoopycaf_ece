@@ -9,6 +9,8 @@ class PersoSnoopy
     public:
 
     PersoSnoopy();
+    PersoSnoopy(int x, int y);
+    PersoSnoopy(int x, int y, int nbOiseauxAttrap, int vie);
 
     void deplacement(bool droite, bool haut);
     void poussBloc();

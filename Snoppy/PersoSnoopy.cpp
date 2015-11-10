@@ -1,9 +1,19 @@
 #include <iostream>
 #include "PersoSnoopy.h"
 
+PersoSnoopy::PersoSnoopy()
+{
+}
 
-PersoSnoopy::PersoSnoopy(): m_nbOiseauxAttrap(0), m_vie(3)
-{}
+PersoSnoopy::PersoSnoopy(int x, int y): m_x(x), m_y(y), m_nbOiseauxAttrap(0), m_vie(3)
+{
+}
+
+PersoSnoopy::PersoSnoopy(int x, int y, int nbOiseauxAttrap, int vie)
+			: m_x(x), m_y(y), m_nbOiseauxAttrap(nbOiseauxAttrap), m_vie(vie)
+{
+}
+
 
 void PersoSnoopy::setPlusOiseau()
 {
