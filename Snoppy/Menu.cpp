@@ -41,6 +41,6 @@ void Menu::choix(char decisionJoueur)
 
 void Menu::creerPartie()
 {
-    PersoSnoopy* snoopy = new PersoSnoopy(5,5);
+    PersoSnoopy* m_snoopy = new PersoSnoopy(5,5);
 
 }
