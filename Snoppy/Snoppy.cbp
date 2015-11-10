@@ -41,6 +41,8 @@
 		<Unit filename="BlocsPoussables.h" />
 		<Unit filename="Menu.cpp" />
 		<Unit filename="Menu.h" />
+		<Unit filename="Niveau.cpp" />
+		<Unit filename="Niveau.h" />
 		<Unit filename="Oiseau.cpp" />
 		<Unit filename="Oiseau.h" />
 		<Unit filename="PersoSnoopy.cpp" />
