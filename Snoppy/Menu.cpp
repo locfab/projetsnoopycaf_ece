@@ -44,6 +44,7 @@ void Menu::creerPartie()
 {
     PersoSnoopy* m_snoopy = new PersoSnoopy();
     Niveau* m_niveau = new Niveau();
+    m_niveau->setPlateau("ChaineDeCaractere");
 
 
 }

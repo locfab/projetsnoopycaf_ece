@@ -10,13 +10,13 @@ class Menu
 
 	void afficherMenu();
 	void choix(char decisionJoueur);
-	void creerPartie() ;
-	void highScores() const ;
+	void creerPartie();
+	void highScores() const;
 
     protected:
 
-    std::string m_motDePasse = "Snoop" ;
-	char m_choixMenu = '0';
+    std::string m_motDePasse;//j'ai enlevé le mot de passe
+	char m_choixMenu; //j'ai enlevé le ='O'
 };
 
 

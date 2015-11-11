@@ -2,15 +2,15 @@
 #define NIVEAU_H_INCLUDED
 
 #include "menu.h"
-#include <string>
 #include <vector>
+#include <iostream>
 
 class Niveau
 {
     public:
     Niveau();
-	void setPlateau1();
-	void afficherPlateau(std::string niveau) const;
+	void setPlateau(std::string niveau);
+	void afficherPlateau() const;
 	void gestionTemps();
 	void afficherTemps();
 
