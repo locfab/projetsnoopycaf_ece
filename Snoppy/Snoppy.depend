@@ -3,7 +3,7 @@
 	<iostream>
 	"Snoopy.h"
 
-1447103928 
+1447200576 
 
 1446154474 source:c:\users\maxiloc\desktop\snoppy\snoopy.cpp
 	<iostream>
@@ -64,7 +64,7 @@
 	<iostream>
 	"Menu.h"
 
-1447103928 py.h"
+1447200576 py.h"
 
 1447196992 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/PersoSnoopy.h
 	<string>
@@ -109,6 +109,8 @@
 	<iostream>
 	"BlocsPoussables.h"
 
+1447200576 sables.h"
+
 1447196992 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/BlocsPoussables.h
 	"Blocs.h"
 
@@ -116,12 +118,16 @@
 	<iostream>
 	"BlocsCassables.h"
 
+1447200576 ables.h"
+
 1447196992 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/BlocsCassables.h
 	"Blocs.h"
 
 1447196992 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/BlocsPieges.cpp
 	<iostream>
 	"BlocsPieges.h"
+
+1447200576 es.h"
 
 1447196992 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/BlocsPieges.h
 	"Blocs.h"
@@ -190,4 +196,73 @@
 	<iostream>
 	"Niveau.h"
 	<fstream>
+
+1447200427 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Balle.cpp
+	<iostream>
+	"Balle.h"
+
+1447200427 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Balle.h
+
+1447200427 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Blocs.cpp
+	<iostream>
+	"Blocs.h"
+
+1447200427 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Blocs.h
+
+1447200427 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/BlocsCassables.cpp
+	<iostream>
+	"BlocsCassables.h"
+
+1447200427 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/BlocsCassables.h
+	"Blocs.h"
+
+1447200427 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/BlocsPieges.cpp
+	<iostream>
+	"BlocsPieges.h"
+
+1447200427 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/BlocsPieges.h
+	"Blocs.h"
+
+1447200427 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/BlocsPoussables.cpp
+	<iostream>
+	"BlocsPoussables.h"
+
+1447200427 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/BlocsPoussables.h
+	"Blocs.h"
+
+1447202910 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/main.cpp
+	<iostream>
+	"Menu.h"
+
+1447200427 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Menu.h
+	<string>
+
+1447202450 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Menu.cpp
+	<iostream>
+	"Menu.h"
+	"PersoSnoopy.h"
+	"Niveau.h"
+
+1447200427 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/PersoSnoopy.h
+	<string>
+
+1447202450 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Niveau.h
+	"menu.h"
+	<vector>
+	<iostream>
+
+1447202450 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Niveau.cpp
+	<iostream>
+	"Niveau.h"
+	<fstream>
+
+1447200427 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Oiseau.cpp
+	<iostream>
+	"Oiseau.h"
+
+1447200427 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Oiseau.h
+
+1447200427 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/PersoSnoopy.cpp
+	<iostream>
+	"PersoSnoopy.h"
 

@@ -11,16 +11,21 @@ Menu::Menu()
 
 void Menu::afficherMenu()
 {
+    while(this->m_choixMenu<'1' || this->m_choixMenu>'5')
+     {
+        this->m_choixMenu='0';
 
-	std::cout << "1- Jouer" << std::endl;
-	std::cout << "2- Charger partie" << std::endl;
-	std::cout << "3- Mot de passe" << std::endl;
-	std::cout << "4- Score" << std::endl;
-	std::cout << "5- Quitter" << std::endl;
+        std::cout << "1- Jouer" << std::endl;
+        std::cout << "2- Charger partie" << std::endl;
+        std::cout << "3- Mot de passe" << std::endl;
+        std::cout << "4- Score" << std::endl;
+        std::cout << "5- Quitter" << std::endl;
 
-  std::cout << "Faites votre choix: " << std::endl; // A blinder ou ˆ faire autre part
-	std::cin >> this->m_choixMenu;
-	this->choix(m_choixMenu);
+
+        std::cout << "Faites votre choix: " << std::endl;
+        std::cin >> this->m_choixMenu;
+        this->choix(m_choixMenu);
+     }
 }
 
 void Menu::choix(char decisionJoueur)
@@ -31,7 +36,7 @@ void Menu::choix(char decisionJoueur)
             this->creerPartie();
             break;
          case 'a':
-            std::cout << "tu as tapŽ 'a'" << std::endl;
+            std::cout << "il reste a faire" << std::endl;
             break;
          default:
             this->m_choixMenu = 0;
