@@ -13,6 +13,10 @@ class Menu
 	void creerPartie();
 	void highScores() const;
 
+	void setChoixMenu(char choixMenu);
+
+	char getChoixMenu() const;
+
     protected:
 
     std::string m_motDePasse = "Snoop";

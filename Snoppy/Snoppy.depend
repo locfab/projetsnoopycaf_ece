@@ -201,7 +201,7 @@
 	<iostream>
 	"Balle.h"
 
-1447200427 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Balle.h
+1447204371 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Balle.h
 
 1447200427 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Blocs.cpp
 	<iostream>
@@ -234,10 +234,10 @@
 	<iostream>
 	"Menu.h"
 
-1447204069 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Menu.h
+1447235576 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Menu.h
 	<string>
 
-1447203662 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Menu.cpp
+1447236509 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Menu.cpp
 	<iostream>
 	"Menu.h"
 	"PersoSnoopy.h"
