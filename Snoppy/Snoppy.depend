@@ -197,11 +197,11 @@
 	"Niveau.h"
 	<fstream>
 
-1447200427 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Balle.cpp
+1447239661 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Balle.cpp
 	<iostream>
 	"Balle.h"
 
-1447204371 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Balle.h
+1447239159 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Balle.h
 
 1447200427 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Blocs.cpp
 	<iostream>
@@ -237,7 +237,7 @@
 1447235576 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Menu.h
 	<string>
 
-1447236509 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Menu.cpp
+1447236549 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Menu.cpp
 	<iostream>
 	"Menu.h"
 	"PersoSnoopy.h"
@@ -246,12 +246,13 @@
 1447200427 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/PersoSnoopy.h
 	<string>
 
-1447202450 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Niveau.h
-	"menu.h"
+1447239873 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Niveau.h
+	"Menu.h"
+	"Balle.h"
 	<vector>
 	<iostream>
 
-1447202450 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Niveau.cpp
+1447240300 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Niveau.cpp
 	<iostream>
 	"Niveau.h"
 	<fstream>

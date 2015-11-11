@@ -8,6 +8,11 @@ Balle::Balle()
 Balle::Balle(int x, int y) : m_x(x), m_y(y)
 {
 }
+Balle::Balle(int x, int y, int depx, int depy) : m_x(x), m_y(y)
+{
+	setDepX(depx);
+	setDepY(depy);
+}
 
 void Balle::deplacement()
 {
@@ -39,11 +44,30 @@ int Balle::getDepY() const
 
 void Balle::setX()
 {
-	if(getX()>1 && getX()<19)
+	if(getX()+getDepX()>0 && getX()+getDepX()<20)
 	this->m_x = getX()+getDepX();
 }
 void Balle::setY()
 {
-	if(getY()>1 && getY()<9)
+	if(getY()+getDepY()>0 && getY()+getDepY()<10)
 	this->m_x = getY()+getDepY();
+}
+void Balle::setDepX(int depx)
+{
+	if (depx==1)
+	this->m_depx=1;
+	if (depx==-1)
+	this->m_depx=-1;
+	if (depx!=1 && depx!=-1)
+	std::cout << "FAUTE SUR LE VECTEUR VITESSE DEPX" << std::endl;
+
+}
+void Balle::setDepY(int depy)
+{
+	if (depy==1)
+	this->m_depy=1;
+	if (depy==-1)
+	this->m_depy=-1;
+	if (depy!=1 && depy!=-1)
+	std::cout << "FAUTE SUR LE VECTEUR VITESSE DEPY" << std::endl;
 }

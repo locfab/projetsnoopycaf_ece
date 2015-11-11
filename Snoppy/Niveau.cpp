@@ -51,4 +51,8 @@ void Niveau::afficherPlateau() const
         std::cout << std::endl;
     }
 }
+void Niveau::creerObjet()
+{
+    Balle* balle = new Balle(6,6,1,-1);
+}
 

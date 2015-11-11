@@ -1,7 +1,7 @@
 #ifndef NIVEAU_H_INCLUDED
 #define NIVEAU_H_INCLUDED
 
-#include "menu.h"
+#include "Menu.h"
 #include <vector>
 #include <iostream>
 
@@ -11,6 +11,7 @@ class Niveau
     Niveau();
 	void setPlateau(std::string niveau);
 	void afficherPlateau() const;
+	void creerObjet();
 	void gestionTemps();
 	void afficherTemps();
 
@@ -20,7 +21,6 @@ class Niveau
 	double getTemps();
 	double getTempsRestant();
 
-      // Void creerObjet // je sais pas ce que c'est (a rajouter)
 
 
 

@@ -6,14 +6,15 @@ class Balle
     public:
     Balle();
     Balle(int x, int y);
+    Balle(int x, int y, int depx, int depY);
 
     void deplacement(); // Appellera directionDuPepalcementSuivant et il y aura des modifications de m_x et m_y
     void directionDuDeplacementSuivant(); // modification de m_depX et m_depY
 
     void setX();
     void setY();
-    void setDepX();
-    void setDepY();
+    void setDepX(int depx);
+    void setDepY(int depy);
 
     int getX() const;
     int getY() const;
