@@ -7,8 +7,8 @@ class Balle
     Balle();
     Balle(int x, int y);
 
-    void directionDuDeplacementSuivant(bool droite, bool haut); // modification de m_depX et m_depY
-    void deplacement(); // modification de m_x et m_y
+    void deplacement(); // Appellera directionDuPepalcementSuivant et il y aura des modifications de m_x et m_y
+    void directionDuDeplacementSuivant(); // modification de m_depX et m_depY
 
     void setX();
     void setY();
@@ -17,6 +17,8 @@ class Balle
 
     int getX() const;
     int getY() const;
+    int getDepX() const;
+    int getDepY() const;
 
     protected:
 

@@ -37,7 +37,7 @@ void Niveau::setPlateau(std::string niveau)
     else
         std::cout << "Impossible d'ouvrir le fichier !" << std::endl;
 
-    this->m_plateau = grille;
+    this->m_plateau = grille;// peut etre mettre un getter
 }
 
 void Niveau::afficherPlateau() const
