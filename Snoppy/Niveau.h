@@ -2,6 +2,7 @@
 #define NIVEAU_H_INCLUDED
 
 #include "Menu.h"
+#include "Balle.h"
 #include <vector>
 #include <iostream>
 
