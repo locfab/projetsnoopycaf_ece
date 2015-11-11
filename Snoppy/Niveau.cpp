@@ -19,7 +19,6 @@ void Niveau::setPlateau(std::string niveau)
         grille[i] = std::vector<char>(10);
     }
 
-
     if(fichier)
     {
         char caractere;  // notre variable o sera stockŽ le caractre
@@ -38,16 +37,18 @@ void Niveau::setPlateau(std::string niveau)
     else
         std::cout << "Impossible d'ouvrir le fichier !" << std::endl;
 
+    this->m_plateau = grille;
+}
 
-
-
-
+void Niveau::afficherPlateau() const
+{
     for (int j=0; j<10; j++)
     {
         for (int i=0; i<20; i++)
         {
-            std::cout << grille[i][j];
+            std::cout << this->m_plateau[i][j];
         }
         std::cout << std::endl;
     }
 }
+

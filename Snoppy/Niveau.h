@@ -30,7 +30,7 @@ class Niveau
 	int m_temps;
 	int m_tempsRestant;
 	//Temps *m_temps;// A rajouter
-	std::vector< std::vector<char> > plateau;
+	std::vector< std::vector<char> > m_plateau;
 	int m_lignes;
 	int m_colonnes;
 
