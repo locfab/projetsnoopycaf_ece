@@ -9,13 +9,15 @@
 class Niveau
 {
     public:
+
     Niveau();
-	void setPlateau(std::string niveau);
+
 	void afficherPlateau() const;
 	void creerObjet();
 	void gestionTemps();
 	void afficherTemps();
 
+	void setPlateau(std::string niveau);
 	void setTempsRestant(double newTempsRestant);
 	void getAttendre(double secondes);
 
