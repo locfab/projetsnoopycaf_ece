@@ -3,10 +3,10 @@
 
 
 
+
 int main()
 {
-
-    Menu* menu = new Menu;
+    Menu* menu = new Menu();
     menu->afficherMenu();
     return 0;
 }

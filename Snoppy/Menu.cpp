@@ -1,12 +1,17 @@
 #include <iostream>
 #include "Menu.h"
-#include "PersoSnoopy.h"
-#include "Niveau.h"
+#include "Partie.h"
 
 
 
 Menu::Menu()
 {
+
+}
+
+Menu::~Menu()
+{
+
 }
 
 void Menu::afficherMenu()
@@ -35,7 +40,7 @@ void Menu::choix(char decisionJoueur)
 {
     switch (decisionJoueur)
       {
-         case '2':
+         case '1':
             this->creerPartie();
             break;
          case 'a':
@@ -50,10 +55,8 @@ void Menu::choix(char decisionJoueur)
 
 void Menu::creerPartie()
 {
-    PersoSnoopy* m_snoopy = new PersoSnoopy();
-    Niveau* m_niveau = new Niveau();
-    m_niveau->setPlateau("ChaineDeCaractere");
-    m_niveau->afficherPlateau();
+    Partie *m_partie = new Partie();
+    m_partie->jouer(m_partie);
 }
 
 char Menu::getChoixMenu() const

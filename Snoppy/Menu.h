@@ -7,6 +7,7 @@ class Menu
     public:
 
     Menu();
+    ~Menu();
 
 	void afficherMenu();
 	void choix(char decisionJoueur);
@@ -14,7 +15,6 @@ class Menu
 	void highScores() const;
 
 	void setChoixMenu(char choixMenu);
-
 	char getChoixMenu() const;
 
     protected:
