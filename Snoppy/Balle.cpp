@@ -44,12 +44,12 @@ int Balle::getDepY() const
 
 void Balle::setX()
 {
-	if(getX()+getDepX()>0 && getX()+getDepX()<20)
+	if(getX()+getDepX()>0 || getX()+getDepX()<20)
 	this->m_x = getX()+getDepX();
 }
 void Balle::setY()
 {
-	if(getY()+getDepY()>0 && getY()+getDepY()<10)
+	if(getY()+getDepY()>0 || getY()+getDepY()<10)
 	this->m_x = getY()+getDepY();
 }
 void Balle::setDepX(int depx)
