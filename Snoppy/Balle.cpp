@@ -14,13 +14,13 @@ Balle::Balle(int x, int y, int depx, int depy) : m_x(x), m_y(y)
 	setDepY(depy);
 }
 
-void Balle::deplacement()
+void Balle::deplacement() // Deplace la balle en diagonale selon depx et depy qui pourront etre changer en fct du terrain grace a la fct directionDuDeplacementSuivant 
 {
 	this->directionDuDeplacementSuivant();
 }
-void Balle::directionDuDeplacementSuivant()
+void Balle::directionDuDeplacementSuivant() // doit gerer depx et depy et les changer en fct du terrarain et des collisions
 {
-
+	//if(((getX()+getDepX()=!'.')&&(getY()+getDepY()=!'.')) || ((getX()+getDepX()=='.')&&(getY()+getDepY()=='.')&&()
 }
 
 
