@@ -21,7 +21,6 @@ void Menu::afficherMenu()
         std::cout << "4- Score" << std::endl;
         std::cout << "5- Quitter" << std::endl;
 
-
         std::cout << "Faites votre choix: " << std::endl;
         std::cin >> this->m_choixMenu;
         this->choix(m_choixMenu);

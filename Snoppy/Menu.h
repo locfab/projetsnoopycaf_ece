@@ -15,8 +15,8 @@ class Menu
 
     protected:
 
-    std::string m_motDePasse;//j'ai enlevé le mot de passe
-	char m_choixMenu; //j'ai enlevé le ='O'
+    std::string m_motDePasse = "Snoop";
+	char m_choixMenu = '0';
 };
 
 

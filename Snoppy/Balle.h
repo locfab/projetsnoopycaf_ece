@@ -22,8 +22,8 @@ class Balle
 
     int m_x;
     int m_y;
-    int depx;
-    int depy;
+    int m_depx;
+    int m_depy;
     char m_saLetrre = 'B';
 };
 
