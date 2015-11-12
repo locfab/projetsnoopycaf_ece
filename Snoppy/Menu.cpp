@@ -22,13 +22,15 @@ void Menu::afficherMenu()
      {
         this->setChoixMenu('0');
 
-        std::cout << "1- Jouer" << std::endl;
-        std::cout << "2- Charger partie" << std::endl;
-        std::cout << "3- Mot de passe" << std::endl;
-        std::cout << "4- Score" << std::endl;
-        std::cout << "5- Quitter" << std::endl;
+        system("cls");
 
-        std::cout << "Faites votre choix: " << std::endl;
+        std::cout << "1- Jouer" << std::endl << std::endl;
+        std::cout << "2- Charger partie" << std::endl << std::endl;
+        std::cout << "3- Mot de passe" << std::endl << std::endl;
+        std::cout << "4- Score" << std::endl << std::endl;
+        std::cout << "5- Quitter" << std::endl << std::endl;
+
+        std::cout << "Faites votre choix:  ";
         std::cin >> choixMenu;
         this->setChoixMenu(choixMenu);
      }

@@ -10,6 +10,8 @@ Niveau::Niveau()
     pConsole = Console::getInstance();
     m_temps = new Temps();
     m_tempsRestant = m_temps->getTempsMax();
+    m_balle = NULL;
+
 }
 
 /// Destructeur
@@ -60,8 +62,21 @@ void Niveau::afficherPlateau(char niveau)
 
     pConsole->gotoLigCol(5, 50);
 
-    std::cout << "Temps restant : " << getTempsRestant();
+    std::cout << "Temps restant : " << (int)getTempsRestant();
     setTempsRestant(getTempsRestant()); /// Calcul du nouveau temps restant
+
+    ///Test d'affichage des coordonnées des différents objets du plateau
+    pConsole->gotoLigCol(7, 50);
+    std::cout << "Coord balle : " << m_balle->getX() << " " << m_balle->getY();
+    pConsole->gotoLigCol(8, 50);
+    std::cout << "Coord Oiseau 1 : " << m_tabOiseau[0].getX() << " " << m_tabOiseau[0].getY();
+    pConsole->gotoLigCol(9, 50);
+    std::cout << "Coord Oiseau 2 : " << m_tabOiseau[1].getX() << " " << m_tabOiseau[1].getY();
+    pConsole->gotoLigCol(10, 50);
+    std::cout << "Coord Oiseau 3 : " << m_tabOiseau[2].getX() << " " << m_tabOiseau[2].getY();
+    pConsole->gotoLigCol(11, 50);
+    std::cout << "Coord Oiseau 4 : " << m_tabOiseau[3].getX() << " " << m_tabOiseau[3].getY();
+
 
     pConsole->gotoLigCol(0, 0);
 
@@ -75,9 +90,32 @@ void Niveau::afficherPlateau(char niveau)
         std::cout << std::endl;
     }
 }
+
+
+/// Creer un objet
 void Niveau::creerObjet()
 {
-    Balle* balle = new Balle(6,6,1,-1);
+    Oiseau *p_Oiseau;
+
+    for (int i=0; i<20; i++)
+    {
+        for(int j=0; j<10; j++)
+        {
+          if(this->m_plateau[i][j]=='B')
+          {
+              m_balle = new Balle(i,j,1,1);
+          }
+          if(this->m_plateau[i][j]=='O')
+          {
+              p_Oiseau = new Oiseau(i, j);
+              std::cout << p_Oiseau->getX();
+              m_tabOiseau.push_back(*p_Oiseau);
+              p_Oiseau = NULL;
+              //m_tabOiseau.[m_tabOiseau.size()+1];
+
+          }
+        }
+    }
 }
 
 
@@ -107,3 +145,24 @@ void Niveau::setTempsRestant(double newTempsRestant)
         m_tempsRestant = m_temps->getTempsMax() - (double)clock() / CLOCKS_PER_SEC;
     }
 }
+
+/// Getter sur le nombre de balles en jeu
+/*char Niveau::getNombreBalles()
+{
+    return m_nombreBalles;
+}
+
+/// Setter sur le nombre de balles en jeu
+void Niveau::setNombreBalles(char nombreBalles)
+{
+    if((nombreBalles >= 0) && nombreBalles <= 2)
+    {
+        m_nombreBalles += nombreBalles;
+    }
+}
+
+/// Augmente le nombre de balles sur le terrain
+void Niveau::ajouterBalle()
+{
+    setNombreBalles(1);
+}*/

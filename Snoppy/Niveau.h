@@ -3,6 +3,7 @@
 
 #include "Menu.h"
 #include "Balle.h"
+#include "Oiseau.h"
 #include <vector>
 #include <iostream>
 #include <windows.h>
@@ -29,6 +30,10 @@ class Niveau
 
 	Console *pConsole = NULL;
 
+	///char getNombreBalles();
+    ///void setNombreBalles(char nombreBalles);
+    ///void ajouterBalle();
+
 
    protected:
 
@@ -38,6 +43,9 @@ class Niveau
 	int m_colonnes;
 	double m_tempsRestant;
     Temps *m_temps;
+    Balle *m_balle;
+    std::vector<Oiseau> m_tabOiseau;
+    ///char m_nombreBalles;
 
  };
 
