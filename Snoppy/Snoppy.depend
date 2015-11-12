@@ -243,11 +243,11 @@
 
 1447337972 c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\balle.h
 
-1447255191 source:c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\blocs.cpp
+1447353297 source:c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\blocs.cpp
 	<iostream>
 	"Blocs.h"
 
-1447255191 c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\blocs.h
+1447353297 c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\blocs.h
 
 1447255191 source:c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\blocscassables.cpp
 	<iostream>
@@ -263,11 +263,11 @@
 1447255191 c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\blocspieges.h
 	"Blocs.h"
 
-1447255191 source:c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\blocspoussables.cpp
+1447353946 source:c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\blocspoussables.cpp
 	<iostream>
 	"BlocsPoussables.h"
 
-1447255191 c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\blocspoussables.h
+1447353946 c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\blocspoussables.h
 	"Blocs.h"
 
 1447269617 source:c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\main.cpp
@@ -285,7 +285,7 @@
 1447255191 c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\persosnoopy.h
 	<string>
 
-1447339325 c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\niveau.h
+1447355485 c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\niveau.h
 	"Menu.h"
 	"Balle.h"
 	"Oiseau.h"
@@ -294,8 +294,12 @@
 	<windows.h>
 	"Console.h"
 	"Temps.h"
+	"Blocs.h"
+	"BlocsPoussables.h"
+	"BlocsCassables.h"
+	"BlocsPieges.h"
 
-1447341639 source:c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\niveau.cpp
+1447353441 source:c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\niveau.cpp
 	<iostream>
 	"Niveau.h"
 	<fstream>

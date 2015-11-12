@@ -76,6 +76,14 @@ void Niveau::afficherPlateau(char niveau)
     std::cout << "Coord Oiseau 3 : " << m_tabOiseau[2].getX() << " " << m_tabOiseau[2].getY();
     pConsole->gotoLigCol(11, 50);
     std::cout << "Coord Oiseau 4 : " << m_tabOiseau[3].getX() << " " << m_tabOiseau[3].getY();
+    pConsole->gotoLigCol(12, 50);
+    std::cout << "Coord Poussable 1 : " << m_tabBlocs[9]->Blocs::getX() << " " << m_tabBlocs[9]->getY();
+    pConsole->gotoLigCol(13, 50);
+    std::cout << "Coord Poussable 2 : " << m_tabBlocs[10]->Blocs::getX() << " " << m_tabBlocs[10]->getY();
+    pConsole->gotoLigCol(14, 50);
+    std::cout << "Coord Poussable 3 : " << m_tabBlocs[11]->Blocs::getX() << " " << m_tabBlocs[11]->getY();
+    pConsole->gotoLigCol(15, 50);
+    std::cout << "Bloc Poussable 1 : " << m_tabBlocs[0]->BlocsPoussables::getPoussable();
 
 
     pConsole->gotoLigCol(0, 0);
@@ -119,21 +127,21 @@ void Niveau::creerObjet()
             if(this->m_plateau[i][j]=='P')
             {
               p_Blocs = new BlocsPoussables(i, j, true);
-              m_tabBlocs.push_back(*p_Blocs);
+              m_tabBlocs.push_back(p_Blocs);
               p_Blocs = NULL;
             }
 
             if(this->m_plateau[i][j]=='C')
             {
               p_Blocs = new BlocsCassables(i, j);
-              m_tabBlocs.push_back(*p_Blocs);
+              m_tabBlocs.push_back(p_Blocs);
               p_Blocs = NULL;
             }
 
             if(this->m_plateau[i][j]=='T')
             {
               p_Blocs = new BlocsPieges(i, j);
-              m_tabBlocs.push_back(*p_Blocs);
+              m_tabBlocs.push_back(p_Blocs);
               p_Blocs = NULL;
             }
         }

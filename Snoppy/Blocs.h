@@ -9,6 +9,9 @@ class Blocs
     Blocs();
     Blocs(int x, int y);
 
+    int getX();
+    int getY();
+
     protected:
     int m_x;
     int m_y;

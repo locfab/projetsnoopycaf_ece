@@ -49,7 +49,7 @@ class Niveau
     Temps *m_temps;
     Balle *m_balle;
     std::vector<Oiseau> m_tabOiseau;
-    std::vector<Blocs> m_tabBlocs;
+    std::vector<Blocs*> m_tabBlocs;
     ///char m_nombreBalles;
 
  };
