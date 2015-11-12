@@ -11,9 +11,7 @@ BlocsPoussables::BlocsPoussables(int x, int y, bool poussable): Blocs(x,y), m_po
 }
 
 /// Getter sur le booléen Poussable
-void BlocsPoussables::getPoussable()
+bool BlocsPoussables::getPoussable() const
 {
-    if(m_poussable == true) std::cout << "Bloc poussable";
-
-    else std::cout << "Bloc non poussable";
+ 	return m_poussable;
 }

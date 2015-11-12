@@ -11,7 +11,7 @@ class BlocsPoussables : public Blocs
 
     void deplacement(bool droite, bool haut);
 
-    void getPoussable();
+    bool getPoussable() const;
 
 
     protected:

@@ -83,7 +83,7 @@ void Niveau::afficherPlateau(char niveau)
     pConsole->gotoLigCol(14, 50);
     std::cout << "Coord Poussable 3 : " << m_tabBlocs[11]->Blocs::getX() << " " << m_tabBlocs[11]->getY();
     pConsole->gotoLigCol(15, 50);
-    std::cout << "Bloc Poussable 1 : " << m_tabBlocs[0]->BlocsPoussables::getPoussable();
+    std::cout << "Poussable ? : " << m_tabBlocs[9]->getPoussable();
 
 
     pConsole->gotoLigCol(0, 0);

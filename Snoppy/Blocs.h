@@ -9,6 +9,9 @@ class Blocs
     Blocs();
     Blocs(int x, int y);
 
+    virtual bool getPoussable() const;
+
+
     int getX();
     int getY();
 

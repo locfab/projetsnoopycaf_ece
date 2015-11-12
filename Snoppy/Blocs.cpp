@@ -22,3 +22,7 @@ int Blocs::getY()
 {
     return m_y;
 }
+
+bool Blocs::getPoussable() const
+{
+}
