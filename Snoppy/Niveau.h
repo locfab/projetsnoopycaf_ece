@@ -13,6 +13,7 @@
 #include "BlocsPoussables.h"
 #include "BlocsCassables.h"
 #include "BlocsPieges.h"
+#include "PersoSnoopy.h"
 
 class Niveau
 {
@@ -23,7 +24,7 @@ class Niveau
 	void setPlateau(char niveau);
 	void afficherPlateau(char niveau);
 	void creerObjet();
-
+    void initCoordSnoop(PersoSnoopy* snoopy);
 	double getTemps();
     void getAttendre(double secondes);
     double getTempsRestant();

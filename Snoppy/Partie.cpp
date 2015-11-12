@@ -26,6 +26,7 @@ partie->m_niveau->setPlateau('1');
 //partie->m_niveau->afficherPlateau(1);
 
     m_niveau->creerObjet();
+    m_niveau->initCoordSnoop(m_snoopy);
 
     ///Boucle de jeu tant que le compteur est != 0 ou ESC n'est pas préssée
     while((esc == 0) && (timeOut == 0))
@@ -41,6 +42,7 @@ partie->m_niveau->setPlateau('1');
         {
             system("cls");
             m_niveau->afficherPlateau(1);
+            std::cout << "coord de Snoopy : " << "(" << m_snoopy->getX() << ";" << m_snoopy->getY()<< ")";
         }
         partie->m_niveau->getAttendre(0.1);         /// Temporisation de 0.1 seconde
         esc = GetAsyncKeyState(VK_ESCAPE);

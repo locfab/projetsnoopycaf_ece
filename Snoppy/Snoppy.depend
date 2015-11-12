@@ -95,7 +95,7 @@
 	<iostream>
 	"Menu.h"
 
-1447343661 c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\persosnoopy.h
+1447360665 c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\persosnoopy.h
 	<string>
 
 1447344866 source:c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\oiseau.cpp
@@ -104,7 +104,7 @@
 
 1447343661 c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\oiseau.h
 
-1447343661 source:c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\persosnoopy.cpp
+1447364225 source:c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\persosnoopy.cpp
 	<iostream>
 	"PersoSnoopy.h"
 
@@ -218,7 +218,7 @@
 	"Menu.h"
 	"Partie.h"
 
-1447352676 c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\niveau.h
+1447361498 c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\niveau.h
 	"Menu.h"
 	"Balle.h"
 	"Oiseau.h"
@@ -231,8 +231,9 @@
 	"BlocsPoussables.h"
 	"BlocsCassables.h"
 	"BlocsPieges.h"
+	"PersoSnoopy.h"
 
-1447356212 source:c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\niveau.cpp
+1447362152 source:c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\niveau.cpp
 	<iostream>
 	"Niveau.h"
 	<fstream>
@@ -350,7 +351,7 @@
 1447344866 c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\temps.h
 	<ctime>
 
-1447344866 source:c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\partie.cpp
+1447361264 source:c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\partie.cpp
 	"Partie.h"
 
 1447344866 source:c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\temps.cpp

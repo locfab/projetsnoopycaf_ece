@@ -148,6 +148,24 @@ void Niveau::creerObjet()
     }
 }
 
+void Niveau::initCoordSnoop(PersoSnoopy* snoopy)
+{
+     for (int i=0; i<20; i++)
+    {
+        for(int j=0; j<10; j++)
+        {
+            if(this->m_plateau[i][j]=='S')
+            {
+            snoopy->setCoordonnees(i,j);
+            }
+        }
+    }
+}
+
+
+
+
+
 
 /// Getter de la fonction de temporisation de la classe Temps
 void Niveau::getAttendre(double secondes)
