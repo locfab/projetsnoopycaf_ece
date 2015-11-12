@@ -96,24 +96,46 @@ void Niveau::afficherPlateau(char niveau)
 void Niveau::creerObjet()
 {
     Oiseau *p_Oiseau;
+    Blocs* p_Blocs;
 
     for (int i=0; i<20; i++)
     {
         for(int j=0; j<10; j++)
         {
-          if(this->m_plateau[i][j]=='B')
-          {
-              m_balle = new Balle(i,j,1,1);
-          }
-          if(this->m_plateau[i][j]=='O')
-          {
-              p_Oiseau = new Oiseau(i, j);
-              std::cout << p_Oiseau->getX();
-              m_tabOiseau.push_back(*p_Oiseau);
-              p_Oiseau = NULL;
-              //m_tabOiseau.[m_tabOiseau.size()+1];
+            if(this->m_plateau[i][j]=='B')
+            {
+            m_balle = new Balle(i,j,1,1);
+            }
 
-          }
+            if(this->m_plateau[i][j]=='O')
+            {
+            p_Oiseau = new Oiseau(i, j);
+            std::cout << p_Oiseau->getX();
+            m_tabOiseau.push_back(*p_Oiseau);
+            p_Oiseau = NULL;
+            //m_tabOiseau.[m_tabOiseau.size()+1];
+            }
+
+            if(this->m_plateau[i][j]=='P')
+            {
+              p_Blocs = new BlocsPoussables(i, j, true);
+              m_tabBlocs.push_back(*p_Blocs);
+              p_Blocs = NULL;
+            }
+
+            if(this->m_plateau[i][j]=='C')
+            {
+              p_Blocs = new BlocsCassables(i, j);
+              m_tabBlocs.push_back(*p_Blocs);
+              p_Blocs = NULL;
+            }
+
+            if(this->m_plateau[i][j]=='T')
+            {
+              p_Blocs = new BlocsPieges(i, j);
+              m_tabBlocs.push_back(*p_Blocs);
+              p_Blocs = NULL;
+            }
         }
     }
 }
