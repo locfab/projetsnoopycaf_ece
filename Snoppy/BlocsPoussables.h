@@ -16,7 +16,7 @@ class BlocsPoussables : public Blocs
 
     protected:
 
-    char m_saLetrre = 'P';
+    char m_saLetrre;
     bool m_poussable;
 };
 

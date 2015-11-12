@@ -2,13 +2,13 @@
 #include "Balle.h"
 
 
-Balle::Balle()
+Balle::Balle(): m_saLetrre('B')
 {
 }
-Balle::Balle(int x, int y) : m_x(x), m_y(y)
+Balle::Balle(int x, int y) : m_x(x), m_y(y), m_saLetrre('B')
 {
 }
-Balle::Balle(int x, int y, int depx, int depy) : m_x(x), m_y(y)
+Balle::Balle(int x, int y, int depx, int depy) : m_x(x), m_y(y), m_saLetrre('B')
 {
 	setDepX(depx);
 	setDepY(depy);

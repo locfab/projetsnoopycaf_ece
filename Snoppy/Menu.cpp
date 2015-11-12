@@ -4,7 +4,7 @@
 
 
 
-Menu::Menu()
+Menu::Menu(): m_choixMenu('0'), m_motDePasse("Snoop")
 {
 
 }

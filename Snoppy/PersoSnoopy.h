@@ -22,7 +22,7 @@ class PersoSnoopy
     void setPlusOiseau();
     void setVivant(bool vivant);
     void setCoordonnees(int x, int y);
-    
+
 
     int getNbOiseauAttrap() const;
     bool getVivant() const;
@@ -42,8 +42,8 @@ class PersoSnoopy
     int m_vie;
     int m_x;
     int m_y;
-    bool m_vivant = true;
-    char m_saLetrre = 'S';
+    bool m_vivant;
+    char m_saLetrre;
 };
 
 

@@ -17,7 +17,7 @@ class Oiseau
 
     int m_x;
     int m_y;
-    char m_saLetrre = 'O';
+    char m_saLetrre;
 };
 
 #endif // OISEAU_H_INCLUDED

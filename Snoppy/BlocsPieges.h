@@ -11,7 +11,7 @@ class BlocsPieges : public Blocs
 
     protected:
 
-    char m_saLetrre = 'T';
+    char m_saLetrre;
 };
 
 

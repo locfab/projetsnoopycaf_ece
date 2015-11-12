@@ -16,8 +16,8 @@ class BlocsCassables : public Blocs
 
     protected:
 
-    char m_saLetrre = 'C';
-    bool m_modeDemolition = false;
+    char m_saLetrre;
+    bool m_modeDemolition;
 };
 
 

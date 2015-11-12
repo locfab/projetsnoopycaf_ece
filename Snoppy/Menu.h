@@ -19,8 +19,8 @@ class Menu
 
     protected:
 
-    std::string m_motDePasse = "Snoop";
-	char m_choixMenu = '0';
+    std::string m_motDePasse;
+	char m_choixMenu;
 };
 
 

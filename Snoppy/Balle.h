@@ -27,7 +27,7 @@ class Balle
     int m_y;
     int m_depx;
     int m_depy;
-    char m_saLetrre = 'B';
+    char m_saLetrre;
 };
 
 #endif // BALLE_H_INCLUDED

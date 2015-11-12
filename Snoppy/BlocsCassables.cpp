@@ -2,11 +2,11 @@
 #include "BlocsCassables.h"
 
 
-BlocsCassables::BlocsCassables(): Blocs()
+BlocsCassables::BlocsCassables(): Blocs(), m_saLetrre('C'), m_modeDemolition(false)
 {
 }
 
-BlocsCassables::BlocsCassables(int x, int y) : Blocs(x,y)
+BlocsCassables::BlocsCassables(int x, int y) : Blocs(x,y), m_saLetrre('C'), m_modeDemolition(false)
 {
 }
 
