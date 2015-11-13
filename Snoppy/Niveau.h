@@ -23,7 +23,9 @@ class Niveau
     ~Niveau();
 	void setPlateau(char niveau);
 	void afficherPlateau(char niveau);
+	std::vector< std::vector<char> > getPlateau();
 	void creerObjet();
+
     void initCoordSnoop(PersoSnoopy* snoopy);
 	double getTemps();
     void getAttendre(double secondes);
@@ -35,9 +37,7 @@ class Niveau
 
 	Console *pConsole = NULL;
 
-	///char getNombreBalles();
-    ///void setNombreBalles(char nombreBalles);
-    ///void ajouterBalle();
+	void getDeplacementBalle(std::vector< std::vector<char> > plateau);
 
 
    protected:

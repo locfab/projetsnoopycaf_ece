@@ -41,6 +41,7 @@ partie->m_niveau->setPlateau('1');
         else
         {
             system("cls");
+            m_niveau->getDeplacementBalle(m_niveau->getPlateau());
             m_niveau->afficherPlateau(1);
             std::cout << "coord de Snoopy : " << "(" << m_snoopy->getX() << ";" << m_snoopy->getY()<< ")";
         }

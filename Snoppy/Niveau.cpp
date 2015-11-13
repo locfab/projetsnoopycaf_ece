@@ -69,6 +69,11 @@ void Niveau::afficherPlateau(char niveau)
     pConsole->gotoLigCol(7, 50);
     std::cout << "Coord balle : " << m_balle->getX() << " " << m_balle->getY();
     pConsole->gotoLigCol(8, 50);
+    std::cout << "Vect depX : " << m_balle->getDepX() << "  Vect depY : " << m_balle->getDepY();
+    pConsole->gotoLigCol(9, 50);
+    std::cout << "Position du B : " << m_plateau[m_balle->getX()][m_balle->getY()];
+    /*
+    pConsole->gotoLigCol(8, 50);
     std::cout << "Coord Oiseau 1 : " << m_tabOiseau[0].getX() << " " << m_tabOiseau[0].getY();
     pConsole->gotoLigCol(9, 50);
     std::cout << "Coord Oiseau 2 : " << m_tabOiseau[1].getX() << " " << m_tabOiseau[1].getY();
@@ -82,6 +87,9 @@ void Niveau::afficherPlateau(char niveau)
     std::cout << "Coord Poussable 2 : " << m_tabBlocs[10]->Blocs::getX() << " " << m_tabBlocs[10]->getY();
     pConsole->gotoLigCol(14, 50);
     std::cout << "Coord Poussable 3 : " << m_tabBlocs[11]->Blocs::getX() << " " << m_tabBlocs[11]->getY();
+    pConsole->gotoLigCol(15, 50);
+    std::cout << "Bloc Poussable 1 : " << m_tabBlocs[0]->BlocsPoussables::getPoussable();
+    */
     pConsole->gotoLigCol(15, 50);
     std::cout << "Poussable ? : " << m_tabBlocs[9]->getPoussable();
 
@@ -121,7 +129,6 @@ void Niveau::creerObjet()
             std::cout << p_Oiseau->getX();
             m_tabOiseau.push_back(*p_Oiseau);
             p_Oiseau = NULL;
-            //m_tabOiseau.[m_tabOiseau.size()+1];
             }
 
             if(this->m_plateau[i][j]=='P')
@@ -194,23 +201,14 @@ void Niveau::setTempsRestant(double newTempsRestant)
     }
 }
 
-/// Getter sur le nombre de balles en jeu
-/*char Niveau::getNombreBalles()
+/// Getter sur le déplacement de la balle
+void Niveau::getDeplacementBalle(std::vector< std::vector<char> > plateau)
 {
-    return m_nombreBalles;
+    return m_balle->deplacement(plateau);
 }
 
-/// Setter sur le nombre de balles en jeu
-void Niveau::setNombreBalles(char nombreBalles)
+/// Getter sur le plateau
+std::vector< std::vector<char> > Niveau::getPlateau()
 {
-    if((nombreBalles >= 0) && nombreBalles <= 2)
-    {
-        m_nombreBalles += nombreBalles;
-    }
+    return m_plateau;
 }
-
-/// Augmente le nombre de balles sur le terrain
-void Niveau::ajouterBalle()
-{
-    setNombreBalles(1);
-}*/
