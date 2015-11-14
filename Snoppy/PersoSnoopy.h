@@ -11,6 +11,7 @@ class PersoSnoopy
     PersoSnoopy();
     PersoSnoopy(int x, int y);
     PersoSnoopy(int x, int y, int nbOiseauxAttrap, int vie);
+    ~PersoSnoopy();
 
     void deplacement(bool droite, bool haut);
     void poussBloc();

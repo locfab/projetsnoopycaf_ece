@@ -9,6 +9,9 @@ BlocsPoussables::BlocsPoussables(): Blocs(), m_saLetrre('P')
 BlocsPoussables::BlocsPoussables(int x, int y, bool poussable): Blocs(x,y), m_poussable(poussable), m_saLetrre('P')
 {
 }
+BlocsPoussables::~BlocsPoussables()
+{
+}
 
 void BlocsPoussables::deplacement(int largeur, int hauteur, Blocs* blocs)
 {

@@ -8,6 +8,7 @@ class BlocsCassables : public Blocs
 
     BlocsCassables();
     BlocsCassables(int x, int y);
+    ~BlocsCassables();
 
     void casserBloc(bool modeDemolition);
 

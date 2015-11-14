@@ -6,6 +6,7 @@ class Oiseau
     public:
     Oiseau();
     Oiseau(int x, int y);
+    ~Oiseau();
 
     void setX(int x);
     void setY(int y);

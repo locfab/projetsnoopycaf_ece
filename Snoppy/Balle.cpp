@@ -13,6 +13,9 @@ Balle::Balle(int x, int y, int depx, int depy) : m_x(x), m_y(y), m_saLetrre('B')
 	setDepX(depx);
 	setDepY(depy);
 }
+Balle::~Balle()
+{
+}
 
 void Balle::deplacement(std::vector< std::vector<char> > plateau) // Deplace la balle en diagonale selon depx et depy qui pourront etre changer en fct du terrain grace a la fct directionDuDeplacementSuivant
 {

@@ -9,6 +9,7 @@ class Balle
     Balle();
     Balle(int x, int y);
     Balle(int x, int y, int depx, int depY);
+    ~Balle();
 
     void deplacement(std::vector<std::vector<char> > plateau); // Appellera directionDuPepalcementSuivant et il y aura des modifications de m_x et m_y
     void directionDuDeplacementSuivant(std::vector< std::vector<char> > plateau); // modification de m_depX et m_depY

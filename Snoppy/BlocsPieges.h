@@ -8,6 +8,7 @@ class BlocsPieges : public Blocs
 
     BlocsPieges();
     BlocsPieges(int x, int y);
+    ~BlocsPieges();
 
     protected:
 

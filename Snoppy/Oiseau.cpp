@@ -11,6 +11,10 @@ Oiseau::Oiseau(int x, int y): m_x(x),m_y(y), m_saLetrre('O')
 {
 
 }
+Oiseau::~Oiseau()
+{
+
+}
 
 int Oiseau::getX() const
 {

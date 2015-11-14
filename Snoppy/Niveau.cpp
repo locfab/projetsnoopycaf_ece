@@ -17,7 +17,17 @@ Niveau::Niveau()
 /// Destructeur
 Niveau::~Niveau()
 {
+    m_temps->~Temps();
+    m_balle->~Balle();
+        for(int i=0; i<m_tabBlocs.size();i++){
+    m_tabBlocs[i]->~Blocs();}
+        for(int i=0; i<m_tabOiseau.size();i++){
+    m_tabOiseau[i].~Oiseau();}
+
+        for(int i=0; i<m_tabBlocs.size();i++){
+    delete m_tabBlocs[i];}
     delete m_temps;
+    delete m_balle;
 }
 
 void Niveau::setPlateau(char niveau)

@@ -13,6 +13,10 @@ PersoSnoopy::PersoSnoopy(int x, int y, int nbOiseauxAttrap, int vie)
 			: m_x(x), m_y(y), m_nbOiseauxAttrap(nbOiseauxAttrap), m_vie(vie), m_saLetrre('S'), m_vivant(true)
 {
 }
+PersoSnoopy::~PersoSnoopy()
+{
+
+}
 
 
 void PersoSnoopy::setPlusOiseau()
@@ -27,6 +31,7 @@ void PersoSnoopy::setVivant(bool vivant)
     if (!vivant)
     m_vivant=false;
 }
+
 
 void PersoSnoopy::setCoordonnees(int x, int y)
 {

@@ -11,6 +11,8 @@ Partie::Partie()
 ///Destructeur
 Partie::~Partie()
 {
+    m_snoopy->~PersoSnoopy();
+    m_niveau->~Niveau();
     delete m_snoopy;
     delete m_niveau;
 }
@@ -46,7 +48,7 @@ partie->m_niveau->setPlateau('1');
             m_niveau->changerPlateau();
             m_niveau->afficherPlateau(1);
             std::cout << "coord de Snoopy : " << "(" << m_snoopy->getX() << ";" << m_snoopy->getY()<< ")";
-            m_niveau->getTabBlocs()[9]->deplacement(1,-1,m_niveau->getTabBlocs()[9]);/// TEST IMPORTANT POUR COMPRENDRE
+            //m_niveau->getTabBlocs()[9]->deplacement(1,0,m_niveau->getTabBlocs()[9]);/// TEST IMPORTANT POUR COMPRENDRE
             std::cout << "coord de tab9 : " << "(" << m_niveau->getTabBlocs()[9]->getX() << ";" << m_niveau->getTabBlocs()[9]->getY()<< ")";
 
         }
