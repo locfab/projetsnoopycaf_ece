@@ -22,6 +22,7 @@ class Balle
     int getY() const;
     int getDepX() const;
     int getDepY() const;
+    char getLettre();
 
     protected:
 

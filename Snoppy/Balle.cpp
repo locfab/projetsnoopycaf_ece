@@ -21,7 +21,7 @@ void Balle::deplacement(std::vector< std::vector<char> > plateau) // Deplace la 
 void Balle::directionDuDeplacementSuivant(std::vector< std::vector<char> > plateau) // doit gerer depx et depy et les changer en fct du terrarain et des collisions
 {
     char lettreIntermediaire;
-	//if(((getX()+getDepX()=!'.')&&(getY()+getDepY()=!'.')) || ((getX()+getDepX()=='.')&&(getY()+getDepY()=='.')&&()
+
     if( ((getX() + getDepX()) < 0) )
     {
         setDepX(1);
@@ -37,16 +37,6 @@ void Balle::directionDuDeplacementSuivant(std::vector< std::vector<char> > plate
     if( ((getY() + getDepY()) > 9) )
     {
         setDepY(-1);
-    }
-        setX();
-        setY();
-
-    if((getX()!=0)&&(getX()!=19)&&(getY()!=0)&&(getX()!=9))
-    {
-        lettreIntermediaire = plateau[getX()+getDepX()][getY()+getDepY()];
-        plateau[getX()+getDepX()][getY()+getDepY()] = plateau[getX()][getY()];
-        plateau[getX()][getY()] = lettreIntermediaire;
-        plateau[3][7] = 'K';
     }
 }
 
@@ -97,4 +87,10 @@ void Balle::setDepY(int depy)
 	this->m_depy=-1;
 	if (depy!=1 && depy!=-1)
 	std::cout << "FAUTE SUR LE VECTEUR VITESSE DEPY" << std::endl;
+}
+
+/// Getter sur la lettre de la balle
+char Balle::getLettre()
+{
+    return m_saLetrre;
 }

@@ -24,6 +24,9 @@ class Niveau
 	void setPlateau(char niveau);
 	void afficherPlateau(char niveau);
 	std::vector< std::vector<char> > getPlateau();
+	void changerPlateau();
+	void checkerPlateauPourBalle();
+
 	void creerObjet();
 
     void initCoordSnoop(PersoSnoopy* snoopy);
@@ -38,6 +41,7 @@ class Niveau
 	Console *pConsole = NULL;
 
 	void getDeplacementBalle(std::vector< std::vector<char> > plateau);
+	Balle* getBalle();
 
 
    protected:
@@ -51,7 +55,6 @@ class Niveau
     Balle *m_balle;
     std::vector<Oiseau> m_tabOiseau;
     std::vector<Blocs*> m_tabBlocs;
-    ///char m_nombreBalles;
 
  };
 

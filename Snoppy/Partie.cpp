@@ -42,10 +42,17 @@ partie->m_niveau->setPlateau('1');
         {
             system("cls");
             m_niveau->getDeplacementBalle(m_niveau->getPlateau());
+            m_niveau->checkerPlateauPourBalle();
+            m_niveau->changerPlateau();
             m_niveau->afficherPlateau(1);
-            std::cout << "coord de Snoopy : " << "(" << m_snoopy->getX() << ";" << m_snoopy->getY()<< ")";
+            m_niveau->pConsole->gotoLigCol(19, 50);
+
+
+
+
+    std::cout << "coord de Snoopy : " << "(" << m_snoopy->getX() << ";" << m_snoopy->getY()<< ")";
         }
-        partie->m_niveau->getAttendre(0.1);         /// Temporisation de 0.1 seconde
+        partie->m_niveau->getAttendre(0.5);         /// Temporisation de 0.1 seconde
         esc = GetAsyncKeyState(VK_ESCAPE);
     }
 
