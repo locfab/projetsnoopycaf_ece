@@ -24,6 +24,7 @@ class Niveau
 	void setPlateau(char niveau);
 	void afficherPlateau(char niveau);
 	std::vector< std::vector<char> > getPlateau();
+	std::vector<Blocs*> getTabBlocs();
 	void creerObjet();
 
     void initCoordSnoop(PersoSnoopy* snoopy);

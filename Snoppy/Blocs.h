@@ -9,11 +9,13 @@ class Blocs
     Blocs();
     Blocs(int x, int y);
 
+    void setX(int x);
+    void setY(int y);
+
+    int getX() const;
+    int getY() const;
     virtual bool getPoussable() const;
-
-
-    int getX();
-    int getY();
+    virtual void deplacement(int largeur, int hauteur, Blocs* blocs);
 
     protected:
     int m_x;

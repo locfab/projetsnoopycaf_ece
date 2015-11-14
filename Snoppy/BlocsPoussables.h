@@ -9,7 +9,9 @@ class BlocsPoussables : public Blocs
     BlocsPoussables();
     BlocsPoussables(int x, int y, bool poussable);
 
-    void deplacement(bool droite, bool haut);
+    void deplacement(int largeur, int hauteur, Blocs* blocs);
+
+    void setPoussable(bool poussable);
 
     bool getPoussable() const;
 

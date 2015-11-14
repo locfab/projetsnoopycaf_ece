@@ -212,3 +212,9 @@ std::vector< std::vector<char> > Niveau::getPlateau()
 {
     return m_plateau;
 }
+
+std::vector<Blocs*> Niveau::getTabBlocs()
+{
+    return m_tabBlocs;
+}
+
