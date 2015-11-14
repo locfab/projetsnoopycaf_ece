@@ -42,9 +42,11 @@ partie->m_niveau->setPlateau('1');
         {
             system("cls");
             m_niveau->getDeplacementBalle(m_niveau->getPlateau());
+            m_niveau->checkerPlateauPourBalle();
+            m_niveau->changerPlateau();
             m_niveau->afficherPlateau(1);
             std::cout << "coord de Snoopy : " << "(" << m_snoopy->getX() << ";" << m_snoopy->getY()<< ")";
-            ///m_niveau->getTabBlocs()[9]->deplacement(1,-1,m_niveau->getTabBlocs()[9]);/// TEST IMPORTANT POUR COMPRENDRE
+            m_niveau->getTabBlocs()[9]->deplacement(1,-1,m_niveau->getTabBlocs()[9]);/// TEST IMPORTANT POUR COMPRENDRE
             std::cout << "coord de tab9 : " << "(" << m_niveau->getTabBlocs()[9]->getX() << ";" << m_niveau->getTabBlocs()[9]->getY()<< ")";
 
         }
