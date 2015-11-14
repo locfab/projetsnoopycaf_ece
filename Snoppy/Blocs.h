@@ -15,6 +15,7 @@ class Blocs
 
     int getX() const;
     int getY() const;
+    virtual char getLettre() const;
     virtual bool getPoussable() const;
     virtual void deplacement(int largeur, int hauteur, Blocs* blocs);
 

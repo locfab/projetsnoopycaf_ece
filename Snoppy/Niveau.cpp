@@ -335,3 +335,8 @@ std::vector<Blocs*> Niveau::getTabBlocs()
     return m_tabBlocs;
 }
 
+std::vector<Oiseau> Niveau::getTabOiseau()
+{
+    return m_tabOiseau;
+}
+

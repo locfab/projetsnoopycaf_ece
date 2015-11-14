@@ -27,6 +27,8 @@ class PersoSnoopy
 
     int getNbOiseauAttrap() const;
     bool getVivant() const;
+    int getNbrVie() const;
+    int getScore() const;
     int getX() const;
     int getY() const;
 

@@ -16,6 +16,8 @@ class BlocsPoussables : public Blocs
 
     bool getPoussable() const;
 
+    char getLettre() const;
+
 
     protected:
 

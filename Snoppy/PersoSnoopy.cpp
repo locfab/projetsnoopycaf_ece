@@ -69,7 +69,14 @@ bool PersoSnoopy::getVivant() const
 {
     return m_vivant;
 }
-
+int PersoSnoopy::getNbrVie() const
+{
+    return m_vie;
+}
+int PersoSnoopy::getScore() const
+{
+    return m_score;
+}
 int PersoSnoopy::getX() const
 {
     return m_x;

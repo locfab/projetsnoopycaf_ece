@@ -81,3 +81,8 @@ bool BlocsPoussables::getPoussable() const
 {
  	return m_poussable;
 }
+
+char BlocsPoussables::getLettre() const
+{
+ 	return m_saLetrre;
+}

@@ -51,7 +51,9 @@ int Blocs::getY() const
 
 
 
-
+char Blocs::getLettre() const
+{
+}
 
 bool Blocs::getPoussable() const
 {

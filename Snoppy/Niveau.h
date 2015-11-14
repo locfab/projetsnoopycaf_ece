@@ -28,6 +28,7 @@ class Niveau
 	void checkerPlateauPourBalle();
 
 	std::vector<Blocs*> getTabBlocs();
+	std::vector<Oiseau> getTabOiseau();
 
 	void creerObjet();
 

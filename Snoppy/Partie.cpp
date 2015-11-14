@@ -1,4 +1,7 @@
 #include "Partie.h"
+#include <string>
+#include <fstream>
+
 
 
 ///Constructeur par défaut
@@ -54,6 +57,63 @@ partie->m_niveau->setPlateau('1');
         }
         partie->m_niveau->getAttendre(0.1);         /// Temporisation de 0.1 seconde
         esc = GetAsyncKeyState(VK_ESCAPE);
+    }
+
+    if(esc != 0)
+    {
+            std::string const nomFichier("Nom.txt");
+            std::ofstream monFlux(nomFichier.c_str());
+
+            if(monFlux)
+            {
+                monFlux << 'S' << ' ' << m_snoopy->getX() << ' ' << m_snoopy->getY() << ' ' << m_snoopy->getNbrVie() << ' ' << m_snoopy->getScore() << std::endl;
+
+                monFlux << 'B' << ' ' << m_niveau->getBalle()->getX() << ' ' << m_niveau->getBalle()->getY() << ' ' << m_niveau->getBalle()->getDepX() << ' ' << m_niveau->getBalle()->getDepY() << std::endl;
+
+                monFlux << 'P';
+                    for(int i=0; i<m_niveau->getTabBlocs().size();i++)
+                    {
+                        if(m_niveau->getTabBlocs()[i]->getLettre()=='P')
+                        {
+                           monFlux << " - " << m_niveau->getTabBlocs()[i]->getX() << ' ' << m_niveau->getTabBlocs()[i]->getY() << ' ' << m_niveau->getTabBlocs()[i]->getPoussable();
+                        }
+                    }
+                    monFlux << std::endl;
+
+                monFlux << 'C';
+                    for(int i=0; i<m_niveau->getTabBlocs().size();i++)
+                    {
+                        if(m_niveau->getTabBlocs()[i]->getLettre()=='C')
+                        {
+                           monFlux << " - " << m_niveau->getTabBlocs()[i]->getX() << ' ' << m_niveau->getTabBlocs()[i]->getY();
+                        }
+                    }
+                     monFlux << std::endl;
+
+                monFlux << 'T';
+                    for(int i=0; i<m_niveau->getTabBlocs().size();i++)
+                    {
+                        if(m_niveau->getTabBlocs()[i]->getLettre()=='T')
+                        {
+                           monFlux << " - " << m_niveau->getTabBlocs()[i]->getX() << ' ' << m_niveau->getTabBlocs()[i]->getY();
+                        }
+                    }
+                  monFlux << std::endl;
+
+                monFlux << 'O';
+                    for(int i=0; i<m_niveau->getTabOiseau().size();i++)
+                    {
+                        monFlux << " - " << m_niveau->getTabOiseau()[i].getX() << ' ' << m_niveau->getTabOiseau()[i].getY();
+                    }
+                  monFlux << std::endl;
+
+                monFlux << 't';
+                    monFlux << " - " << m_niveau->getTempsRestant() << std::endl;
+            }
+            else
+            {
+                std::cout << "ERREUR: Impossible d'ouvrir le fichier." << std::endl;
+            }
     }
 
     if(esc != 0)

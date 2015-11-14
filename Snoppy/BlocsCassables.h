@@ -14,6 +14,8 @@ class BlocsCassables : public Blocs
 
     void setModeDemolition();
 
+    char getLettre() const;
+
 
     protected:
 

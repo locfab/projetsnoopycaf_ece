@@ -12,3 +12,9 @@ BlocsPieges::BlocsPieges(int x, int y) : Blocs(x,y), m_saLetrre('T')
 BlocsPieges::~BlocsPieges()
 {
 }
+
+
+char BlocsPieges::getLettre() const
+{
+ 	return m_saLetrre;
+}

@@ -19,6 +19,11 @@ void BlocsCassables::casserBloc(bool modeDemolition)
 	// Ensuite appeller le destructeur
 }
 
-void setModeDemolition()
+void BlocsCassables::setModeDemolition()
 {
+}
+
+char BlocsCassables::getLettre() const
+{
+ 	return m_saLetrre;
 }
