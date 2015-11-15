@@ -219,7 +219,7 @@
 	"Menu.h"
 	"Partie.h"
 
-1447543416 c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\niveau.h
+1447549522 c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\niveau.h
 	"Menu.h"
 	"Balle.h"
 	"Oiseau.h"
@@ -234,10 +234,11 @@
 	"BlocsPieges.h"
 	"PersoSnoopy.h"
 
-1447543548 source:c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\niveau.cpp
+1447549631 source:c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\niveau.cpp
 	<iostream>
 	"Niveau.h"
 	<fstream>
+	<string>
 
 1447508326 source:c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\balle.cpp
 	<iostream>
@@ -354,7 +355,7 @@
 1447533214 c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\temps.h
 	<ctime>
 
-1447542593 source:c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\partie.cpp
+1447549533 source:c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\partie.cpp
 	"Partie.h"
 	<string>
 	<fstream>

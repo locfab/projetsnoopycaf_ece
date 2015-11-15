@@ -27,7 +27,7 @@ void Partie::jouer(Partie *partie)
     int timeOut = 0;
     int esc = 0;
 
-partie->m_niveau->setPlateau('1');
+partie->m_niveau->setPlateau("2");
 //partie->m_niveau->afficherPlateau(1);
 
     m_niveau->creerObjet();

@@ -21,7 +21,7 @@ class Niveau
     Niveau();
     ///Niveau(surchargé);
     ~Niveau();
-	void setPlateau(char niveau);
+	void setPlateau(std::string niveau);
 	void afficherPlateau(char niveau);
 	std::vector< std::vector<char> > getPlateau();
 	void changerPlateau();

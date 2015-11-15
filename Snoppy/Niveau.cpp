@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Niveau.h"
 #include <fstream>
+#include <string>
 
 /// Constructeur par défaut
 Niveau::Niveau()
@@ -30,40 +31,42 @@ Niveau::~Niveau()
     delete m_balle;
 }
 
-void Niveau::setPlateau(char niveau)
+void Niveau::setPlateau(std::string niveau)
 {
-    switch(niveau)
-    {
-        case '1':
-            std::ifstream fichier("matriceNiveau1UtilisableSansEspace.txt", std::ios::in);  // on ouvre
 
-            std::vector< std::vector<char> > grille(20);
-            for(int i(0); i < 20; ++i)
+    std::string nb = niveau; //choisir quel fichier on ouvre 1, 2 ,3
+    std::string debut("matriceNiveau");
+    std::string fin("UtilisableSansEspace.txt");
+    std::string nomFichier = debut + nb + fin;
+
+        std::ifstream fichier(nomFichier.c_str(), std::ios::in);  // on ouvre
+
+        std::vector< std::vector<char> > grille(20);
+        for(int i(0); i < 20; ++i)
+        {
+            grille[i] = std::vector<char>(10);
+        }
+
+        if(fichier)
+        {
+            char caractere;  // notre variable o sera stockŽ le caractre
+
+            for (int j=0; j<10; j++)
             {
-                grille[i] = std::vector<char>(10);
-            }
-
-            if(fichier)
-            {
-                char caractere;  // notre variable o sera stockŽ le caractre
-
-                for (int j=0; j<10; j++)
+                for (int i=0; i<20; i++)
                 {
-                    for (int i=0; i<20; i++)
-                    {
-                        fichier.get(caractere);  // on lit un caractre et on le stocke dans caractere
-                        grille[i][j]=caractere;
-                    }
+                    fichier.get(caractere);  // on lit un caractre et on le stocke dans caractere
+                    grille[i][j]=caractere;
                 }
-
-                fichier.close();
             }
-            else
-                std::cout << "Impossible d'ouvrir le fichier !" << std::endl;
 
-            this->m_plateau = grille;// peut etre mettre un getter
+            fichier.close();
+        }
+        else
+            std::cout << "Impossible d'ouvrir le fichier !" << std::endl;
 
-    }
+        this->m_plateau = grille;// peut etre mettre un getter
+
 }
 
 void Niveau::afficherPlateau(char niveau)
