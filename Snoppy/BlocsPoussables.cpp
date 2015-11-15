@@ -86,3 +86,4 @@ char BlocsPoussables::getLettre() const
 {
  	return m_saLetrre;
 }
+

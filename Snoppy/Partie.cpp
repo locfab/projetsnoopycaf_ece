@@ -24,12 +24,13 @@ void Partie::jouer(Partie *partie)
 {
     int timeOut = 0;
     int esc = 0;
+    int nombre(0);
 
 partie->m_niveau->setPlateau("1");
 //partie->m_niveau->afficherPlateau(1);
 
     m_niveau->creerObjet();
-   // m_niveau->creerObjet("nom");
+    //m_niveau->creerObjet("nom");// a ne pas utiliser au hasard sinon ca plante
     m_niveau->initCoordSnoop(m_snoopy);
 
     ///Boucle de jeu tant que le compteur est != 0 ou ESC n'est pas préssée
@@ -80,44 +81,80 @@ partie->m_niveau->setPlateau("1");
                 monFlux << 'B' << ' ' << m_niveau->getBalle()->getX() << ' ' << m_niveau->getBalle()->getY() << ' ' << m_niveau->getBalle()->getDepX() << ' ' << m_niveau->getBalle()->getDepY() << std::endl;
 
                 monFlux << 'P';
+
                     for(int i=0; i<m_niveau->getTabBlocs().size();i++)
-                    {
-                        if(m_niveau->getTabBlocs()[i]->getLettre()=='P')
                         {
-                           monFlux << " - " << m_niveau->getTabBlocs()[i]->getX() << ' ' << m_niveau->getTabBlocs()[i]->getY() << ' ' << m_niveau->getTabBlocs()[i]->getPoussable();
+                        if(m_niveau->getTabBlocs()[i]->getLettre()=='P')
+                            {
+                             nombre++;
+                            }
                         }
-                    }
+                        monFlux << ' ' << nombre << ' ';
+                        nombre = 0;
+
+                    for(int i=0; i<m_niveau->getTabBlocs().size();i++)
+                        {
+                            if(m_niveau->getTabBlocs()[i]->getLettre()=='P')
+                            {
+                               monFlux << m_niveau->getTabBlocs()[i]->getX() << ' ' << m_niveau->getTabBlocs()[i]->getY() << ' ' << m_niveau->getTabBlocs()[i]->getPoussable() << ' ';
+                            }
+                        }
                     monFlux << std::endl;
 
                 monFlux << 'C';
+
+                    for(int i=0; i<m_niveau->getTabBlocs().size();i++)
+                        {
+                        if(m_niveau->getTabBlocs()[i]->getLettre()=='C')
+                            {
+                             nombre++;
+                            }
+                        }
+                        monFlux << ' ' << nombre << ' ';
+                        nombre = 0;
+
                     for(int i=0; i<m_niveau->getTabBlocs().size();i++)
                     {
                         if(m_niveau->getTabBlocs()[i]->getLettre()=='C')
                         {
-                           monFlux << " - " << m_niveau->getTabBlocs()[i]->getX() << ' ' << m_niveau->getTabBlocs()[i]->getY();
+                           monFlux << " " << m_niveau->getTabBlocs()[i]->getX() << ' ' << m_niveau->getTabBlocs()[i]->getY();
                         }
                     }
                      monFlux << std::endl;
 
                 monFlux << 'T';
+
+                    for(int i=0; i<m_niveau->getTabBlocs().size();i++)
+                        {
+                        if(m_niveau->getTabBlocs()[i]->getLettre()=='T')
+                            {
+                             nombre++;
+                            }
+                        }
+                        monFlux << ' ' << nombre << ' ';
+                        nombre = 0;
+
                     for(int i=0; i<m_niveau->getTabBlocs().size();i++)
                     {
                         if(m_niveau->getTabBlocs()[i]->getLettre()=='T')
                         {
-                           monFlux << " - " << m_niveau->getTabBlocs()[i]->getX() << ' ' << m_niveau->getTabBlocs()[i]->getY();
+                           monFlux << " " << m_niveau->getTabBlocs()[i]->getX() << ' ' << m_niveau->getTabBlocs()[i]->getY();
                         }
                     }
                   monFlux << std::endl;
 
                 monFlux << 'O';
+
+                    monFlux << ' ' << m_niveau->getTabOiseau().size() << ' ';
+
                     for(int i=0; i<m_niveau->getTabOiseau().size();i++)
                     {
-                        monFlux << " - " << m_niveau->getTabOiseau()[i].getX() << ' ' << m_niveau->getTabOiseau()[i].getY();
+                        monFlux << " " << m_niveau->getTabOiseau()[i].getX() << ' ' << m_niveau->getTabOiseau()[i].getY();
                     }
                   monFlux << std::endl;
 
                 monFlux << 't';
-                    monFlux << " - " << m_niveau->getTempsRestant() << std::endl;
+                    monFlux << " " << m_niveau->getTempsRestant() << std::endl;
 
             }
             else

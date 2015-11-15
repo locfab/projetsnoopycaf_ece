@@ -18,7 +18,6 @@ class BlocsPoussables : public Blocs
 
     char getLettre() const;
 
-
     protected:
 
     char m_saLetrre;

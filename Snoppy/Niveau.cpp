@@ -176,6 +176,7 @@ void Niveau::creerObjet(std::string nom)// permet de creer les objet à partir d
         {
                 std::string mot;
                 char caractere;  // notre variable o sera stockŽ le caractre
+                int valeur(0);
                 int nb(0);
                 int rien(1);
 
@@ -200,15 +201,17 @@ void Niveau::creerObjet(std::string nom)// permet de creer les objet à partir d
                 fichier.get(caractere);
                 std::cout << caractere << std::endl;
 
+                fichier >> nb;
+                std::cout << nb << std::endl;
+                fichier >> nb;
+                std::cout << nb << std::endl;
+                fichier >> nb;
+                std::cout << nb << std::endl;
+                fichier >> nb;
+                std::cout << nb << std::endl;
 
-                fichier >> nb;
-                std::cout << nb << std::endl;
-                fichier >> nb;
-                std::cout << nb << std::endl;
-                fichier >> nb;
-                std::cout << nb << std::endl;
-                fichier >> nb;
-                std::cout << nb << std::endl;
+
+
 
                 fichier.get(caractere);
                 std::cout << caractere << std::endl;
@@ -220,28 +223,45 @@ void Niveau::creerObjet(std::string nom)// permet de creer les objet à partir d
                 std::cout << caractere << std::endl;
                 fichier.get(caractere);
                 std::cout << caractere << std::endl;
+
+                fichier >> nb;
+                std::cout << nb << std::endl;
+                fichier >> nb;
+                std::cout << nb << std::endl;
+                fichier >> nb;
+                std::cout << nb << std::endl;
+                fichier >> nb;
+                std::cout << nb << std::endl;
+
+
 
                 std::cout << '-' << std::endl;
 
+
+                fichier.get(caractere);
+                std::cout << caractere << std::endl;
+                fichier.get(caractere);
+                std::cout << caractere << std::endl;
+                fichier.get(caractere);
+
                 fichier >> nb;
-                std::cout << nb << std::endl;
-                fichier >> nb;
-                std::cout << nb << std::endl;
-                fichier >> nb;
-                std::cout << nb << std::endl;
-                fichier >> nb;
-                std::cout << nb << std::endl;
+                valeur = nb;
+                for (int i(0); i<valeur; i++)
+                {
+                    fichier >> nb;
+                    std::cout << nb << ' ';
+                    fichier >> nb;
+                    std::cout << nb << ' ';
+                    fichier >> nb;
+                    std::cout << nb << ' ';
 
+                }
 
-
-
-
-
-
+/*
                 while(rien==1)
                 {
                 }
-
+*/
 
         fichier.close();
         }
