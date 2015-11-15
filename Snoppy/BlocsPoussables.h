@@ -8,7 +8,7 @@ class BlocsPoussables : public Blocs
 
     BlocsPoussables();
     BlocsPoussables(int x, int y, bool poussable);
-    ~BlocsPoussables();
+    virtual ~BlocsPoussables();
 
     void deplacement(int largeur, int hauteur, Blocs* blocs);
 

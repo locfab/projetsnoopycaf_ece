@@ -8,7 +8,7 @@ class BlocsPieges : public Blocs
 
     BlocsPieges();
     BlocsPieges(int x, int y);
-    ~BlocsPieges();
+    virtual ~BlocsPieges();
     
     char getLettre() const;
 
