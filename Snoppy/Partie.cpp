@@ -1,6 +1,5 @@
 #include "Partie.h"
 #include <string>
-#include <fstream>
 
 
 
@@ -14,10 +13,9 @@ Partie::Partie()
 ///Destructeur
 Partie::~Partie()
 {
-    m_snoopy->~PersoSnoopy();
-    m_niveau->~Niveau();
     delete m_snoopy;
     delete m_niveau;
+
 }
 
 
@@ -31,6 +29,7 @@ partie->m_niveau->setPlateau("1");
 //partie->m_niveau->afficherPlateau(1);
 
     m_niveau->creerObjet();
+   // m_niveau->creerObjet("nom");
     m_niveau->initCoordSnoop(m_snoopy);
 
     ///Boucle de jeu tant que le compteur est != 0 ou ESC n'est pas préssée
@@ -120,7 +119,6 @@ partie->m_niveau->setPlateau("1");
                 monFlux << 't';
                     monFlux << " - " << m_niveau->getTempsRestant() << std::endl;
 
-               this->~Partie();
             }
             else
             {
@@ -128,14 +126,14 @@ partie->m_niveau->setPlateau("1");
             }
 
     }
-
+/*
     if(esc != 0)
     {
         system("cls");
         m_niveau->pConsole->gotoLigCol(12, 30);
         std::cout << "Vous avez quitte la partie";
     }
-
+*/
 
 
     m_niveau->pConsole->getInputKey();

@@ -32,6 +32,7 @@ class Niveau
 	std::vector<Oiseau> getTabOiseau();
 
 	void creerObjet();
+	void creerObjet(std::string);
 
     void initCoordSnoop(PersoSnoopy* snoopy);
 	double getTemps();

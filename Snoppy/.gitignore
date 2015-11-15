@@ -1,6 +1,6 @@
 *.o
 *.a
-Snoppy.exe
+bin/Debug/Snoppy.exe
 Snoppy.layout
 Snoppy.depend
 Nom.txt

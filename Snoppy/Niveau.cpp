@@ -18,14 +18,7 @@ Niveau::Niveau()
 /// Destructeur
 Niveau::~Niveau()
 {
-    m_temps->~Temps();
-    m_balle->~Balle();
-        for(int i=0; i<m_tabBlocs.size();i++){
-    m_tabBlocs[i]->~Blocs();}
-        for(int i=0; i<m_tabOiseau.size();i++){
-    m_tabOiseau[i].~Oiseau();}
-
-        for(int i=0; i<m_tabBlocs.size();i++){
+        for(int i=0; i<m_tabBlocs.size();++i){
     delete m_tabBlocs[i];}
     delete m_temps;
     delete m_balle;
@@ -124,9 +117,9 @@ void Niveau::creerObjet()
     Oiseau *p_Oiseau;
     Blocs* p_Blocs;
 
-    for (int i=0; i<20; i++)
+    for(int j=0; j<10; j++)
     {
-        for(int j=0; j<10; j++)
+        for (int i=0; i<20; i++)
         {
             if(this->m_plateau[i][j]=='B')
             {
@@ -163,6 +156,100 @@ void Niveau::creerObjet()
             }
         }
     }
+}
+
+void Niveau::creerObjet(std::string nom)// permet de creer les objet à partir des sauvegardes
+{
+
+    std::string const fin(".txt"); //choisir quel fichier on ouvre 1, 2 ,3
+    std::string nomFichier = nom + fin;
+
+        std::ifstream fichier(nomFichier.c_str(), std::ios::in);  // on ouvre
+
+        std::vector< std::vector<char> > grille(20);
+        for(int i(0); i < 20; ++i)
+        {
+            grille[i] = std::vector<char>(10);
+        }
+
+        if(fichier)
+        {
+                std::string mot;
+                char caractere;  // notre variable o sera stockŽ le caractre
+                int nb(0);
+                int rien(1);
+
+                fichier >> mot;
+                std::cout << mot << std::endl;
+                fichier.get(caractere);
+
+
+                for (int j=0; j<10; j++)
+                {
+                    for (int i=0; i<20; i++)
+                    {
+                        fichier.get(caractere);  // on lit un caractre et on le stocke dans caractere
+                        grille[i][j]=caractere;
+                    }
+                }
+
+                fichier.get(caractere);
+                std::cout << caractere << std::endl;
+                fichier.get(caractere);
+                std::cout << caractere << std::endl;
+                fichier.get(caractere);
+                std::cout << caractere << std::endl;
+
+
+                fichier >> nb;
+                std::cout << nb << std::endl;
+                fichier >> nb;
+                std::cout << nb << std::endl;
+                fichier >> nb;
+                std::cout << nb << std::endl;
+                fichier >> nb;
+                std::cout << nb << std::endl;
+
+                fichier.get(caractere);
+                std::cout << caractere << std::endl;
+
+
+
+
+                fichier.get(caractere);
+                std::cout << caractere << std::endl;
+                fichier.get(caractere);
+                std::cout << caractere << std::endl;
+
+                std::cout << '-' << std::endl;
+
+                fichier >> nb;
+                std::cout << nb << std::endl;
+                fichier >> nb;
+                std::cout << nb << std::endl;
+                fichier >> nb;
+                std::cout << nb << std::endl;
+                fichier >> nb;
+                std::cout << nb << std::endl;
+
+
+
+
+
+
+
+                while(rien==1)
+                {
+                }
+
+
+        fichier.close();
+        }
+        else
+            std::cout << "Impossible d'ouvrir le fichier !" << std::endl;
+
+        this->m_plateau = grille;// peut etre mettre un getter
+
 }
 
 void Niveau::initCoordSnoop(PersoSnoopy* snoopy)
