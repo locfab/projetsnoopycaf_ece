@@ -12,7 +12,6 @@ Blocs::Blocs(int x, int y): m_x(x), m_y(y)
 }
 Blocs::~Blocs()
 {
-
 }
 
 void Blocs::setX(int x)

@@ -27,7 +27,7 @@ void Partie::jouer(Partie *partie)
     int timeOut = 0;
     int esc = 0;
 
-partie->m_niveau->setPlateau("2");
+partie->m_niveau->setPlateau("1");
 //partie->m_niveau->afficherPlateau(1);
 
     m_niveau->creerObjet();
@@ -71,7 +71,7 @@ partie->m_niveau->setPlateau("2");
                     {
                         for(int i=0; i< 20; i++)
                         {
-                         monFlux << m_niveau->getPlateau()[i][j];   
+                         monFlux << m_niveau->getPlateau()[i][j];
                         }
                     }
                     monFlux << std::endl;
@@ -119,11 +119,14 @@ partie->m_niveau->setPlateau("2");
 
                 monFlux << 't';
                     monFlux << " - " << m_niveau->getTempsRestant() << std::endl;
+
+               this->~Partie();
             }
             else
             {
                 std::cout << "ERREUR: Impossible d'ouvrir le fichier." << std::endl;
             }
+
     }
 
     if(esc != 0)

@@ -184,11 +184,11 @@
 	"Niveau.h"
 	<fstream>
 
-1447542010 source:c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\blocs.cpp
+1447583386 source:c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\blocs.cpp
 	<iostream>
 	"Blocs.h"
 
-1447541983 c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\blocs.h
+1447582163 c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\blocs.h
 
 1447542238 source:c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\blocscassables.cpp
 	<iostream>
@@ -214,7 +214,7 @@
 1447533214 c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\menu.h
 	<string>
 
-1447533214 source:c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\menu.cpp
+1447583518 source:c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\menu.cpp
 	<iostream>
 	"Menu.h"
 	"Partie.h"
@@ -355,7 +355,7 @@
 1447533214 c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\temps.h
 	<ctime>
 
-1447549533 source:c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\partie.cpp
+1447584309 source:c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\partie.cpp
 	"Partie.h"
 	<string>
 	<fstream>

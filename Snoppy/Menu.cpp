@@ -17,6 +17,8 @@ Menu::~Menu()
 void Menu::afficherMenu()
 {
     char choixMenu('0');
+    setChoixMenu(choixMenu);
+
 
     while(this->getChoixMenu()<'1' || this->getChoixMenu()>'5')
      {
@@ -31,6 +33,7 @@ void Menu::afficherMenu()
         std::cout << "5- Quitter" << std::endl << std::endl;
 
         std::cout << "Faites votre choix:  ";
+        std::cin.clear();
         std::cin >> choixMenu;
         this->setChoixMenu(choixMenu);
      }
@@ -59,6 +62,8 @@ void Menu::creerPartie()
 {
     Partie *m_partie = new Partie();
     m_partie->jouer(m_partie);
+    system("cls");
+    afficherMenu();
 }
 
 char Menu::getChoixMenu() const

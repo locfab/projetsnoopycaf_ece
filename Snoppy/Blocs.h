@@ -8,7 +8,7 @@ class Blocs
 
     Blocs();
     Blocs(int x, int y);
-    ~Blocs();
+    virtual ~Blocs();
 
     void setX(int x);
     void setY(int y);
