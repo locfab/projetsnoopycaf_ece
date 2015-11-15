@@ -66,6 +66,16 @@ partie->m_niveau->setPlateau("2");
 
             if(monFlux)
             {
+                monFlux << 'p' << ' ';
+                    for(int j=0; j< 10; j++)
+                    {
+                        for(int i=0; i< 20; i++)
+                        {
+                         monFlux << m_niveau->getPlateau()[i][j];   
+                        }
+                    }
+                    monFlux << std::endl;
+
                 monFlux << 'S' << ' ' << m_snoopy->getX() << ' ' << m_snoopy->getY() << ' ' << m_snoopy->getNbrVie() << ' ' << m_snoopy->getScore() << std::endl;
 
                 monFlux << 'B' << ' ' << m_niveau->getBalle()->getX() << ' ' << m_niveau->getBalle()->getY() << ' ' << m_niveau->getBalle()->getDepX() << ' ' << m_niveau->getBalle()->getDepY() << std::endl;
