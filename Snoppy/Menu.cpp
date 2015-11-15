@@ -1,29 +1,39 @@
 #include <iostream>
 #include "Menu.h"
-#include "PersoSnoopy.h"
-#include "Niveau.h"
+#include "Partie.h"
 
 
 
-Menu::Menu()
+Menu::Menu(): m_choixMenu('0'), m_motDePasse("Snoop")
 {
+
+}
+
+Menu::~Menu()
+{
+
 }
 
 void Menu::afficherMenu()
 {
     char choixMenu('0');
+    setChoixMenu(choixMenu);
+
 
     while(this->getChoixMenu()<'1' || this->getChoixMenu()>'5')
      {
         this->setChoixMenu('0');
 
-        std::cout << "1- Jouer" << std::endl;
-        std::cout << "2- Charger partie" << std::endl;
-        std::cout << "3- Mot de passe" << std::endl;
-        std::cout << "4- Score" << std::endl;
-        std::cout << "5- Quitter" << std::endl;
+        system("cls");
 
-        std::cout << "Faites votre choix: " << std::endl;
+        std::cout << "1- Jouer" << std::endl << std::endl;
+        std::cout << "2- Charger partie" << std::endl << std::endl;
+        std::cout << "3- Mot de passe" << std::endl << std::endl;
+        std::cout << "4- Score" << std::endl << std::endl;
+        std::cout << "5- Quitter" << std::endl << std::endl;
+
+        std::cout << "Faites votre choix:  ";
+        std::cin.clear();
         std::cin >> choixMenu;
         this->setChoixMenu(choixMenu);
      }
@@ -35,7 +45,7 @@ void Menu::choix(char decisionJoueur)
 {
     switch (decisionJoueur)
       {
-         case '2':
+         case '1':
             this->creerPartie();
             break;
          case 'a':
@@ -50,10 +60,10 @@ void Menu::choix(char decisionJoueur)
 
 void Menu::creerPartie()
 {
-    PersoSnoopy* m_snoopy = new PersoSnoopy();
-    Niveau* m_niveau = new Niveau();
-    m_niveau->setPlateau("ChaineDeCaractere");
-    m_niveau->afficherPlateau();
+    Partie *m_partie = new Partie();
+    m_partie->jouer(m_partie);
+    system("cls");
+    afficherMenu();
 }
 
 char Menu::getChoixMenu() const

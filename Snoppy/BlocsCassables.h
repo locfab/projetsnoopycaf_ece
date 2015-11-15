@@ -8,16 +8,19 @@ class BlocsCassables : public Blocs
 
     BlocsCassables();
     BlocsCassables(int x, int y);
+    ~BlocsCassables();
 
     void casserBloc(bool modeDemolition);
 
     void setModeDemolition();
 
+    char getLettre() const;
+
 
     protected:
 
-    char m_saLetrre = 'C';
-    bool m_modeDemolition = false;
+    char m_saLetrre;
+    bool m_modeDemolition;
 };
 
 

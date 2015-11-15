@@ -8,13 +8,20 @@ class BlocsPoussables : public Blocs
 
     BlocsPoussables();
     BlocsPoussables(int x, int y, bool poussable);
+    ~BlocsPoussables();
 
-    void deplacement(bool droite, bool haut);
+    void deplacement(int largeur, int hauteur, Blocs* blocs);
+
+    void setPoussable(bool poussable);
+
+    bool getPoussable() const;
+
+    char getLettre() const;
 
 
     protected:
 
-    char m_saLetrre = 'P';
+    char m_saLetrre;
     bool m_poussable;
 };
 

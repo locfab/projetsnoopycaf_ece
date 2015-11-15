@@ -2,25 +2,45 @@
 #include "Balle.h"
 
 
-Balle::Balle()
+Balle::Balle(): m_saLetrre('B')
 {
 }
-Balle::Balle(int x, int y) : m_x(x), m_y(y)
+Balle::Balle(int x, int y) : m_x(x), m_y(y), m_saLetrre('B')
 {
 }
-Balle::Balle(int x, int y, int depx, int depy) : m_x(x), m_y(y)
+Balle::Balle(int x, int y, int depx, int depy) : m_x(x), m_y(y), m_saLetrre('B')
 {
 	setDepX(depx);
 	setDepY(depy);
 }
-
-void Balle::deplacement() // Deplace la balle en diagonale selon depx et depy qui pourront etre changer en fct du terrain grace a la fct directionDuDeplacementSuivant 
+Balle::~Balle()
 {
-	this->directionDuDeplacementSuivant();
 }
-void Balle::directionDuDeplacementSuivant() // doit gerer depx et depy et les changer en fct du terrarain et des collisions
+
+void Balle::deplacement(std::vector< std::vector<char> > plateau) // Deplace la balle en diagonale selon depx et depy qui pourront etre changer en fct du terrain grace a la fct directionDuDeplacementSuivant
 {
+	this->directionDuDeplacementSuivant(plateau);
+}
+void Balle::directionDuDeplacementSuivant(std::vector< std::vector<char> > plateau) // doit gerer depx et depy et les changer en fct du terrarain et des collisions
+{
+    char lettreIntermediaire;
 	//if(((getX()+getDepX()=!'.')&&(getY()+getDepY()=!'.')) || ((getX()+getDepX()=='.')&&(getY()+getDepY()=='.')&&()
+    if( ((getX() + getDepX()) < 0) )
+    {
+        setDepX(1);
+    }
+    if( ((getX() + getDepX()) > 19) )
+    {
+        setDepX(-1);
+    }
+    if( ((getY() + getDepY()) < 0) )
+    {
+        setDepY(1);
+    }
+    if( ((getY() + getDepY()) > 9) )
+    {
+        setDepY(-1);
+    }
 }
 
 
@@ -44,13 +64,13 @@ int Balle::getDepY() const
 
 void Balle::setX()
 {
-	if(getX()+getDepX()>0 || getX()+getDepX()<20)
+	if(getX()+getDepX()>=0 && getX()+getDepX()<20)
 	this->m_x = getX()+getDepX();
 }
 void Balle::setY()
 {
-	if(getY()+getDepY()>0 || getY()+getDepY()<10)
-	this->m_x = getY()+getDepY();
+	if(getY()+getDepY()>=0 && getY()+getDepY()<10)
+	this->m_y = getY()+getDepY();
 }
 void Balle::setDepX(int depx)
 {
@@ -70,4 +90,10 @@ void Balle::setDepY(int depy)
 	this->m_depy=-1;
 	if (depy!=1 && depy!=-1)
 	std::cout << "FAUTE SUR LE VECTEUR VITESSE DEPY" << std::endl;
+}
+
+/// Getter sur la lettre de la balle
+char Balle::getLettre()
+{
+    return m_saLetrre;
 }

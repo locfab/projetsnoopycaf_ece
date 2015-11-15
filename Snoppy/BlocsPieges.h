@@ -8,10 +8,13 @@ class BlocsPieges : public Blocs
 
     BlocsPieges();
     BlocsPieges(int x, int y);
+    ~BlocsPieges();
+    
+    char getLettre() const;
 
     protected:
 
-    char m_saLetrre = 'T';
+    char m_saLetrre;
 };
 
 

@@ -11,6 +11,7 @@ class PersoSnoopy
     PersoSnoopy();
     PersoSnoopy(int x, int y);
     PersoSnoopy(int x, int y, int nbOiseauxAttrap, int vie);
+    ~PersoSnoopy();
 
     void deplacement(bool droite, bool haut);
     void poussBloc();
@@ -22,11 +23,12 @@ class PersoSnoopy
     void setPlusOiseau();
     void setVivant(bool vivant);
     void setCoordonnees(int x, int y);
-    void setX(int x);
-    void setY(int y);
+
 
     int getNbOiseauAttrap() const;
     bool getVivant() const;
+    int getNbrVie() const;
+    int getScore() const;
     int getX() const;
     int getY() const;
 
@@ -35,13 +37,16 @@ class PersoSnoopy
 
     protected:
 
+    void setX(int x);
+    void setY(int y);
+
     int m_nbOiseauxAttrap;
     int m_score;
     int m_vie;
     int m_x;
     int m_y;
-    bool m_vivant = true;
-    char m_saLetrre = 'S';
+    bool m_vivant;
+    char m_saLetrre;
 };
 
 

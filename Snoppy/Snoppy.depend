@@ -35,7 +35,11 @@
 	<iostream>
 	"Snoopy.h"
 
+<<<<<<< HEAD
 1447263074 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Balle.cpp
+=======
+1447239661 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Balle.cpp
+>>>>>>> ecritureFichier
 	<iostream>
 	"Balle.h"
 	<iostream>
@@ -43,17 +47,30 @@
 	<iostream>
 	"Balle.h"
 
+<<<<<<< HEAD
 1447261672 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Balle.h
 
 1447261672 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Oiseau.cpp
+=======
+1447239159 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Balle.h
+
+1447200427 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Oiseau.cpp
+	<iostream>
+	"Oiseau.h"
+>>>>>>> ecritureFichier
 	<iostream>
 	"Oiseau.h"
 	<iostream>
 	"Oiseau.h"
+<<<<<<< HEAD
 	<iostream>
 	"Oiseau.h"
 
 1447261672 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Oiseau.h
+=======
+
+1447200427 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Oiseau.h
+>>>>>>> ecritureFichier
 
 1446367877 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Snoopy.cpp
 	<iostream>
@@ -62,7 +79,11 @@
 1446367877 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Snoopy.h
 	<string>
 
+<<<<<<< HEAD
 1447261672 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/main.cpp
+=======
+1447202910 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/main.cpp
+>>>>>>> ecritureFichier
 	<iostream>
 	"PersoSnoopy.h"
 	<iostream>
@@ -72,12 +93,21 @@
 
 1447200576 py.h"
 
+<<<<<<< HEAD
 1447261672 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/PersoSnoopy.h
 	<string>
 	<string>
 	<string>
 
 1447261672 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/PersoSnoopy.cpp
+=======
+1447200427 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/PersoSnoopy.h
+	<string>
+	<string>
+	<string>
+
+1447200427 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/PersoSnoopy.cpp
+>>>>>>> ecritureFichier
 	<iostream>
 	"PersoSnoopy.h"
 	<iostream>
@@ -85,6 +115,7 @@
 	<iostream>
 	"PersoSnoopy.h"
 
+<<<<<<< HEAD
 1447343661 source:c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\balle.cpp
 	<iostream>
 	"Balle.h"
@@ -117,6 +148,41 @@
 1447261672 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Blocs.h
 
 1447261672 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/BlocsPoussables.cpp
+=======
+1447533629 source:c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\balle.cpp
+	<iostream>
+	"Balle.h"
+
+1447533639 c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\balle.h
+	<vector>
+
+1447533215 source:c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\main.cpp
+	<iostream>
+	"Menu.h"
+
+1447544249 c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\persosnoopy.h
+	<string>
+
+1447533860 source:c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\oiseau.cpp
+	<iostream>
+	"Oiseau.h"
+
+1447533935 c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\oiseau.h
+
+1447544318 source:c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\persosnoopy.cpp
+	<iostream>
+	"PersoSnoopy.h"
+
+1447200427 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Blocs.cpp
+	<iostream>
+	"Blocs.h"
+	<iostream>
+	"Blocs.h"
+
+1447200427 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Blocs.h
+
+1447200427 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/BlocsPoussables.cpp
+>>>>>>> ecritureFichier
 	<iostream>
 	"BlocsPoussables.h"
 	<iostream>
@@ -124,11 +190,19 @@
 
 1447200576 sables.h"
 
+<<<<<<< HEAD
 1447261672 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/BlocsPoussables.h
 	"Blocs.h"
 	"Blocs.h"
 
 1447261672 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/BlocsCassables.cpp
+=======
+1447200427 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/BlocsPoussables.h
+	"Blocs.h"
+	"Blocs.h"
+
+1447200427 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/BlocsCassables.cpp
+>>>>>>> ecritureFichier
 	<iostream>
 	"BlocsCassables.h"
 	<iostream>
@@ -136,6 +210,7 @@
 
 1447200576 ables.h"
 
+<<<<<<< HEAD
 1447261672 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/BlocsCassables.h
 	"Blocs.h"
 	"Blocs.h"
@@ -157,6 +232,29 @@
 	<string>
 
 1447261672 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Menu.cpp
+=======
+1447200427 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/BlocsCassables.h
+	"Blocs.h"
+	"Blocs.h"
+
+1447200427 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/BlocsPieges.cpp
+	<iostream>
+	"BlocsPieges.h"
+	<iostream>
+	"BlocsPieges.h"
+
+1447200576 es.h"
+
+1447200427 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/BlocsPieges.h
+	"Blocs.h"
+	"Blocs.h"
+
+1447235576 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Menu.h
+	<string>
+	<string>
+
+1447236549 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Menu.cpp
+>>>>>>> ecritureFichier
 	<iostream>
 	"Menu.h"
 	"PersoSnoopy.h"
@@ -166,7 +264,11 @@
 	"PersoSnoopy.h"
 	"Niveau.h"
 
+<<<<<<< HEAD
 1447265607 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Niveau.h
+=======
+1447239873 /Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Niveau.h
+>>>>>>> ecritureFichier
 	"menu.h"
 	<vector>
 	<iostream>
@@ -175,6 +277,7 @@
 	<vector>
 	<iostream>
 
+<<<<<<< HEAD
 1447265607 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Niveau.cpp
 	<iostream>
 	"Niveau.h"
@@ -214,19 +317,303 @@
 	<string>
 
 1447343661 source:c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\menu.cpp
+=======
+1447240300 source:/Users/fabricelocqueville/Desktop/projetC++/projetsnoopycaf_ece/Snoppy/Niveau.cpp
 	<iostream>
-	"Menu.h"
-	"PersoSnoopy.h"
 	"Niveau.h"
-
-1447343661 c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\niveau.h
-	"Menu.h"
-	"Balle.h"
-	<vector>
-	<iostream>
-
-1447343661 source:c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\niveau.cpp
+	<fstream>
 	<iostream>
 	"Niveau.h"
 	<fstream>
 
+1447583386 source:c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\blocs.cpp
+	<iostream>
+	"Blocs.h"
+
+1447582163 c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\blocs.h
+
+1447542238 source:c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\blocscassables.cpp
+	<iostream>
+	"BlocsCassables.h"
+
+1447542045 c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\blocscassables.h
+	"Blocs.h"
+
+1447542233 source:c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\blocspieges.cpp
+	<iostream>
+	"BlocsPieges.h"
+
+1447542188 c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\blocspieges.h
+	"Blocs.h"
+
+1447542296 source:c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\blocspoussables.cpp
+	<iostream>
+	"BlocsPoussables.h"
+
+1447542254 c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\blocspoussables.h
+	"Blocs.h"
+
+1447533214 c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\menu.h
+	<string>
+
+1447585446 source:c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\menu.cpp
+>>>>>>> ecritureFichier
+	<iostream>
+	"Menu.h"
+	"Partie.h"
+
+1447549522 c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\niveau.h
+	"Menu.h"
+	"Balle.h"
+	"Oiseau.h"
+	<vector>
+	<iostream>
+	<windows.h>
+	"Console.h"
+	"Temps.h"
+	"Blocs.h"
+	"BlocsPoussables.h"
+	"BlocsCassables.h"
+	"BlocsPieges.h"
+	"PersoSnoopy.h"
+
+1447549631 source:c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\niveau.cpp
+	<iostream>
+	"Niveau.h"
+<<<<<<< HEAD
+
+1447343661 c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\niveau.h
+	"Menu.h"
+	"Balle.h"
+=======
+	<fstream>
+	<string>
+
+1447508326 source:c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\balle.cpp
+	<iostream>
+	"Balle.h"
+
+1447508226 c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\balle.h
+>>>>>>> ecritureFichier
+	<vector>
+
+1447505182 source:c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\blocs.cpp
+	<iostream>
+	"Blocs.h"
+
+1447505182 c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\blocs.h
+
+1447505182 source:c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\blocscassables.cpp
+	<iostream>
+<<<<<<< HEAD
+
+1447343661 source:c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\niveau.cpp
+=======
+	"BlocsCassables.h"
+
+1447505182 c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\blocscassables.h
+	"Blocs.h"
+
+1447505182 source:c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\blocspieges.cpp
+	<iostream>
+	"BlocsPieges.h"
+
+1447505182 c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\blocspieges.h
+	"Blocs.h"
+
+1447505182 source:c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\blocspoussables.cpp
+	<iostream>
+	"BlocsPoussables.h"
+
+1447505182 c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\blocspoussables.h
+	"Blocs.h"
+
+1447505185 source:c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\main.cpp
+	<iostream>
+	"Menu.h"
+
+1447505182 c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\menu.h
+	<string>
+
+1447505182 source:c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\menu.cpp
+	<iostream>
+	"Menu.h"
+	"Partie.h"
+
+1447505183 c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\persosnoopy.h
+	<string>
+
+1447510908 c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\niveau.h
+	"Menu.h"
+	"Balle.h"
+	"Oiseau.h"
+	<vector>
+	<iostream>
+	<windows.h>
+	"Console.h"
+	"Temps.h"
+	"Blocs.h"
+	"BlocsPoussables.h"
+	"BlocsCassables.h"
+	"BlocsPieges.h"
+	"PersoSnoopy.h"
+
+1447510774 source:c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\niveau.cpp
+	<iostream>
+	"Niveau.h"
+	<fstream>
+
+1447505182 source:c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\oiseau.cpp
+	<iostream>
+	"Oiseau.h"
+
+1447505182 c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\oiseau.h
+
+1447505182 source:c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\persosnoopy.cpp
+	<iostream>
+	"PersoSnoopy.h"
+
+1447510976 source:c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\partie.cpp
+	"Partie.h"
+
+1447505183 source:c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\temps.cpp
+	"Temps.h"
+
+1447505183 c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\temps.h
+	<ctime>
+
+1447505182 c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\partie.h
+	"PersoSnoopy.h"
+	"Niveau.h"
+
+1447505182 source:c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\console.cpp
+	"Console.h"
+	<conio.h>
+	<windows.h>
+
+1447505182 c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\console.h
+	<iostream>
+
+1447533214 source:c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\console.cpp
+	"Console.h"
+	<conio.h>
+	<windows.h>
+
+1447533214 c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\console.h
+	<iostream>
+
+1447533214 c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\partie.h
+	"PersoSnoopy.h"
+	"Niveau.h"
+
+1447533214 c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\temps.h
+	<ctime>
+
+1447584309 source:c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\partie.cpp
+	"Partie.h"
+	<string>
+	<fstream>
+
+1447533214 source:c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\temps.cpp
+	"Temps.h"
+
+1447534014 source:c:\users\fabrice\desktop\projetsnoopycaf_ece\snoppy\blocspoussables.cpp
+	<iostream>
+	"BlocsPoussables.h"
+
+1447533988 c:\users\fabrice\desktop\projetsnoopycaf_ece\snoppy\blocspoussables.h
+	"Blocs.h"
+
+1447533689 c:\users\fabrice\desktop\projetsnoopycaf_ece\snoppy\blocs.h
+
+1447533214 source:c:\users\fabrice\desktop\projetsnoopycaf_ece\snoppy\console.cpp
+	"Console.h"
+	<conio.h>
+	<windows.h>
+
+1447533214 c:\users\fabrice\desktop\projetsnoopycaf_ece\snoppy\console.h
+	<iostream>
+
+1447533215 source:c:\users\fabrice\desktop\projetsnoopycaf_ece\snoppy\main.cpp
+	<iostream>
+	"Menu.h"
+
+1447533214 c:\users\fabrice\desktop\projetsnoopycaf_ece\snoppy\menu.h
+	<string>
+
+1447533214 source:c:\users\fabrice\desktop\projetsnoopycaf_ece\snoppy\menu.cpp
+	<iostream>
+	"Menu.h"
+	"Partie.h"
+
+1447533214 c:\users\fabrice\desktop\projetsnoopycaf_ece\snoppy\partie.h
+	"PersoSnoopy.h"
+	"Niveau.h"
+
+1447534059 c:\users\fabrice\desktop\projetsnoopycaf_ece\snoppy\persosnoopy.h
+	<string>
+
+1447533214 c:\users\fabrice\desktop\projetsnoopycaf_ece\snoppy\niveau.h
+	"Menu.h"
+	"Balle.h"
+	"Oiseau.h"
+	<vector>
+	<iostream>
+	<windows.h>
+	"Console.h"
+	"Temps.h"
+	"Blocs.h"
+	"BlocsPoussables.h"
+	"BlocsCassables.h"
+	"BlocsPieges.h"
+	"PersoSnoopy.h"
+
+1447533639 c:\users\fabrice\desktop\projetsnoopycaf_ece\snoppy\balle.h
+	<vector>
+
+1447533935 c:\users\fabrice\desktop\projetsnoopycaf_ece\snoppy\oiseau.h
+
+1447533214 c:\users\fabrice\desktop\projetsnoopycaf_ece\snoppy\temps.h
+	<ctime>
+
+1447533764 c:\users\fabrice\desktop\projetsnoopycaf_ece\snoppy\blocscassables.h
+	"Blocs.h"
+
+1447533970 c:\users\fabrice\desktop\projetsnoopycaf_ece\snoppy\blocspieges.h
+	"Blocs.h"
+
+1447533214 source:c:\users\fabrice\desktop\projetsnoopycaf_ece\snoppy\temps.cpp
+	"Temps.h"
+
+1447533629 source:c:\users\fabrice\desktop\projetsnoopycaf_ece\snoppy\balle.cpp
+	<iostream>
+	"Balle.h"
+
+1447533692 source:c:\users\fabrice\desktop\projetsnoopycaf_ece\snoppy\blocs.cpp
+	<iostream>
+	"Blocs.h"
+
+1447533767 source:c:\users\fabrice\desktop\projetsnoopycaf_ece\snoppy\blocscassables.cpp
+	<iostream>
+	"BlocsCassables.h"
+
+1447533797 source:c:\users\fabrice\desktop\projetsnoopycaf_ece\snoppy\blocspieges.cpp
+	<iostream>
+	"BlocsPieges.h"
+
+1447533455 source:c:\users\fabrice\desktop\projetsnoopycaf_ece\snoppy\niveau.cpp
+>>>>>>> ecritureFichier
+	<iostream>
+	"Niveau.h"
+	<fstream>
+
+<<<<<<< HEAD
+=======
+1447533860 source:c:\users\fabrice\desktop\projetsnoopycaf_ece\snoppy\oiseau.cpp
+	<iostream>
+	"Oiseau.h"
+
+1447533370 source:c:\users\fabrice\desktop\projetsnoopycaf_ece\snoppy\partie.cpp
+	"Partie.h"
+
+>>>>>>> ecritureFichier
