@@ -1,21 +1,10 @@
-Snoppy/obj/Debug/*.o
-Snoppy/bin/Debug/Snoppy.exe
-Snoppy/Snoppy.layout
-Snoppy/Snoppy.depend
-Snoppy/Nom.txt
-Snoppy/obj/Debug/Balle.o
-Snoppy/obj/Debug/Blocs.o
-Snoppy/obj/Debug/BlocsCassables.o
-Snoppy/obj/Debug/BlocsPieges.o
-Snoppy/obj/Debug/BlocsPoussables.o
-Snoppy/obj/Debug/Console.o
-Snoppy/obj/Debug/Menu.o
-Snoppy/obj/Debug/Niveau.o
-Snoppy/obj/Debug/Oiseau.o
-Snoppy/obj/Debug/Partie.o
-Snoppy/obj/Debug/PersoSnoopy.o
-Snoppy/obj/Debug/Temps.o
-Snoppy/obj/Debug/main.o
+*.o
+*.a
+Snoppy.exe
+Snoppy.layout
+Snoppy.depend
+Nom.txt
+
 
 
 
