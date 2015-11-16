@@ -364,18 +364,44 @@ Balle* Niveau::getBalle()
 }
 
 /// Change le plateau
-void Niveau::changerPlateau()
+void Niveau::changerPlateau(PersoSnoopy* snoopy)
 {
-    if(verificationBalle_Bords() == 1)
-    {
-        char lettreIntermediaire;
-        lettreIntermediaire = m_plateau[m_balle->getX()+m_balle->getDepX()][m_balle->getY()+m_balle->getDepY()];
-        m_plateau[m_balle->getX()+m_balle->getDepX()][m_balle->getY()+m_balle->getDepY()] = m_balle->getLettre();
-        m_plateau[m_balle->getX()][m_balle->getY()] = lettreIntermediaire;
+       
+        for (int j=0; j<10; j++)
+        {
+            for (int i=0; i<20; i++)
+            {
+                this->m_plateau[i][j] = '.';
+            }
+        }
 
-        m_balle->setY();
-        m_balle->setX();
-    }
+
+        if(verificationBalle_Bords() == 1)
+        {
+            char lettreIntermediaire;
+            lettreIntermediaire = m_plateau[m_balle->getX()+m_balle->getDepX()][m_balle->getY()+m_balle->getDepY()];
+            m_plateau[m_balle->getX()+m_balle->getDepX()][m_balle->getY()+m_balle->getDepY()] = m_balle->getLettre();
+            m_plateau[m_balle->getX()][m_balle->getY()] = lettreIntermediaire;
+
+            m_balle->setY();
+            m_balle->setX();
+        }
+
+        m_plateau[snoopy->getX()][snoopy->getY()] = 'S';
+
+        for(int i=0; i<m_tabBlocs.size();++i)
+            {
+            m_plateau[m_tabBlocs[i]->getX()][m_tabBlocs[i]->getY()] = m_tabBlocs[i]->getLettre() ;
+            }
+
+        for(int i=0; i<m_tabOiseau.size();++i)
+            {
+            m_plateau[m_tabOiseau[i].getX()][m_tabOiseau[i].getY()] = m_tabOiseau[i].getLettre() ;
+            }
+
+
+
+
 }
 
 /// On appelle la vérification de tous les blocs

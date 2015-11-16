@@ -25,7 +25,7 @@ class Niveau
 	void setPlateau(std::string niveau);
 	void afficherPlateau(char niveau);
 	std::vector< std::vector<char> > getPlateau();
-	void changerPlateau();
+	void changerPlateau(PersoSnoopy* snoopy);
 	void checkerPlateauPourBalle();
 
 	std::vector<Blocs*> getTabBlocs();
