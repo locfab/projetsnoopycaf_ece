@@ -274,7 +274,7 @@
 	"BlocsPieges.h"
 	"PersoSnoopy.h"
 
-1447702711 source:c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\niveau.cpp
+1447710698 source:c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\niveau.cpp
 	<iostream>
 	"Niveau.h"
 	<fstream>
@@ -394,7 +394,7 @@
 1447588233 c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\temps.h
 	<ctime>
 
-1447702753 source:c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\partie.cpp
+1447710653 source:c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\partie.cpp
 	"Partie.h"
 	<string>
 
