@@ -23,6 +23,8 @@ class PersoSnoopy
     void setPlusOiseau();
     void setVivant(bool vivant);
     void setCoordonnees(int x, int y);
+    void setX(int x);
+    void setY(int y);
 
 
     int getNbOiseauAttrap() const;
@@ -35,10 +37,10 @@ class PersoSnoopy
 
 
 
+
     protected:
 
-    void setX(int x);
-    void setY(int y);
+
 
     int m_nbOiseauxAttrap;
     int m_score;

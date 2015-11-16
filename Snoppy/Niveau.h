@@ -42,6 +42,7 @@ class Niveau
 
 	char getNiveauCourant();
 	void setNiveauCourant();
+	void setCordSnoopClav(PersoSnoopy* snoopy, Niveau* niveau);
 
 	char verificationBalle_Bords();
 	char verificationBalle_BlocsPoussables();

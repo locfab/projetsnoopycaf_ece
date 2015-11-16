@@ -198,7 +198,7 @@ void Niveau::creerObjet(std::string nom)// permet de creer les objet à partir d
 
                 //recuperation des infos de snoop, cord, vie score
 
-                fichier >> nb; 
+                fichier >> nb;
                 fichier >> nb;
                 fichier >> nb;
                 fichier >> nb;
@@ -480,4 +480,30 @@ std::vector<Oiseau> Niveau::getTabOiseau()
 {
     return m_tabOiseau;
 }
+
+void Niveau::setCordSnoopClav(PersoSnoopy* snoopy, Niveau* niveau)
+{
+    if (niveau->pConsole->isKeyboardPressed())
+        {
+            int key = niveau->pConsole->getInputKey();
+
+            if (key == 'j') ///  guache
+            {
+                snoopy->setX(snoopy->getX()-1);
+            }
+            if (key == 'l') ///  droite
+            {
+                snoopy->setX(snoopy->getX()+1);
+            }
+            if (key == 'k') /// bas
+            {
+                snoopy->setY(snoopy->getY()+1);
+            }
+            if (key == 'i') ///  haut
+            {
+                snoopy->setY(snoopy->getY()-1);
+            }
+        }
+}
+
 
