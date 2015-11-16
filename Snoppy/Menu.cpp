@@ -62,7 +62,7 @@ void Menu::creerPartie()
 {
     Partie *m_partie = new Partie();
     m_partie->jouer(m_partie);
-    m_partie->~Partie();
+    delete m_partie;
     afficherMenu();
 }
 

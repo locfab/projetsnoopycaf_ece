@@ -11,7 +11,7 @@ Niveau::Niveau()
     pConsole = Console::getInstance();
     m_temps = new Temps();
     m_tempsRestant = m_temps->getTempsMax();
-    m_balle = NULL;
+    m_balle=NULL;
 
 }
 
@@ -160,7 +160,6 @@ void Niveau::creerObjet()
 
 void Niveau::creerObjet(std::string nom)// permet de creer les objet à partir des sauvegardes
 {
-
     std::string const fin(".txt"); //choisir quel fichier on ouvre 1, 2 ,3
     std::string nomFichier = nom + fin;
 
@@ -181,11 +180,10 @@ void Niveau::creerObjet(std::string nom)// permet de creer les objet à partir d
                 int rien(1);
 
                 fichier >> mot;
-                std::cout << mot << std::endl;
                 fichier.get(caractere);
 
 
-                for (int j=0; j<10; j++)
+                for (int j=0; j<10; j++)// recuperation de la table
                 {
                     for (int i=0; i<20; i++)
                     {
@@ -195,73 +193,106 @@ void Niveau::creerObjet(std::string nom)// permet de creer les objet à partir d
                 }
 
                 fichier.get(caractere);
-                std::cout << caractere << std::endl;
                 fichier.get(caractere);
-                std::cout << caractere << std::endl;
                 fichier.get(caractere);
-                std::cout << caractere << std::endl;
 
+                //recuperation des infos de snoop, cord, vie score
+
+                fichier >> nb; 
                 fichier >> nb;
-                std::cout << nb << std::endl;
                 fichier >> nb;
-                std::cout << nb << std::endl;
                 fichier >> nb;
-                std::cout << nb << std::endl;
-                fichier >> nb;
-                std::cout << nb << std::endl;
 
 
 
 
                 fichier.get(caractere);
-                std::cout << caractere << std::endl;
-
-
-
-
                 fichier.get(caractere);
-                std::cout << caractere << std::endl;
                 fichier.get(caractere);
-                std::cout << caractere << std::endl;
+
+                //recuperation des donnees de la balle, coord et direction
 
                 fichier >> nb;
-                std::cout << nb << std::endl;
                 fichier >> nb;
-                std::cout << nb << std::endl;
                 fichier >> nb;
-                std::cout << nb << std::endl;
                 fichier >> nb;
-                std::cout << nb << std::endl;
-
-
-
-                std::cout << '-' << std::endl;
 
 
                 fichier.get(caractere);
-                std::cout << caractere << std::endl;
                 fichier.get(caractere);
-                std::cout << caractere << std::endl;
                 fichier.get(caractere);
+
+                //recuperation des P
 
                 fichier >> nb;
                 valeur = nb;
                 for (int i(0); i<valeur; i++)
                 {
                     fichier >> nb;
-                    std::cout << nb << ' ';
                     fichier >> nb;
-                    std::cout << nb << ' ';
                     fichier >> nb;
-                    std::cout << nb << ' ';
-
                 }
 
-/*
+                fichier.get(caractere);
+                fichier.get(caractere);
+                fichier.get(caractere);
+                fichier.get(caractere);
+
+                //recuperation des C
+
+                fichier >> nb;
+                valeur = nb;
+                for (int i(0); i<valeur; i++)
+                {
+                    fichier >> nb;
+                    fichier >> nb;
+                }
+
+                fichier.get(caractere);
+                fichier.get(caractere);
+                fichier.get(caractere);
+
+                //recuperation des T
+
+                fichier >> nb;
+                valeur = nb;
+                for (int i(0); i<valeur; i++)
+                {
+                    fichier >> nb;
+                    fichier >> nb;
+                }
+
+                fichier.get(caractere);
+                fichier.get(caractere);
+                fichier.get(caractere);
+
+                //recuperartion des O
+
+                fichier >> nb;
+                valeur = nb;
+                for (int i(0); i<valeur; i++)
+                {
+                    fichier >> nb;
+                    fichier >> nb;
+                }
+
+
+                fichier.get(caractere);
+                fichier.get(caractere);
+                fichier.get(caractere);
+
+                //recuperation du temps, peut etre mettre un float?
+
+                fichier >> nb;
+                valeur = nb;
+
+
+
+
                 while(rien==1)
                 {
                 }
-*/
+
 
         fichier.close();
         }

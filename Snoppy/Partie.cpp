@@ -26,7 +26,7 @@ void Partie::jouer(Partie *partie)
     int esc = 0;
     int nombre(0);
 
-partie->m_niveau->setPlateau("1");
+partie->m_niveau->setPlateau("3");
 //partie->m_niveau->afficherPlateau(1);
 
     m_niveau->creerObjet();
@@ -117,7 +117,7 @@ partie->m_niveau->setPlateau("1");
                     {
                         if(m_niveau->getTabBlocs()[i]->getLettre()=='C')
                         {
-                           monFlux << " " << m_niveau->getTabBlocs()[i]->getX() << ' ' << m_niveau->getTabBlocs()[i]->getY();
+                           monFlux << m_niveau->getTabBlocs()[i]->getX() << ' ' << m_niveau->getTabBlocs()[i]->getY() << ' ';
                         }
                     }
                      monFlux << std::endl;
@@ -138,7 +138,7 @@ partie->m_niveau->setPlateau("1");
                     {
                         if(m_niveau->getTabBlocs()[i]->getLettre()=='T')
                         {
-                           monFlux << " " << m_niveau->getTabBlocs()[i]->getX() << ' ' << m_niveau->getTabBlocs()[i]->getY();
+                           monFlux << m_niveau->getTabBlocs()[i]->getX() << ' ' << m_niveau->getTabBlocs()[i]->getY() << ' ';
                         }
                     }
                   monFlux << std::endl;
@@ -149,7 +149,7 @@ partie->m_niveau->setPlateau("1");
 
                     for(int i=0; i<m_niveau->getTabOiseau().size();i++)
                     {
-                        monFlux << " " << m_niveau->getTabOiseau()[i].getX() << ' ' << m_niveau->getTabOiseau()[i].getY();
+                        monFlux << m_niveau->getTabOiseau()[i].getX() << ' ' << m_niveau->getTabOiseau()[i].getY() << ' ';
                     }
                   monFlux << std::endl;
 
