@@ -366,7 +366,7 @@ Balle* Niveau::getBalle()
 /// Change le plateau
 void Niveau::changerPlateau(PersoSnoopy* snoopy)
 {
-       
+
         for (int j=0; j<10; j++)
         {
             for (int i=0; i<20; i++)
@@ -396,7 +396,7 @@ void Niveau::changerPlateau(PersoSnoopy* snoopy)
 
         for(int i=0; i<m_tabOiseau.size();++i)
             {
-            m_plateau[m_tabOiseau[i].getX()][m_tabOiseau[i].getY()] = m_tabOiseau[i].getLettre() ;
+            m_plateau[m_tabOiseau[i].getX()][m_tabOiseau[i].getY()] = 'O' ;
             }
 
 
