@@ -35,12 +35,14 @@ class Niveau
 	void creerObjet(std::string);
 
     void initCoordSnoop(PersoSnoopy* snoopy);
+
 	double getTemps();
     void getAttendre(double secondes);
     double getTempsRestant();
-    void setTempsRestant(double newTempsRestant);
+    char getNiveauCourant();
+    Blocs* getBlocsAuCord(std::vector<Blocs*>, int x, int y);
 
-	char getNiveauCourant();
+    void setTempsRestant(double newTempsRestant);	
 	void setNiveauCourant();
 	void setCordSnoopClav(PersoSnoopy* snoopy, Niveau* niveau);
 

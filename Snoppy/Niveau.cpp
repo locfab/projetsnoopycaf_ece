@@ -509,6 +509,7 @@ std::vector<Oiseau> Niveau::getTabOiseau()
 
 void Niveau::setCordSnoopClav(PersoSnoopy* snoopy, Niveau* niveau)
 {
+    Blocs* blocs;
     if (niveau->pConsole->isKeyboardPressed())
         {
             int key = niveau->pConsole->getInputKey();
@@ -527,9 +528,35 @@ void Niveau::setCordSnoopClav(PersoSnoopy* snoopy, Niveau* niveau)
             }
             if (key == 'i') ///  haut
             {
-                snoopy->setY(snoopy->getY()-1);
+                if(getPlateau()[snoopy->getX()][snoopy->getY()-1] == '.')
+                {
+                    snoopy->setY(snoopy->getY()-1);
+                }
+                else if((getPlateau()[snoopy->getX()][snoopy->getY()-1] == 'P') && (getPlateau()[snoopy->getX()][snoopy->getY()-2] == '.' ))
+                {
+                    blocs = getBlocsAuCord(getTabBlocs(),snoopy->getX(),snoopy->getY()-1);
+                    if(blocs->getPoussable())
+                    {
+                    blocs->deplacement(0,-1,blocs);
+                    snoopy->setY(snoopy->getY()-1);
+                    }
+                }
             }
         }
+}
+
+Blocs* Niveau::getBlocsAuCord(std::vector<Blocs*> tabBlocs, int x, int y)
+{
+
+    for(int i(0); i< tabBlocs.size(); i++)
+    {
+     if((tabBlocs[i]->getX() == x) && (tabBlocs[i]->getY() == y))
+        {
+        return tabBlocs[i];
+        }
+    }
+
+
 }
 
 

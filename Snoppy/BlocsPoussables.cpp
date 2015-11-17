@@ -22,7 +22,7 @@ void BlocsPoussables::deplacement(int largeur, int hauteur, Blocs* blocs)
 	{
 		if(((largeur==-1||largeur==1)) || ((hauteur==-1 || hauteur==1))) // les deplacements sont de 1
 		{
-			if(largeur==0 != hauteur==0)//il y a un 1 et un 0
+			if(((largeur==0) && (hauteur==-1||hauteur==1)) || ((hauteur==0) && (largeur==-1||largeur==1)) )//il y a un 1 et un 0
 			{
 				if(largeur==1)
 				{
@@ -86,4 +86,5 @@ char BlocsPoussables::getLettre() const
 {
  	return m_saLetrre;
 }
+
 
