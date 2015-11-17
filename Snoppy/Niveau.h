@@ -41,6 +41,7 @@ class Niveau
     double getTempsRestant();
     char getNiveauCourant();
     Blocs* getBlocsAuCord(std::vector<Blocs*>, int x, int y);
+    int getPositionBlocs(Niveau* niveau, Blocs* blocs);
 
     void setTempsRestant(double newTempsRestant);	
 	void setNiveauCourant();

@@ -14,6 +14,8 @@ Blocs::~Blocs()
 {
 }
 
+
+
 void Blocs::setX(int x)
 {
 	if(x>=0 && x<20)
@@ -58,6 +60,14 @@ bool Blocs::getPoussable() const
 {
 }
 void Blocs::deplacement(int largeur, int hauteur, Blocs* blocs)
+{
+}
+
+
+void Blocs::setModeDemolition(bool modeDemolition)
+{
+}
+bool Blocs::getModeDemolition() const
 {
 }
 

@@ -12,7 +12,9 @@ class BlocsCassables : public Blocs
 
     void casserBloc(bool modeDemolition);
 
-    void setModeDemolition();
+    void setModeDemolition(bool modeDemolition);
+
+    bool getModeDemolition() const;
 
     char getLettre() const;
 

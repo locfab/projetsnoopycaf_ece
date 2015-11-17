@@ -14,7 +14,11 @@ BlocsPieges::~BlocsPieges()
 }
 
 
+
+
 char BlocsPieges::getLettre() const
 {
  	return m_saLetrre;
 }
+
+

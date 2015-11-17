@@ -510,21 +510,70 @@ std::vector<Oiseau> Niveau::getTabOiseau()
 void Niveau::setCordSnoopClav(PersoSnoopy* snoopy, Niveau* niveau)
 {
     Blocs* blocs;
+    int key;
+    int index;
+
     if (niveau->pConsole->isKeyboardPressed())
         {
-            int key = niveau->pConsole->getInputKey();
+            key = niveau->pConsole->getInputKey();
 
             if (key == 'j') ///  guache
             {
-                snoopy->setX(snoopy->getX()-1);
+                    if(getPlateau()[snoopy->getX()-1][snoopy->getY()] == '.')
+                    {
+                        snoopy->setX(snoopy->getX()-1);
+                    }
+                    else if((getPlateau()[snoopy->getX()-1][snoopy->getY()] == 'P') && (getPlateau()[snoopy->getX()-2][snoopy->getY()] == '.' ))
+                    {
+                        blocs = getBlocsAuCord(getTabBlocs(),snoopy->getX()-1,snoopy->getY());
+                        if(blocs->getPoussable())
+                        {
+                        blocs->deplacement(-1,0,blocs);
+                        snoopy->setX(snoopy->getX()-1);
+                        }
+                    }
+                   /* else if(getPlateau()[snoopy->getX()-1][snoopy->getY()] == 'C')
+                    {
+                        blocs = getBlocsAuCord(getTabBlocs(),snoopy->getX()-1,snoopy->getY());
+                        if(blocs->getModeDemolition())//mettre un ! pour les tests
+                        {
+                            index=getPositionBlocs(niveau,blocs);
+                            getTabBlocs().erase(getTabBlocs().begin()+index);
+                            snoopy->setX(snoopy->getX()-1);
+                        }
+                    }*/
             }
             if (key == 'l') ///  droite
             {
+                if(getPlateau()[snoopy->getX()+1][snoopy->getY()] == '.')
+                {
                 snoopy->setX(snoopy->getX()+1);
+                }
+                else if((getPlateau()[snoopy->getX()+1][snoopy->getY()] == 'P') && (getPlateau()[snoopy->getX()+2][snoopy->getY()] == '.' ))
+                {
+                    blocs = getBlocsAuCord(getTabBlocs(),snoopy->getX()+1,snoopy->getY());
+                    if(blocs->getPoussable())
+                    {
+                    blocs->deplacement(+1,0,blocs);
+                    snoopy->setX(snoopy->getX()+1);
+                    }
+                }
             }
             if (key == 'k') /// bas
             {
+                if(getPlateau()[snoopy->getX()][snoopy->getY()+1] == '.')
+                {
                 snoopy->setY(snoopy->getY()+1);
+                }
+                else if((getPlateau()[snoopy->getX()][snoopy->getY()+1] == 'P') && (getPlateau()[snoopy->getX()][snoopy->getY()+2] == '.' ))
+                {
+                    blocs = getBlocsAuCord(getTabBlocs(),snoopy->getX(),snoopy->getY()+1);
+                    if(blocs->getPoussable())
+                    {
+                    blocs->deplacement(0,+1,blocs);
+                    snoopy->setY(snoopy->getY()+1);
+                    }
+                }
             }
             if (key == 'i') ///  haut
             {
@@ -555,8 +604,16 @@ Blocs* Niveau::getBlocsAuCord(std::vector<Blocs*> tabBlocs, int x, int y)
         return tabBlocs[i];
         }
     }
-
-
 }
 
+int Niveau::getPositionBlocs(Niveau* niveau,Blocs* blocs)
+{
+    for(int i(0); i<niveau->getTabBlocs().size(); i++)
+    {
+        if(niveau->getTabBlocs()[i]== blocs)
+        {
+            return i;
+        }
+    }
+}
 

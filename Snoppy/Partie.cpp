@@ -52,9 +52,7 @@ partie->m_niveau->setPlateau("3");
             m_niveau->changerPlateau(m_snoopy);
             m_niveau->afficherPlateau(1);
             std::cout << "coord de Snoopy : " << "(" << m_snoopy->getX() << ";" << m_snoopy->getY()<< ")";
-            //m_niveau->getTabBlocs()[9]->deplacement(1,0,m_niveau->getTabBlocs()[9]);/// TEST IMPORTANT POUR COMPRENDRE
             std::cout << "coord de tab9 : " << "(" << m_niveau->getTabBlocs()[9]->getX() << ";" << m_niveau->getTabBlocs()[9]->getY()<< ")";
-                    /// Si on a appuyé sur une touche du clavier
 
         }
         partie->m_niveau->getAttendre(0.1);         /// Temporisation de 0.1 seconde
