@@ -532,16 +532,16 @@ void Niveau::setCordSnoopClav(PersoSnoopy* snoopy, Niveau* niveau)
                         snoopy->setX(snoopy->getX()-1);
                         }
                     }
-                   /* else if(getPlateau()[snoopy->getX()-1][snoopy->getY()] == 'C')
+                   else if(getPlateau()[snoopy->getX()-1][snoopy->getY()] == 'C')
                     {
                         blocs = getBlocsAuCord(getTabBlocs(),snoopy->getX()-1,snoopy->getY());
-                        if(blocs->getModeDemolition())//mettre un ! pour les tests
+                        if(!blocs->getModeDemolition())//mettre un ! pour les tests
                         {
                             index=getPositionBlocs(niveau,blocs);
-                            getTabBlocs().erase(getTabBlocs().begin()+index);
+                            m_tabBlocs.erase(m_tabBlocs.begin()+index);
                             snoopy->setX(snoopy->getX()-1);
                         }
-                    }*/
+                    }
             }
             if (key == 'l') ///  droite
             {
