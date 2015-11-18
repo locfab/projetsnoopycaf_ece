@@ -29,7 +29,7 @@ void Partie::jouer(Partie *partie)
     double tempsDePause = 0;
     int save = 0;
 
-partie->m_niveau->setPlateau("1");
+partie->m_niveau->setPlateau("3");
 //partie->m_niveau->afficherPlateau(1);
 
     m_niveau->creerObjet();
@@ -50,18 +50,15 @@ partie->m_niveau->setPlateau("1");
             }
             else
             {
-                //system("cls");
                 m_niveau->getDeplacementBalle(m_niveau->getPlateau());
                 m_niveau->checkerPlateauPourBalle();
                 m_niveau->setCordSnoopClav(m_snoopy, m_niveau);
                 m_niveau->changerPlateau(m_snoopy);
                 m_niveau->afficherPlateau(1);
-		std::cout << "SnoopyVivant? : " << m_snoopy->getVivant();
+                std::cout << "SnoopyVivant? : " << m_snoopy->getVivant();
                 ///std::cout << "coord de Snoopy : " << "(" << m_snoopy->getX() << ";" << m_snoopy->getY()<< ")";
-                //m_niveau->getTabBlocs()[9]->deplacement(1,0,m_niveau->getTabBlocs()[9]);/// TEST IMPORTANT POUR COMPRENDRE
-                ///std::cout << "coord de tab9 : " << "(" << m_niveau->getTabBlocs()[9]->getX() << ";" << m_niveau->getTabBlocs()[9]->getY()<< ")";    
-		/// Si on a appuyé sur une touche du clavier
-
+                ///std::cout << "coord de tab9 : " << "(" << m_niveau->getTabBlocs()[9]->getX() << ";" << m_niveau->getTabBlocs()[9]->getY()<< ")";
+                /// Si on a appuyé sur une touche du clavier
             }
             partie->m_niveau->getAttendre(0.1);         /// Temporisation de 0.5 seconde
             esc = GetAsyncKeyState(VK_ESCAPE);
@@ -69,9 +66,7 @@ partie->m_niveau->setPlateau("1");
             /*if(m_niveau->pConsole->isKeyboardPressed())
             {
                 char toucheUtilisateur = m_niveau->pConsole->getInputKey();
-
                 if((toucheUtilisateur == 'P')||(toucheUtilisateur == 'p')) pause = 1;
-
                 if((toucheUtilisateur == 'S')||(toucheUtilisateur == 's')) save = 1;
             }*/
         }
