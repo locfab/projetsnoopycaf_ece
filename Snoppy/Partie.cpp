@@ -28,10 +28,9 @@ void Partie::jouer(Partie *partie)
     int nombre(0);
     double tempsDePause = 0;
     int save = 0;
+    char toucheUtilisateur(0);
 
-partie->m_niveau->setPlateau("3");
-//partie->m_niveau->afficherPlateau(1);
-
+    partie->m_niveau->setPlateau("3");
     m_niveau->creerObjet();
     //m_niveau->creerObjet("nom");// a ne pas utiliser au hasard sinon ca plante
     m_niveau->initCoordSnoop(m_snoopy);
@@ -52,24 +51,24 @@ partie->m_niveau->setPlateau("3");
             {
                 m_niveau->getDeplacementBalle(m_niveau->getPlateau());
                 m_niveau->checkerPlateauPourBalle();
-                m_niveau->setCordSnoopClav(m_snoopy, m_niveau);
+                m_niveau->setCordSnoopClav(m_snoopy, m_niveau, toucheUtilisateur);
                 m_niveau->changerPlateau(m_snoopy);
                 m_niveau->afficherPlateau(1);
-                std::cout << "SnoopyVivant? : " << m_snoopy->getVivant();
-                ///std::cout << "coord de Snoopy : " << "(" << m_snoopy->getX() << ";" << m_snoopy->getY()<< ")";
-                ///std::cout << "coord de tab9 : " << "(" << m_niveau->getTabBlocs()[9]->getX() << ";" << m_niveau->getTabBlocs()[9]->getY()<< ")";
-                /// Si on a appuyé sur une touche du clavier
+                std::cout << "SnoopyVivant? : " << m_snoopy->getVivant();// pour plus tard quand on fera le 'a'
             }
-            partie->m_niveau->getAttendre(0.1);         /// Temporisation de 0.5 seconde
-            esc = GetAsyncKeyState(VK_ESCAPE);
 
-            /*if(m_niveau->pConsole->isKeyboardPressed())
+            partie->m_niveau->getAttendre(0.1);         /// Temporisation de 0.1 seconde
+            esc = GetAsyncKeyState(VK_ESCAPE);
+            toucheUtilisateur = '@';//ne represente probablement rien (equivalent à NULL avec les pointeur)
+
+            if(m_niveau->pConsole->isKeyboardPressed())
             {
-                char toucheUtilisateur = m_niveau->pConsole->getInputKey();
+                toucheUtilisateur = m_niveau->pConsole->getInputKey();
                 if((toucheUtilisateur == 'P')||(toucheUtilisateur == 'p')) pause = 1;
                 if((toucheUtilisateur == 'S')||(toucheUtilisateur == 's')) save = 1;
-            }*/
+            }
         }
+        
         if((pause == 1 ))
         {
              system("cls");

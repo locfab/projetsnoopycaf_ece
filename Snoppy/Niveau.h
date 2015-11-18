@@ -45,7 +45,7 @@ class Niveau
 
     void setTempsRestant(double newTempsRestant);
 	void setNiveauCourant();
-	void setCordSnoopClav(PersoSnoopy* snoopy, Niveau* niveau);
+	void setCordSnoopClav(PersoSnoopy* snoopy, Niveau* niveau, char toucheUtisateur);
 
 	char verificationBalle_Bords();
 	void verificationBalle_BlocsPoussables();

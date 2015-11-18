@@ -697,15 +697,11 @@ std::vector<Oiseau> Niveau::getTabOiseau()
     return m_tabOiseau;
 }
 
-void Niveau::setCordSnoopClav(PersoSnoopy* snoopy, Niveau* niveau)
+void Niveau::setCordSnoopClav(PersoSnoopy* snoopy, Niveau* niveau, char toucheUtisateur)
 {
     Blocs* blocs;
-    int key;
+    int key(toucheUtisateur);
     int index;
-
-    if (niveau->pConsole->isKeyboardPressed())
-    {
-        key = niveau->pConsole->getInputKey();
 
         if ((key == 'j')||(key == 'J')) ///  gauche
         {
@@ -828,8 +824,8 @@ void Niveau::setCordSnoopClav(PersoSnoopy* snoopy, Niveau* niveau)
                 snoopy->setVivant(false);
             }
         }
-    }
 }
+
 
 Blocs* Niveau::getBlocsAuCord(std::vector<Blocs*> tabBlocs, int x, int y)
 {
