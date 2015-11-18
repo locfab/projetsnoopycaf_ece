@@ -10,19 +10,12 @@ class BlocsCassables : public Blocs
     BlocsCassables(int x, int y);
     virtual ~BlocsCassables();
 
-    void casserBloc(bool modeDemolition);
-
-    void setModeDemolition(bool modeDemolition);
-
-    bool getModeDemolition() const;
-
     char getLettre() const;
 
 
     protected:
 
     char m_saLetrre;
-    bool m_modeDemolition;
 };
 
 

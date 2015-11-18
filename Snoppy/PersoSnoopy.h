@@ -23,6 +23,7 @@ class PersoSnoopy
     void setPlusOiseau();
     void setVivant(bool vivant);
     void setCoordonnees(int x, int y);
+    void setModeDemolition(bool modeDemolition);
     void setX(int x);
     void setY(int y);
 
@@ -33,6 +34,11 @@ class PersoSnoopy
     int getScore() const;
     int getX() const;
     int getY() const;
+    bool getModeDemolition() const;
+
+
+
+    
 
 
 
@@ -49,6 +55,7 @@ class PersoSnoopy
     int m_y;
     bool m_vivant;
     char m_saLetrre;
+    bool m_modeDemolition;
 };
 
 

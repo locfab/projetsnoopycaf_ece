@@ -1,16 +1,16 @@
 #include <iostream>
 #include "PersoSnoopy.h"
 
-PersoSnoopy::PersoSnoopy(): m_saLetrre('S'),m_vivant(true)
+PersoSnoopy::PersoSnoopy(): m_saLetrre('S'),m_vivant(true), m_modeDemolition(false)
 {
 }
 
-PersoSnoopy::PersoSnoopy(int x, int y): m_x(x), m_y(y), m_nbOiseauxAttrap(0), m_vie(3), m_saLetrre('S'), m_vivant(true)
+PersoSnoopy::PersoSnoopy(int x, int y): m_x(x), m_y(y), m_nbOiseauxAttrap(0), m_vie(3), m_saLetrre('S'), m_vivant(true), m_modeDemolition(false)
 {
 }
 
 PersoSnoopy::PersoSnoopy(int x, int y, int nbOiseauxAttrap, int vie)
-			: m_x(x), m_y(y), m_nbOiseauxAttrap(nbOiseauxAttrap), m_vie(vie), m_saLetrre('S'), m_vivant(true)
+			: m_x(x), m_y(y), m_nbOiseauxAttrap(nbOiseauxAttrap), m_vie(vie), m_saLetrre('S'), m_vivant(true), m_modeDemolition(false)
 {
 }
 PersoSnoopy::~PersoSnoopy()
@@ -57,6 +57,12 @@ void PersoSnoopy::setY(int y)
 	}
 }
 
+void PersoSnoopy::setModeDemolition(bool modeDemolition) 
+{
+    m_modeDemolition = modeDemolition;
+}
+
+
 
 
 
@@ -85,4 +91,9 @@ int PersoSnoopy::getX() const
 int PersoSnoopy::getY() const
 {
     return m_y;
+}
+
+bool PersoSnoopy::getModeDemolition() const
+{
+    return m_modeDemolition;
 }

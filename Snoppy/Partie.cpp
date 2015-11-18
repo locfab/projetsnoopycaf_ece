@@ -53,8 +53,7 @@ void Partie::jouer(Partie *partie)
                 m_niveau->checkerPlateauPourBalle();
                 m_niveau->setCordSnoopClav(m_snoopy, m_niveau, toucheUtilisateur);
                 m_niveau->changerPlateau(m_snoopy);
-                m_niveau->afficherPlateau(1);
-                std::cout << "SnoopyVivant? : " << m_snoopy->getVivant();// pour plus tard quand on fera le 'a'
+                m_niveau->afficherPlateau();
             }
 
             partie->m_niveau->getAttendre(0.1);         /// Temporisation de 0.1 seconde
@@ -66,9 +65,10 @@ void Partie::jouer(Partie *partie)
                 toucheUtilisateur = m_niveau->pConsole->getInputKey();
                 if((toucheUtilisateur == 'P')||(toucheUtilisateur == 'p')) pause = 1;
                 if((toucheUtilisateur == 'S')||(toucheUtilisateur == 's')) save = 1;
+                if((toucheUtilisateur == 'A')||(toucheUtilisateur == 'a')) m_snoopy->setModeDemolition(true);
             }
         }
-        
+
         if((pause == 1 ))
         {
              system("cls");
