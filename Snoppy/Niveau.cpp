@@ -679,7 +679,7 @@ void Niveau::setCordSnoopClav(PersoSnoopy* snoopy, Niveau* niveau, char toucheUt
             {
                 snoopy->setX(snoopy->getX()-1);
             }
-            else if((getPlateau()[snoopy->getX()-1][snoopy->getY()] == 'P') && (getPlateau()[snoopy->getX()-2][snoopy->getY()] == '.' ))
+            else if((getPlateau()[snoopy->getX()-1][snoopy->getY()] == 'P') && (snoopy->getX() > 1) && (getPlateau()[snoopy->getX()-2][snoopy->getY()] == '.' ))
             {
                 blocs = getBlocsAuCord(getTabBlocs(),snoopy->getX()-1,snoopy->getY());
                 if(blocs->getPoussable())
@@ -711,7 +711,7 @@ void Niveau::setCordSnoopClav(PersoSnoopy* snoopy, Niveau* niveau, char toucheUt
             {
             snoopy->setX(snoopy->getX()+1);
             }
-            else if((getPlateau()[snoopy->getX()+1][snoopy->getY()] == 'P') && (getPlateau()[snoopy->getX()+2][snoopy->getY()] == '.' ))
+            else if((getPlateau()[snoopy->getX()+1][snoopy->getY()] == 'P') && (snoopy->getX() < 18) && (getPlateau()[snoopy->getX()+2][snoopy->getY()] == '.' ))
             {
                 blocs = getBlocsAuCord(getTabBlocs(),snoopy->getX()+1,snoopy->getY());
                 if(blocs->getPoussable())
@@ -742,7 +742,7 @@ void Niveau::setCordSnoopClav(PersoSnoopy* snoopy, Niveau* niveau, char toucheUt
             {
             snoopy->setY(snoopy->getY()+1);
             }
-            else if((getPlateau()[snoopy->getX()][snoopy->getY()+1] == 'P') && (getPlateau()[snoopy->getX()][snoopy->getY()+2] == '.' ))
+            else if((getPlateau()[snoopy->getX()][snoopy->getY()+1] == 'P') && (snoopy->getY() > 1) && (getPlateau()[snoopy->getX()][snoopy->getY()+2] == '.' ))
             {
                 blocs = getBlocsAuCord(getTabBlocs(),snoopy->getX(),snoopy->getY()+1);
                 if(blocs->getPoussable())
@@ -773,7 +773,7 @@ void Niveau::setCordSnoopClav(PersoSnoopy* snoopy, Niveau* niveau, char toucheUt
             {
                 snoopy->setY(snoopy->getY()-1);
             }
-            else if((getPlateau()[snoopy->getX()][snoopy->getY()-1] == 'P') && (getPlateau()[snoopy->getX()][snoopy->getY()-2] == '.' ))
+            else if((getPlateau()[snoopy->getX()][snoopy->getY()-1] == 'P') && (snoopy->getY() < 8) && (getPlateau()[snoopy->getX()][snoopy->getY()-2] == '.' ))
             {
                 blocs = getBlocsAuCord(getTabBlocs(),snoopy->getX(),snoopy->getY()-1);
                 if(blocs->getPoussable())
