@@ -24,9 +24,12 @@ void Partie::jouer(Partie *partie)
 {
     int timeOut = 0;
     int esc = 0;
+    int pause = 0;
     int nombre(0);
+    double tempsDePause = 0;
+    int save = 0;
 
-partie->m_niveau->setPlateau("3");
+partie->m_niveau->setPlateau("1");
 //partie->m_niveau->afficherPlateau(1);
 
     m_niveau->creerObjet();
@@ -34,34 +37,55 @@ partie->m_niveau->setPlateau("3");
     m_niveau->initCoordSnoop(m_snoopy);
 
     ///Boucle de jeu tant que le compteur est != 0 ou ESC n'est pas préssée
-    while((esc == 0) && (timeOut == 0))
+    while((esc == 0) && (timeOut == 0) && (save==0))
     {
-        if(partie->m_niveau->getTempsRestant() <= 0) /// Est-ce que le temps restant est inférieur à 0 ?
+        if (pause == 0)
         {
-            timeOut = 1;
-            system("cls");
-            m_niveau->pConsole->gotoLigCol(12, 30);
-            std::cout << "Temps ecoule !";
-        }
-        else
-        {
-            system("cls");
-            m_niveau->getDeplacementBalle(m_niveau->getPlateau());
-            m_niveau->checkerPlateauPourBalle();
-            m_niveau->setCordSnoopClav(m_snoopy, m_niveau);
-            m_niveau->changerPlateau(m_snoopy);
-            m_niveau->afficherPlateau(1);
-            std::cout << "coord de Snoopy : " << "(" << m_snoopy->getX() << ";" << m_snoopy->getY()<< ")";
-            //m_niveau->getTabBlocs()[9]->deplacement(1,0,m_niveau->getTabBlocs()[9]);/// TEST IMPORTANT POUR COMPRENDRE
-            std::cout << "coord de tab9 : " << "(" << m_niveau->getTabBlocs()[9]->getX() << ";" << m_niveau->getTabBlocs()[9]->getY()<< ")";
+            if(partie->m_niveau->getTempsRestant() <= 0) /// Est-ce que le temps restant est inférieur à 0 ?
+            {
+                timeOut = 1;
+                system("cls");
+                m_niveau->pConsole->gotoLigCol(12, 30);
+                std::cout << "Temps ecoule !";
+            }
+            else
+            {
+                //system("cls");
+                m_niveau->getDeplacementBalle(m_niveau->getPlateau());
+                m_niveau->checkerPlateauPourBalle();
+                m_niveau->setCordSnoopClav(m_snoopy, m_niveau);
+                m_niveau->changerPlateau(m_snoopy);
+                m_niveau->afficherPlateau(1);
+                ///std::cout << "coord de Snoopy : " << "(" << m_snoopy->getX() << ";" << m_snoopy->getY()<< ")";
+                //m_niveau->getTabBlocs()[9]->deplacement(1,0,m_niveau->getTabBlocs()[9]);/// TEST IMPORTANT POUR COMPRENDRE
+                ///std::cout << "coord de tab9 : " << "(" << m_niveau->getTabBlocs()[9]->getX() << ";" << m_niveau->getTabBlocs()[9]->getY()<< ")";
                     /// Si on a appuyé sur une touche du clavier
 
+            }
+            partie->m_niveau->getAttendre(0.1);         /// Temporisation de 0.5 seconde
+            esc = GetAsyncKeyState(VK_ESCAPE);
+
+            /*if(m_niveau->pConsole->isKeyboardPressed())
+            {
+                char toucheUtilisateur = m_niveau->pConsole->getInputKey();
+
+                if((toucheUtilisateur == 'P')||(toucheUtilisateur == 'p')) pause = 1;
+
+                if((toucheUtilisateur == 'S')||(toucheUtilisateur == 's')) save = 1;
+            }*/
         }
-        partie->m_niveau->getAttendre(0.1);         /// Temporisation de 0.1 seconde
-        esc = GetAsyncKeyState(VK_ESCAPE);
+        if((pause == 1 ))
+        {
+             system("cls");
+             tempsDePause = clock() / CLOCKS_PER_SEC;
+             std::cout << "Pause !";
+             std::cout << "          " << tempsDePause;
+             char attente = m_niveau->pConsole->getInputKey();
+             if((attente == 'P')||(attente == 'p')) pause = 0;
+        }
     }
 
-    if(esc != 0)
+    if(save != 0)
     {
             std::string const nomFichier("Nom.txt");
             std::ofstream monFlux(nomFichier.c_str());
@@ -165,15 +189,14 @@ partie->m_niveau->setPlateau("3");
             }
 
     }
-/*
     if(esc != 0)
     {
         system("cls");
         m_niveau->pConsole->gotoLigCol(12, 30);
         std::cout << "Vous avez quitte la partie";
+        m_niveau->pConsole->getInputKey();
     }
-*/
 
 
-    m_niveau->pConsole->getInputKey();
+    //m_niveau->pConsole->getInputKey();
 }

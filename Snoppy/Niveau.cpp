@@ -64,21 +64,22 @@ void Niveau::setPlateau(std::string niveau)
 
 void Niveau::afficherPlateau(char niveau)
 {
-    system("cls");
+    //system("cls");
 
     pConsole->gotoLigCol(5, 50);
 
-    std::cout << "Temps restant : " << (int)getTempsRestant();
+    std::cout << "Temps restant : " << (int)getTempsRestant() << "  ";
     setTempsRestant(getTempsRestant()); /// Calcul du nouveau temps restant
 
     ///Test d'affichage des coordonnées des différents objets du plateau
+    /*
     pConsole->gotoLigCol(1, 50);
     std::cout << "Coord balle : " << m_balle->getX() << " " << m_balle->getY();
     pConsole->gotoLigCol(2, 50);
     std::cout << "Vect depX : " << m_balle->getDepX() << "  Vect depY : " << m_balle->getDepY();
     pConsole->gotoLigCol(3, 50);
     std::cout << "Position memoire du B : " << m_plateau[m_balle->getX()][m_balle->getY()];
-    /*
+
     pConsole->gotoLigCol(9, 50);
     std::cout << "Coord Poussable 7 : " << m_tabBlocs[6]->Blocs::getX() << " " << m_tabBlocs[6]->getY();
     pConsole->gotoLigCol(10, 50);
@@ -91,12 +92,12 @@ void Niveau::afficherPlateau(char niveau)
     std::cout << "Coord Poussable 11 : " << m_tabBlocs[10]->Blocs::getX() << " " << m_tabBlocs[10]->getY();
     pConsole->gotoLigCol(14, 50);
     std::cout << "Coord Poussable 12 : " << m_tabBlocs[11]->Blocs::getX() << " " << m_tabBlocs[11]->getY();
-    */
+
     pConsole->gotoLigCol(15, 50);
     std::cout << "Poussable ? : " << m_tabBlocs[9]->getPoussable();
     pConsole->gotoLigCol(16, 50);
     std::cout << "Lettre de la balle : " << m_balle->getLettre();
-
+    */
     pConsole->gotoLigCol(0, 0);
 
     for (int j=0; j<10; j++)
@@ -123,13 +124,13 @@ void Niveau::creerObjet()
         {
             if(this->m_plateau[i][j]=='B')
             {
-            m_balle = new Balle(i,j,1,1);
+            m_balle = new Balle(i,j,-1,-1);
             }
 
             if(this->m_plateau[i][j]=='O')
             {
             p_Oiseau = new Oiseau(i, j);
-            std::cout << p_Oiseau->getX();
+            ///std::cout << p_Oiseau->getX();
             m_tabOiseau.push_back(*p_Oiseau);
             p_Oiseau = NULL;
             }
@@ -408,6 +409,8 @@ void Niveau::changerPlateau(PersoSnoopy* snoopy)
 void Niveau::checkerPlateauPourBalle()
 {
     verificationBalle_BlocsPoussables();
+    verificationBalle_BlocsCassables();
+    verificationBalle_BlocsPieges();
 }
 
 /// On vérifie si la balle ne veut pas sortir du plateau
@@ -420,12 +423,12 @@ char Niveau::verificationBalle_Bords()
     else return 0;
 }
 
-/// On vérifie si la balle va taper dans un bloc
-char Niveau::verificationBalle_BlocsPoussables()
+/// On vérifie si la balle va taper dans un bloc poussable
+void Niveau::verificationBalle_BlocsPoussables()
 {
     /// Pas la peine de vérifier si la balle est sur les bords droit ou bas du tableau
     /// Quand l'obstacle P est en bas a droite de la balle
-    if((m_balle->getX() != 19) && (m_balle->getY() != 19) && (m_plateau[m_balle->getX()+1][m_balle->getY()+1] == 'P') && (m_balle->getDepX()==1) && (m_balle->getDepY()==1) )
+    if((m_balle->getX() != 19) && (m_balle->getY() != 9) && (m_plateau[m_balle->getX()+1][m_balle->getY()+1] == 'P') && (m_balle->getDepX()==1) && (m_balle->getDepY()==1) )
     {
         if((m_plateau[m_balle->getX()+1][m_balle->getY()] == 'P')) /// A-t-on un P a droite de la balle ?
         {
@@ -443,7 +446,7 @@ char Niveau::verificationBalle_BlocsPoussables()
     }
     /// Pas la peine de vérifier si la balle est sur les bords gauche ou bas du tableau
     /// Quand l'obstacle P est en bas a gauche de la balle
-    if((m_balle->getX() != 0) && (m_balle->getY() != 19) && (m_plateau[m_balle->getX()-1][m_balle->getY()+1] == 'P') && (m_balle->getDepX()==-1) && (m_balle->getDepY()==1) )
+    if((m_balle->getX() != 0) && (m_balle->getY() != 9) && (m_plateau[m_balle->getX()-1][m_balle->getY()+1] == 'P') && (m_balle->getDepX()==-1) && (m_balle->getDepY()==1) )
     {
         if((m_plateau[m_balle->getX()-1][m_balle->getY()] == 'P')) /// A-t-on un P a gauche de la balle ?
         {
@@ -497,6 +500,193 @@ char Niveau::verificationBalle_BlocsPoussables()
     }
 }
 
+/// On vérifie si la balle va taper dans un bloc cassable
+void Niveau::verificationBalle_BlocsCassables()
+{
+    /// Pas la peine de vérifier si la balle est sur les bords droit ou bas du tableau
+    /// Quand l'obstacle C est en bas a droite de la balle
+    if((m_balle->getX() != 19) && (m_balle->getY() != 9) && (m_plateau[m_balle->getX()+1][m_balle->getY()+1] == 'C') && (m_balle->getDepX()==1) && (m_balle->getDepY()==1) )
+    {
+        if((m_plateau[m_balle->getX()+1][m_balle->getY()] == 'C')) /// A-t-on un C a droite de la balle ?
+        {
+            m_balle->setDepX(-m_balle->getDepX());
+        }
+        else if((m_plateau[m_balle->getX()][m_balle->getY()+1] == 'C')) /// A-t-on un C en dessous de la balle ?
+        {
+            m_balle->setDepY(-m_balle->getDepY());
+        }
+        else
+        {
+            m_balle->setDepX(-m_balle->getDepX());
+            m_balle->setDepY(-m_balle->getDepY());
+        }
+    }
+    /// Pas la peine de vérifier si la balle est sur les bords gauche ou bas du tableau
+    /// Quand l'obstacle C est en bas a gauche de la balle
+    if((m_balle->getX() != 0) && (m_balle->getY() != 9) && (m_plateau[m_balle->getX()-1][m_balle->getY()+1] == 'C') && (m_balle->getDepX()==-1) && (m_balle->getDepY()==1) )
+    {
+        if((m_plateau[m_balle->getX()-1][m_balle->getY()] == 'C')) /// A-t-on un C a gauche de la balle ?
+        {
+            m_balle->setDepX(-m_balle->getDepX());
+        }
+        else if((m_plateau[m_balle->getX()][m_balle->getY()+1] == 'C')) /// A-t-on un C en dessous de la balle ?
+        {
+            m_balle->setDepY(-m_balle->getDepY());
+        }
+        else
+        {
+            m_balle->setDepX(-m_balle->getDepX());
+            m_balle->setDepY(-m_balle->getDepY());
+        }
+    }
+    /// Pas la peine de vérifier si la balle est sur les bords droit ou haut du tableau
+    /// Quand l'obstacle C est en haut a droite de la balle
+    if((m_balle->getX() != 19) && (m_balle->getY() != 0) && (m_plateau[m_balle->getX()+1][m_balle->getY()-1] == 'C') && (m_balle->getDepX()==1) && (m_balle->getDepY()==-1) )
+    {
+        if((m_plateau[m_balle->getX()][m_balle->getY()-1] == 'C')) /// A-t-on un C au dessus de la balle ?
+        {
+            m_balle->setDepY(-m_balle->getDepY());
+        }
+        else if((m_plateau[m_balle->getX()+1][m_balle->getY()] == 'C')) /// A-t-on un C a droite de la balle ?
+        {
+            m_balle->setDepX(-m_balle->getDepX());
+        }
+        else
+        {
+            m_balle->setDepX(-m_balle->getDepX());
+            m_balle->setDepY(-m_balle->getDepY());
+        }
+    }
+    /// Pas la peine de vérifier si la balle est sur les bords gauche ou haut du tableau
+    /// Quand l'obstacle C est en haut a gauche de la balle
+    if((m_balle->getX() != 0) && (m_balle->getY() != 0) && (m_plateau[m_balle->getX()-1][m_balle->getY()-1] == 'C') && (m_balle->getDepX()==-1) && (m_balle->getDepY()==-1) )
+    {
+        if((m_plateau[m_balle->getX()][m_balle->getY()-1] == 'C')) /// A-t-on un C au dessus de la balle ?
+        {
+            m_balle->setDepY(-m_balle->getDepY());
+        }
+        else if((m_plateau[m_balle->getX()-1][m_balle->getY()] == 'C')) /// A-t-on un C a gauche de la balle ?
+        {
+            m_balle->setDepX(-m_balle->getDepX());
+        }
+        else
+        {
+            m_balle->setDepX(-m_balle->getDepX());
+            m_balle->setDepY(-m_balle->getDepY());
+        }
+    }
+}
+
+/// On vérifie si la balle va taper dans un bloc piégé
+void Niveau::verificationBalle_BlocsPieges()
+{
+    /// Pas la peine de vérifier si la balle est sur les bords droit ou bas du tableau
+    /// Quand l'obstacle T est en bas a droite de la balle
+    if((m_balle->getX() != 19) && (m_balle->getY() != 9) && (m_plateau[m_balle->getX()+1][m_balle->getY()+1] == 'T') && (m_balle->getDepX()==1) && (m_balle->getDepY()==1) )
+    {
+        if((m_plateau[m_balle->getX()+1][m_balle->getY()] == 'T')) /// A-t-on un T a droite de la balle ?
+        {
+            m_balle->setDepX(-m_balle->getDepX());
+        }
+        else if((m_plateau[m_balle->getX()][m_balle->getY()+1] == 'T')) /// A-t-on un T en dessous de la balle ?
+        {
+            m_balle->setDepY(-m_balle->getDepY());
+        }
+        else
+        {
+            m_balle->setDepX(-m_balle->getDepX());
+            m_balle->setDepY(-m_balle->getDepY());
+        }
+    }
+    /// Pas la peine de vérifier si la balle est sur les bords gauche ou bas du tableau
+    /// Quand l'obstacle T est en bas a gauche de la balle
+    if((m_balle->getX() != 0) && (m_balle->getY() != 9) && (m_plateau[m_balle->getX()-1][m_balle->getY()+1] == 'T') && (m_balle->getDepX()==-1) && (m_balle->getDepY()==1) )
+    {
+        if((m_plateau[m_balle->getX()-1][m_balle->getY()] == 'T')) /// A-t-on un T a gauche de la balle ?
+        {
+            m_balle->setDepX(-m_balle->getDepX());
+        }
+        else if((m_plateau[m_balle->getX()][m_balle->getY()+1] == 'T')) /// A-t-on un T en dessous de la balle ?
+        {
+            m_balle->setDepY(-m_balle->getDepY());
+        }
+        else
+        {
+            m_balle->setDepX(-m_balle->getDepX());
+            m_balle->setDepY(-m_balle->getDepY());
+        }
+    }
+    /// Pas la peine de vérifier si la balle est sur les bords droit ou haut du tableau
+    /// Quand l'obstacle T est en haut a droite de la balle
+    if((m_balle->getX() != 19) && (m_balle->getY() != 0) && (m_plateau[m_balle->getX()+1][m_balle->getY()-1] == 'T') && (m_balle->getDepX()==1) && (m_balle->getDepY()==-1) )
+    {
+        if((m_plateau[m_balle->getX()][m_balle->getY()-1] == 'T')) /// A-t-on un T au dessus de la balle ?
+        {
+            m_balle->setDepY(-m_balle->getDepY());
+        }
+        else if((m_plateau[m_balle->getX()+1][m_balle->getY()] == 'T')) /// A-t-on un T a droite de la balle ?
+        {
+            m_balle->setDepX(-m_balle->getDepX());
+        }
+        else
+        {
+            m_balle->setDepX(-m_balle->getDepX());
+            m_balle->setDepY(-m_balle->getDepY());
+        }
+    }
+    /// Pas la peine de vérifier si la balle est sur les bords gauche ou haut du tableau
+    /// Quand l'obstacle T est en haut a gauche de la balle
+    if((m_balle->getX() != 0) && (m_balle->getY() != 0) && (m_plateau[m_balle->getX()-1][m_balle->getY()-1] == 'T') && (m_balle->getDepX()==-1) && (m_balle->getDepY()==-1) )
+    {
+        if((m_plateau[m_balle->getX()][m_balle->getY()-1] == 'T')) /// A-t-on un T au dessus de la balle ?
+        {
+            m_balle->setDepY(-m_balle->getDepY());
+        }
+        else if((m_plateau[m_balle->getX()-1][m_balle->getY()] == 'T')) /// A-t-on un T a gauche de la balle ?
+        {
+            m_balle->setDepX(-m_balle->getDepX());
+        }
+        else
+        {
+            m_balle->setDepX(-m_balle->getDepX());
+            m_balle->setDepY(-m_balle->getDepY());
+        }
+    }
+}
+
+/// On vérifie si la balle va taper dans un oiseau
+void Niveau::verificationBalle_Oiseaux()
+{
+    /// Pas la peine de vérifier si la balle est sur les bords droit ou bas du tableau
+    /// Quand l'obstacle O est en bas a droite de la balle
+    if((m_balle->getX() != 19) && (m_balle->getY() != 9) && (m_plateau[m_balle->getX()+1][m_balle->getY()+1] == 'O') && (m_balle->getDepX()==1) && (m_balle->getDepY()==1) )
+    {
+        m_balle->setDepX(-m_balle->getDepX());
+        m_balle->setDepY(-m_balle->getDepY());
+    }
+    /// Pas la peine de vérifier si la balle est sur les bords gauche ou bas du tableau
+    /// Quand l'obstacle O est en bas a gauche de la balle
+    if((m_balle->getX() != 0) && (m_balle->getY() != 9) && (m_plateau[m_balle->getX()-1][m_balle->getY()+1] == 'O') && (m_balle->getDepX()==-1) && (m_balle->getDepY()==1) )
+    {
+        m_balle->setDepX(-m_balle->getDepX());
+        m_balle->setDepY(-m_balle->getDepY());
+    }
+    /// Pas la peine de vérifier si la balle est sur les bords droit ou haut du tableau
+    /// Quand l'obstacle O est en haut a droite de la balle
+    if((m_balle->getX() != 19) && (m_balle->getY() != 0) && (m_plateau[m_balle->getX()+1][m_balle->getY()-1] == 'O') && (m_balle->getDepX()==1) && (m_balle->getDepY()==-1) )
+    {
+        m_balle->setDepX(-m_balle->getDepX());
+        m_balle->setDepY(-m_balle->getDepY());
+    }
+    /// Pas la peine de vérifier si la balle est sur les bords gauche ou haut du tableau
+    /// Quand l'obstacle O est en haut a gauche de la balle
+    if((m_balle->getX() != 0) && (m_balle->getY() != 0) && (m_plateau[m_balle->getX()-1][m_balle->getY()-1] == 'O') && (m_balle->getDepX()==-1) && (m_balle->getDepY()==-1) )
+    {
+        m_balle->setDepX(-m_balle->getDepX());
+        m_balle->setDepY(-m_balle->getDepY());
+    }
+}
+
 std::vector<Blocs*> Niveau::getTabBlocs()
 {
     return m_tabBlocs;
@@ -514,19 +704,19 @@ void Niveau::setCordSnoopClav(PersoSnoopy* snoopy, Niveau* niveau)
         {
             int key = niveau->pConsole->getInputKey();
 
-            if (key == 'j') ///  guache
+            if ((key == 'j')||(key == 'J')) ///  gauche
             {
                 snoopy->setX(snoopy->getX()-1);
             }
-            if (key == 'l') ///  droite
+            if ((key == 'l')||(key == 'L')) ///  droite
             {
                 snoopy->setX(snoopy->getX()+1);
             }
-            if (key == 'k') /// bas
+            if ((key == 'k')||(key == 'K')) /// bas
             {
                 snoopy->setY(snoopy->getY()+1);
             }
-            if (key == 'i') ///  haut
+            if ((key == 'i')||(key == 'I')) ///  haut
             {
                 if(getPlateau()[snoopy->getX()][snoopy->getY()-1] == '.')
                 {

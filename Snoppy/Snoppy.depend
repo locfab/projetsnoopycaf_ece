@@ -280,54 +280,56 @@
 	<fstream>
 	<string>
 
-1447508326 source:c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\balle.cpp
+1447788407 source:c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\balle.cpp
 	<iostream>
 	"Balle.h"
 
-1447508226 c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\balle.h
+1447788407 c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\balle.h
+	<vector>
 
-1447505182 source:c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\blocs.cpp
+1447788407 source:c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\blocs.cpp
 	<iostream>
 	"Blocs.h"
 
-1447505182 c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\blocs.h
+1447788407 c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\blocs.h
 
-1447505182 source:c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\blocscassables.cpp
+1447788407 source:c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\blocscassables.cpp
 	<iostream>
+	"BlocsCassables.h"
 
-1447505182 c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\blocscassables.h
+1447788407 c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\blocscassables.h
 	"Blocs.h"
 
-1447505182 source:c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\blocspieges.cpp
+1447788407 source:c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\blocspieges.cpp
 	<iostream>
 	"BlocsPieges.h"
 
-1447505182 c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\blocspieges.h
+1447788407 c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\blocspieges.h
 	"Blocs.h"
 
-1447505182 source:c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\blocspoussables.cpp
+1447788407 source:c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\blocspoussables.cpp
 	<iostream>
 	"BlocsPoussables.h"
 
-1447505182 c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\blocspoussables.h
+1447788407 c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\blocspoussables.h
 	"Blocs.h"
 
-1447505185 source:c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\main.cpp
+1447788409 source:c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\main.cpp
 	<iostream>
 	"Menu.h"
 
-1447505182 c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\menu.h
+1447788407 c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\menu.h
 	<string>
 
-1447505182 source:c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\menu.cpp
+1447788407 source:c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\menu.cpp
 	<iostream>
 	"Menu.h"
 	"Partie.h"
 
-1447505183 c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\persosnoopy.h
+1447788407 c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\persosnoopy.h
 	<string>
 
-1447510908 c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\niveau.h
+1447796198 c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\niveau.h
 	"Menu.h"
 	"Balle.h"
 	"Oiseau.h"
@@ -342,40 +344,43 @@
 	"BlocsPieges.h"
 	"PersoSnoopy.h"
 
-1447510774 source:c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\niveau.cpp
+1447843741 source:c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\niveau.cpp
 	<iostream>
 	"Niveau.h"
 	<fstream>
+	<string>
 
-1447505182 source:c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\oiseau.cpp
+1447788407 source:c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\oiseau.cpp
 	<iostream>
 	"Oiseau.h"
 
-1447505182 c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\oiseau.h
+1447788407 c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\oiseau.h
 
-1447505182 source:c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\persosnoopy.cpp
+1447788407 source:c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\persosnoopy.cpp
 	<iostream>
 	"PersoSnoopy.h"
 
-1447510976 source:c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\partie.cpp
+1447848791 source:c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\partie.cpp
 	"Partie.h"
+	<string>
 
-1447505183 source:c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\temps.cpp
+1447788407 source:c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\temps.cpp
 	"Temps.h"
 
-1447505183 c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\temps.h
+1447788407 c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\temps.h
 	<ctime>
 
-1447505182 c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\partie.h
+1447788407 c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\partie.h
 	"PersoSnoopy.h"
 	"Niveau.h"
+	<fstream>
 
-1447505182 source:c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\console.cpp
+1447788407 source:c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\console.cpp
 	"Console.h"
 	<conio.h>
 	<windows.h>
 
-1447505182 c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\console.h
+1447788407 c:\users\adrien\projets\la vengance de snoopy\bitbucket\snoppy\console.h
 	<iostream>
 
 1447588233 source:c:\users\fabrice\desktop\projet\projetsnoopycaf_ece\snoppy\console.cpp
