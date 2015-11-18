@@ -36,7 +36,7 @@ void Partie::jouer(Partie *partie)
     m_niveau->initCoordSnoop(m_snoopy);
 
     ///Boucle de jeu tant que le compteur est != 0 ou ESC n'est pas préssée
-    while((esc == 0) && (timeOut == 0) && (save==0))
+    while((esc == 0) && (timeOut == 0) && (save==0) && m_snoopy->getVivant())
     {
         if (pause == 0)
         {
@@ -192,6 +192,12 @@ void Partie::jouer(Partie *partie)
         m_niveau->pConsole->getInputKey();
     }
 
-
-    //m_niveau->pConsole->getInputKey();
+    if (!m_snoopy->getVivant())
+    {
+        partie->m_niveau->getAttendre(0.75);
+        system("cls");
+        m_niveau->pConsole->gotoLigCol(12, 30);
+        std::cout << "Vous etes mort, touche par un piege";
+        partie->m_niveau->getAttendre(2.3);
+    }
 }
