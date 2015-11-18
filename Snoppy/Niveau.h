@@ -43,12 +43,15 @@ class Niveau
     Blocs* getBlocsAuCord(std::vector<Blocs*>, int x, int y);
     int getPositionBlocs(Niveau* niveau, Blocs* blocs);
 
-    void setTempsRestant(double newTempsRestant);	
+    void setTempsRestant(double newTempsRestant);
 	void setNiveauCourant();
 	void setCordSnoopClav(PersoSnoopy* snoopy, Niveau* niveau);
 
 	char verificationBalle_Bords();
-	char verificationBalle_BlocsPoussables();
+	void verificationBalle_BlocsPoussables();
+	void verificationBalle_BlocsCassables();
+	void verificationBalle_BlocsPieges();
+	void verificationBalle_Oiseaux();
 
 	Console *pConsole = NULL;
 
