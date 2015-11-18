@@ -51,9 +51,10 @@ partie->m_niveau->setPlateau("3");
             m_niveau->setCordSnoopClav(m_snoopy, m_niveau);
             m_niveau->changerPlateau(m_snoopy);
             m_niveau->afficherPlateau(1);
+            if(!m_snoopy->getVivant()){}
             std::cout << "coord de Snoopy : " << "(" << m_snoopy->getX() << ";" << m_snoopy->getY()<< ")";
             std::cout << "coord de tab9 : " << "(" << m_niveau->getTabBlocs()[9]->getX() << ";" << m_niveau->getTabBlocs()[9]->getY()<< ")";
-
+            std::cout << "SnoopyVivant? : " << m_snoopy->getVivant();
         }
         partie->m_niveau->getAttendre(0.1);         /// Temporisation de 0.1 seconde
         esc = GetAsyncKeyState(VK_ESCAPE);
