@@ -73,12 +73,23 @@ void Menu::creerPartie(char decisionJoueur)
         std::cout << "Entrer votre pseudo" << std::endl;
         std::cin >> pseudoDonne;
         nom = pseudoDonne;
-        nomFichier = dossier + nom +extention;
+        nomFichier = dossier + nom + extention;
+        if(is_readable(nomFichier))
+        {
+         m_partie->jouer(m_partie, decisionJoueur, nom);
+        }
     }
-    if((is_readable(nomFichier))||(decisionJoueur == '1'))
+    if(decisionJoueur == '1')
     {
-    system("cls");
-    m_partie->jouer(m_partie, decisionJoueur);
+        std::cout << "Creer votre pseudo" << std::endl;
+        std::cin >> pseudoDonne;
+        nom = pseudoDonne;
+        nomFichier = dossier + nom + extention;
+
+        if(!is_readable(nomFichier))
+        {
+        m_partie->jouer(m_partie, decisionJoueur, nom);
+        }
     }
     delete m_partie;
     system("cls");

@@ -19,7 +19,7 @@ Partie::~Partie()
 
 
 /// Boucle de jeu
-void Partie::jouer(Partie *partie, char decisionJoueur)
+void Partie::jouer(Partie *partie, char decisionJoueur, std::string pseudo)
 {
     int timeOut = 0;
     int esc = 0;
@@ -28,6 +28,7 @@ void Partie::jouer(Partie *partie, char decisionJoueur)
     double tempsDePause = 0;
     int save = 0;
     char toucheUtilisateur('@');
+    system("cls");
 
     if(decisionJoueur == '1')
     {
@@ -38,11 +39,8 @@ void Partie::jouer(Partie *partie, char decisionJoueur)
     if(decisionJoueur == '2')
     {
     partie->m_niveau->setPlateau("1");
-    m_niveau->creerObjet("Nom", m_snoopy);// a ne pas utiliser au hasard sinon ca plante
+    m_niveau->creerObjet(pseudo, m_snoopy);
     }
-
-//std::cout << m_snoopy->getX() << " " << m_snoopy->getY() << " " << m_snoopy->getNbOiseauAttrap() << " " << m_snoopy->getNbrVie();
-
 
     ///Boucle de jeu tant que le compteur est != 0 ou ESC n'est pas préssée
     while((esc == 0) && (timeOut == 0) && (save==0) && m_snoopy->getVivant() && !m_snoopy->toucheBalle(m_snoopy, m_niveau->getBalle()))
@@ -55,6 +53,7 @@ void Partie::jouer(Partie *partie, char decisionJoueur)
                 system("cls");
                 m_niveau->pConsole->gotoLigCol(12, 30);
                 std::cout << "Temps ecoule !";
+                partie->m_niveau->getAttendre(0.75);
             }
             else
             {
@@ -95,9 +94,9 @@ void Partie::jouer(Partie *partie, char decisionJoueur)
     if(save != 0)
     {
             std::string const dossier("sauvegarde//");
-            std::string const nom("Nom");
+            std::string nom(pseudo);
             std::string const extention(".txt");
-            std::string nomFichier = dossier + nom +extention;
+            std::string nomFichier = dossier + nom + extention;
             std::ofstream monFlux(nomFichier.c_str());
 
             if(monFlux)
