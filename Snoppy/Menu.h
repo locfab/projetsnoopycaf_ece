@@ -11,7 +11,7 @@ class Menu
 
 	void afficherMenu();
 	void choix(char decisionJoueur);
-	void creerPartie();
+	void creerPartie(char decisionJoueur);
 	void highScores() const;
 
 	void setChoixMenu(char choixMenu);

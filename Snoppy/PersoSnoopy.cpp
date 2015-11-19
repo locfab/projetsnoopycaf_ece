@@ -1,16 +1,16 @@
 #include <iostream>
 #include "PersoSnoopy.h"
 
-PersoSnoopy::PersoSnoopy(): m_saLetrre('S'),m_vivant(true), m_modeDemolition(false), m_nbOiseauxAttrap(0)
+PersoSnoopy::PersoSnoopy(): m_saLetrre('S'),m_vivant(true), m_modeDemolition(false), m_nbOiseauxAttrap(0), m_vie(3), m_score(0)
 {
 }
 
-PersoSnoopy::PersoSnoopy(int x, int y): m_x(x), m_y(y), m_nbOiseauxAttrap(0), m_vie(3), m_saLetrre('S'), m_vivant(true), m_modeDemolition(false)
+PersoSnoopy::PersoSnoopy(int x, int y): m_x(x), m_y(y), m_nbOiseauxAttrap(0), m_vie(3), m_saLetrre('S'), m_vivant(true), m_modeDemolition(false), m_score(0)
 {
 }
 
-PersoSnoopy::PersoSnoopy(int x, int y, int nbOiseauxAttrap, int vie)
-			: m_x(x), m_y(y), m_nbOiseauxAttrap(nbOiseauxAttrap), m_vie(vie), m_saLetrre('S'), m_vivant(true), m_modeDemolition(false)
+PersoSnoopy::PersoSnoopy(int x, int y, int score, int vie)
+			: m_x(x), m_y(y), m_nbOiseauxAttrap(0), m_vie(vie), m_saLetrre('S'), m_vivant(true), m_modeDemolition(false), m_score(score)
 {
 }
 PersoSnoopy::~PersoSnoopy()
@@ -41,6 +41,14 @@ void PersoSnoopy::setVivant(bool vivant)
     m_vivant=false;
 }
 
+void PersoSnoopy::setNbrVie(int vie)
+{
+    m_vie = vie;
+}
+void PersoSnoopy::setScore(int score)
+{
+    m_score = score;
+}
 
 void PersoSnoopy::setCoordonnees(int x, int y)
 {

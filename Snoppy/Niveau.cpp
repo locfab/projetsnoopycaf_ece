@@ -99,7 +99,6 @@ void Niveau::creerObjet()
             if(this->m_plateau[i][j]=='O')
             {
             p_Oiseau = new Oiseau(i, j);
-            ///std::cout << p_Oiseau->getX();
             m_tabOiseau.push_back(*p_Oiseau);
             p_Oiseau = NULL;
             }
@@ -128,19 +127,19 @@ void Niveau::creerObjet()
     }
 }
 
-void Niveau::creerObjet(std::string nom)// permet de creer les objet à partir des sauvegardes
+void Niveau::creerObjet(std::string nom, PersoSnoopy* snoopy)// permet de creer les objet à partir des sauvegardes
 {
-    //std::string const dossier("sauvegarde//");
+    std::string const dossier("sauvegarde//");
+    std::string const pseudo(nom);
     std::string const extention(".txt");
-    std::string nomFichier = nom + extention;
+    std::string nomFichier = dossier + nom + extention;
+
+    int a, b, c, d;
+    Oiseau *p_Oiseau;
+    Blocs* p_Blocs;
+
 
         std::ifstream fichier(nomFichier.c_str(), std::ios::in);  // on ouvre
-
-        std::vector< std::vector<char> > grille(20);
-        for(int i(0); i < 20; ++i)
-        {
-            grille[i] = std::vector<char>(10);
-        }
 
         if(fichier)
         {
@@ -159,7 +158,7 @@ void Niveau::creerObjet(std::string nom)// permet de creer les objet à partir d
                     for (int i=0; i<20; i++)
                     {
                         fichier.get(caractere);  // on lit un caractre et on le stocke dans caractere
-                        grille[i][j]=caractere;
+                        getPlateau()[i][j]=caractere;
                     }
                 }
 
@@ -170,11 +169,20 @@ void Niveau::creerObjet(std::string nom)// permet de creer les objet à partir d
                 //recuperation des infos de snoop, cord, vie score
 
                 fichier >> nb;
+                a = nb;
                 fichier >> nb;
+                b = nb;
                 fichier >> nb;
+                c = nb;
                 fichier >> nb;
+                d = nb;
 
+               // std::cout << a << " " << b << " " << c << " " << d << std::endl;;
 
+                snoopy->setX(a);
+                snoopy->setY(b);
+                snoopy->setNbrVie(c);
+                snoopy->setScore(d);
 
 
                 fichier.get(caractere);
@@ -184,9 +192,15 @@ void Niveau::creerObjet(std::string nom)// permet de creer les objet à partir d
                 //recuperation des donnees de la balle, coord et direction
 
                 fichier >> nb;
+                a = nb;
                 fichier >> nb;
+                b = nb;
                 fichier >> nb;
+                c = nb;
                 fichier >> nb;
+                d = nb;
+
+                m_balle = new Balle(a,b,c,d);
 
 
                 fichier.get(caractere);
@@ -200,8 +214,15 @@ void Niveau::creerObjet(std::string nom)// permet de creer les objet à partir d
                 for (int i(0); i<valeur; i++)
                 {
                     fichier >> nb;
+                    a = nb;
                     fichier >> nb;
+                    b = nb;
                     fichier >> nb;
+                    c = (bool)nb;
+
+                    p_Blocs = new BlocsPoussables(a, b, c);
+                    m_tabBlocs.push_back(p_Blocs);
+                    p_Blocs = NULL;
                 }
 
                 fichier.get(caractere);
@@ -216,7 +237,13 @@ void Niveau::creerObjet(std::string nom)// permet de creer les objet à partir d
                 for (int i(0); i<valeur; i++)
                 {
                     fichier >> nb;
+                    a = nb;
                     fichier >> nb;
+                    b = nb;
+
+                    p_Blocs = new BlocsCassables(a, b);
+                    m_tabBlocs.push_back(p_Blocs);
+                    p_Blocs = NULL;
                 }
 
                 fichier.get(caractere);
@@ -230,7 +257,13 @@ void Niveau::creerObjet(std::string nom)// permet de creer les objet à partir d
                 for (int i(0); i<valeur; i++)
                 {
                     fichier >> nb;
+                    a = nb;
                     fichier >> nb;
+                    b = nb;
+
+                    p_Blocs = new BlocsPieges(a, b);
+                    m_tabBlocs.push_back(p_Blocs);
+                    p_Blocs = NULL;
                 }
 
                 fichier.get(caractere);
@@ -244,7 +277,18 @@ void Niveau::creerObjet(std::string nom)// permet de creer les objet à partir d
                 for (int i(0); i<valeur; i++)
                 {
                     fichier >> nb;
+                    a = nb;
                     fichier >> nb;
+                    b = nb;
+
+                    p_Oiseau = new Oiseau(a, b);
+                    m_tabOiseau.push_back(*p_Oiseau);
+                    p_Oiseau = NULL;
+                }
+
+                for(int i(0); i<4-m_tabOiseau.size(); i++)
+                {
+                    snoopy->setPlusOiseau();
                 }
 
 
@@ -262,13 +306,11 @@ void Niveau::creerObjet(std::string nom)// permet de creer les objet à partir d
         else
             std::cout << "Impossible d'ouvrir le fichier !" << std::endl;
 
-        this->m_plateau = grille;// peut etre mettre un getter
-
 }
 
 void Niveau::initCoordSnoop(PersoSnoopy* snoopy)
 {
-     for (int i=0; i<20; i++)
+    for (int i=0; i<20; i++)
     {
         for(int j=0; j<10; j++)
         {

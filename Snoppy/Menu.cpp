@@ -46,10 +46,10 @@ void Menu::choix(char decisionJoueur)
     switch (decisionJoueur)
       {
          case '1':
-            this->creerPartie();
+            this->creerPartie(decisionJoueur);
             break;
-         case 'a':
-            std::cout << "il reste a faire" << std::endl;
+         case '2':
+            this->creerPartie(decisionJoueur);
             break;
          default:
             this->setChoixMenu('0');
@@ -58,10 +58,10 @@ void Menu::choix(char decisionJoueur)
 }
 
 
-void Menu::creerPartie()
+void Menu::creerPartie(char decisionJoueur)
 {
     Partie *m_partie = new Partie();
-    m_partie->jouer(m_partie);
+    m_partie->jouer(m_partie, decisionJoueur);
     delete m_partie;
     afficherMenu();
 }

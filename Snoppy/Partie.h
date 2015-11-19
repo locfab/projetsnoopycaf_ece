@@ -19,7 +19,7 @@ class Partie
         Partie();
         ///Partie(surchargé);
         ~Partie();
-        void jouer(Partie *partie);
+        void jouer(Partie *partie, char decisionJoueur);
 
 };
 

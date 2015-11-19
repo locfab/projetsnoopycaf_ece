@@ -32,7 +32,7 @@ class Niveau
 	std::vector<Oiseau> getTabOiseau();
 
 	void creerObjet();
-	void creerObjet(std::string);
+	void creerObjet(std::string nom, PersoSnoopy* snoopy);
 
     void initCoordSnoop(PersoSnoopy* snoopy);
 
