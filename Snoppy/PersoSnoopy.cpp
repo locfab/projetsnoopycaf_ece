@@ -1,7 +1,7 @@
 #include <iostream>
 #include "PersoSnoopy.h"
 
-PersoSnoopy::PersoSnoopy(): m_saLetrre('S'),m_vivant(true), m_modeDemolition(false)
+PersoSnoopy::PersoSnoopy(): m_saLetrre('S'),m_vivant(true), m_modeDemolition(false), m_nbOiseauxAttrap(0)
 {
 }
 
@@ -19,11 +19,20 @@ PersoSnoopy::~PersoSnoopy()
 }
 
 
+bool PersoSnoopy::toucheBalle(PersoSnoopy* snoopy, Balle* balle)
+{
+  if(snoopy->getX() == balle->getX() && snoopy->getY() == balle->getY())
+  {
+    return true;
+  }
+}
+
+
 void PersoSnoopy::setPlusOiseau()
 {
     if(m_nbOiseauxAttrap<4)
     m_nbOiseauxAttrap+=1;
-    else
+    if(m_nbOiseauxAttrap==4)
     std::cout << "Niveau suivant" << std::endl;
 }
 void PersoSnoopy::setVivant(bool vivant)
@@ -57,7 +66,7 @@ void PersoSnoopy::setY(int y)
 	}
 }
 
-void PersoSnoopy::setModeDemolition(bool modeDemolition) 
+void PersoSnoopy::setModeDemolition(bool modeDemolition)
 {
     m_modeDemolition = modeDemolition;
 }

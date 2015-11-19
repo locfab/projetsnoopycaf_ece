@@ -1,6 +1,8 @@
 #ifndef PERSOSNOOPY_H_INCLUDED
 #define PERSOSNOOPY_H_INCLUDED
 #include <string>
+#include "Balle.h"
+
 
 
 
@@ -14,11 +16,7 @@ class PersoSnoopy
     ~PersoSnoopy();
 
     void deplacement(bool droite, bool haut);
-    void poussBloc();
-    void cassBloc();
-    void touchePiegeBloc();
-    void toucheBalle();
-    void touchOiseau();
+    bool toucheBalle(PersoSnoopy* snoopy, Balle* balle);
 
     void setPlusOiseau();
     void setVivant(bool vivant);

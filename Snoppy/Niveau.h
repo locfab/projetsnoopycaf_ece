@@ -42,6 +42,7 @@ class Niveau
     char getNiveauCourant();
     Blocs* getBlocsAuCord(std::vector<Blocs*>, int x, int y);
     int getPositionBlocs(Niveau* niveau, Blocs* blocs);
+    int getPosiOiseauAuNivTab(std::vector<Oiseau> const tabOiseau, int x, int y);
 
     void setTempsRestant(double newTempsRestant);
 	void setNiveauCourant();

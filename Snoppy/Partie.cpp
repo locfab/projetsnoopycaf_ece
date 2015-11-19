@@ -15,7 +15,6 @@ Partie::~Partie()
 {
     delete m_snoopy;
     delete m_niveau;
-
 }
 
 
@@ -36,7 +35,7 @@ void Partie::jouer(Partie *partie)
     m_niveau->initCoordSnoop(m_snoopy);
 
     ///Boucle de jeu tant que le compteur est != 0 ou ESC n'est pas préssée
-    while((esc == 0) && (timeOut == 0) && (save==0) && m_snoopy->getVivant())
+    while((esc == 0) && (timeOut == 0) && (save==0) && m_snoopy->getVivant() && !m_snoopy->toucheBalle(m_snoopy, m_niveau->getBalle()))
     {
         if (pause == 0)
         {
@@ -54,6 +53,9 @@ void Partie::jouer(Partie *partie)
                 m_niveau->setCordSnoopClav(m_snoopy, m_niveau, toucheUtilisateur);
                 m_niveau->changerPlateau(m_snoopy);
                 m_niveau->afficherPlateau();
+
+                m_niveau->pConsole->gotoLigCol(6, 50);
+                std::cout << "Nombre d'oiseaux attrapes : " << m_snoopy->getNbOiseauAttrap() << "  ";
             }
 
             partie->m_niveau->getAttendre(0.1);         /// Temporisation de 0.1 seconde
@@ -198,6 +200,16 @@ void Partie::jouer(Partie *partie)
         system("cls");
         m_niveau->pConsole->gotoLigCol(12, 30);
         std::cout << "Vous etes mort, touche par un piege";
+        partie->m_niveau->getAttendre(2.3);
+    }
+    if (m_snoopy->toucheBalle(m_snoopy, m_niveau->getBalle()))
+    {
+        m_niveau->pConsole->gotoLigCol(m_snoopy->getY()*2, m_snoopy->getX()*2);
+        std::cout <<'B';
+        partie->m_niveau->getAttendre(0.75);
+        system("cls");
+        m_niveau->pConsole->gotoLigCol(12, 30);
+        std::cout << "Vous etes mort, touche par la balle";
         partie->m_niveau->getAttendre(2.3);
     }
 }
