@@ -60,9 +60,28 @@ void Menu::choix(char decisionJoueur)
 
 void Menu::creerPartie(char decisionJoueur)
 {
+    std::string pseudoDonne;
+
+    std::string const dossier("sauvegarde//");
+    std::string nom;
+    std::string const extention(".txt");
+    std::string nomFichier;
+
     Partie *m_partie = new Partie();
+    if(decisionJoueur == '2')
+    {
+        std::cout << "Entrer votre pseudo" << std::endl;
+        std::cin >> pseudoDonne;
+        nom = pseudoDonne;
+        nomFichier = dossier + nom +extention;
+    }
+    if((is_readable(nomFichier))||(decisionJoueur == '1'))
+    {
+    system("cls");
     m_partie->jouer(m_partie, decisionJoueur);
+    }
     delete m_partie;
+    system("cls");
     afficherMenu();
 }
 
@@ -76,4 +95,10 @@ void Menu::setChoixMenu(char choixMenu)
     this->m_choixMenu = choixMenu;
     else
     this->m_choixMenu ='0';
+}
+
+bool Menu::is_readable( const std::string & file )
+{
+    std::ifstream fichier( file.c_str() );
+    return !fichier.fail();
 }
