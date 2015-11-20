@@ -64,9 +64,10 @@ void Menu::choix(char decisionJoueur)
 }
 
 
-void Menu::creerPartie(char decisionJoueur)
+void Menu::creerPartie(char decisionJoueurMenu)
 {
     std::string pseudoDonne;
+    std::string decisionJoueurNiveau;
 
     std::string const dossier("sauvegarde//");
     std::string nom;
@@ -74,7 +75,7 @@ void Menu::creerPartie(char decisionJoueur)
     std::string nomFichier;
 
     Partie *m_partie = new Partie();
-    if(decisionJoueur == '2')
+    if(decisionJoueurMenu == '2')
     {
         std::cout << "Entrer votre pseudo" << std::endl;
         std::cin >> pseudoDonne;
@@ -82,10 +83,15 @@ void Menu::creerPartie(char decisionJoueur)
         nomFichier = dossier + nom + extention;
         if(is_readable(nomFichier))
         {
-         m_partie->jouer(m_partie, decisionJoueur, nom);
+            while(decisionJoueurNiveau<"0" || decisionJoueurNiveau>"3")
+                {
+                std::cout << "choisissez votre niveau deja atteint en tapant '1', '2' ou '3' ou revenir a la derniere sauvegarde en tapant le chiffre'0'" << std::endl;
+                std::cin >> decisionJoueurNiveau;
+                }
+            m_partie->jouer(m_partie, decisionJoueurMenu, nom, decisionJoueurNiveau);
         }
     }
-    if(decisionJoueur == '1')
+    if(decisionJoueurMenu == '1')
     {
         std::cout << "Creer votre pseudo" << std::endl;
         std::cin >> pseudoDonne;
@@ -94,7 +100,7 @@ void Menu::creerPartie(char decisionJoueur)
 
         if(!is_readable(nomFichier))
         {
-        m_partie->jouer(m_partie, decisionJoueur, nom);
+        m_partie->jouer(m_partie, decisionJoueurMenu, nom, "1");
         }
     }
     delete m_partie;

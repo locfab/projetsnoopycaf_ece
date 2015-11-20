@@ -19,7 +19,7 @@ Partie::~Partie()
 
 
 /// Boucle de jeu
-void Partie::jouer(Partie *partie, char decisionJoueur, std::string pseudo)
+void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, std::string decisionJoueurNiveau)
 {
     int timeOut = 0;
     int esc = 0;
@@ -30,46 +30,47 @@ void Partie::jouer(Partie *partie, char decisionJoueur, std::string pseudo)
     char toucheUtilisateur('@');
     system("cls");
 
-    if(decisionJoueur == '1')
+    if(decisionJoueurMenu == '1')
     {
-    partie->m_niveau->setPlateau("1");
+    partie->m_niveau->setPlateau(decisionJoueurNiveau);
     m_niveau->creerObjet();
     m_niveau->initCoordSnoop(m_snoopy);
     }
-    if(decisionJoueur == '2')
+    if(decisionJoueurMenu == '2')
     {
-    partie->m_niveau->setPlateau("1");
-    m_niveau->creerObjet(pseudo, m_snoopy);
+        //il faut voire si il a deja depasse ce niveau
+        if(decisionJoueurNiveau == "0")
+        {
+            partie->m_niveau->setPlateau(decisionJoueurNiveau);
+            m_niveau->creerObjet(pseudo, m_snoopy);
+        }
+        else
+        {
+            partie->m_niveau->setPlateau(decisionJoueurNiveau);
+            m_niveau->creerObjet();
+            m_niveau->initCoordSnoop(m_snoopy);
+        }    
+    
     }
 
     ///Boucle de jeu tant que le compteur est != 0 ou ESC n'est pas préssée
-    while((esc == 0) && (timeOut == 0) && (save==0) && m_snoopy->getVivant() && !m_snoopy->toucheBalle(m_snoopy, m_niveau->getBalle()))
+    while((esc == 0) && (timeOut == 0) && (save==0) && m_snoopy->getVivant() && !m_snoopy->toucheBalle(m_snoopy, m_niveau->getBalle()) && (partie->m_niveau->getTempsRestant() > 0) )
     {
         if (pause == 0)
         {
-            if(partie->m_niveau->getTempsRestant() <= 0) /// Est-ce que le temps restant est inférieur à 0 ?
-            {
-                timeOut = 1;
-                system("cls");
-                m_niveau->pConsole->gotoLigCol(12, 30);
-                std::cout << "Temps ecoule !";
-                partie->m_niveau->getAttendre(0.75);
-            }
-            else
-            {
-                m_niveau->getDeplacementBalle(m_niveau->getPlateau());
-                m_niveau->checkerPlateauPourBalle();
-                m_niveau->setCordSnoopClav(m_snoopy, m_niveau, toucheUtilisateur);
-                m_niveau->changerPlateau(m_snoopy);
-                m_niveau->afficherPlateau();
+            m_niveau->getDeplacementBalle(m_niveau->getPlateau());
+            m_niveau->checkerPlateauPourBalle();
+            m_niveau->setCordSnoopClav(m_snoopy, m_niveau, toucheUtilisateur);
+            m_niveau->changerPlateau(m_snoopy);
+            m_niveau->afficherPlateau();
 
-                m_niveau->pConsole->gotoLigCol(6, 50);
-                std::cout << "Nombre d'oiseaux attrapes : " << m_snoopy->getNbOiseauAttrap() << "  " << std::endl;
-                m_niveau->pConsole->gotoLigCol(7, 50);
-                std::cout << "Nombre de vie : " << m_snoopy->getNbrVie() << "  " << std::endl;
-                m_niveau->pConsole->gotoLigCol(8, 50);
-                std::cout << "Score : " << m_snoopy->getScore() << "  " << std::endl;
-            }
+            m_niveau->pConsole->gotoLigCol(6, 50);
+            std::cout << "Nombre d'oiseaux attrapes : " << m_snoopy->getNbOiseauAttrap() << "  " << std::endl;
+            m_niveau->pConsole->gotoLigCol(7, 50);
+            std::cout << "Nombre de vie : " << m_snoopy->getNbrVie() << "  " << std::endl;
+            m_niveau->pConsole->gotoLigCol(8, 50);
+            std::cout << "Score : " << m_snoopy->getScore() << "  " << std::endl;
+
 
             partie->m_niveau->getAttendre(0.1);         /// Temporisation de 0.1 seconde
             esc = GetAsyncKeyState(VK_ESCAPE);
@@ -91,8 +92,17 @@ void Partie::jouer(Partie *partie, char decisionJoueur, std::string pseudo)
              std::cout << "Pause !";
              std::cout << "          " << tempsDePause;
              char attente = m_niveau->pConsole->getInputKey();
-             if((attente == 'P')||(attente == 'p')) pause = 0;
+             if((attente == 'P')||(attente == 'p')||(GetAsyncKeyState(VK_ESCAPE))) pause = 0;
         }
+    }
+
+    if(partie->m_niveau->getTempsRestant() <= 0) /// Est-ce que le temps restant est inférieur à 0 ?
+    {
+        timeOut = 1;
+        system("cls");
+        m_niveau->pConsole->gotoLigCol(12, 30);
+        std::cout << "Temps ecoule !";
+        partie->m_niveau->getAttendre(0.75);
     }
 
     if(esc != 0)

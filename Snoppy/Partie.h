@@ -19,7 +19,7 @@ class Partie
         Partie();
         ///Partie(surchargé);
         ~Partie();
-        void jouer(Partie *partie, char decisionJoueur, std::string pseudo);
+        void jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, std::string decisionJoueurNiveau);
 
 };
 
