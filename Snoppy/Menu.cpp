@@ -51,6 +51,12 @@ void Menu::choix(char decisionJoueur)
          case '2':
             this->creerPartie(decisionJoueur);
             break;
+         case '5':
+            system("cls");
+            for(int i(0); i<7; i++)std::cout << std::endl;
+            std::cout << "      Appuyer sur echap pour fermer la fenetre" << std::endl;
+            for(int i(0); i<7; i++)std::cout << std::endl;
+            break;
          default:
             this->setChoixMenu('0');
             this->afficherMenu();
