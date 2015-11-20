@@ -186,56 +186,37 @@ std::vector<Oiseau> Niveau::getTabOiseau()
 }
 
 
-
-
-
-
-
-
-
-
-/// Creer un objet
-void Niveau::creerObjet()
+Blocs* Niveau::getBlocsAuCord(std::vector<Blocs*> tabBlocs, int x, int y)
 {
-    Oiseau *p_Oiseau;
-    Blocs* p_Blocs;
 
-    for(int j=0; j<10; j++)
+    for(int i(0); i< tabBlocs.size(); i++)
     {
-        for (int i=0; i<20; i++)
+        if((tabBlocs[i]->getX() == x) && (tabBlocs[i]->getY() == y))
         {
-            if(this->m_plateau[i][j]=='B')
-            {
-            m_balle = new Balle(i,j,-1,-1);
-            }
+        return tabBlocs[i];
+        }
+    }
+}
 
-            if(this->m_plateau[i][j]=='O')
-            {
-            p_Oiseau = new Oiseau(i, j);
-            m_tabOiseau.push_back(*p_Oiseau);
-            p_Oiseau = NULL;
-            }
+int Niveau::getPositionBlocs(Niveau* niveau,Blocs* blocs)
+{
+    for(int i(0); i<niveau->getTabBlocs().size(); i++)
+    {
+        if(niveau->getTabBlocs()[i]== blocs)
+        {
+            return i;
+        }
+    }
+}
 
-            if(this->m_plateau[i][j]=='P')
-            {
-              p_Blocs = new BlocsPoussables(i, j, true);
-              m_tabBlocs.push_back(p_Blocs);
-              p_Blocs = NULL;
-            }
+int Niveau::getPosiOiseauAuNivTab(std::vector<Oiseau> const tabOiseau, int x, int y)
+{
 
-            if(this->m_plateau[i][j]=='C')
-            {
-              p_Blocs = new BlocsCassables(i, j);
-              m_tabBlocs.push_back(p_Blocs);
-              p_Blocs = NULL;
-            }
-
-            if(this->m_plateau[i][j]=='T')
-            {
-              p_Blocs = new BlocsPieges(i, j);
-              m_tabBlocs.push_back(p_Blocs);
-              p_Blocs = NULL;
-            }
+    for(int i(0); i< tabOiseau.size(); i++)
+    {
+        if((tabOiseau[i].getX() == x) && (tabOiseau[i].getY() == y))
+        {
+        return i;
         }
     }
 }
@@ -287,244 +268,7 @@ void Niveau::creerObjet()
     }
 }
 
-void Niveau::creerObjet(std::string nom, PersoSnoopy* snoopy)// permet de creer les objet à partir des sauvegardes
-{
-    std::string const dossier("sauvegarde//");
-    std::string const pseudo(nom);
-    std::string const extention(".txt");
-    std::string nomFichier = dossier + nom + extention;
 
-    int a, b, c, d;
-    Oiseau *p_Oiseau;
-    Blocs* p_Blocs;
-
-
-        std::ifstream fichier(nomFichier.c_str(), std::ios::in);  // on ouvre
-
-        if(fichier)
-        {
-                std::string mot;
-                char caractere;  // notre variable o sera stockŽ le caractre
-                int valeur(0);
-                int nb(0);
-                int rien(1);
-
-                fichier >> mot;
-                fichier.get(caractere);
-
-
-                for (int j=0; j<10; j++)// recuperation de la table
-                {
-                    for (int i=0; i<20; i++)
-                    {
-                        fichier.get(caractere);  // on lit un caractre et on le stocke dans caractere
-                        getPlateau()[i][j]=caractere;
-                    }
-                }
-
-                fichier.get(caractere);
-                fichier.get(caractere);
-                fichier.get(caractere);
-
-                //recuperation des infos de snoop, cord, vie score
-
-                fichier >> nb;
-                a = nb;
-                fichier >> nb;
-                b = nb;
-                fichier >> nb;
-                c = nb;
-                fichier >> nb;
-                d = nb;
-
-               // std::cout << a << " " << b << " " << c << " " << d << std::endl;;
-
-                snoopy->setX(a);
-                snoopy->setY(b);
-                snoopy->setNbrVie(c);
-                snoopy->setScore(d);
-
-
-                fichier.get(caractere);
-                fichier.get(caractere);
-                fichier.get(caractere);
-
-                //recuperation des donnees de la balle, coord et direction
-
-                fichier >> nb;
-                a = nb;
-                fichier >> nb;
-                b = nb;
-                fichier >> nb;
-                c = nb;
-                fichier >> nb;
-                d = nb;
-
-                m_balle = new Balle(a,b,c,d);
-
-
-                fichier.get(caractere);
-                fichier.get(caractere);
-                fichier.get(caractere);
-
-                //recuperation des P
-
-                fichier >> nb;
-                valeur = nb;
-                for (int i(0); i<valeur; i++)
-                {
-                    fichier >> nb;
-                    a = nb;
-                    fichier >> nb;
-                    b = nb;
-                    fichier >> nb;
-                    c = (bool)nb;
-
-                    p_Blocs = new BlocsPoussables(a, b, c);
-                    m_tabBlocs.push_back(p_Blocs);
-                    p_Blocs = NULL;
-                }
-
-                fichier.get(caractere);
-                fichier.get(caractere);
-                fichier.get(caractere);
-                fichier.get(caractere);
-
-                //recuperation des C
-
-                fichier >> nb;
-                valeur = nb;
-                for (int i(0); i<valeur; i++)
-                {
-                    fichier >> nb;
-                    a = nb;
-                    fichier >> nb;
-                    b = nb;
-
-                    p_Blocs = new BlocsCassables(a, b);
-                    m_tabBlocs.push_back(p_Blocs);
-                    p_Blocs = NULL;
-                }
-
-                fichier.get(caractere);
-                fichier.get(caractere);
-                fichier.get(caractere);
-
-                //recuperation des T
-
-                fichier >> nb;
-                valeur = nb;
-                for (int i(0); i<valeur; i++)
-                {
-                    fichier >> nb;
-                    a = nb;
-                    fichier >> nb;
-                    b = nb;
-
-                    p_Blocs = new BlocsPieges(a, b);
-                    m_tabBlocs.push_back(p_Blocs);
-                    p_Blocs = NULL;
-                }
-
-                fichier.get(caractere);
-                fichier.get(caractere);
-                fichier.get(caractere);
-
-                //recuperartion des O
-
-                fichier >> nb;
-                valeur = nb;
-                for (int i(0); i<valeur; i++)
-                {
-                    fichier >> nb;
-                    a = nb;
-                    fichier >> nb;
-                    b = nb;
-
-                    p_Oiseau = new Oiseau(a, b);
-                    m_tabOiseau.push_back(*p_Oiseau);
-                    p_Oiseau = NULL;
-                }
-
-                for(int i(0); i<4-m_tabOiseau.size(); i++)
-                {
-                    snoopy->setPlusOiseau();
-                }
-
-
-                fichier.get(caractere);
-                fichier.get(caractere);
-                fichier.get(caractere);
-
-                //recuperation du temps, peut etre mettre un float?
-
-                fichier >> nb;
-                valeur = nb;
-
-        fichier.close();
-        }
-        else
-            std::cout << "Impossible d'ouvrir le fichier !" << std::endl;
-
-}
-
-void Niveau::initCoordSnoop(PersoSnoopy* snoopy)
-{
-    for (int i=0; i<20; i++)
-    {
-        for(int j=0; j<10; j++)
-        {
-            if(this->m_plateau[i][j]=='S')
-            {
-            snoopy->setCoordonnees(i,j);
-            }
-        }
-    }
-}/// Creer un objet
-void Niveau::creerObjet()
-{
-    Oiseau *p_Oiseau;
-    Blocs* p_Blocs;
-
-    for(int j=0; j<10; j++)
-    {
-        for (int i=0; i<20; i++)
-        {
-            if(this->m_plateau[i][j]=='B')
-            {
-            m_balle = new Balle(i,j,-1,-1);
-            }
-
-            if(this->m_plateau[i][j]=='O')
-            {
-            p_Oiseau = new Oiseau(i, j);
-            m_tabOiseau.push_back(*p_Oiseau);
-            p_Oiseau = NULL;
-            }
-
-            if(this->m_plateau[i][j]=='P')
-            {
-              p_Blocs = new BlocsPoussables(i, j, true);
-              m_tabBlocs.push_back(p_Blocs);
-              p_Blocs = NULL;
-            }
-
-            if(this->m_plateau[i][j]=='C')
-            {
-              p_Blocs = new BlocsCassables(i, j);
-              m_tabBlocs.push_back(p_Blocs);
-              p_Blocs = NULL;
-            }
-
-            if(this->m_plateau[i][j]=='T')
-            {
-              p_Blocs = new BlocsPieges(i, j);
-              m_tabBlocs.push_back(p_Blocs);
-              p_Blocs = NULL;
-            }
-        }
-    }
-}
 
 void Niveau::creerObjet(std::string nom, PersoSnoopy* snoopy)// permet de creer les objet à partir des sauvegardes
 {
@@ -707,199 +451,7 @@ void Niveau::creerObjet(std::string nom, PersoSnoopy* snoopy)// permet de creer 
 
 }
 
-void Niveau::initCoordSnoop(PersoSnoopy* snoopy)
-{
-    for (int i=0; i<20; i++)
-    {
-        for(int j=0; j<10; j++)
-        {
-            if(this->m_plateau[i][j]=='S')
-            {
-            snoopy->setCoordonnees(i,j);
-            }
-        }
-    }
-}
-void Niveau::creerObjet(std::string nom, PersoSnoopy* snoopy)// permet de creer les objet à partir des sauvegardes
-{
-    std::string const dossier("sauvegarde//");
-    std::string const pseudo(nom);
-    std::string const extention(".txt");
-    std::string nomFichier = dossier + nom + extention;
 
-    int a, b, c, d;
-    Oiseau *p_Oiseau;
-    Blocs* p_Blocs;
-
-
-        std::ifstream fichier(nomFichier.c_str(), std::ios::in);  // on ouvre
-
-        if(fichier)
-        {
-                std::string mot;
-                char caractere;  // notre variable o sera stockŽ le caractre
-                int valeur(0);
-                int nb(0);
-                int rien(1);
-
-                fichier >> mot;
-                fichier.get(caractere);
-
-
-                for (int j=0; j<10; j++)// recuperation de la table
-                {
-                    for (int i=0; i<20; i++)
-                    {
-                        fichier.get(caractere);  // on lit un caractre et on le stocke dans caractere
-                        getPlateau()[i][j]=caractere;
-                    }
-                }
-
-                fichier.get(caractere);
-                fichier.get(caractere);
-                fichier.get(caractere);
-
-                //recuperation des infos de snoop, cord, vie score
-
-                fichier >> nb;
-                a = nb;
-                fichier >> nb;
-                b = nb;
-                fichier >> nb;
-                c = nb;
-                fichier >> nb;
-                d = nb;
-
-               // std::cout << a << " " << b << " " << c << " " << d << std::endl;;
-
-                snoopy->setX(a);
-                snoopy->setY(b);
-                snoopy->setNbrVie(c);
-                snoopy->setScore(d);
-
-
-                fichier.get(caractere);
-                fichier.get(caractere);
-                fichier.get(caractere);
-
-                //recuperation des donnees de la balle, coord et direction
-
-                fichier >> nb;
-                a = nb;
-                fichier >> nb;
-                b = nb;
-                fichier >> nb;
-                c = nb;
-                fichier >> nb;
-                d = nb;
-
-                m_balle = new Balle(a,b,c,d);
-
-
-                fichier.get(caractere);
-                fichier.get(caractere);
-                fichier.get(caractere);
-
-                //recuperation des P
-
-                fichier >> nb;
-                valeur = nb;
-                for (int i(0); i<valeur; i++)
-                {
-                    fichier >> nb;
-                    a = nb;
-                    fichier >> nb;
-                    b = nb;
-                    fichier >> nb;
-                    c = (bool)nb;
-
-                    p_Blocs = new BlocsPoussables(a, b, c);
-                    m_tabBlocs.push_back(p_Blocs);
-                    p_Blocs = NULL;
-                }
-
-                fichier.get(caractere);
-                fichier.get(caractere);
-                fichier.get(caractere);
-                fichier.get(caractere);
-
-                //recuperation des C
-
-                fichier >> nb;
-                valeur = nb;
-                for (int i(0); i<valeur; i++)
-                {
-                    fichier >> nb;
-                    a = nb;
-                    fichier >> nb;
-                    b = nb;
-
-                    p_Blocs = new BlocsCassables(a, b);
-                    m_tabBlocs.push_back(p_Blocs);
-                    p_Blocs = NULL;
-                }
-
-                fichier.get(caractere);
-                fichier.get(caractere);
-                fichier.get(caractere);
-
-                //recuperation des T
-
-                fichier >> nb;
-                valeur = nb;
-                for (int i(0); i<valeur; i++)
-                {
-                    fichier >> nb;
-                    a = nb;
-                    fichier >> nb;
-                    b = nb;
-
-                    p_Blocs = new BlocsPieges(a, b);
-                    m_tabBlocs.push_back(p_Blocs);
-                    p_Blocs = NULL;
-                }
-
-                fichier.get(caractere);
-                fichier.get(caractere);
-                fichier.get(caractere);
-
-                //recuperartion des O
-
-                fichier >> nb;
-                valeur = nb;
-                for (int i(0); i<valeur; i++)
-                {
-                    fichier >> nb;
-                    a = nb;
-                    fichier >> nb;
-                    b = nb;
-
-                    p_Oiseau = new Oiseau(a, b);
-                    m_tabOiseau.push_back(*p_Oiseau);
-                    p_Oiseau = NULL;
-                }
-
-                for(int i(0); i<4-m_tabOiseau.size(); i++)
-                {
-                    snoopy->setPlusOiseau();
-                }
-
-
-                fichier.get(caractere);
-                fichier.get(caractere);
-                fichier.get(caractere);
-
-                //recuperation du temps, peut etre mettre un float?
-
-                fichier >> nb;
-                valeur = nb;
-
-        fichier.close();
-        }
-        else
-            std::cout << "Impossible d'ouvrir le fichier !" << std::endl;
-
-}
 
 void Niveau::initCoordSnoop(PersoSnoopy* snoopy)
 {
