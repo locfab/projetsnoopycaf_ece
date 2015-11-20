@@ -64,7 +64,11 @@ void Partie::jouer(Partie *partie, char decisionJoueur, std::string pseudo)
                 m_niveau->afficherPlateau();
 
                 m_niveau->pConsole->gotoLigCol(6, 50);
-                std::cout << "Nombre d'oiseaux attrapes : " << m_snoopy->getNbOiseauAttrap() << "  ";
+                std::cout << "Nombre d'oiseaux attrapes : " << m_snoopy->getNbOiseauAttrap() << "  " << std::endl;
+                m_niveau->pConsole->gotoLigCol(7, 50);
+                std::cout << "Nombre de vie : " << m_snoopy->getNbrVie() << "  " << std::endl;
+                m_niveau->pConsole->gotoLigCol(8, 50);
+                std::cout << "Score : " << m_snoopy->getScore() << "  " << std::endl;
             }
 
             partie->m_niveau->getAttendre(0.1);         /// Temporisation de 0.1 seconde
@@ -90,6 +94,36 @@ void Partie::jouer(Partie *partie, char decisionJoueur, std::string pseudo)
              if((attente == 'P')||(attente == 'p')) pause = 0;
         }
     }
+
+    if(esc != 0)
+    {
+        system("cls");
+        m_niveau->pConsole->gotoLigCol(12, 30);
+        std::cout << "Vous avez quitte la partie";
+        m_niveau->pConsole->getInputKey();
+    }
+
+    if (!m_snoopy->getVivant())
+    {
+        partie->m_niveau->getAttendre(0.75);
+        system("cls");
+        m_niveau->pConsole->gotoLigCol(12, 30);
+        std::cout << "Vous etes mort, touche par un piege";
+        partie->m_niveau->getAttendre(2.3);
+        m_snoopy->setNbrVie(m_snoopy->getNbrVie()-1);
+    }
+    if (m_snoopy->toucheBalle(m_snoopy, m_niveau->getBalle()))
+    {
+        m_niveau->pConsole->gotoLigCol(m_snoopy->getY()*2, m_snoopy->getX()*2);
+        std::cout <<'B';
+        partie->m_niveau->getAttendre(0.75);
+        system("cls");
+        m_niveau->pConsole->gotoLigCol(12, 30);
+        std::cout << "Vous etes mort, touche par la balle";
+        partie->m_niveau->getAttendre(2.3);
+        m_snoopy->setNbrVie(m_snoopy->getNbrVie()-1);
+    }
+
 
     if(save != 0)
     {
@@ -198,30 +232,5 @@ void Partie::jouer(Partie *partie, char decisionJoueur, std::string pseudo)
             }
 
     }
-    if(esc != 0)
-    {
-        system("cls");
-        m_niveau->pConsole->gotoLigCol(12, 30);
-        std::cout << "Vous avez quitte la partie";
-        m_niveau->pConsole->getInputKey();
-    }
 
-    if (!m_snoopy->getVivant())
-    {
-        partie->m_niveau->getAttendre(0.75);
-        system("cls");
-        m_niveau->pConsole->gotoLigCol(12, 30);
-        std::cout << "Vous etes mort, touche par un piege";
-        partie->m_niveau->getAttendre(2.3);
-    }
-    if (m_snoopy->toucheBalle(m_snoopy, m_niveau->getBalle()))
-    {
-        m_niveau->pConsole->gotoLigCol(m_snoopy->getY()*2, m_snoopy->getX()*2);
-        std::cout <<'B';
-        partie->m_niveau->getAttendre(0.75);
-        system("cls");
-        m_niveau->pConsole->gotoLigCol(12, 30);
-        std::cout << "Vous etes mort, touche par la balle";
-        partie->m_niveau->getAttendre(2.3);
-    }
 }
