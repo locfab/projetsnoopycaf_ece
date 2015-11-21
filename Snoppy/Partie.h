@@ -20,6 +20,7 @@ class Partie
         ///Partie(surchargé);
         ~Partie();
         void jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, std::string decisionJoueurNiveau);
+        void changerVie(std::string nom, PersoSnoopy* snoopy);
 
 };
 

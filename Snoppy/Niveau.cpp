@@ -63,7 +63,7 @@ void Niveau::setPlateau(std::string niveau)
 
 }
 
-void Niveau::afficherPlateau()
+void Niveau::afficherPlateau(PersoSnoopy* snoopy)
 {
     pConsole->gotoLigCol(5, 50);
     std::cout << "Temps restant : " << (int)getTempsRestant() << "  ";
@@ -79,6 +79,18 @@ void Niveau::afficherPlateau()
         std::cout << std::endl;
         std::cout << std::endl;
     }
+
+
+    pConsole->gotoLigCol(4, 50);
+    std::cout << "Niveau actuel : " << snoopy->getNiveauActuel() << "  " << std::endl;
+    pConsole->gotoLigCol(6, 50);
+    std::cout << "Nombre d'oiseaux attrapes : " << snoopy->getNbOiseauAttrap() << "  " << std::endl;
+    pConsole->gotoLigCol(7, 50);
+    std::cout << "Nombre de vie : " << snoopy->getNbrVie() << "  " << std::endl;
+    pConsole->gotoLigCol(8, 50);
+    std::cout << "Score : " << snoopy->getScore() << "  " << std::endl;
+    pConsole->gotoLigCol(11, 50);
+    std::cout << "Meilleur niveau atteint : " << snoopy->getNiveauDejaAtteint() << "  " << std::endl;
 }
 
 

@@ -47,6 +47,7 @@ void PersoSnoopy::setVivant(bool vivant)
 
 void PersoSnoopy::setNbrVie(int vie)
 {
+   if(m_vie >=0 && m_vie < 10)
     m_vie = vie;
 }
 void PersoSnoopy::setScore(int score)

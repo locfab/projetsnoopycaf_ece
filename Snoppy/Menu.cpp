@@ -77,28 +77,33 @@ void Menu::creerPartie(char decisionJoueurMenu)
     Partie *m_partie = new Partie();
     if(decisionJoueurMenu == '2')
     {
-        std::cout << "Entrer votre pseudo" << std::endl;
+        std::cout << "Entrer votre pseudo ou 'r' pour revenir" << std::endl;
         std::cin >> pseudoDonne;
         nom = pseudoDonne;
         nomFichier = dossier + nom + extention;
-        if(is_readable(nomFichier))
+        if(is_readable(nomFichier) && nom != "r")
         {
-            while(decisionJoueurNiveau<"0" || decisionJoueurNiveau>"3")
+            while((decisionJoueurNiveau<"0" || decisionJoueurNiveau>"3") && decisionJoueurNiveau != "r")
                 {
-                std::cout << "choisissez votre niveau deja atteint en tapant '1', '2' ou '3' ou revenir a la derniere sauvegarde en tapant le chiffre'0'" << std::endl;
+                std::cout << "Aller au niveau deja atteint avec '1', '2' ou '3' ou revenir a la derniere sauvegarde en avec '0', 'r' pour revenir" << std::endl;
                 std::cin >> decisionJoueurNiveau;
                 }
-            m_partie->jouer(m_partie, decisionJoueurMenu, nom, decisionJoueurNiveau);
+
+            if(decisionJoueurNiveau != "r" )
+               {
+                m_partie->jouer(m_partie, decisionJoueurMenu, nom, decisionJoueurNiveau);
+               }
+
         }
     }
     if(decisionJoueurMenu == '1')
     {
-        std::cout << "Creer votre pseudo" << std::endl;
+        std::cout << "Creer votre pseudo ou 'r' pour revenir" << std::endl;
         std::cin >> pseudoDonne;
         nom = pseudoDonne;
         nomFichier = dossier + nom + extention;
 
-        if(!is_readable(nomFichier))
+        if(!is_readable(nomFichier) && nom != "r")
         {
         m_partie->jouer(m_partie, decisionJoueurMenu, nom, "1");
         }

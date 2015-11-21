@@ -23,7 +23,7 @@ class Niveau
     ///Niveau(surchargé);
     ~Niveau();
 	void setPlateau(std::string niveau);
-	void afficherPlateau();
+	void afficherPlateau(PersoSnoopy* snoopy);
 	std::vector< std::vector<char> > getPlateau();
 	void changerPlateau(PersoSnoopy* snoopy);
 	void checkerPlateauPourBalle();

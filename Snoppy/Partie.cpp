@@ -1,9 +1,10 @@
 #include "Partie.h"
 #include <string>
+#include <vector>
 
 
 
-///Constructeur par défaut
+///Constructeur par dÃ©faut
 Partie::Partie()
 {
     m_snoopy = new PersoSnoopy();
@@ -57,8 +58,8 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
     }
     if(atoi(decisionJoueurNiveau.c_str()) > m_snoopy->getNiveauDejaAtteint()) accepter = false;
 
-    ///Boucle de jeu tant que le compteur est != 0 ou ESC n'est pas préssée
-    while((esc == 0) && (timeOut == 0) && (save==0) && accepter && m_snoopy->getVivant() && !m_snoopy->toucheBalle(m_snoopy, m_niveau->getBalle()) && (partie->m_niveau->getTempsRestant()>0) && m_snoopy->getNbOiseauAttrap()<4)
+    ///Boucle de jeu tant que le compteur est != 0 ou ESC n'est pas prÃ©ssÃ©e
+    while((esc == 0) && (timeOut == 0) && (save==0) && accepter && m_snoopy->getVivant() && !m_snoopy->toucheBalle(m_snoopy, m_niveau->getBalle()) && (partie->m_niveau->getTempsRestant()>0) && m_snoopy->getNbOiseauAttrap()<4 && m_snoopy->getNbrVie()>0)
     {
         if (pause == 0)
         {
@@ -66,23 +67,10 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
             m_niveau->checkerPlateauPourBalle();
             m_niveau->setCordSnoopClav(m_snoopy, m_niveau, toucheUtilisateur);
             m_niveau->changerPlateau(m_snoopy);
-            m_niveau->afficherPlateau();
+            m_niveau->afficherPlateau(m_snoopy);
+            partie->m_niveau->getAttendre(0.07);         /// Temporisation de 0.1 seconde
 
-            m_niveau->pConsole->gotoLigCol(4, 50);
-            std::cout << "Niveau actuel : " << m_snoopy->getNiveauActuel() << "  " << std::endl;
-            m_niveau->pConsole->gotoLigCol(6, 50);
-            std::cout << "Nombre d'oiseaux attrapes : " << m_snoopy->getNbOiseauAttrap() << "  " << std::endl;
-            m_niveau->pConsole->gotoLigCol(7, 50);
-            std::cout << "Nombre de vie : " << m_snoopy->getNbrVie() << "  " << std::endl;
-            m_niveau->pConsole->gotoLigCol(8, 50);
-            std::cout << "Score : " << m_snoopy->getScore() << "  " << std::endl;
-            m_niveau->pConsole->gotoLigCol(11, 50);
-            std::cout << "Meilleur niveau atteint : " << m_snoopy->getNiveauDejaAtteint() << "  " << std::endl;
-
-
-            partie->m_niveau->getAttendre(0.1);         /// Temporisation de 0.1 seconde
-            esc = GetAsyncKeyState(VK_ESCAPE);
-            toucheUtilisateur = '@';//ne represente probablement rien (equivalent à NULL avec les pointeur)
+            toucheUtilisateur = '@';//ne represente probablement rien (equivalent Ã  NULL avec les pointeur)
 
             if(m_niveau->pConsole->isKeyboardPressed())
             {
@@ -91,6 +79,9 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
                 if((toucheUtilisateur == 'S')||(toucheUtilisateur == 's')) save = 1;
                 if((toucheUtilisateur == 'A')||(toucheUtilisateur == 'a')) m_snoopy->setModeDemolition(true);
             }
+
+            esc = GetAsyncKeyState(VK_ESCAPE);
+
         }
 
         if((pause == 1 ))
@@ -104,7 +95,7 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
         }
     }
 
-    if(partie->m_niveau->getTempsRestant() <= 0) /// Est-ce que le temps restant est inférieur à 0 ?
+    if(partie->m_niveau->getTempsRestant() <= 0) /// Est-ce que le temps restant est infÃ©rieur Ã  0 ?
     {
         timeOut = 1;
         system("cls");
@@ -121,26 +112,6 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
         m_niveau->pConsole->getInputKey();
     }
 
-    if (!m_snoopy->getVivant())
-    {
-        partie->m_niveau->getAttendre(0.75);
-        system("cls");
-        m_niveau->pConsole->gotoLigCol(12, 30);
-        std::cout << "Vous etes mort, touche par un piege";
-        partie->m_niveau->getAttendre(2.3);
-        m_snoopy->setNbrVie(m_snoopy->getNbrVie()-1);
-    }
-    if (m_snoopy->toucheBalle(m_snoopy, m_niveau->getBalle()))
-    {
-        m_niveau->pConsole->gotoLigCol(m_snoopy->getY()*2, m_snoopy->getX()*2);
-        std::cout <<'B';
-        partie->m_niveau->getAttendre(0.75);
-        system("cls");
-        m_niveau->pConsole->gotoLigCol(12, 30);
-        std::cout << "Vous etes mort, touche par la balle";
-        partie->m_niveau->getAttendre(2.3);
-        m_snoopy->setNbrVie(m_snoopy->getNbrVie()-1);
-    }
     if (!accepter)
     {
         system("cls");
@@ -190,7 +161,7 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
                     }
                     monFlux << std::endl;
 
-                monFlux << 'S' << ' ' << m_snoopy->getX() << ' ' << m_snoopy->getY() << ' ' << m_snoopy->getNbrVie() << ' ' << m_snoopy->getScore() << std::endl;
+                monFlux << 's' << ' ' << m_snoopy->getX() << ' ' << m_snoopy->getY() << ' ' << m_snoopy->getNbrVie() << ' ' << m_snoopy->getScore() << std::endl;
 
                 monFlux << 'B' << ' ' << m_niveau->getBalle()->getX() << ' ' << m_niveau->getBalle()->getY() << ' ' << m_niveau->getBalle()->getDepX() << ' ' << m_niveau->getBalle()->getDepY() << std::endl;
 
@@ -276,6 +247,91 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
                 std::cout << "ERREUR: Impossible d'ouvrir le fichier." << std::endl;
             }
 
+    }
+
+
+
+    if (!m_snoopy->getVivant())
+    {
+        partie->m_niveau->getAttendre(0.75);
+        system("cls");
+        m_niveau->pConsole->gotoLigCol(12, 30);
+        std::cout << "Vous etes mort, touche par un piege";
+        partie->m_niveau->getAttendre(2.3);
+        m_snoopy->setNbrVie(m_snoopy->getNbrVie()-1);
+        partie->changerVie(pseudo, m_snoopy);
+    }
+    if (m_snoopy->toucheBalle(m_snoopy, m_niveau->getBalle()))
+    {
+        m_niveau->pConsole->gotoLigCol(m_snoopy->getY()*2, m_snoopy->getX()*2);
+        std::cout <<'B';
+        partie->m_niveau->getAttendre(0.75);
+        system("cls");
+        m_niveau->pConsole->gotoLigCol(12, 30);
+        std::cout << "Vous etes mort, touche par la balle";
+        partie->m_niveau->getAttendre(2.3);
+        m_snoopy->setNbrVie(m_snoopy->getNbrVie()-1);
+        partie->changerVie(pseudo, m_snoopy);
+    }
+        if(m_snoopy->getNbrVie()==0)
+    {
+        partie->m_niveau->getAttendre(0.75);
+        system("cls");
+        m_niveau->pConsole->gotoLigCol(12, 12);
+        std::cout << "Game Over, Vous avez toujours acces au niveau que vous avez atteint mais votre score est nul";
+        partie->m_niveau->getAttendre(2.3);
+        m_snoopy->setNiveauActuel(1);
+        m_snoopy->setNbrVie(3);
+        m_snoopy->setScore(0);
+        partie->changerVie(pseudo,m_snoopy);
+
+    }
+
+
+}
+
+
+void Partie::changerVie(std::string nom, PersoSnoopy* snoopy)
+{
+    std::string const dossier("sauvegarde//");
+    std::string const extention(".txt");
+    std::string nomFichier = dossier + nom + extention;
+    std::vector <char> maSauvegarde;
+    char a;
+    int i=0;
+    std::ifstream fichier(nomFichier.c_str(), std::ios::in);  // on ouvre
+
+    if(fichier)
+    {
+        while(fichier.get(a))
+        {
+            maSauvegarde.push_back(a);
+        }
+        fichier.close();
+    }
+    else
+    {
+        std::cout << "ERREUR: Impossible d'ouvrir le fichier==" << std::endl;
+    }
+
+        while(maSauvegarde[i]!= 's') i++;
+        maSauvegarde[i+6]= (char)snoopy->getNbrVie()+'0';
+        std::cout<< std::endl;
+        std::cout<< maSauvegarde[i+7]<< std::endl;
+        std::cout<< std::endl;
+
+
+    std::ofstream monFlux(nomFichier.c_str());
+    if(monFlux)
+    {
+        for(int i(0); i< maSauvegarde.size(); i++)
+        {
+            monFlux << maSauvegarde[i];
+        }
+    }
+    else
+    {
+        std::cout << "ERREUR: Impossible d'ouvrir le fichier:/." << std::endl;
     }
 
 }
