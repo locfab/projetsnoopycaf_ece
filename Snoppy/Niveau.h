@@ -31,8 +31,8 @@ class Niveau
 	std::vector<Blocs*> getTabBlocs();
 	std::vector<Oiseau> getTabOiseau();
 
-	void creerObjet();
-	void creerObjet(std::string nom, PersoSnoopy* snoopy);
+	void creerObjetDebut(PersoSnoopy* snoopy, std::string nom, std::string decisionJoueurNiveau);
+	void creerObjetSauv(std::string nom, PersoSnoopy* snoopy, Niveau* niveau, std::string decisionJoueurNiveau);
 
     void initCoordSnoop(PersoSnoopy* snoopy);
 
@@ -58,6 +58,8 @@ class Niveau
 
 	void getDeplacementBalle(std::vector< std::vector<char> > plateau);
 	Balle* getBalle();
+
+	bool is_readable( const std::string & file );
 
 
    protected:

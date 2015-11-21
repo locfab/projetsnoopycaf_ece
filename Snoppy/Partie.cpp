@@ -28,12 +28,15 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
     double tempsDePause = 0;
     int save = 0;
     char toucheUtilisateur('@');
+    bool NiveauDejaAtteint;
+    bool accepter(true);
+    bool partieEnCours(true);
     system("cls");
 
     if(decisionJoueurMenu == '1')
     {
     partie->m_niveau->setPlateau(decisionJoueurNiveau);
-    m_niveau->creerObjet();
+    m_niveau->creerObjetDebut(m_snoopy, pseudo, decisionJoueurNiveau);
     m_niveau->initCoordSnoop(m_snoopy);
     }
     if(decisionJoueurMenu == '2')
@@ -41,20 +44,21 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
         //il faut voire si il a deja depasse ce niveau
         if(decisionJoueurNiveau == "0")
         {
-            partie->m_niveau->setPlateau(decisionJoueurNiveau);
-            m_niveau->creerObjet(pseudo, m_snoopy);
+            partie->m_niveau->setPlateau("1");//juste une initialisation
+            m_niveau->creerObjetSauv(pseudo, m_snoopy, m_niveau, decisionJoueurNiveau);
         }
         else
         {
-            partie->m_niveau->setPlateau(decisionJoueurNiveau);
-            m_niveau->creerObjet();
+            m_niveau->setPlateau(decisionJoueurNiveau);
+            m_niveau->creerObjetDebut(m_snoopy, pseudo, decisionJoueurNiveau);
             m_niveau->initCoordSnoop(m_snoopy);
-        }    
-    
+
+        }
     }
+    if(atoi(decisionJoueurNiveau.c_str()) > m_snoopy->getNiveauDejaAtteint()) accepter = false;
 
     ///Boucle de jeu tant que le compteur est != 0 ou ESC n'est pas préssée
-    while((esc == 0) && (timeOut == 0) && (save==0) && m_snoopy->getVivant() && !m_snoopy->toucheBalle(m_snoopy, m_niveau->getBalle()) && (partie->m_niveau->getTempsRestant() > 0) )
+    while((esc == 0) && (timeOut == 0) && (save==0) && accepter && m_snoopy->getVivant() && !m_snoopy->toucheBalle(m_snoopy, m_niveau->getBalle()) && (partie->m_niveau->getTempsRestant()>0) && m_snoopy->getNbOiseauAttrap()<4)
     {
         if (pause == 0)
         {
@@ -64,12 +68,16 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
             m_niveau->changerPlateau(m_snoopy);
             m_niveau->afficherPlateau();
 
+            m_niveau->pConsole->gotoLigCol(4, 50);
+            std::cout << "Niveau actuel : " << m_snoopy->getNiveauActuel() << "  " << std::endl;
             m_niveau->pConsole->gotoLigCol(6, 50);
             std::cout << "Nombre d'oiseaux attrapes : " << m_snoopy->getNbOiseauAttrap() << "  " << std::endl;
             m_niveau->pConsole->gotoLigCol(7, 50);
             std::cout << "Nombre de vie : " << m_snoopy->getNbrVie() << "  " << std::endl;
             m_niveau->pConsole->gotoLigCol(8, 50);
             std::cout << "Score : " << m_snoopy->getScore() << "  " << std::endl;
+            m_niveau->pConsole->gotoLigCol(11, 50);
+            std::cout << "Meilleur niveau atteint : " << m_snoopy->getNiveauDejaAtteint() << "  " << std::endl;
 
 
             partie->m_niveau->getAttendre(0.1);         /// Temporisation de 0.1 seconde
@@ -133,6 +141,31 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
         partie->m_niveau->getAttendre(2.3);
         m_snoopy->setNbrVie(m_snoopy->getNbrVie()-1);
     }
+    if (!accepter)
+    {
+        system("cls");
+        m_niveau->pConsole->gotoLigCol(12, 30);
+        std::cout << "Niveau jamais atteint, votre meilleur niveau jamais atteint est:" << std::endl;
+        std::cout << std::endl;
+        std::cout << "   " << m_snoopy->getNiveauDejaAtteint() << std::endl;
+        partie->m_niveau->getAttendre(2.0);
+    }
+
+    if(m_snoopy->getNbOiseauAttrap()==4)
+    {
+        partie->m_niveau->getAttendre(0.75);
+        system("cls");
+        m_niveau->pConsole->gotoLigCol(12, 30);
+        std::cout << "Vous avez attraper tous les oiseaux, vous pouvez aller au niveau suivant";
+        partie->m_niveau->getAttendre(2.3);
+        m_snoopy->setNiveauActuel(m_snoopy->getNiveauActuel()+1);
+        if(m_snoopy->getNiveauActuel() >= m_snoopy->getNiveauDejaAtteint())
+        {
+            m_snoopy->setNiveauDejaAtteint(m_snoopy->getNiveauActuel());
+            partieEnCours = false;
+        }
+        save = 1;
+    }
 
 
     if(save != 0)
@@ -145,6 +178,8 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
 
             if(monFlux)
             {
+                monFlux << partieEnCours << ' ' << m_snoopy->getNiveauActuel() << ' ' << m_snoopy->getNiveauDejaAtteint() << std::endl;;
+
                 monFlux << 'p' << ' ';
                     for(int j=0; j< 10; j++)
                     {

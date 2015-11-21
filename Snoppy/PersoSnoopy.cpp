@@ -1,16 +1,16 @@
 #include <iostream>
 #include "PersoSnoopy.h"
 
-PersoSnoopy::PersoSnoopy(): m_saLetrre('S'),m_vivant(true), m_modeDemolition(false), m_nbOiseauxAttrap(0), m_vie(3), m_score(0)
+PersoSnoopy::PersoSnoopy(): m_saLetrre('S'),m_vivant(true), m_modeDemolition(false), m_nbOiseauxAttrap(0), m_vie(3), m_score(0), m_niveauActuel(1), m_niveauDejaAtteint(1)
 {
 }
 
-PersoSnoopy::PersoSnoopy(int x, int y): m_x(x), m_y(y), m_nbOiseauxAttrap(0), m_vie(3), m_saLetrre('S'), m_vivant(true), m_modeDemolition(false), m_score(0)
+PersoSnoopy::PersoSnoopy(int x, int y): m_x(x), m_y(y), m_nbOiseauxAttrap(0), m_vie(3), m_saLetrre('S'), m_vivant(true), m_modeDemolition(false), m_score(0), m_niveauActuel(1), m_niveauDejaAtteint(1)
 {
 }
 
 PersoSnoopy::PersoSnoopy(int x, int y, int score, int vie)
-			: m_x(x), m_y(y), m_nbOiseauxAttrap(0), m_vie(vie), m_saLetrre('S'), m_vivant(true), m_modeDemolition(false), m_score(score)
+			: m_x(x), m_y(y), m_nbOiseauxAttrap(0), m_vie(vie), m_saLetrre('S'), m_vivant(true), m_modeDemolition(false), m_score(score), m_niveauActuel(1), m_niveauDejaAtteint(1)
 {
 }
 PersoSnoopy::~PersoSnoopy()
@@ -34,6 +34,10 @@ void PersoSnoopy::setPlusOiseau()
     m_nbOiseauxAttrap+=1;
     if(m_nbOiseauxAttrap==4)
     std::cout << "Niveau suivant" << std::endl;
+}
+void PersoSnoopy::setNbrOiseauxANul()
+{
+  m_nbOiseauxAttrap = 0;
 }
 void PersoSnoopy::setVivant(bool vivant)
 {
@@ -71,13 +75,37 @@ void PersoSnoopy::setY(int y)
   	if (y>=0 && y<10)
   	{
   		m_y=y;
-	}
+	  }
 }
 
 void PersoSnoopy::setModeDemolition(bool modeDemolition)
 {
     m_modeDemolition = modeDemolition;
 }
+
+void PersoSnoopy::setNiveauDejaAtteint(int niveauDejaAtteint)
+{
+   if (niveauDejaAtteint>=1 && niveauDejaAtteint <4)
+    {
+      m_niveauDejaAtteint = niveauDejaAtteint;
+    }
+   else
+   {
+    std::cout << "!probleme pas de niveau inferieur a 0 ou supperrieur a 3!";
+   }
+}
+void PersoSnoopy::setNiveauActuel(int niveauActuel)
+{
+   if (niveauActuel>=1 && niveauActuel <4)
+    {
+      m_niveauActuel = niveauActuel;
+    }
+   else
+   {
+    std::cout << "probleme pas de niveau inferieur a 0 ou supperrieur a 3" ;
+   }
+}
+
 
 
 
@@ -113,4 +141,12 @@ int PersoSnoopy::getY() const
 bool PersoSnoopy::getModeDemolition() const
 {
     return m_modeDemolition;
+}
+int PersoSnoopy::getNiveauDejaAtteint() const
+{
+    return m_niveauDejaAtteint;
+}
+int PersoSnoopy::getNiveauActuel() const
+{
+    return m_niveauActuel;
 }

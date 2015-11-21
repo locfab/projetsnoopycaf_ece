@@ -19,6 +19,7 @@ class PersoSnoopy
     bool toucheBalle(PersoSnoopy* snoopy, Balle* balle);
 
     void setPlusOiseau();
+    void setNbrOiseauxANul();
     void setVivant(bool vivant);
     void setNbrVie(int vie);
     void setScore(int score);
@@ -26,6 +27,8 @@ class PersoSnoopy
     void setModeDemolition(bool modeDemolition);
     void setX(int x);
     void setY(int y);
+    void setNiveauDejaAtteint(int niveauDejaAtteint);
+    void setNiveauActuel(int niveauActuel);
 
 
     int getNbOiseauAttrap() const;
@@ -35,7 +38,8 @@ class PersoSnoopy
     int getX() const;
     int getY() const;
     bool getModeDemolition() const;
-
+    int getNiveauDejaAtteint() const;
+    int getNiveauActuel() const;
 
 
 
@@ -49,6 +53,8 @@ class PersoSnoopy
     bool m_vivant;
     char m_saLetrre;
     bool m_modeDemolition;
+    int m_niveauActuel;
+    int m_niveauDejaAtteint;
 };
 
 
