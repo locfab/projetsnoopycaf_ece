@@ -29,6 +29,8 @@ class PersoSnoopy
     void setY(int y);
     void setNiveauDejaAtteint(int niveauDejaAtteint);
     void setNiveauActuel(int niveauActuel);
+    void setToucheParPiege(bool toucheParPiege);
+    
 
 
     int getNbOiseauAttrap() const;
@@ -40,6 +42,7 @@ class PersoSnoopy
     bool getModeDemolition() const;
     int getNiveauDejaAtteint() const;
     int getNiveauActuel() const;
+    bool getToucheParPiege() const;
 
 
 
@@ -55,6 +58,7 @@ class PersoSnoopy
     bool m_modeDemolition;
     int m_niveauActuel;
     int m_niveauDejaAtteint;
+    bool m_toucherParPiege;
 };
 
 

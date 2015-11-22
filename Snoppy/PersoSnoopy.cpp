@@ -1,16 +1,16 @@
 #include <iostream>
 #include "PersoSnoopy.h"
 
-PersoSnoopy::PersoSnoopy(): m_saLetrre('S'),m_vivant(true), m_modeDemolition(false), m_nbOiseauxAttrap(0), m_vie(3), m_score(0), m_niveauActuel(1), m_niveauDejaAtteint(1)
+PersoSnoopy::PersoSnoopy(): m_saLetrre('S'),m_vivant(true), m_modeDemolition(false), m_nbOiseauxAttrap(0), m_vie(3), m_score(0), m_niveauActuel(1), m_niveauDejaAtteint(1), m_toucherParPiege(false)
 {
 }
 
-PersoSnoopy::PersoSnoopy(int x, int y): m_x(x), m_y(y), m_nbOiseauxAttrap(0), m_vie(3), m_saLetrre('S'), m_vivant(true), m_modeDemolition(false), m_score(0), m_niveauActuel(1), m_niveauDejaAtteint(1)
+PersoSnoopy::PersoSnoopy(int x, int y): m_x(x), m_y(y), m_nbOiseauxAttrap(0), m_vie(3), m_saLetrre('S'), m_vivant(true), m_modeDemolition(false), m_score(0), m_niveauActuel(1), m_niveauDejaAtteint(1), m_toucherParPiege(false)
 {
 }
 
 PersoSnoopy::PersoSnoopy(int x, int y, int score, int vie)
-			: m_x(x), m_y(y), m_nbOiseauxAttrap(0), m_vie(vie), m_saLetrre('S'), m_vivant(true), m_modeDemolition(false), m_score(score), m_niveauActuel(1), m_niveauDejaAtteint(1)
+			: m_x(x), m_y(y), m_nbOiseauxAttrap(0), m_vie(vie), m_saLetrre('S'), m_vivant(true), m_modeDemolition(false), m_score(score), m_niveauActuel(1), m_niveauDejaAtteint(1), m_toucherParPiege(false)
 {
 }
 PersoSnoopy::~PersoSnoopy()
@@ -106,7 +106,10 @@ void PersoSnoopy::setNiveauActuel(int niveauActuel)
     std::cout << "probleme pas de niveau inferieur a 0 ou supperrieur a 3" ;
    }
 }
-
+void PersoSnoopy::setToucheParPiege(bool toucheParPiege)
+{
+  m_toucherParPiege = toucheParPiege;
+}
 
 
 
@@ -150,4 +153,8 @@ int PersoSnoopy::getNiveauDejaAtteint() const
 int PersoSnoopy::getNiveauActuel() const
 {
     return m_niveauActuel;
+}
+bool PersoSnoopy::getToucheParPiege() const
+{
+    return m_toucherParPiege;
 }

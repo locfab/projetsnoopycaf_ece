@@ -103,10 +103,10 @@ void Menu::creerPartie(char decisionJoueurMenu)
         nom = pseudoDonne;
         nomFichier = dossier + nom + extention;
 
-        if(!is_readable(nomFichier) && nom != "r")
-        {
-        m_partie->jouer(m_partie, decisionJoueurMenu, nom, "1");
-        }
+         if(!is_readable(nomFichier) && nom != "r")
+            {
+            m_partie->jouer(m_partie, decisionJoueurMenu, nom, "1");
+            }
     }
     delete m_partie;
     system("cls");

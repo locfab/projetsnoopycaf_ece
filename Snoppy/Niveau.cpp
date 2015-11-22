@@ -577,6 +577,7 @@ void Niveau::setCordSnoopClav(PersoSnoopy* snoopy, Niveau* niveau, char toucheUt
             else if((snoopy->getX()-1 >=0) && getPlateau()[snoopy->getX()-1][snoopy->getY()] == 'T')
             {
                 snoopy->setVivant(false);
+                snoopy->setToucheParPiege(true);
             }
             else if((snoopy->getX()-1 >=0) && getPlateau()[snoopy->getX()-1][snoopy->getY()] == 'O')
             {
@@ -616,6 +617,7 @@ void Niveau::setCordSnoopClav(PersoSnoopy* snoopy, Niveau* niveau, char toucheUt
             else if((snoopy->getX()+1<20) && getPlateau()[snoopy->getX()+1][snoopy->getY()] == 'T')
             {
                 snoopy->setVivant(false);
+                snoopy->setToucheParPiege(true);
             }
             else if((snoopy->getX()+1<20) && getPlateau()[snoopy->getX()+1][snoopy->getY()] == 'O')
             {
@@ -654,6 +656,7 @@ void Niveau::setCordSnoopClav(PersoSnoopy* snoopy, Niveau* niveau, char toucheUt
             else if((snoopy->getY()+1 <=9 ) && getPlateau()[snoopy->getX()][snoopy->getY()+1] == 'T')
             {
                 snoopy->setVivant(false);
+                snoopy->setToucheParPiege(true);
             }
             else if((snoopy->getY()+1 <=9 ) && getPlateau()[snoopy->getX()][snoopy->getY()+1] == 'O')
             {
@@ -692,6 +695,7 @@ void Niveau::setCordSnoopClav(PersoSnoopy* snoopy, Niveau* niveau, char toucheUt
             else if((snoopy->getY()-1 >=0) && getPlateau()[snoopy->getX()][snoopy->getY()-1] == 'T')
             {
                 snoopy->setVivant(false);
+                snoopy->setToucheParPiege(true);
             }
             else if((snoopy->getY()-1 >=0) && getPlateau()[snoopy->getX()][snoopy->getY()-1] == 'O')
             {
