@@ -52,19 +52,10 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
             m_niveau->setCordSnoopClav(m_snoopy, m_niveau, toucheUtilisateur);
             m_niveau->changerPlateau(m_snoopy);
             m_niveau->afficherPlateau(m_snoopy);
-            partie->m_niveau->getAttendre(0.07);         /// Temporisation de 0.1 seconde
+            m_niveau->getAttendre(0.07);         /// Temporisation de 0.1 seconde
+            recupererEntresClav(m_niveau, m_snoopy, pause, save, esc, toucheUtilisateur);
 
-            toucheUtilisateur = '@';//ne represente probablement rien (equivalent à NULL avec les pointeur)
 
-            if(m_niveau->pConsole->isKeyboardPressed())
-            {
-                toucheUtilisateur = m_niveau->pConsole->getInputKey();
-                if((toucheUtilisateur == 'P')||(toucheUtilisateur == 'p')) pause = 1;
-                if((toucheUtilisateur == 'S')||(toucheUtilisateur == 's')) save = 1;
-                if((toucheUtilisateur == 'A')||(toucheUtilisateur == 'a')) m_snoopy->setModeDemolition(true);
-            }
-
-            esc = GetAsyncKeyState(VK_ESCAPE);
 
         }
 
@@ -81,7 +72,7 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
 
     if(partie->m_niveau->getTempsRestant() <= 0) { tempsEcoule(m_niveau, timeOut); } /// Est-ce que le temps restant est inférieur à 0 ?
     if(esc != 0) { quitterSansEnregister(m_niveau); }
-    if (!accepter) { niveauPasAtteintRetour(m_niveau, m_snoopy); }
+    if (!accepter) { niveauJamaisAtteintRetour(m_niveau, m_snoopy); }
     if(m_snoopy->getNbOiseauAttrap()==4){ prepaSauvPartieGagnee(m_niveau, m_snoopy, partieEnCours, save); }
     if (m_snoopy->toucheBalle(m_snoopy, m_niveau->getBalle())) { m_snoopy->setVivant(false);}
     if (!m_snoopy->getVivant()) { gestionDeMort(m_niveau, m_snoopy, pseudo, nomFichier); }
@@ -93,6 +84,20 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
 
 }
 
+void Partie::recupererEntresClav(Niveau* niveau, PersoSnoopy* snoopy, int& pause, int& save, int& esc,char& toucheUtilisateur)
+{
+    toucheUtilisateur = '@';//ne represente probablement rien (mon equivalent à NULL avec les pointeur)
+
+    if(m_niveau->pConsole->isKeyboardPressed())
+    {
+        toucheUtilisateur = niveau->pConsole->getInputKey();
+        if((toucheUtilisateur == 'P')||(toucheUtilisateur == 'p')) pause = 1;
+        if((toucheUtilisateur == 'S')||(toucheUtilisateur == 's')) save = 1;
+        if((toucheUtilisateur == 'A')||(toucheUtilisateur == 'a')) snoopy->setModeDemolition(true);
+    }
+
+        esc = GetAsyncKeyState(VK_ESCAPE);
+}
 
 
 void Partie::tempsEcoule(Niveau* niveau, int& timeOut)
@@ -112,7 +117,7 @@ void Partie::quitterSansEnregister(Niveau* niveau)
         niveau->getAttendre(0.75);
 }
 
-void Partie::niveauPasAtteintRetour(Niveau* niveau, PersoSnoopy* snoopy)
+void Partie::niveauJamaisAtteintRetour(Niveau* niveau, PersoSnoopy* snoopy)
 {
         system("cls");
         niveau->pConsole->gotoLigCol(12, 30);
@@ -146,6 +151,7 @@ void Partie::changerVie(std::string nom, PersoSnoopy* snoopy)
     std::vector <char> maSauvegarde;
     char a;
     int i=0;
+    int nb;
     std::ifstream fichier(nomFichier.c_str(), std::ios::in);  // on ouvre
 
     if(fichier)
@@ -161,11 +167,15 @@ void Partie::changerVie(std::string nom, PersoSnoopy* snoopy)
         std::cout << "ERREUR: Impossible d'ouvrir le fichier==" << std::endl;
     }
 
-        while(maSauvegarde[i]!= 's') i++;
-        maSauvegarde[i+6]= (char)snoopy->getNbrVie()+'0';
-        std::cout<< std::endl;
-        std::cout<< maSauvegarde[i+7]<< std::endl;
-        std::cout<< std::endl;
+        while(maSauvegarde[i] != 's') i++;
+        i++;
+        while(maSauvegarde[i] != ' ') i++;
+        i++;
+        while(maSauvegarde[i] != ' ') i++;
+        i++;
+        while(maSauvegarde[i] != ' ') i++;
+        i++;
+        maSauvegarde[i]= (char)snoopy->getNbrVie()+'0';
 
 
     std::ofstream monFlux(nomFichier.c_str());
