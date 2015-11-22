@@ -47,7 +47,7 @@ void PersoSnoopy::setVivant(bool vivant)
 
 void PersoSnoopy::setNbrVie(int vie)
 {
-   if(m_vie >=0 && m_vie < 10)
+   if(m_vie >=0 && m_vie < 10)//A ne pas modifier!!! si on met au dessus de 10, ca bloque tout on ne pourra plus modifier dans le fichier
     m_vie = vie;
 }
 void PersoSnoopy::setScore(int score)

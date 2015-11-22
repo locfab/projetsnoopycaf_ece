@@ -45,8 +45,8 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
     ///Boucle de jeu tant que le compteur est != 0 ou ESC n'est pas préssée
     while((esc == 0) && (timeOut == 0) && (save==0) && accepter && m_snoopy->getVivant() && !m_snoopy->toucheBalle(m_snoopy, m_niveau->getBalle()) && (partie->m_niveau->getTempsRestant()>0) && m_snoopy->getNbOiseauAttrap()<4 && m_snoopy->getNbrVie()>0)
     {
-        if (pause == 0)
-        {
+            if(pause == 0 )
+            {
             m_niveau->getDeplacementBalle(m_niveau->getPlateau());
             m_niveau->checkerPlateauPourBalle();
             m_niveau->setCordSnoopClav(m_snoopy, m_niveau, toucheUtilisateur);
@@ -54,20 +54,8 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
             m_niveau->afficherPlateau(m_snoopy);
             m_niveau->getAttendre(0.07);         /// Temporisation de 0.1 seconde
             recupererEntresClav(m_niveau, m_snoopy, pause, save, esc, toucheUtilisateur);
-
-
-
-        }
-
-        if((pause == 1 ))
-        {
-             system("cls");
-             tempsDePause = clock() / CLOCKS_PER_SEC;
-             std::cout << "Pause !";
-             std::cout << "          " << tempsDePause;
-             char attente = m_niveau->pConsole->getInputKey();
-             if((attente == 'P')||(attente == 'p')||(GetAsyncKeyState(VK_ESCAPE))) pause = 0;
-        }
+            }
+            if((pause == 1 )) {gestionDePause(m_niveau, pause, toucheUtilisateur, tempsDePause);}
     }
 
     if(partie->m_niveau->getTempsRestant() <= 0) { tempsEcoule(m_niveau, timeOut); } /// Est-ce que le temps restant est inférieur à 0 ?
@@ -97,6 +85,17 @@ void Partie::recupererEntresClav(Niveau* niveau, PersoSnoopy* snoopy, int& pause
     }
 
         esc = GetAsyncKeyState(VK_ESCAPE);
+}
+
+void Partie::gestionDePause(Niveau* niveau, int& pause, char& toucheUtilisateur, double& tempsDePause)
+{
+         system("cls");
+
+         tempsDePause = clock() / CLOCKS_PER_SEC;
+         std::cout << "Pause !";
+         std::cout << "          " << tempsDePause;
+         toucheUtilisateur = niveau->pConsole->getInputKey();
+         if((toucheUtilisateur == 'P')||(toucheUtilisateur == 'p')||(GetAsyncKeyState(VK_ESCAPE))) pause = 0;
 }
 
 
