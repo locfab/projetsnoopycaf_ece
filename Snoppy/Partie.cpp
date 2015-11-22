@@ -42,15 +42,14 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
     chargerPartieAvecMenu(pseudo, m_snoopy, m_niveau, decisionJoueurNiveau, decisionJoueurMenu);
     if(atoi(decisionJoueurNiveau.c_str()) > m_snoopy->getNiveauDejaAtteint()) accepter = false;
 
-    ///Boucle de jeu tant que le compteur est != 0 ou ESC n'est pas préssée
-    while((esc == 0) && (timeOut == 0) && (save==0) && accepter && m_snoopy->getVivant() && !m_niveau->toucheBalle(m_snoopy, m_niveau) && (partie->m_niveau->getTempsRestant()>0) && m_snoopy->getNbOiseauAttrap()<4 && m_snoopy->getNbrVie()>0)
+    while(onContinu(m_snoopy, m_niveau, esc, timeOut, accepter)) ///Boucle de jeu tant qui indique c'est tous les parametres pour continuer à jouer sont reunit
     {
             m_niveau->getDeplacementBalle(m_niveau->getPlateau());
             m_niveau->checkerPlateauPourBalle();
             m_niveau->setCordSnoopClav(m_snoopy, m_niveau, toucheUtilisateur);
             m_niveau->changerPlateau(m_snoopy);
             m_niveau->afficherPlateau(m_snoopy);
-            m_niveau->getAttendre(0.07);         /// Temporisation de 0.1 seconde
+            m_niveau->getAttendre(0.08);         /// Temporisation de 0.1 seconde
             recupererEntresClav(m_niveau, m_snoopy, pause, save, esc, toucheUtilisateur);
             gestionDePause(m_niveau, pause, toucheUtilisateur, tempsDePause, esc);
     }
@@ -86,19 +85,19 @@ void Partie::recupererEntresClav(Niveau* niveau, PersoSnoopy* snoopy, int& pause
 
 void Partie::gestionDePause(Niveau* niveau, int& pause, char& toucheUtilisateur, double& tempsDePause, int& esc)
 {
-         system("cls");
          while (pause == 1)
          {
+             system("cls");
              tempsDePause = clock() / CLOCKS_PER_SEC;
              std::cout << "Pause !";
              std::cout << "          " << tempsDePause;
              toucheUtilisateur = niveau->pConsole->getInputKey();
              if((toucheUtilisateur == 'P')||(toucheUtilisateur == 'p')) pause = 0;
              esc = GetAsyncKeyState(VK_ESCAPE);
-             if(esc == 0) pause = 0;
+             if(esc != 0) pause = 0;
+             niveau->getAttendre(0.7);
+             system("cls");
          }
-
-
 }
 
 
@@ -269,6 +268,24 @@ void Partie::chargerPartieAvecMenu2(std::string nom, PersoSnoopy* snoopy, Niveau
 
         }
 }
+
+bool Partie::onContinu(PersoSnoopy* snoopy, Niveau*niveau, int esc, int timeOut, bool accepter)
+{
+    if((esc == 0) && (timeOut == 0) && (accepter))
+    {
+        if(snoopy->getVivant() && snoopy->getNbOiseauAttrap()<4 && snoopy->getNbrVie()>0)
+        {
+            if(!niveau->toucheBalle(snoopy, niveau) && (niveau->getTempsRestant()>0))
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+
+
 void Partie::sauvegarde(std::string pseudo, PersoSnoopy* snoopy, Niveau* niveau, bool partieEnCours)
 {
         std::string const dossier("sauvegarde//");
