@@ -31,7 +31,7 @@ class Partie
         void prepaSauvPartieGagnee(Niveau* niveau, PersoSnoopy* snoopy, bool& partieEnCours, int& save);
         void gestionDeMort(Niveau* niveau, PersoSnoopy* snoopy, std::string pseudo, std::string nomFichier);
         void gestionPlusDeVie(PersoSnoopy* snoopy, Niveau* niveau, std::string pseudo, std::string nomFichier);
-        void gestionDePause(Niveau* niveau, int& pause, char& toucheUtilisateur, double& tempsDePause);
+        void gestionDePause(Niveau* niveau, int& pause, char& toucheUtilisateur, double& tempsDePause, int& esc);
 
 };
 

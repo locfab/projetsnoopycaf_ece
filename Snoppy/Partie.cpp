@@ -45,8 +45,6 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
     ///Boucle de jeu tant que le compteur est != 0 ou ESC n'est pas préssée
     while((esc == 0) && (timeOut == 0) && (save==0) && accepter && m_snoopy->getVivant() && !m_snoopy->toucheBalle(m_snoopy, m_niveau->getBalle()) && (partie->m_niveau->getTempsRestant()>0) && m_snoopy->getNbOiseauAttrap()<4 && m_snoopy->getNbrVie()>0)
     {
-            if(pause == 0 )
-            {
             m_niveau->getDeplacementBalle(m_niveau->getPlateau());
             m_niveau->checkerPlateauPourBalle();
             m_niveau->setCordSnoopClav(m_snoopy, m_niveau, toucheUtilisateur);
@@ -54,11 +52,10 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
             m_niveau->afficherPlateau(m_snoopy);
             m_niveau->getAttendre(0.07);         /// Temporisation de 0.1 seconde
             recupererEntresClav(m_niveau, m_snoopy, pause, save, esc, toucheUtilisateur);
-            }
-            if((pause == 1 )) {gestionDePause(m_niveau, pause, toucheUtilisateur, tempsDePause);}
+            gestionDePause(m_niveau, pause, toucheUtilisateur, tempsDePause, esc);
     }
 
-    if(partie->m_niveau->getTempsRestant() <= 0) { tempsEcoule(m_niveau, timeOut); } /// Est-ce que le temps restant est inférieur à 0 ?
+    if(m_niveau->getTempsRestant() <= 0) { tempsEcoule(m_niveau, timeOut); } /// Est-ce que le temps restant est inférieur à 0 ?
     if(esc != 0) { quitterSansEnregister(m_niveau); }
     if (!accepter) { niveauJamaisAtteintRetour(m_niveau, m_snoopy); }
     if(m_snoopy->getNbOiseauAttrap()==4){ prepaSauvPartieGagnee(m_niveau, m_snoopy, partieEnCours, save); }
@@ -87,15 +84,21 @@ void Partie::recupererEntresClav(Niveau* niveau, PersoSnoopy* snoopy, int& pause
         esc = GetAsyncKeyState(VK_ESCAPE);
 }
 
-void Partie::gestionDePause(Niveau* niveau, int& pause, char& toucheUtilisateur, double& tempsDePause)
+void Partie::gestionDePause(Niveau* niveau, int& pause, char& toucheUtilisateur, double& tempsDePause, int& esc)
 {
          system("cls");
+         while (pause == 1)
+         {
+             tempsDePause = clock() / CLOCKS_PER_SEC;
+             std::cout << "Pause !";
+             std::cout << "          " << tempsDePause;
+             toucheUtilisateur = niveau->pConsole->getInputKey();
+             if((toucheUtilisateur == 'P')||(toucheUtilisateur == 'p')) pause = 0;
+             esc = GetAsyncKeyState(VK_ESCAPE);
+             if(esc == 0) pause = 0;
+         }
 
-         tempsDePause = clock() / CLOCKS_PER_SEC;
-         std::cout << "Pause !";
-         std::cout << "          " << tempsDePause;
-         toucheUtilisateur = niveau->pConsole->getInputKey();
-         if((toucheUtilisateur == 'P')||(toucheUtilisateur == 'p')||(GetAsyncKeyState(VK_ESCAPE))) pause = 0;
+
 }
 
 
@@ -166,15 +169,15 @@ void Partie::changerVie(std::string nom, PersoSnoopy* snoopy)
         std::cout << "ERREUR: Impossible d'ouvrir le fichier==" << std::endl;
     }
 
-        while(maSauvegarde[i] != 's') i++;
-        i++;
-        while(maSauvegarde[i] != ' ') i++;
-        i++;
-        while(maSauvegarde[i] != ' ') i++;
-        i++;
-        while(maSauvegarde[i] != ' ') i++;
-        i++;
-        maSauvegarde[i]= (char)snoopy->getNbrVie()+'0';
+    while(maSauvegarde[i] != 's') i++;
+    i++;
+    while(maSauvegarde[i] != ' ') i++;
+    i++;
+    while(maSauvegarde[i] != ' ') i++;
+    i++;
+    while(maSauvegarde[i] != ' ') i++;
+    i++;
+    maSauvegarde[i]= (char)snoopy->getNbrVie()+'0';//Normalement les vie ne peuvvent etre qu'entre 0 et 9, donc tjs qu'un caractere
 
 
     std::ofstream monFlux(nomFichier.c_str());
@@ -268,109 +271,109 @@ void Partie::chargerPartieAvecMenu2(std::string nom, PersoSnoopy* snoopy, Niveau
 }
 void Partie::sauvegarde(std::string pseudo, PersoSnoopy* snoopy, Niveau* niveau, bool partieEnCours)
 {
-            std::string const dossier("sauvegarde//");
-            std::string nom(pseudo);
-            std::string const extention(".txt");
-            std::string nomFichier = dossier + nom + extention;
-            std::ofstream monFlux(nomFichier.c_str());
-            int nombre(0);
+        std::string const dossier("sauvegarde//");
+        std::string nom(pseudo);
+        std::string const extention(".txt");
+        std::string nomFichier = dossier + nom + extention;
+        std::ofstream monFlux(nomFichier.c_str());
+        int nombre(0);
 
-            if(monFlux)
-            {
-                monFlux << partieEnCours << ' ' << snoopy->getNiveauActuel() << ' ' << snoopy->getNiveauDejaAtteint() << std::endl;;
+        if(monFlux)
+        {
+            monFlux << partieEnCours << ' ' << snoopy->getNiveauActuel() << ' ' << snoopy->getNiveauDejaAtteint() << std::endl;;
 
-                monFlux << 'p' << ' ';
-                    for(int j=0; j< 10; j++)
+            monFlux << 'p' << ' ';
+                for(int j=0; j< 10; j++)
+                {
+                    for(int i=0; i< 20; i++)
                     {
-                        for(int i=0; i< 20; i++)
+                     monFlux << niveau->getPlateau()[i][j];
+                    }
+                }
+                monFlux << std::endl;
+
+            monFlux << 's' << ' ' << snoopy->getX() << ' ' << snoopy->getY() << ' ' << snoopy->getNbrVie() << ' ' << snoopy->getScore() << std::endl;
+
+            monFlux << 'B' << ' ' << niveau->getBalle()->getX() << ' ' << niveau->getBalle()->getY() << ' ' << niveau->getBalle()->getDepX() << ' ' << niveau->getBalle()->getDepY() << std::endl;
+
+            monFlux << 'P';
+                for(int i=0; i<niveau->getTabBlocs().size();i++)
+                    {
+                    if(niveau->getTabBlocs()[i]->getLettre()=='P')
                         {
-                         monFlux << niveau->getPlateau()[i][j];
+                         nombre++;
                         }
                     }
-                    monFlux << std::endl;
+                    monFlux << ' ' << nombre << ' ';
+                    nombre = 0;
 
-                monFlux << 's' << ' ' << snoopy->getX() << ' ' << snoopy->getY() << ' ' << snoopy->getNbrVie() << ' ' << snoopy->getScore() << std::endl;
-
-                monFlux << 'B' << ' ' << niveau->getBalle()->getX() << ' ' << niveau->getBalle()->getY() << ' ' << niveau->getBalle()->getDepX() << ' ' << niveau->getBalle()->getDepY() << std::endl;
-
-                monFlux << 'P';
-                    for(int i=0; i<niveau->getTabBlocs().size();i++)
-                        {
+                for(int i=0; i<niveau->getTabBlocs().size();i++)
+                    {
                         if(niveau->getTabBlocs()[i]->getLettre()=='P')
-                            {
-                             nombre++;
-                            }
-                        }
-                        monFlux << ' ' << nombre << ' ';
-                        nombre = 0;
-
-                    for(int i=0; i<niveau->getTabBlocs().size();i++)
                         {
-                            if(niveau->getTabBlocs()[i]->getLettre()=='P')
-                            {
-                               monFlux << niveau->getTabBlocs()[i]->getX() << ' ' << niveau->getTabBlocs()[i]->getY() << ' ' << niveau->getTabBlocs()[i]->getPoussable() << ' ';
-                            }
-                        }
-                    monFlux << std::endl;
-
-                monFlux << 'C';
-
-                    for(int i=0; i<niveau->getTabBlocs().size();i++)
-                        {
-                        if(niveau->getTabBlocs()[i]->getLettre()=='C')
-                            {
-                             nombre++;
-                            }
-                        }
-                        monFlux << ' ' << nombre << ' ';
-                        nombre = 0;
-
-                    for(int i=0; i<niveau->getTabBlocs().size();i++)
-                    {
-                        if(niveau->getTabBlocs()[i]->getLettre()=='C')
-                        {
-                           monFlux << niveau->getTabBlocs()[i]->getX() << ' ' << niveau->getTabBlocs()[i]->getY() << ' ';
+                           monFlux << niveau->getTabBlocs()[i]->getX() << ' ' << niveau->getTabBlocs()[i]->getY() << ' ' << niveau->getTabBlocs()[i]->getPoussable() << ' ';
                         }
                     }
-                     monFlux << std::endl;
+                monFlux << std::endl;
 
-                monFlux << 'T';
+            monFlux << 'C';
 
-                    for(int i=0; i<niveau->getTabBlocs().size();i++)
-                        {
-                        if(niveau->getTabBlocs()[i]->getLettre()=='T')
-                            {
-                             nombre++;
-                            }
-                        }
-                        monFlux << ' ' << nombre << ' ';
-                        nombre = 0;
-
-                    for(int i=0; i<niveau->getTabBlocs().size();i++)
+                for(int i=0; i<niveau->getTabBlocs().size();i++)
                     {
-                        if(niveau->getTabBlocs()[i]->getLettre()=='T')
+                    if(niveau->getTabBlocs()[i]->getLettre()=='C')
                         {
-                           monFlux << niveau->getTabBlocs()[i]->getX() << ' ' << niveau->getTabBlocs()[i]->getY() << ' ';
+                         nombre++;
                         }
                     }
-                  monFlux << std::endl;
+                    monFlux << ' ' << nombre << ' ';
+                    nombre = 0;
 
-                monFlux << 'O';
-
-                    monFlux << ' ' << niveau->getTabOiseau().size() << ' ';
-
-                    for(int i=0; i<niveau->getTabOiseau().size();i++)
+                for(int i=0; i<niveau->getTabBlocs().size();i++)
+                {
+                    if(niveau->getTabBlocs()[i]->getLettre()=='C')
                     {
-                        monFlux << niveau->getTabOiseau()[i].getX() << ' ' << niveau->getTabOiseau()[i].getY() << ' ';
+                       monFlux << niveau->getTabBlocs()[i]->getX() << ' ' << niveau->getTabBlocs()[i]->getY() << ' ';
                     }
-                  monFlux << std::endl;
+                }
+                 monFlux << std::endl;
 
-                monFlux << 't';
-                    monFlux << " " << niveau->getTempsRestant() << std::endl;
+            monFlux << 'T';
 
-            }
-            else
-            {
-                std::cout << "ERREUR: Impossible d'ouvrir le fichier." << std::endl;
-            }
+                for(int i=0; i<niveau->getTabBlocs().size();i++)
+                    {
+                    if(niveau->getTabBlocs()[i]->getLettre()=='T')
+                        {
+                         nombre++;
+                        }
+                    }
+                    monFlux << ' ' << nombre << ' ';
+                    nombre = 0;
+
+                for(int i=0; i<niveau->getTabBlocs().size();i++)
+                {
+                    if(niveau->getTabBlocs()[i]->getLettre()=='T')
+                    {
+                       monFlux << niveau->getTabBlocs()[i]->getX() << ' ' << niveau->getTabBlocs()[i]->getY() << ' ';
+                    }
+                }
+              monFlux << std::endl;
+
+            monFlux << 'O';
+
+                monFlux << ' ' << niveau->getTabOiseau().size() << ' ';
+
+                for(int i=0; i<niveau->getTabOiseau().size();i++)
+                {
+                    monFlux << niveau->getTabOiseau()[i].getX() << ' ' << niveau->getTabOiseau()[i].getY() << ' ';
+                }
+              monFlux << std::endl;
+
+            monFlux << 't';
+                monFlux << " " << niveau->getTempsRestant() << std::endl;
+
+        }
+        else
+        {
+            std::cout << "ERREUR: Impossible d'ouvrir le fichier." << std::endl;
+        }
 }
