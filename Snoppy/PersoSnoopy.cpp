@@ -19,15 +19,6 @@ PersoSnoopy::~PersoSnoopy()
 }
 
 
-bool PersoSnoopy::toucheBalle(PersoSnoopy* snoopy, Balle* balle)
-{
-  if(snoopy->getX() == balle->getX() && snoopy->getY() == balle->getY())
-  {
-    return true;
-  }
-}
-
-
 void PersoSnoopy::setPlusOiseau()
 {
     if(m_nbOiseauxAttrap<4)

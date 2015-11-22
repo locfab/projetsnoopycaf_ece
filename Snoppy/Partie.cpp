@@ -43,7 +43,7 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
     if(atoi(decisionJoueurNiveau.c_str()) > m_snoopy->getNiveauDejaAtteint()) accepter = false;
 
     ///Boucle de jeu tant que le compteur est != 0 ou ESC n'est pas préssée
-    while((esc == 0) && (timeOut == 0) && (save==0) && accepter && m_snoopy->getVivant() && !m_snoopy->toucheBalle(m_snoopy, m_niveau->getBalle()) && (partie->m_niveau->getTempsRestant()>0) && m_snoopy->getNbOiseauAttrap()<4 && m_snoopy->getNbrVie()>0)
+    while((esc == 0) && (timeOut == 0) && (save==0) && accepter && m_snoopy->getVivant() && !m_niveau->toucheBalle(m_snoopy, m_niveau) && (partie->m_niveau->getTempsRestant()>0) && m_snoopy->getNbOiseauAttrap()<4 && m_snoopy->getNbrVie()>0)
     {
             m_niveau->getDeplacementBalle(m_niveau->getPlateau());
             m_niveau->checkerPlateauPourBalle();
@@ -59,7 +59,7 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
     if(esc != 0) { quitterSansEnregister(m_niveau); }
     if (!accepter) { niveauJamaisAtteintRetour(m_niveau, m_snoopy); }
     if(m_snoopy->getNbOiseauAttrap()==4){ prepaSauvPartieGagnee(m_niveau, m_snoopy, partieEnCours, save); }
-    if (m_snoopy->toucheBalle(m_snoopy, m_niveau->getBalle())) { m_snoopy->setVivant(false);}
+    if (m_niveau->toucheBalle(m_snoopy, m_niveau)) { m_snoopy->setVivant(false);}
     if (!m_snoopy->getVivant()) { gestionDeMort(m_niveau, m_snoopy, pseudo, nomFichier); }
     if(m_snoopy->getNbrVie()==0) { gestionPlusDeVie(m_snoopy, m_niveau, pseudo, nomFichier); }
 
@@ -204,7 +204,7 @@ void Partie::gestionDeMort(Niveau* niveau, PersoSnoopy* snoopy, std::string pseu
         niveau->pConsole->gotoLigCol(12, 30);
         std::cout << "Vous etes mort, touche par un piege";
     }
-    if (snoopy->toucheBalle(snoopy, niveau->getBalle()))
+    if (niveau->toucheBalle(snoopy, niveau))
     {
         niveau->pConsole->gotoLigCol(snoopy->getY()*2, snoopy->getX()*2);
         std::cout <<'B';

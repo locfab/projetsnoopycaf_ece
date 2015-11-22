@@ -1000,3 +1000,11 @@ bool Niveau::is_readable( const std::string & file )
     std::ifstream fichier( file.c_str() );
     return !fichier.fail();
 }
+
+bool Niveau::toucheBalle(PersoSnoopy* snoopy, Niveau* niveau)
+{
+  if(snoopy->getX() == niveau->m_balle->getX() && snoopy->getY() == niveau->m_balle->getY())
+  {
+    return true;
+  }
+}

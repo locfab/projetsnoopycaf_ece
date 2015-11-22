@@ -27,6 +27,7 @@ class Niveau
 	std::vector< std::vector<char> > getPlateau();
 	void changerPlateau(PersoSnoopy* snoopy);
 	void checkerPlateauPourBalle();
+	bool toucheBalle(PersoSnoopy* snoopy, Niveau* niveau);
 
 	std::vector<Blocs*> getTabBlocs();
 	std::vector<Oiseau> getTabOiseau();
