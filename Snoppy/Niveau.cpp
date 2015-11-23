@@ -143,18 +143,18 @@ Balle* Niveau::getBalle()
 }
 
 /// Change le plateau
-void Niveau::changerPlateau(PersoSnoopy* snoopy)
+void Niveau::changerPlateau(PersoSnoopy* snoopy)// regenerer un plateau avec les nouvelles modication à partir des objet existant
 {
     for (int j=0; j<10; j++)
     {
         for (int i=0; i<20; i++)
         {
-            this->m_plateau[i][j] = '.';
+            this->m_plateau[i][j] = '.';// on initialise avec des points
         }
     }
 
 
-    if(verificationBalle_Bords() == 1)
+    if(verificationBalle_Bords() == 1)//on met la balle à partir de nouvelle coordonnes
     {
         char lettreIntermediaire;
         lettreIntermediaire = m_plateau[m_balle->getX()+m_balle->getDepX()][m_balle->getY()+m_balle->getDepY()];
@@ -165,16 +165,16 @@ void Niveau::changerPlateau(PersoSnoopy* snoopy)
         m_balle->setX();
     }
 
-    m_plateau[snoopy->getX()][snoopy->getY()] = 'S';
+    m_plateau[snoopy->getX()][snoopy->getY()] = 'S';//on place snoopy
 
     for(int i=0; i<m_tabBlocs.size();++i)
     {
-       m_plateau[m_tabBlocs[i]->getX()][m_tabBlocs[i]->getY()] = m_tabBlocs[i]->getLettre() ;
+       m_plateau[m_tabBlocs[i]->getX()][m_tabBlocs[i]->getY()] = m_tabBlocs[i]->getLettre(); //on place tous les blocs à partir de leurs lettes
     }
 
     for(int i=0; i<m_tabOiseau.size();++i)
     {
-       m_plateau[m_tabOiseau[i].getX()][m_tabOiseau[i].getY()] = 'O' ;
+       m_plateau[m_tabOiseau[i].getX()][m_tabOiseau[i].getY()] = 'O' ;// on place les oiseaus
     }
 }
 
@@ -199,7 +199,7 @@ std::vector<Oiseau> Niveau::getTabOiseau()
 }
 
 
-Blocs* Niveau::getBlocsAuCord(std::vector<Blocs*> tabBlocs, int x, int y)
+Blocs* Niveau::getBlocsAuCord(std::vector<Blocs*> tabBlocs, int x, int y)//retourne un pointeur sur le bloc qui se trouve au niveau des coordonnes indiquées
 {
 
     for(int i(0); i< tabBlocs.size(); i++)
@@ -211,7 +211,7 @@ Blocs* Niveau::getBlocsAuCord(std::vector<Blocs*> tabBlocs, int x, int y)
     }
 }
 
-int Niveau::getPositionBlocs(Niveau* niveau,Blocs* blocs)
+int Niveau::getPositionBlocs(Niveau* niveau,Blocs* blocs)//avoir la position au sein du vector du bloc demande
 {
     for(int i(0); i<niveau->getTabBlocs().size(); i++)
     {
@@ -222,7 +222,7 @@ int Niveau::getPositionBlocs(Niveau* niveau,Blocs* blocs)
     }
 }
 
-int Niveau::getPosiOiseauAuNivTab(std::vector<Oiseau> const tabOiseau, int x, int y)
+int Niveau::getPosiOiseauAuNivTab(std::vector<Oiseau> const tabOiseau, int x, int y)//avoir la position au sein du vector de l'oiseau demande
 {
 
     for(int i(0); i< tabOiseau.size(); i++)
@@ -236,7 +236,7 @@ int Niveau::getPosiOiseauAuNivTab(std::vector<Oiseau> const tabOiseau, int x, in
 
 
 /// Creer un objet
-void Niveau::creerObjetDebut(PersoSnoopy* snoopy, std::string nom, std::string decisionJoueurNiveau)
+void Niveau::creerObjetDebut(PersoSnoopy* snoopy, std::string nom, std::string decisionJoueurNiveau)//l'objectif de creer les objet à partir de la matrice fournit avec le jeu
 {
     std::string const dossier("sauvegarde//");
     std::string const pseudo(nom);
@@ -284,16 +284,19 @@ void Niveau::creerObjetDebut(PersoSnoopy* snoopy, std::string nom, std::string d
               m_tabBlocs.push_back(p_Blocs);
               p_Blocs = NULL;
             }
-            if(is_readable(nomFichier))
+
+
+
+            if(is_readable(nomFichier))//si le fichier existe, (cette fonction est appelé quand le ficheir existe si le niveau avez ete gagner)
             {
                std::ifstream fichier(nomFichier.c_str(), std::ios::in);  // on ouvre
                 if(fichier)
                 {
-                    fichier >> a;
-                    fichier >> a;
-                    fichier >> a;
+                    fichier >> a;//on passe les caratere
+                    fichier >> a;//on passe les caratere
+                    fichier >> a;//ON recupere le deja atteint par le joueur dans le passe
                     snoopy->setNiveauDejaAtteint(a);
-                    snoopy->setNiveauActuel(atoi(decisionJoueurNiveau.c_str()));
+                    snoopy->setNiveauActuel(atoi(decisionJoueurNiveau.c_str()));//on lui met le niveau actuelle dans lequel on va jouer
 
                 }
             }
@@ -347,7 +350,7 @@ void Niveau::creerObjetSauv(std::string nom, PersoSnoopy* snoopy, Niveau* niveau
                 }
             }
 
-            fichier.get(caractere);
+            fichier.get(caractere);//on va aux prochain caractere interressant
             fichier.get(caractere);
             fichier.get(caractere);
 
@@ -362,22 +365,20 @@ void Niveau::creerObjetSauv(std::string nom, PersoSnoopy* snoopy, Niveau* niveau
             fichier >> nb;
             d = nb;
 
-           // std::cout << a << " " << b << " " << c << " " << d << std::endl;;
 
             snoopy->setX(a);
             snoopy->setY(b);
             snoopy->setNbrVie(c);
             snoopy->setScore(d);
-            snoopy->setNiveauActuel(niveauActuel);
-            snoopy->setNiveauDejaAtteint(niveauDejaAtteint);
+            snoopy->setNiveauActuel(niveauActuel);//recuper en haut de la methode
+            snoopy->setNiveauDejaAtteint(niveauDejaAtteint);//recuper en haut de la methode
 
 
-            fichier.get(caractere);
+            fichier.get(caractere);//on va aux prochain caractere interressant
             fichier.get(caractere);
             fichier.get(caractere);
 
             //recuperation des donnees de la balle, coord et direction
-
             fichier >> nb;
             a = nb;
             fichier >> nb;
@@ -390,12 +391,11 @@ void Niveau::creerObjetSauv(std::string nom, PersoSnoopy* snoopy, Niveau* niveau
             m_balle = new Balle(a,b,c,d);
 
 
-            fichier.get(caractere);
+            fichier.get(caractere);//on va aux prochain caractere interressant
             fichier.get(caractere);
             fichier.get(caractere);
 
             //recuperation des P
-
             fichier >> nb;
             valeur = nb;
             for (int i(0); i<valeur; i++)
@@ -412,7 +412,7 @@ void Niveau::creerObjetSauv(std::string nom, PersoSnoopy* snoopy, Niveau* niveau
                 p_Blocs = NULL;
             }
 
-            fichier.get(caractere);
+            fichier.get(caractere);//on va aux prochain caractere interressant
             fichier.get(caractere);
             fichier.get(caractere);
             fichier.get(caractere);
@@ -433,7 +433,7 @@ void Niveau::creerObjetSauv(std::string nom, PersoSnoopy* snoopy, Niveau* niveau
                 p_Blocs = NULL;
             }
 
-            fichier.get(caractere);
+            fichier.get(caractere);//on va aux prochain caractere interressant
             fichier.get(caractere);
             fichier.get(caractere);
 
@@ -453,7 +453,7 @@ void Niveau::creerObjetSauv(std::string nom, PersoSnoopy* snoopy, Niveau* niveau
                 p_Blocs = NULL;
             }
 
-            fichier.get(caractere);
+            fichier.get(caractere);//on va aux prochain caractere interressant
             fichier.get(caractere);
             fichier.get(caractere);
 
@@ -479,7 +479,7 @@ void Niveau::creerObjetSauv(std::string nom, PersoSnoopy* snoopy, Niveau* niveau
             }
 
 
-            fichier.get(caractere);
+            fichier.get(caractere);//on va aux prochain caractere interressant
             fichier.get(caractere);
             fichier.get(caractere);
 
@@ -519,7 +519,7 @@ void Niveau::creerObjetSauv(std::string nom, PersoSnoopy* snoopy, Niveau* niveau
 
 
 
-void Niveau::initCoordSnoop(PersoSnoopy* snoopy)
+void Niveau::initCoordSnoop(PersoSnoopy* snoopy)//initialisation des coordonne de snoôpy(surtout quand on charge le plateau proposé par le jeu)
 {
     for (int i=0; i<20; i++)
     {
@@ -553,43 +553,43 @@ void Niveau::setCordSnoopClav(PersoSnoopy* snoopy, Niveau* niveau, char toucheUt
         {
             if((snoopy->getX()-1 >=0) && getPlateau()[snoopy->getX()-1][snoopy->getY()] == '.')
             {
-                snoopy->setX(snoopy->getX()-1);
+                snoopy->setX(snoopy->getX()-1);//si il y a un point dans la direction on veut avancer
             }
-            else if((snoopy->getX() > 1) && (getPlateau()[snoopy->getX()-1][snoopy->getY()] == 'P') && (getPlateau()[snoopy->getX()-2][snoopy->getY()] == '.' ))
+            else if((snoopy->getX() > 1) && (getPlateau()[snoopy->getX()-1][snoopy->getY()] == 'P') && (getPlateau()[snoopy->getX()-2][snoopy->getY()] == '.' ))//si il y a un point P et deriere un point alors on fait avancer les deux
             {
-                blocs = getBlocsAuCord(getTabBlocs(),snoopy->getX()-1,snoopy->getY());
-                if(blocs->getPoussable())
+                blocs = getBlocsAuCord(getTabBlocs(),snoopy->getX()-1,snoopy->getY());// recuperer le blocs concerner à partir des coordonnes
+                if(blocs->getPoussable())//si il n'a pas ete encore bougé
                 {
-                blocs->deplacement(-1,0,blocs);
-                snoopy->setX(snoopy->getX()-1);
+                blocs->deplacement(-1,0,blocs);//alors on le deplace le bloc dans la bonne direction
+                snoopy->setX(snoopy->getX()-1);//alors on le deplace snoopy dans la meme direction
                 }
             }
-           else if((snoopy->getX()-1 >=0) && getPlateau()[snoopy->getX()-1][snoopy->getY()] == 'C')
+           else if((snoopy->getX()-1 >=0) && getPlateau()[snoopy->getX()-1][snoopy->getY()] == 'C')//si il y a un blocs cassable
             {
-                blocs = getBlocsAuCord(getTabBlocs(),snoopy->getX()-1,snoopy->getY());
-                if(snoopy->getModeDemolition())
+                blocs = getBlocsAuCord(getTabBlocs(),snoopy->getX()-1,snoopy->getY());// recuperer le blocs concerner à partir des coordonnes
+                if(snoopy->getModeDemolition())//si le mode demolition est actif
                 {
-                    index=getPositionBlocs(niveau,blocs);
-                    m_tabBlocs.erase(m_tabBlocs.begin()+index);
-                    snoopy->setX(snoopy->getX()-1);
+                    index=getPositionBlocs(niveau,blocs);//recuperer la position de ce blocs dans le vector
+                    m_tabBlocs.erase(m_tabBlocs.begin()+index);//le supprimer
+                    snoopy->setX(snoopy->getX()-1);//deplacer ves le bloc qui vient de se casser
                 }
             }
-            else if((snoopy->getX()-1 >=0) && getPlateau()[snoopy->getX()-1][snoopy->getY()] == 'T')
+            else if((snoopy->getX()-1 >=0) && getPlateau()[snoopy->getX()-1][snoopy->getY()] == 'T')//si c'est un blocs piege
             {
-                snoopy->setVivant(false);
-                snoopy->setToucheParPiege(true);
+                snoopy->setVivant(false);//snoopy meurt
+                snoopy->setToucheParPiege(true);//On indique qui les mort touche par un piege, (pour les explications de la mort juste avant le retour au menu)
             }
-            else if((snoopy->getX()-1 >=0) && getPlateau()[snoopy->getX()-1][snoopy->getY()] == 'O')
+            else if((snoopy->getX()-1 >=0) && getPlateau()[snoopy->getX()-1][snoopy->getY()] == 'O')//Si il y a un oiseau
             {
-                snoopy->setPlusOiseau();
-                index = getPosiOiseauAuNivTab(m_tabOiseau, snoopy->getX()-1, snoopy->getY());
-                m_tabOiseau.erase(m_tabOiseau.begin()+index);
-                snoopy->setX(snoopy->getX()-1);
+                snoopy->setPlusOiseau();//snoopy recupere un oiseau
+                index = getPosiOiseauAuNivTab(m_tabOiseau, snoopy->getX()-1, snoopy->getY());//on recupere la position de l'oiseau au niveau du vector
+                m_tabOiseau.erase(m_tabOiseau.begin()+index);//on supprime l'oiseau du vector
+                snoopy->setX(snoopy->getX()-1);//on deplace snoopy vers l'ancienne position de l'oiseau
             }
 
-            snoopy->setModeDemolition(false);
+            snoopy->setModeDemolition(false);//on supprime le mode demolition, pour qu'il ne dure qu'un tour(à chaque fois qu'on tape sur une des 4 directions)
         }
-        if ((key == 'l')||(key == 'L')) ///  droite
+        if ((key == 'l')||(key == 'L')) ///  droite // toutes les explication sont au niveau du haut de la methode sur le 'J'
         {
             if((snoopy->getX()+1<20) && (getPlateau()[snoopy->getX()+1][snoopy->getY()] == '.'))
             {
@@ -628,7 +628,7 @@ void Niveau::setCordSnoopClav(PersoSnoopy* snoopy, Niveau* niveau, char toucheUt
             }
             snoopy->setModeDemolition(false);
         }
-        if ((key == 'k')||(key == 'K')) /// bas
+        if ((key == 'k')||(key == 'K')) /// bas// toutes les explication sont au niveau du haut de la methode sur le 'J'
         {
             if((snoopy->getY()+1 <=9 ) && getPlateau()[snoopy->getX()][snoopy->getY()+1] == '.')
             {
@@ -667,7 +667,7 @@ void Niveau::setCordSnoopClav(PersoSnoopy* snoopy, Niveau* niveau, char toucheUt
             }
             snoopy->setModeDemolition(false);
         }
-        if ((key == 'i')||(key == 'I')) ///  haut
+        if ((key == 'i')||(key == 'I')) ///  haut // toutes les explication sont au niveau du haut de la methode sur le 'J'
         {
             if((snoopy->getY()-1 >=0) && getPlateau()[snoopy->getX()][snoopy->getY()-1] == '.')
             {
@@ -717,8 +717,18 @@ void Niveau::setCordSnoopClav(PersoSnoopy* snoopy, Niveau* niveau, char toucheUt
 
 
 
+bool Niveau::toucheBalle(PersoSnoopy* snoopy, Niveau* niveau)//savoir la la balle touche snoopy
+{
+  if(snoopy->getX() == niveau->m_balle->getX() && snoopy->getY() == niveau->m_balle->getY())
+  {
+    return true;
+  }
+  else
+  {
+    return false;
+  }
 
-
+}
 
 /// On vérifie si la balle ne veut pas sortir du plateau
 char Niveau::verificationBalle_Bords()
@@ -995,16 +1005,10 @@ void Niveau::verificationBalle_Oiseaux()
 }
 
 
-bool Niveau::is_readable( const std::string & file )
+bool Niveau::is_readable( const std::string & file )//savoir si le ficheir existe
 {
     std::ifstream fichier( file.c_str() );
     return !fichier.fail();
 }
 
-bool Niveau::toucheBalle(PersoSnoopy* snoopy, Niveau* niveau)
-{
-  if(snoopy->getX() == niveau->m_balle->getX() && snoopy->getY() == niveau->m_balle->getY())
-  {
-    return true;
-  }
-}
+

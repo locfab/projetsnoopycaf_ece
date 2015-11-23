@@ -101,7 +101,7 @@ void Partie::gestionDePause(Niveau* niveau, int& pause, char& toucheUtilisateur,
 }
 
 
-void Partie::tempsEcoule(Niveau* niveau, int& timeOut)
+void Partie::tempsEcoule(Niveau* niveau, int& timeOut)//faut les action necessaire quand le temps est ecoule
 {
         timeOut = 1;
         system("cls");

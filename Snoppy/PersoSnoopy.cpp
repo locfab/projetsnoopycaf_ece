@@ -18,7 +18,6 @@ PersoSnoopy::~PersoSnoopy()
 
 }
 
-
 void PersoSnoopy::setPlusOiseau()
 {
     if(m_nbOiseauxAttrap<4)
@@ -38,7 +37,7 @@ void PersoSnoopy::setVivant(bool vivant)
 
 void PersoSnoopy::setNbrVie(int vie)
 {
-   if(m_vie >=0 && m_vie < 10)//A ne pas modifier!!! si on met au dessus de 10, ca bloque tout on ne pourra plus modifier dans le fichier
+   if(m_vie >=0 && m_vie < 10)//A ne pas modifier!!! si on met au dessus de 10, ou negatif, ca bloque tout on ne pourra plus modifier dans le fichier
     m_vie = vie;
 }
 void PersoSnoopy::setScore(int score)
@@ -94,7 +93,7 @@ void PersoSnoopy::setNiveauActuel(int niveauActuel)
     }
    else
    {
-    std::cout << "probleme pas de niveau inferieur a 0 ou supperrieur a 3" ;
+    std::cout << "§probleme pas de niveau inferieur a 0 ou supperrieur a 3§" ;
    }
 }
 void PersoSnoopy::setToucheParPiege(bool toucheParPiege)

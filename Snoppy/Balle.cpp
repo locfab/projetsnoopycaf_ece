@@ -24,7 +24,7 @@ void Balle::deplacement(std::vector< std::vector<char> > plateau) // Deplace la 
 void Balle::directionDuDeplacementSuivant(std::vector< std::vector<char> > plateau) // doit gerer depx et depy et les changer en fct du terrarain et des collisions
 {
     char lettreIntermediaire;
-	//if(((getX()+getDepX()=!'.')&&(getY()+getDepY()=!'.')) || ((getX()+getDepX()=='.')&&(getY()+getDepY()=='.')&&()
+
     if( ((getX() + getDepX()) < 0) )
     {
         setDepX(1);
