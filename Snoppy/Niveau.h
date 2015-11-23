@@ -74,6 +74,8 @@ class Niveau
     Balle *m_balle;
     std::vector<Oiseau> m_tabOiseau;
     std::vector<Blocs*> m_tabBlocs;
+    int const lig;
+    int const col;
 
  };
 

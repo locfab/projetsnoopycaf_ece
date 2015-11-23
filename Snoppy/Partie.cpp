@@ -25,11 +25,14 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
     int timeOut = 0;
     int esc = 0;
     int pause = 0;
+    bool accepter(true);
+    bool partieEnCours(true);
     double tempsDePause = 0;
     int save = 0;
     char toucheUtilisateur('@');
-    bool accepter(true);
-    bool partieEnCours(true);
+    unsigned const lig= 10;
+    unsigned const col= 20;
+    
     std::string const dossier("sauvegarde//");
     std::string nom(pseudo);
     std::string const extention(".txt");
