@@ -25,11 +25,9 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
     int timeOut = 0;
     int esc = 0;
     int pause = 0;
-    int nombre(0);
     double tempsDePause = 0;
     int save = 0;
     char toucheUtilisateur('@');
-    bool NiveauDejaAtteint;
     bool accepter(true);
     bool partieEnCours(true);
     std::string const dossier("sauvegarde//");
@@ -151,7 +149,6 @@ void Partie::changerVie(std::string nom, PersoSnoopy* snoopy)/// le but de cette
     std::vector <char> maSauvegarde;
     char a;
     int i=0;
-    int nb;
     std::ifstream fichier(nomFichier.c_str(), std::ios::in);  // on ouvre
 
     if(fichier)
@@ -181,7 +178,7 @@ void Partie::changerVie(std::string nom, PersoSnoopy* snoopy)/// le but de cette
     std::ofstream monFlux(nomFichier.c_str());
     if(monFlux)
     {
-        for(int i(0); i< maSauvegarde.size(); i++)
+        for(unsigned i(0); i< maSauvegarde.size(); i++)
         {
             monFlux << maSauvegarde[i];//on reecrit par dessu le fichier avec la vie qui a changée
         }
@@ -312,7 +309,7 @@ void Partie::sauvegarde(std::string pseudo, PersoSnoopy* snoopy, Niveau* niveau,
             monFlux << 'B' << ' ' << niveau->getBalle()->getX() << ' ' << niveau->getBalle()->getY() << ' ' << niveau->getBalle()->getDepX() << ' ' << niveau->getBalle()->getDepY() << std::endl;
 
             monFlux << 'P';
-                for(int i=0; i<niveau->getTabBlocs().size();i++)
+                for(unsigned short i=0; i<niveau->getTabBlocs().size();i++)
                     {
                     if(niveau->getTabBlocs()[i]->getLettre()=='P')
                         {
@@ -322,7 +319,7 @@ void Partie::sauvegarde(std::string pseudo, PersoSnoopy* snoopy, Niveau* niveau,
                     monFlux << ' ' << nombre << ' ';
                     nombre = 0;
 
-                for(int i=0; i<niveau->getTabBlocs().size();i++)
+                for(unsigned i=0; i<niveau->getTabBlocs().size();i++)
                     {
                         if(niveau->getTabBlocs()[i]->getLettre()=='P')
                         {
@@ -333,7 +330,7 @@ void Partie::sauvegarde(std::string pseudo, PersoSnoopy* snoopy, Niveau* niveau,
 
             monFlux << 'C';
 
-                for(int i=0; i<niveau->getTabBlocs().size();i++)
+                for(unsigned i=0; i<niveau->getTabBlocs().size();i++)
                     {
                     if(niveau->getTabBlocs()[i]->getLettre()=='C')
                         {
@@ -343,7 +340,7 @@ void Partie::sauvegarde(std::string pseudo, PersoSnoopy* snoopy, Niveau* niveau,
                     monFlux << ' ' << nombre << ' ';
                     nombre = 0;
 
-                for(int i=0; i<niveau->getTabBlocs().size();i++)
+                for(unsigned i=0; i<niveau->getTabBlocs().size();i++)
                 {
                     if(niveau->getTabBlocs()[i]->getLettre()=='C')
                     {
@@ -354,7 +351,7 @@ void Partie::sauvegarde(std::string pseudo, PersoSnoopy* snoopy, Niveau* niveau,
 
             monFlux << 'T';
 
-                for(int i=0; i<niveau->getTabBlocs().size();i++)
+                for(unsigned i=0; i<niveau->getTabBlocs().size();i++)
                     {
                     if(niveau->getTabBlocs()[i]->getLettre()=='T')
                         {
@@ -364,7 +361,7 @@ void Partie::sauvegarde(std::string pseudo, PersoSnoopy* snoopy, Niveau* niveau,
                     monFlux << ' ' << nombre << ' ';
                     nombre = 0;
 
-                for(int i=0; i<niveau->getTabBlocs().size();i++)
+                for(unsigned i=0; i<niveau->getTabBlocs().size();i++)
                 {
                     if(niveau->getTabBlocs()[i]->getLettre()=='T')
                     {
@@ -377,7 +374,7 @@ void Partie::sauvegarde(std::string pseudo, PersoSnoopy* snoopy, Niveau* niveau,
 
                 monFlux << ' ' << niveau->getTabOiseau().size() << ' ';
 
-                for(int i=0; i<niveau->getTabOiseau().size();i++)
+                for(unsigned i=0; i<niveau->getTabOiseau().size();i++)
                 {
                     monFlux << niveau->getTabOiseau()[i].getX() << ' ' << niveau->getTabOiseau()[i].getY() << ' ';
                 }
