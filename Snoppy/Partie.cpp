@@ -42,7 +42,7 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
     chargerPartieAvecMenu(pseudo, m_snoopy, m_niveau, decisionJoueurNiveau, decisionJoueurMenu);
     if(atoi(decisionJoueurNiveau.c_str()) > m_snoopy->getNiveauDejaAtteint()) accepter = false;
 
-    while(onContinu(m_snoopy, m_niveau, esc, timeOut, accepter)) ///Boucle de jeu tant qui indique c'est tous les parametres pour continuer à jouer sont reunit
+    while(onContinu(m_snoopy, m_niveau, esc, timeOut, accepter, save)) ///Boucle de jeu tant qui indique c'est tous les parametres pour continuer à jouer sont reunit
     {
             m_niveau->getDeplacementBalle(m_niveau->getPlateau());
             m_niveau->checkerPlateauPourBalle();
@@ -267,9 +267,9 @@ void Partie::chargerPartieAvecMenu2(std::string nom, PersoSnoopy* snoopy, Niveau
         }
 }
 
-bool Partie::onContinu(PersoSnoopy* snoopy, Niveau*niveau, int esc, int timeOut, bool accepter)
+bool Partie::onContinu(PersoSnoopy* snoopy, Niveau*niveau, int esc, int timeOut, bool accepter, int save)
 {
-    if((esc == 0) && (timeOut == 0) && (accepter))
+    if((esc == 0) && (timeOut == 0) && (accepter) && save==0)
     {
         if(snoopy->getVivant() && snoopy->getNbOiseauAttrap()<4 && snoopy->getNbrVie()>0)
         {

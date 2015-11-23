@@ -32,7 +32,7 @@ class Partie
         void gestionDeMort(Niveau* niveau, PersoSnoopy* snoopy, std::string pseudo, std::string nomFichier);
         void gestionPlusDeVie(PersoSnoopy* snoopy, Niveau* niveau, std::string pseudo, std::string nomFichier, int& save);
         void gestionDePause(Niveau* niveau, int& pause, char& toucheUtilisateur, double& tempsDePause, int& esc);
-        bool onContinu(PersoSnoopy* snoopy, Niveau*niveau, int esc, int timeOut, bool accepter);
+        bool onContinu(PersoSnoopy* snoopy, Niveau*niveau, int esc, int timeOut, bool accepter, int save);
 
 };
 
