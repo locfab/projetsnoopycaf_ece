@@ -39,6 +39,8 @@
 		<Unit filename="BlocsPieges.h" />
 		<Unit filename="BlocsPoussables.cpp" />
 		<Unit filename="BlocsPoussables.h" />
+		<Unit filename="BonusAttrap.cpp" />
+		<Unit filename="BonusAttrap.h" />
 		<Unit filename="Console.cpp" />
 		<Unit filename="Console.h" />
 		<Unit filename="Menu.cpp" />

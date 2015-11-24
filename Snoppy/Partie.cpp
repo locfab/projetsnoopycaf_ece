@@ -32,7 +32,7 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
     char toucheUtilisateur('@');
     unsigned const lig= 10;
     unsigned const col= 20;
-    
+
     std::string const dossier("sauvegarde//");
     std::string nom(pseudo);
     std::string const extention(".txt");
@@ -43,12 +43,14 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
     chargerPartieAvecMenu(pseudo, m_snoopy, m_niveau, decisionJoueurNiveau, decisionJoueurMenu);
     if(atoi(decisionJoueurNiveau.c_str()) > m_snoopy->getNiveauDejaAtteint()) accepter = false;
 
+
     while(onContinu(m_snoopy, m_niveau, esc, timeOut, accepter, save)) ///Boucle de jeu tant qui indique c'est tous les parametres pour continuer à jouer sont reunit
     {
             m_niveau->getDeplacementBalle(m_niveau->getPlateau());
             m_niveau->checkerPlateauPourBalle();
             m_niveau->setCordSnoopClav(m_snoopy, m_niveau, toucheUtilisateur);
             m_niveau->changerPlateau(m_snoopy);
+            m_niveau->gererBonus(m_snoopy);
             m_niveau->afficherPlateau(m_snoopy);
             m_niveau->getAttendre(0.08);         /// Temporisation de 0.1 seconde
             recupererEntresClav(m_niveau, m_snoopy, pause, save, esc, toucheUtilisateur);
