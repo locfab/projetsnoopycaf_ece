@@ -1,7 +1,6 @@
 #include "Partie.h"
 #include <string>
 #include <vector>
-#include <sstream>
 
 
 
@@ -31,10 +30,6 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
     double tempsDePause = 0;
     int save = 0;
     char toucheUtilisateur('@');
-    unsigned const lig= 10;
-    unsigned const col= 20;
-    std::ostringstream nivSuiv;
-    int decis;
 
     std::string const dossier("sauvegarde//");
     std::string nom(pseudo);
@@ -70,50 +65,38 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
     if(m_niveau->is_readable(nomFichier)) { changerVie(pseudo, m_snoopy); }
 
     if(save != 0) { sauvegarde(pseudo, m_snoopy, m_niveau, partieEnCours); }
-
-    decis = atoi(decisionJoueurNiveau.c_str());
-    decis++;
-    nivSuiv << decis;
-
-            if(!partieEnCours)
-            {
-                /*int tailleTableau;
-                nivSuiv << m_snoopy->getNiveauActuel();
-                m_niveau->setPlateau(nivSuiv.str());
-                m_snoopy->setNbrOiseauxANul();
-                delete m_niveau->getBalle();
-                tailleTableau = m_niveau->getTabBlocs().size();
-                for(int i(0); i< tailleTableau ;i++)
-                {
-                    m_niveau->getTabBlocs().pop_back();
-                }
-                tailleTableau = m_niveau->getTabOiseau().size();
-                for(int i(0); i< tailleTableau ;i++)
-                {
-                    m_niveau->getTabOiseau().pop_back();
-                }*/
-                int tailleTableau;
-                tailleTableau = m_niveau->getTabBlocs().size();
-                for(int i(0); i< tailleTableau ;i++)
-                {
-                    m_niveau->getTabBlocs().pop_back();
-                }
-                tailleTableau = m_niveau->getTabOiseau().size();
-                for(int i(0); i< tailleTableau ;i++)
-                {
-                    m_niveau->getTabOiseau().pop_back();
-                }
-                delete m_niveau->getBalle();
-                delete m_niveau;
-                delete m_snoopy;
-                m_snoopy = new PersoSnoopy();
-                m_niveau = new Niveau();
-
-            if(!partieEnCours){ jouer(this, '2', pseudo, nivSuiv.str()); }
-            }
+    if(!partieEnCours) {prepaEtLancerNivSuiv(m_snoopy, m_niveau, pseudo, decisionJoueurNiveau, partieEnCours);}
 
 
 
+
+
+}
+
+void Partie::prepaEtLancerNivSuiv(PersoSnoopy* snoopy, Niveau*niveau, std::string pseudo, std::string decisionJoueurNiveau, bool partieEnCours)
+{
+    int tailleTableau;
+
+    tailleTableau = niveau->getTabBlocs().size();
+    for(int i(0); i< tailleTableau ;i++)
+    {
+        niveau->getTabBlocs().pop_back();
+    }
+
+    tailleTableau = niveau->getTabOiseau().size();
+    for(int i(0); i< tailleTableau ;i++)
+    {
+        niveau->getTabOiseau().pop_back();
+    }
+
+    delete niveau->getBalle();
+    delete niveau;
+    delete snoopy;
+
+    snoopy = new PersoSnoopy();
+    niveau = new Niveau();
+
+jouer(this, '2', pseudo, "0");
 }
 
 void Partie::recupererEntresClav(Niveau* niveau, PersoSnoopy* snoopy, int& pause, int& save, int& esc,char& toucheUtilisateur)

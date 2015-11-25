@@ -22,8 +22,6 @@ void PersoSnoopy::setPlusOiseau()
 {
     if(m_nbOiseauxAttrap<4)
     m_nbOiseauxAttrap+=1;
-    if(m_nbOiseauxAttrap==4)
-    std::cout << "Niveau suivant" << std::endl;
 }
 void PersoSnoopy::setNbrOiseauxANul()
 {
