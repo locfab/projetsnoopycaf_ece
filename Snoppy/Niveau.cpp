@@ -251,7 +251,7 @@ void Niveau::gererBonus(PersoSnoopy* snoopy)
     {
        i= rand()%20;
        j= rand()%10;
-        if(rand()%15 == 0 && m_plateau[i][j] == '.')
+        if(rand()%30 == 0 && m_plateau[i][j] == '.')
         {
            m_bonusAttrap = new BonusAttrap(i,j,this->getTempsRestant());
         }
@@ -640,6 +640,10 @@ void Niveau::setCordSnoopClav(PersoSnoopy* snoopy, Niveau* niveau, char toucheUt
             {
             snoopy->setX(snoopy->getX()+1);
             }
+            if((snoopy->getX()+1< m_col) && (getPlateau()[snoopy->getX()+1][snoopy->getY()] >= '0' && getPlateau()[snoopy->getX()+1][snoopy->getY()]  < '4' ))
+            {
+                snoopy->setX(snoopy->getX()+1);//si il y a un point dans la direction on veut avancer
+            }
             else if((snoopy->getX() < m_col-2) && (getPlateau()[snoopy->getX()+1][snoopy->getY()] == 'P') && (getPlateau()[snoopy->getX()+2][snoopy->getY()] == '.' ))
             {
                 blocs = getBlocsAuCord(getTabBlocs(),snoopy->getX()+1,snoopy->getY());
@@ -677,7 +681,11 @@ void Niveau::setCordSnoopClav(PersoSnoopy* snoopy, Niveau* niveau, char toucheUt
         {
             if((snoopy->getY()+1 <= m_lig-1 ) && getPlateau()[snoopy->getX()][snoopy->getY()+1] == '.')
             {
-            snoopy->setY(snoopy->getY()+1);
+                snoopy->setY(snoopy->getY()+1);
+            }
+            if((snoopy->getY()+1 <= m_lig-1 ) && getPlateau()[snoopy->getX()][snoopy->getY()+1] >= '0' && getPlateau()[snoopy->getX()][snoopy->getY()+1]   < '4' )
+            {
+                snoopy->setY(snoopy->getY()+1);//si il y a un point dans la direction on veut avancer
             }
             else if((snoopy->getY()< m_lig-1) && (getPlateau()[snoopy->getX()][snoopy->getY()+1] == 'P') && (getPlateau()[snoopy->getX()][snoopy->getY()+2] == '.' ))
             {
@@ -717,6 +725,10 @@ void Niveau::setCordSnoopClav(PersoSnoopy* snoopy, Niveau* niveau, char toucheUt
             if((snoopy->getY()-1 >=0) && getPlateau()[snoopy->getX()][snoopy->getY()-1] == '.')
             {
                 snoopy->setY(snoopy->getY()-1);
+            }
+            if((snoopy->getY()-1 >=0) && getPlateau()[snoopy->getX()][snoopy->getY()-1] >= '0' && getPlateau()[snoopy->getX()][snoopy->getY()-1] < '4' )
+            {
+                snoopy->setY(snoopy->getY()-1);//si il y a un point dans la direction on veut avancer
             }
             else if((snoopy->getY() > 1) && (getPlateau()[snoopy->getX()][snoopy->getY()-1] == 'P') && (getPlateau()[snoopy->getX()][snoopy->getY()-2] == '.' ))
             {

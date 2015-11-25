@@ -64,6 +64,7 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
     if (m_niveau->toucheBalle(m_snoopy, m_niveau)) { m_snoopy->setVivant(false);}
     if (!m_snoopy->getVivant()) { gestionDeMort(m_niveau, m_snoopy, pseudo, nomFichier); }
     if(m_snoopy->getNbrVie()<=0) { gestionPlusDeVie(m_snoopy, m_niveau, pseudo, nomFichier, save); }//si plus de vies
+    changerVie(pseudo, m_snoopy);
 
     if(save != 0) { sauvegarde(pseudo, m_snoopy, m_niveau, partieEnCours); }
 
