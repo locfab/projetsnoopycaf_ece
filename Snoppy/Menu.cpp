@@ -51,6 +51,9 @@ void Menu::choix(char decisionJoueur)
          case '2':
             this->creerPartie(decisionJoueur);
             break;
+         case '3':
+            this->creerPartie(decisionJoueur);
+            break;
          case '5':
             system("cls");
             for(int i(0); i<7; i++)std::cout << std::endl;
@@ -68,6 +71,7 @@ void Menu::creerPartie(char decisionJoueurMenu)
 {
     std::string pseudoDonne;
     std::string decisionJoueurNiveau;
+    std::string motDePasse;
 
     std::string const dossier("sauvegarde//");
     std::string nom;
@@ -75,6 +79,20 @@ void Menu::creerPartie(char decisionJoueurMenu)
     std::string nomFichier;
 
     Partie *m_partie = new Partie();
+
+    if(decisionJoueurMenu == '1')
+    {
+        std::cout << "Creer votre pseudo ou 'r' pour revenir" << std::endl;
+        std::cin >> pseudoDonne;
+        nom = pseudoDonne;
+        nomFichier = dossier + nom + extention;
+
+         if(!is_readable(nomFichier) && nom != "r")
+            {
+            m_partie->jouer(m_partie, decisionJoueurMenu, nom, "1");
+            }
+    }
+
     if(decisionJoueurMenu == '2')
     {
         std::cout << "Entrer votre pseudo ou 'r' pour revenir" << std::endl;
@@ -96,18 +114,28 @@ void Menu::creerPartie(char decisionJoueurMenu)
 
         }
     }
-    if(decisionJoueurMenu == '1')
-    {
-        std::cout << "Creer votre pseudo ou 'r' pour revenir" << std::endl;
-        std::cin >> pseudoDonne;
-        nom = pseudoDonne;
-        nomFichier = dossier + nom + extention;
 
-         if(!is_readable(nomFichier) && nom != "r")
-            {
-            m_partie->jouer(m_partie, decisionJoueurMenu, nom, "1");
-            }
+    if(decisionJoueurMenu == '3')
+    {
+        std::cout << "Entrer le mot de passe ou 'r' pour revenir" << std::endl;
+        std::cin >> motDePasse;
+        if(motDePasse == m_motDePasse && nom != "r")
+        {
+            while((decisionJoueurNiveau<"1" || decisionJoueurNiveau>"3") && decisionJoueurNiveau != "r")
+                {
+                std::cout << "Aller au niveau deja atteint avec '1', '2' ou '3' ou 'r' pour revenir" << std::endl;
+                std::cin >> decisionJoueurNiveau;
+                }
+
+            if(decisionJoueurNiveau != "r" )
+               {
+                m_partie->jouer(m_partie, decisionJoueurMenu, "rien", decisionJoueurNiveau);
+               }
+
+        }
     }
+
+   
     delete m_partie;
     system("cls");
     afficherMenu();

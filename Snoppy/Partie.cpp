@@ -39,7 +39,7 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
 
 
     chargerPartieAvecMenu(pseudo, m_snoopy, m_niveau, decisionJoueurNiveau, decisionJoueurMenu);
-    if(atoi(decisionJoueurNiveau.c_str()) > m_snoopy->getNiveauDejaAtteint()) accepter = false;
+    if(decisionJoueurMenu !='3' && atoi(decisionJoueurNiveau.c_str()) > m_snoopy->getNiveauDejaAtteint()) accepter = false;
 
 
     while(onContinu(m_snoopy, m_niveau, esc, timeOut, accepter, save)) ///Boucle de jeu tant qui indique c'est tous les parametres pour continuer à jouer sont reunit
@@ -64,8 +64,8 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
     if(m_snoopy->getNbrVie()<=0) { gestionPlusDeVie(m_snoopy, m_niveau, pseudo, nomFichier, save); }//si plus de vies
     if(m_niveau->is_readable(nomFichier)) { changerVie(pseudo, m_snoopy); }
 
-    if(save != 0) { sauvegarde(pseudo, m_snoopy, m_niveau, partieEnCours); }
-    if(!partieEnCours) {prepaEtLancerNivSuiv(m_snoopy, m_niveau, pseudo, decisionJoueurNiveau, partieEnCours);}
+    if(save != 0 && decisionJoueurMenu !='3') { sauvegarde(pseudo, m_snoopy, m_niveau, partieEnCours); }
+    if(!partieEnCours && decisionJoueurMenu !='3') {prepaEtLancerNivSuiv(m_snoopy, m_niveau, pseudo, decisionJoueurNiveau, partieEnCours);}
 
 
 
@@ -270,10 +270,10 @@ void Partie::gestionPlusDeVie(PersoSnoopy* snoopy, Niveau* niveau, std::string p
 
 void Partie::chargerPartieAvecMenu(std::string nom, PersoSnoopy* snoopy, Niveau* niveau, std::string decisionJoueurNiveau, char decisionJoueurMenu)
 {
-        if(decisionJoueurMenu == '1') chargerPartieAvecMenu1(nom, snoopy, niveau, decisionJoueurNiveau);
-        if(decisionJoueurMenu == '2') chargerPartieAvecMenu2(nom, snoopy, niveau, decisionJoueurNiveau);
+    if(decisionJoueurMenu == '1') chargerPartieAvecMenu1(nom, snoopy, niveau, decisionJoueurNiveau);
+    if(decisionJoueurMenu == '2') chargerPartieAvecMenu2(nom, snoopy, niveau, decisionJoueurNiveau);
+    if(decisionJoueurMenu == '3') chargerPartieAvecMenu1(nom, snoopy, niveau, decisionJoueurNiveau);
 }
-
 void Partie::chargerPartieAvecMenu1(std::string nom, PersoSnoopy* snoopy, Niveau* niveau, std::string decisionJoueurNiveau)
 {
     niveau->setPlateau(decisionJoueurNiveau);
