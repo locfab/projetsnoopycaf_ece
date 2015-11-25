@@ -49,23 +49,28 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
             m_niveau->setCordSnoopClav(m_snoopy, m_niveau, toucheUtilisateur);
             m_niveau->changerPlateau(m_snoopy);
             m_niveau->gererBonus(m_snoopy);
-            m_niveau->afficherPlateau(m_snoopy);
+            m_niveau->afficherPlateau(m_snoopy, decisionJoueurMenu, decisionJoueurNiveau);
             m_niveau->getAttendre(0.08);         /// Temporisation de 0.1 seconde
             recupererEntresClav(m_niveau, m_snoopy, pause, save, esc, toucheUtilisateur);
             gestionDePause(m_niveau, pause, toucheUtilisateur, tempsDePause, esc);
     }
 
-    if(m_niveau->getTempsRestant() <= 0) { tempsEcoule(m_niveau, timeOut); } /// Est-ce que le temps restant est inférieur à 0 ?
-    if(esc != 0) { quitterSansEnregister(m_niveau); }//si echap n'a pas ete apuiye
-    if (!accepter) { niveauJamaisAtteintRetour(m_niveau, m_snoopy); }
-    if(m_snoopy->getNbOiseauAttrap()==4){ prepaSauvPartieGagnee(m_niveau, m_snoopy, partieEnCours, save); }
-    if (m_niveau->toucheBalle(m_snoopy, m_niveau)) { m_snoopy->setVivant(false);}
-    if (!m_snoopy->getVivant()) { gestionDeMort(m_niveau, m_snoopy, pseudo, nomFichier); }
-    if(m_snoopy->getNbrVie()<=0) { gestionPlusDeVie(m_snoopy, m_niveau, pseudo, nomFichier, save); }//si plus de vies
-    if(m_niveau->is_readable(nomFichier)) { changerVie(pseudo, m_snoopy); }
+    if(decisionJoueurMenu != '3')
+    {
+        if(m_niveau->getTempsRestant() <= 0) { tempsEcoule(m_niveau, timeOut); } /// Est-ce que le temps restant est inférieur à 0 ?
+        if(esc != 0) { quitterSansEnregister(m_niveau); }//si echap n'a pas ete apuiye
+        if (!accepter) { niveauJamaisAtteintRetour(m_niveau, m_snoopy); }
+        if(m_snoopy->getNbOiseauAttrap()==4){ prepaSauvPartieGagnee(m_niveau, m_snoopy, partieEnCours, save); }
+        if (m_niveau->toucheBalle(m_snoopy, m_niveau)) { m_snoopy->setVivant(false);}
+        if (!m_snoopy->getVivant()) { gestionDeMort(m_niveau, m_snoopy, pseudo, nomFichier); }
+        if(m_snoopy->getNbrVie()<=0) { gestionPlusDeVie(m_snoopy, m_niveau, pseudo, nomFichier, save); }//si plus de vies
+        if(m_niveau->is_readable(nomFichier)) { changerVie(pseudo, m_snoopy); }
 
-    if(save != 0 && decisionJoueurMenu !='3') { sauvegarde(pseudo, m_snoopy, m_niveau, partieEnCours); }
-    if(!partieEnCours && decisionJoueurMenu !='3') {prepaEtLancerNivSuiv(m_snoopy, m_niveau, pseudo, decisionJoueurNiveau, partieEnCours);}
+        if(save != 0 && decisionJoueurMenu) { sauvegarde(pseudo, m_snoopy, m_niveau, partieEnCours); }
+        if(!partieEnCours && decisionJoueurMenu) {prepaEtLancerNivSuiv(m_snoopy, m_niveau, pseudo, decisionJoueurNiveau, partieEnCours);}
+    }
+
+    
 
 
 
@@ -75,21 +80,6 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
 
 void Partie::prepaEtLancerNivSuiv(PersoSnoopy* snoopy, Niveau*niveau, std::string pseudo, std::string decisionJoueurNiveau, bool partieEnCours)
 {
-    int tailleTableau;
-
-    tailleTableau = niveau->getTabBlocs().size();
-    for(int i(0); i< tailleTableau ;i++)
-    {
-        niveau->getTabBlocs().pop_back();
-    }
-
-    tailleTableau = niveau->getTabOiseau().size();
-    for(int i(0); i< tailleTableau ;i++)
-    {
-        niveau->getTabOiseau().pop_back();
-    }
-
-    delete niveau->getBalle();
     delete niveau;
     delete snoopy;
 
