@@ -1,6 +1,7 @@
 #include "Partie.h"
 #include <string>
 #include <vector>
+#include <sstream>
 
 
 
@@ -32,6 +33,8 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
     char toucheUtilisateur('@');
     unsigned const lig= 10;
     unsigned const col= 20;
+    std::ostringstream nivSuiv;
+    int decis;
 
     std::string const dossier("sauvegarde//");
     std::string nom(pseudo);
@@ -64,9 +67,50 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
     if (m_niveau->toucheBalle(m_snoopy, m_niveau)) { m_snoopy->setVivant(false);}
     if (!m_snoopy->getVivant()) { gestionDeMort(m_niveau, m_snoopy, pseudo, nomFichier); }
     if(m_snoopy->getNbrVie()<=0) { gestionPlusDeVie(m_snoopy, m_niveau, pseudo, nomFichier, save); }//si plus de vies
-    changerVie(pseudo, m_snoopy);
+    if(m_niveau->is_readable(nomFichier)) { changerVie(pseudo, m_snoopy); }
 
     if(save != 0) { sauvegarde(pseudo, m_snoopy, m_niveau, partieEnCours); }
+
+    decis = atoi(decisionJoueurNiveau.c_str());
+    decis++;
+    nivSuiv << decis;
+
+            if(!partieEnCours)
+            {
+                /*int tailleTableau;
+                nivSuiv << m_snoopy->getNiveauActuel();
+                m_niveau->setPlateau(nivSuiv.str());
+                m_snoopy->setNbrOiseauxANul();
+                delete m_niveau->getBalle();
+                tailleTableau = m_niveau->getTabBlocs().size();
+                for(int i(0); i< tailleTableau ;i++)
+                {
+                    m_niveau->getTabBlocs().pop_back();
+                }
+                tailleTableau = m_niveau->getTabOiseau().size();
+                for(int i(0); i< tailleTableau ;i++)
+                {
+                    m_niveau->getTabOiseau().pop_back();
+                }*/
+                int tailleTableau;
+                tailleTableau = m_niveau->getTabBlocs().size();
+                for(int i(0); i< tailleTableau ;i++)
+                {
+                    m_niveau->getTabBlocs().pop_back();
+                }
+                tailleTableau = m_niveau->getTabOiseau().size();
+                for(int i(0); i< tailleTableau ;i++)
+                {
+                    m_niveau->getTabOiseau().pop_back();
+                }
+                delete m_niveau->getBalle();
+                delete m_niveau;
+                delete m_snoopy;
+                m_snoopy = new PersoSnoopy();
+                m_niveau = new Niveau();
+
+            if(!partieEnCours){ jouer(this, '2', pseudo, nivSuiv.str()); }
+            }
 
 
 
