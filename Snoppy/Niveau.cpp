@@ -104,12 +104,12 @@ void Niveau::afficherPlateau(PersoSnoopy* snoopy, char decisionJoueurMenu, std::
         std::cout << "Score : " << snoopy->getScore() << "  " << std::endl;
         pConsole->gotoLigCol(11, 50);
         std::cout << "Meilleur niveau atteint : " << snoopy->getNiveauDejaAtteint() << "  " << std::endl;
-        pConsole->gotoLigCol(12, 50);
+       /* pConsole->gotoLigCol(12, 50);
         std::cout << "Cord balle : " << m_vectBalle[0].getX() << "   " << m_vectBalle[0].getY() <<  "   " <<std::endl;
         pConsole->gotoLigCol(13, 50);
         std::cout << "Cord balle dep : " << m_vectBalle[0].getDepX() << "    " << m_vectBalle[0].getDepY() << "   " << std::endl;
         pConsole->gotoLigCol(14, 50);
-        std::cout << "nb balle : " << m_vectBalle.size() << "   " << std::endl;
+        std::cout << "nb balle : " << m_vectBalle.size() << "   " << std::endl;*/
     }
     if(decisionJoueurMenu == '3')
     {
@@ -329,6 +329,11 @@ void Niveau::gererBonus(PersoSnoopy* snoopy)
             {
             balleTamp = new Balle(m_vectBalle[i].getX(),m_vectBalle[i].getY(),-m_vectBalle[i].getDepX(),-m_vectBalle[i].getDepY());
             m_vectBalle.push_back(*balleTamp);
+            delete m_bonusMultiBalle;
+            m_bonusMultiBalle = NULL;
+            }
+          if(m_bonusMultiBalle != NULL && snoopy->getX() == m_bonusMultiBalle->getX() && snoopy->getY() == m_bonusMultiBalle->getY())
+            {
             delete m_bonusMultiBalle;
             m_bonusMultiBalle = NULL;
             }
@@ -679,7 +684,7 @@ void Niveau::setCordSnoopClav(PersoSnoopy* snoopy, Niveau* niveau, char toucheUt
             {
                 snoopy->setX(snoopy->getX()-1);//si il y a un point dans la direction on veut avancer
             }
-            if((snoopy->getX()-1 >=0) && getPlateau()[snoopy->getX()-1][snoopy->getY()] >= '0' && getPlateau()[snoopy->getX()-1][snoopy->getY()] < '4' )
+            else if((snoopy->getX()-1 >=0) && getPlateau()[snoopy->getX()-1][snoopy->getY()] >= '0' && getPlateau()[snoopy->getX()-1][snoopy->getY()] < '4' )
             {
                 snoopy->setX(snoopy->getX()-1);//si il y a un point dans la direction on veut avancer
             }
@@ -714,6 +719,10 @@ void Niveau::setCordSnoopClav(PersoSnoopy* snoopy, Niveau* niveau, char toucheUt
                 m_tabOiseau.erase(m_tabOiseau.begin()+index);//on supprime l'oiseau du vector
                 snoopy->setX(snoopy->getX()-1);//on deplace snoopy vers l'ancienne position de l'oiseau
             }
+            else if((snoopy->getX()-1 >=0) && getPlateau()[snoopy->getX()-1][snoopy->getY()] == 'm')
+            {
+                snoopy->setX(snoopy->getX()-1);//si il y a un point dans la direction on veut avancer
+            }
 
             snoopy->setModeDemolition(false);//on supprime le mode demolition, pour qu'il ne dure qu'un tour(à chaque fois qu'on tape sur une des 4 directions)
         }
@@ -723,7 +732,7 @@ void Niveau::setCordSnoopClav(PersoSnoopy* snoopy, Niveau* niveau, char toucheUt
             {
             snoopy->setX(snoopy->getX()+1);
             }
-            if((snoopy->getX()+1< m_col) && (getPlateau()[snoopy->getX()+1][snoopy->getY()] >= '0' && getPlateau()[snoopy->getX()+1][snoopy->getY()]  < '4' ))
+            else if((snoopy->getX()+1< m_col) && (getPlateau()[snoopy->getX()+1][snoopy->getY()] >= '0' && getPlateau()[snoopy->getX()+1][snoopy->getY()]  < '4' ))
             {
                 snoopy->setX(snoopy->getX()+1);//si il y a un point dans la direction on veut avancer
             }
@@ -758,6 +767,11 @@ void Niveau::setCordSnoopClav(PersoSnoopy* snoopy, Niveau* niveau, char toucheUt
                 m_tabOiseau.erase(m_tabOiseau.begin()+index);
                 snoopy->setX(snoopy->getX()+1);
             }
+            else if((snoopy->getX()+1< m_col) && (getPlateau()[snoopy->getX()+1][snoopy->getY()] == 'm'))
+            {
+            snoopy->setX(snoopy->getX()+1);
+            }
+
             snoopy->setModeDemolition(false);
         }
         if ((key == 'k')||(key == 'K')) /// bas// toutes les explication sont au niveau du haut de la methode sur le 'J'
@@ -766,7 +780,7 @@ void Niveau::setCordSnoopClav(PersoSnoopy* snoopy, Niveau* niveau, char toucheUt
             {
                 snoopy->setY(snoopy->getY()+1);
             }
-            if((snoopy->getY()+1 <= m_lig-1 ) && getPlateau()[snoopy->getX()][snoopy->getY()+1] >= '0' && getPlateau()[snoopy->getX()][snoopy->getY()+1]   < '4' )
+            else if((snoopy->getY()+1 <= m_lig-1 ) && getPlateau()[snoopy->getX()][snoopy->getY()+1] >= '0' && getPlateau()[snoopy->getX()][snoopy->getY()+1]   < '4' )
             {
                 snoopy->setY(snoopy->getY()+1);//si il y a un point dans la direction on veut avancer
             }
@@ -801,6 +815,10 @@ void Niveau::setCordSnoopClav(PersoSnoopy* snoopy, Niveau* niveau, char toucheUt
                 m_tabOiseau.erase(m_tabOiseau.begin()+index);
                 snoopy->setY(snoopy->getY()+1);
             }
+            else if((snoopy->getY()+1 <= m_lig-1 ) && getPlateau()[snoopy->getX()][snoopy->getY()+1] == 'm')
+            {
+                snoopy->setY(snoopy->getY()+1);
+            }
             snoopy->setModeDemolition(false);
         }
         if ((key == 'i')||(key == 'I')) ///  haut // toutes les explication sont au niveau du haut de la methode sur le 'J'
@@ -809,7 +827,7 @@ void Niveau::setCordSnoopClav(PersoSnoopy* snoopy, Niveau* niveau, char toucheUt
             {
                 snoopy->setY(snoopy->getY()-1);
             }
-            if((snoopy->getY()-1 >=0) && getPlateau()[snoopy->getX()][snoopy->getY()-1] >= '0' && getPlateau()[snoopy->getX()][snoopy->getY()-1] < '4' )
+            else if((snoopy->getY()-1 >=0) && getPlateau()[snoopy->getX()][snoopy->getY()-1] >= '0' && getPlateau()[snoopy->getX()][snoopy->getY()-1] < '4' )
             {
                 snoopy->setY(snoopy->getY()-1);//si il y a un point dans la direction on veut avancer
             }
@@ -842,6 +860,10 @@ void Niveau::setCordSnoopClav(PersoSnoopy* snoopy, Niveau* niveau, char toucheUt
                 snoopy->setPlusOiseau();
                 index = getPosiOiseauAuNivTab(m_tabOiseau, snoopy->getX(), snoopy->getY()-1);
                 m_tabOiseau.erase(m_tabOiseau.begin()+index);
+                snoopy->setY(snoopy->getY()-1);
+            }
+            if((snoopy->getY()-1 >=0) && getPlateau()[snoopy->getX()][snoopy->getY()-1] == 'm')
+            {
                 snoopy->setY(snoopy->getY()-1);
             }
             snoopy->setModeDemolition(false);
