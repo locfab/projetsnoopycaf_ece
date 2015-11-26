@@ -553,7 +553,6 @@ void Niveau::creerObjetSauv(std::string nom, PersoSnoopy* snoopy, Niveau* niveau
                 snoopy->setNbrOiseauxANul();
 
                 tailleTableau = getTabBlocs().size();
-
                 for(int i(0); i<tailleTableau; i++){
                 delete m_tabBlocs[i];}
 
@@ -565,6 +564,8 @@ void Niveau::creerObjetSauv(std::string nom, PersoSnoopy* snoopy, Niveau* niveau
                 m_tabOiseau.pop_back();}
 
                 delete m_balle;
+
+
                 niveau->creerObjetDebut(snoopy, nom, nivSuiv.str());
                 niveau->initCoordSnoop(snoopy);
             }
