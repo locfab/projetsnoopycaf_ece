@@ -41,6 +41,8 @@
 		<Unit filename="BlocsPoussables.h" />
 		<Unit filename="BonusAttrap.cpp" />
 		<Unit filename="BonusAttrap.h" />
+		<Unit filename="BonusMultiBalle.cpp" />
+		<Unit filename="BonusMultiBalle.h" />
 		<Unit filename="Console.cpp" />
 		<Unit filename="Console.h" />
 		<Unit filename="Menu.cpp" />

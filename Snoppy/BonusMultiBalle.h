@@ -1,13 +1,13 @@
-#ifndef BONUSATTRAP_H_INCLUDED
-#define BONUSATTRAP_H_INCLUDED
+#ifndef BONUSMULTIBALLE_H_INCLUDED
+#define BONUSMULTIBALLE_H_INCLUDED
 
-class BonusAttrap
+class BonusMultiBalle
 {
 	public:
 
-    BonusAttrap();
-    BonusAttrap(int x, int y, int tempsALaCreation);
-    ~BonusAttrap();
+    BonusMultiBalle();
+    BonusMultiBalle(int x, int y, int tempsALaCreation);
+    ~BonusMultiBalle();
 
     void setX(int x);
     void setY(int y);
@@ -18,6 +18,7 @@ class BonusAttrap
     int getTempsALaCreation() const;
 
     char getLettre() const;
+  
 
     protected:
 
@@ -27,4 +28,5 @@ class BonusAttrap
     int m_tempsALaCreation;
 };
 
-#endif // BONUSATTRAP_H_INCLUDED
+
+#endif // BONUSMULTIBALLE_H_INCLUDED

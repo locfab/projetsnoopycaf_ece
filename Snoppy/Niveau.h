@@ -3,6 +3,9 @@
 
 #include <iostream>
 #include <vector>
+#include <windows.h>
+#include "Console.h"
+
 
 #include "Menu.h"
 #include "Balle.h"
@@ -13,10 +16,10 @@
 #include "BlocsCassables.h"
 #include "BlocsPieges.h"
 #include "PersoSnoopy.h"
+#include "BonusMultiBalle.h"
 #include "BonusAttrap.h"
 
-#include <windows.h>
-#include "Console.h"
+
 
 
 class Niveau
@@ -35,6 +38,7 @@ class Niveau
 
 	std::vector<Blocs*> getTabBlocs();
 	std::vector<Oiseau> getTabOiseau();
+	std::vector<Balle> getVectBalle();
 
 	void creerObjetDebut(PersoSnoopy* snoopy, std::string nom, std::string decisionJoueurNiveau);
 	void creerObjetSauv(std::string nom, PersoSnoopy* snoopy, Niveau* niveau, std::string decisionJoueurNiveau);
@@ -53,16 +57,15 @@ class Niveau
 	void setNiveauCourant();
 	void setCordSnoopClav(PersoSnoopy* snoopy, Niveau* niveau, char toucheUtisateur);
 
-	char verificationBalle_Bords();
-	void verificationBalle_BlocsPoussables();
-	void verificationBalle_BlocsCassables();
-	void verificationBalle_BlocsPieges();
-	void verificationBalle_Oiseaux();
+	char verificationBalle_Bords(Balle* balle);
+	void verificationBalle_BlocsPoussables(Balle* balle);
+	void verificationBalle_BlocsCassables(Balle* balle);
+	void verificationBalle_BlocsPieges(Balle* balle);
+	void verificationBalle_Oiseaux(Balle* balle);
 
 	Console *pConsole = NULL;
 
 	void getDeplacementBalle(std::vector< std::vector<char> > plateau);
-	Balle* getBalle();
 
 	void gererBonus(PersoSnoopy* snoopy);
 
@@ -77,7 +80,8 @@ class Niveau
 	int m_colonnes;
 	double m_tempsRestant;
     Temps *m_temps;
-    Balle *m_balle;
+    std::vector<Balle> m_vectBalle;
+    BonusMultiBalle* m_bonusMultiBalle;
     BonusAttrap* m_bonusAttrap;
     std::vector<Oiseau> m_tabOiseau;
     std::vector<Blocs*> m_tabBlocs;
