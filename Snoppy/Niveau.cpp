@@ -617,7 +617,7 @@ void Niveau::setCordSnoopClav(PersoSnoopy* snoopy, Niveau* niveau, char toucheUt
             {
                 snoopy->setX(snoopy->getX()-1);//si il y a un point dans la direction on veut avancer
             }
-            if((snoopy->getX()-1 >=0) && getPlateau()[snoopy->getX()-1][snoopy->getY()] >= '0' && getPlateau()[snoopy->getX()-1][snoopy->getY()] < '4' )
+            else if((snoopy->getX()-1 >=0) && getPlateau()[snoopy->getX()-1][snoopy->getY()] >= '0' && getPlateau()[snoopy->getX()-1][snoopy->getY()] < '4' )
             {
                 snoopy->setX(snoopy->getX()-1);//si il y a un point dans la direction on veut avancer
             }
@@ -630,7 +630,7 @@ void Niveau::setCordSnoopClav(PersoSnoopy* snoopy, Niveau* niveau, char toucheUt
                 snoopy->setX(snoopy->getX()-1);//alors on le deplace snoopy dans la meme direction
                 }
             }
-           else if((snoopy->getX()-1 >=0) && getPlateau()[snoopy->getX()-1][snoopy->getY()] == 'C')//si il y a un blocs cassable
+            else if((snoopy->getX()-1 >=0) && getPlateau()[snoopy->getX()-1][snoopy->getY()] == 'C')//si il y a un blocs cassable
             {
                 blocs = getBlocsAuCord(getTabBlocs(),snoopy->getX()-1,snoopy->getY());// recuperer le blocs concerner à partir des coordonnes
                 if(snoopy->getModeDemolition())//si le mode demolition est actif
@@ -661,7 +661,7 @@ void Niveau::setCordSnoopClav(PersoSnoopy* snoopy, Niveau* niveau, char toucheUt
             {
             snoopy->setX(snoopy->getX()+1);
             }
-            if((snoopy->getX()+1< m_col) && (getPlateau()[snoopy->getX()+1][snoopy->getY()] >= '0' && getPlateau()[snoopy->getX()+1][snoopy->getY()]  < '4' ))
+            else if((snoopy->getX()+1< m_col) && (getPlateau()[snoopy->getX()+1][snoopy->getY()] >= '0' && getPlateau()[snoopy->getX()+1][snoopy->getY()]  < '4' ))
             {
                 snoopy->setX(snoopy->getX()+1);//si il y a un point dans la direction on veut avancer
             }
@@ -704,7 +704,7 @@ void Niveau::setCordSnoopClav(PersoSnoopy* snoopy, Niveau* niveau, char toucheUt
             {
                 snoopy->setY(snoopy->getY()+1);
             }
-            if((snoopy->getY()+1 <= m_lig-1 ) && getPlateau()[snoopy->getX()][snoopy->getY()+1] >= '0' && getPlateau()[snoopy->getX()][snoopy->getY()+1]   < '4' )
+            else if((snoopy->getY()+1 <= m_lig-1 ) && getPlateau()[snoopy->getX()][snoopy->getY()+1] >= '0' && getPlateau()[snoopy->getX()][snoopy->getY()+1]   < '4' )
             {
                 snoopy->setY(snoopy->getY()+1);//si il y a un point dans la direction on veut avancer
             }
@@ -747,7 +747,7 @@ void Niveau::setCordSnoopClav(PersoSnoopy* snoopy, Niveau* niveau, char toucheUt
             {
                 snoopy->setY(snoopy->getY()-1);
             }
-            if((snoopy->getY()-1 >=0) && getPlateau()[snoopy->getX()][snoopy->getY()-1] >= '0' && getPlateau()[snoopy->getX()][snoopy->getY()-1] < '4' )
+            else if((snoopy->getY()-1 >=0) && getPlateau()[snoopy->getX()][snoopy->getY()-1] >= '0' && getPlateau()[snoopy->getX()][snoopy->getY()-1] < '4' )
             {
                 snoopy->setY(snoopy->getY()-1);//si il y a un point dans la direction on veut avancer
             }
