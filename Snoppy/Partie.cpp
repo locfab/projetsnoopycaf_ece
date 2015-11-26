@@ -66,27 +66,29 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
         if(m_snoopy->getNbrVie()<=0) { gestionPlusDeVie(m_snoopy, m_niveau, pseudo, nomFichier, save); }//si plus de vies
         if(m_niveau->is_readable(nomFichier)) { changerVie(pseudo, m_snoopy); }
 
-        if(save != 0 && decisionJoueurMenu) { sauvegarde(pseudo, m_snoopy, m_niveau, partieEnCours); }
-        if(!partieEnCours && decisionJoueurMenu) {prepaEtLancerNivSuiv(m_snoopy, m_niveau, pseudo, decisionJoueurNiveau, partieEnCours);}
+        if(save != 0) { sauvegarde(pseudo, m_snoopy, m_niveau, partieEnCours); }
+        if(!partieEnCours) {prepaEtLancerNivSuiv(m_snoopy, m_niveau, pseudo, decisionJoueurNiveau, partieEnCours);}
     }
-
-    
-
-
-
+    if(decisionJoueurMenu == '3')
+    {
+        if(esc != 0) { quitterSansEnregister(m_niveau); }//si echap n'a pas ete apuiye
+        if(m_snoopy->getNbOiseauAttrap()==4){ prepaSauvPartieGagnee(m_niveau, m_snoopy, partieEnCours, save); }
+        if (!m_snoopy->getVivant()) { gestionDeMort(m_niveau, m_snoopy, pseudo, nomFichier); }
+    }
 
 
 }
 
 void Partie::prepaEtLancerNivSuiv(PersoSnoopy* snoopy, Niveau*niveau, std::string pseudo, std::string decisionJoueurNiveau, bool partieEnCours)
 {
-    delete niveau;
     delete snoopy;
+    delete niveau;
 
-    snoopy = new PersoSnoopy();
-    niveau = new Niveau();
+    m_snoopy = new PersoSnoopy();
+    m_niveau = new Niveau();
 
-jouer(this, '2', pseudo, "0");
+
+    jouer(this, '2', pseudo, "0");
 }
 
 void Partie::recupererEntresClav(Niveau* niveau, PersoSnoopy* snoopy, int& pause, int& save, int& esc,char& toucheUtilisateur)

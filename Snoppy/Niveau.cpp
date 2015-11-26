@@ -24,10 +24,17 @@ Niveau::Niveau()
 /// Destructeur
 Niveau::~Niveau()
 {
-        for(unsigned i=0; i<m_tabBlocs.size();++i){
+    int nb = m_tabBlocs.size();
+
+    for(int i(0); i<nb; i++){
     delete m_tabBlocs[i];}
+
+    for(int i(0); i<nb; i++){
+    m_tabBlocs.pop_back();}
+
     delete m_temps;
     delete m_balle;
+    delete m_bonusAttrap;
 }
 
 void Niveau::setPlateau(std::string niveau)
@@ -106,7 +113,7 @@ void Niveau::afficherPlateau(PersoSnoopy* snoopy, char decisionJoueurMenu, std::
         pConsole->gotoLigCol(7, 50);
         std::cout << "Nombre d'oiseaux attrapes : " << snoopy->getNbOiseauAttrap() << "  " << std::endl;
     }
-    
+
 }
 
 
@@ -171,7 +178,6 @@ void Niveau::changerPlateau(PersoSnoopy* snoopy)// regenerer un plateau avec les
             this->m_plateau[i][j] = '.';// on initialise avec des points
         }
     }
-
 
     if(verificationBalle_Bords() == 1)//on met la balle à partir de nouvelle coordonnes
     {
@@ -545,17 +551,20 @@ void Niveau::creerObjetSauv(std::string nom, PersoSnoopy* snoopy, Niveau* niveau
                 nivSuiv << snoopy->getNiveauActuel();
                 niveau->setPlateau(nivSuiv.str());
                 snoopy->setNbrOiseauxANul();
-                delete m_balle;
+
                 tailleTableau = getTabBlocs().size();
-                for(int i(0); i< tailleTableau ;i++)
-                {
-                    m_tabBlocs.pop_back();
-                }
+
+                for(int i(0); i<tailleTableau; i++){
+                delete m_tabBlocs[i];}
+
+                for(int i(0); i<tailleTableau; i++){
+                m_tabBlocs.pop_back();}
+
                 tailleTableau = getTabOiseau().size();
-                for(int i(0); i< tailleTableau ;i++)
-                {
-                    m_tabOiseau.pop_back();
-                }
+                for(int i(0); i<tailleTableau; i++){
+                m_tabOiseau.pop_back();}
+
+                delete m_balle;
                 niveau->creerObjetDebut(snoopy, nom, nivSuiv.str());
                 niveau->initCoordSnoop(snoopy);
             }

@@ -90,6 +90,7 @@ void Menu::creerPartie(char decisionJoueurMenu)
          if(!is_readable(nomFichier) && nom != "r")
             {
             m_partie->jouer(m_partie, decisionJoueurMenu, nom, "1");
+            delete m_partie;
             }
     }
 
@@ -110,6 +111,7 @@ void Menu::creerPartie(char decisionJoueurMenu)
             if(decisionJoueurNiveau != "r" )
                {
                 m_partie->jouer(m_partie, decisionJoueurMenu, nom, decisionJoueurNiveau);
+                delete m_partie;
                }
 
         }
@@ -130,13 +132,14 @@ void Menu::creerPartie(char decisionJoueurMenu)
             if(decisionJoueurNiveau != "r" )
                {
                 m_partie->jouer(m_partie, decisionJoueurMenu, "rien", decisionJoueurNiveau);
+                delete m_partie;
                }
 
         }
     }
 
    
-    delete m_partie;
+    
     system("cls");
     afficherMenu();
 }
