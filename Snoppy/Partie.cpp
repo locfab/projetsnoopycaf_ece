@@ -41,7 +41,7 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
     chargerPartieAvecMenu(pseudo, m_snoopy, m_niveau, decisionJoueurNiveau, decisionJoueurMenu);
     if(decisionJoueurMenu !='3' && atoi(decisionJoueurNiveau.c_str()) > m_snoopy->getNiveauDejaAtteint()) accepter = false;
 
-    while(onContinu(m_snoopy, m_niveau, esc, timeOut, accepter, save)) ///Boucle de jeu tant qui indique c'est tous les parametres pour continuer à jouer sont reunit
+    while(onContinu(m_snoopy, m_niveau, esc, timeOut, accepter, save, decisionJoueurMenu)) ///Boucle de jeu tant qui indique c'est tous les parametres pour continuer à jouer sont reunit
     {
             m_niveau->getDeplacementBalle(m_niveau->getPlateau());
             m_niveau->checkerPlateauPourBalle();
@@ -54,7 +54,7 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
             gestionDePause(m_niveau, pause, toucheUtilisateur, tempsDePause, esc);
     }
 
-    if(decisionJoueurMenu != '3')
+    if(decisionJoueurMenu != '3')// menu 1 et 2 sans mot de passe super Utilsateur
     {
         if(m_niveau->getTempsRestant() <= 0) { tempsEcoule(m_niveau, timeOut); } /// Est-ce que le temps restant est inférieur à 0 ?
         if(esc != 0) { quitterSansEnregister(m_niveau); }//si echap n'a pas ete apuiye
@@ -68,7 +68,7 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
         if(save != 0) { sauvegarde(pseudo, m_snoopy, m_niveau, partieEnCours); }
         if(!partieEnCours) {prepaEtLancerNivSuiv(m_snoopy, m_niveau, pseudo, decisionJoueurNiveau, partieEnCours);}
     }
-    if(decisionJoueurMenu == '3')
+    if(decisionJoueurMenu == '3')//menu 3 super Utilsateur
     {
         if(esc != 0) { quitterSansEnregister(m_niveau); }//si echap n'a pas ete apuiye
         if(m_snoopy->getNbOiseauAttrap()==4){ prepaSauvPartieGagnee(m_niveau, m_snoopy, partieEnCours, save); }
@@ -289,9 +289,10 @@ void Partie::chargerPartieAvecMenu2(std::string nom, PersoSnoopy* snoopy, Niveau
         }
 }
 
-bool Partie::onContinu(PersoSnoopy* snoopy, Niveau*niveau, int esc, int timeOut, bool accepter, int save)
+bool Partie::onContinu(PersoSnoopy* snoopy, Niveau*niveau, int esc, int timeOut, bool accepter, int save, char decisionJoueurMenu)
 {
-    if((esc == 0) && (timeOut == 0) && (accepter) && save==0)
+    if(save != 0 && decisionJoueurMenu == '3'){ save = 0; }
+    if((esc == 0) && (timeOut == 0) && (accepter) && (save==0))
     {
         if(snoopy->getVivant() && snoopy->getNbOiseauAttrap()<4 && snoopy->getNbrVie()>0)
         {
