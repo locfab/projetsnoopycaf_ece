@@ -41,13 +41,12 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
     chargerPartieAvecMenu(pseudo, m_snoopy, m_niveau, decisionJoueurNiveau, decisionJoueurMenu);
     if(decisionJoueurMenu !='3' && atoi(decisionJoueurNiveau.c_str()) > m_snoopy->getNiveauDejaAtteint()) accepter = false;
 
-
     while(onContinu(m_snoopy, m_niveau, esc, timeOut, accepter, save)) ///Boucle de jeu tant qui indique c'est tous les parametres pour continuer à jouer sont reunit
     {
             m_niveau->getDeplacementBalle(m_niveau->getPlateau());
             m_niveau->checkerPlateauPourBalle();
-            m_niveau->setCordSnoopClav(m_snoopy, m_niveau, toucheUtilisateur);
             m_niveau->changerPlateau(m_snoopy);
+            m_niveau->setCordSnoopClav(m_snoopy, m_niveau, toucheUtilisateur);
             m_niveau->gererBonus(m_snoopy);
             m_niveau->afficherPlateau(m_snoopy, decisionJoueurMenu, decisionJoueurNiveau);
             m_niveau->getAttendre(0.08);         /// Temporisation de 0.1 seconde
@@ -331,7 +330,15 @@ void Partie::sauvegarde(std::string pseudo, PersoSnoopy* snoopy, Niveau* niveau,
 
             monFlux << 's' << ' ' << snoopy->getX() << ' ' << snoopy->getY() << ' ' << snoopy->getNbrVie() << ' ' << snoopy->getScore() << std::endl;
 
-            monFlux << 'B' << ' ' << niveau->getBalle()->getX() << ' ' << niveau->getBalle()->getY() << ' ' << niveau->getBalle()->getDepX() << ' ' << niveau->getBalle()->getDepY() << std::endl;
+            monFlux << 'B';
+
+                monFlux << ' ' << niveau->getVectBalle().size() << ' ';
+
+                for(unsigned i=0; i<niveau->getVectBalle().size();i++)
+                    {
+                        monFlux << niveau->getVectBalle()[i].getX() << ' ' << niveau->getVectBalle()[i].getY() << ' ' << niveau->getVectBalle()[i].getDepX() << ' ' << niveau->getVectBalle()[i].getDepY()<< ' ';
+                    }
+                monFlux << std::endl;
 
             monFlux << 'P';
                 for(unsigned short i=0; i<niveau->getTabBlocs().size();i++)

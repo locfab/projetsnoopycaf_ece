@@ -18,11 +18,6 @@ char BonusAttrap::getLettre() const
  	return m_saLetrre;
 }
 
-/*int BonusAttrap::getTempsALaCreation(Temps* temps)
-{
-	tempsALaCreation->getTempsRestant;
-}*/
-
 
 
 
