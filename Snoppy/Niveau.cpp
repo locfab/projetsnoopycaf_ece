@@ -675,7 +675,7 @@ void Niveau::initCoordSnoop(PersoSnoopy* snoopy)//initialisation des coordonne d
 void Niveau::setCordSnoopClav(PersoSnoopy* snoopy, Niveau* niveau, char toucheUtisateur)
 {
     Blocs* blocs;
-    int key(toucheUtisateur);
+    int const key(toucheUtisateur);
     int index;
 
         if ((key == 'j')||(key == 'J')) ///  gauche
