@@ -16,8 +16,8 @@ Menu::~Menu()
 
 void Menu::afficherMenu()
 {
-    char choixMenu('0');
-    setChoixMenu(choixMenu);
+    std::string choixMenu("0");
+    setChoixMenu(choixMenu[0]);
 
 
     while(this->getChoixMenu()<'1' || this->getChoixMenu()>'5')
@@ -35,7 +35,10 @@ void Menu::afficherMenu()
         std::cout << "Faites votre choix:  ";
         std::cin.clear();
         std::cin >> choixMenu;
-        this->setChoixMenu(choixMenu);
+        if(choixMenu.size()== 1)
+        this->setChoixMenu(choixMenu[0]);
+        else
+        choixMenu = "0";
      }
 
      this->choix(getChoixMenu());
@@ -138,8 +141,8 @@ void Menu::creerPartie(char decisionJoueurMenu)
         }
     }
 
-   
-    
+
+
     system("cls");
     afficherMenu();
 }
