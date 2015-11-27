@@ -903,11 +903,11 @@ void Niveau::verificationBalle_BlocsPoussables(Balle* balle)
     /// Quand l'obstacle P est en bas a droite de la balle
     if((balle->getX() != m_col-1) && (balle->getY() != m_lig-1) && (m_plateau[balle->getX()+1][balle->getY()+1] == 'P') && (balle->getDepX()==1) && (balle->getDepY()==1) )
     {
-        if((m_plateau[balle->getX()+1][balle->getY()] == 'P')) /// A-t-on un P a droite de la balle ?
+        if(!(m_plateau[balle->getX()+1][balle->getY()] == '.')) /// A-t-on un P a droite de la balle ?
         {
             balle->setDepX(-balle->getDepX());
         }
-        else if((m_plateau[balle->getX()][balle->getY()+1] == 'P')) /// A-t-on un P en dessous de la balle ?
+        else if(!(m_plateau[balle->getX()][balle->getY()+1] == '.')) /// A-t-on un P en dessous de la balle ?
         {
             balle->setDepY(-balle->getDepY());
         }
@@ -921,11 +921,11 @@ void Niveau::verificationBalle_BlocsPoussables(Balle* balle)
     /// Quand l'obstacle P est en bas a gauche de la balle
     if((balle->getX() != 0) && (balle->getY() != m_lig-1) && (m_plateau[balle->getX()-1][balle->getY()+1] == 'P') && (balle->getDepX()==-1) && (balle->getDepY()==1) )
     {
-        if((m_plateau[balle->getX()-1][balle->getY()] == 'P')) /// A-t-on un P a gauche de la balle ?
+        if(!(m_plateau[balle->getX()-1][balle->getY()] == '.')) /// A-t-on un P a gauche de la balle ?
         {
             balle->setDepX(-balle->getDepX());
         }
-        else if((m_plateau[balle->getX()][balle->getY()+1] == 'P')) /// A-t-on un P en dessous de la balle ?
+        else if(!(m_plateau[balle->getX()][balle->getY()+1] == '.')) /// A-t-on un P en dessous de la balle ?
         {
             balle->setDepY(-balle->getDepY());
         }
@@ -939,11 +939,11 @@ void Niveau::verificationBalle_BlocsPoussables(Balle* balle)
     /// Quand l'obstacle P est en haut a droite de la balle
     if((balle->getX() != m_col-1) && (balle->getY() != 0) && (m_plateau[balle->getX()+1][balle->getY()-1] == 'P') && (balle->getDepX()==1) && (balle->getDepY()==-1) )
     {
-        if((m_plateau[balle->getX()][balle->getY()-1] == 'P')) /// A-t-on un P au dessus de la balle ?
+        if(!(m_plateau[balle->getX()][balle->getY()-1] == '.')) /// A-t-on un P au dessus de la balle ?
         {
             balle->setDepY(-balle->getDepY());
         }
-        else if((m_plateau[balle->getX()+1][balle->getY()] == 'P')) /// A-t-on un P a droite de la balle ?
+        else if(!(m_plateau[balle->getX()+1][balle->getY()] == '.')) /// A-t-on un P a droite de la balle ?
         {
             balle->setDepX(-balle->getDepX());
         }
@@ -957,11 +957,11 @@ void Niveau::verificationBalle_BlocsPoussables(Balle* balle)
     /// Quand l'obstacle P est en haut a gauche de la balle
     if((balle->getX() != 0) && (balle->getY() != 0) && (m_plateau[balle->getX()-1][balle->getY()-1] == 'P') && (balle->getDepX()==-1) && (balle->getDepY()==-1) )
     {
-        if((m_plateau[balle->getX()][balle->getY()-1] == 'P')) /// A-t-on un P au dessus de la balle ?
+        if(!(m_plateau[balle->getX()][balle->getY()-1] == '.')) /// A-t-on un P au dessus de la balle ?
         {
             balle->setDepY(-balle->getDepY());
         }
-        else if((m_plateau[balle->getX()-1][balle->getY()] == 'P')) /// A-t-on un P a gauche de la balle ?
+        else if(!(m_plateau[balle->getX()-1][balle->getY()] == '.')) /// A-t-on un P a gauche de la balle ?
         {
             balle->setDepX(-balle->getDepX());
         }
@@ -980,11 +980,11 @@ void Niveau::verificationBalle_BlocsCassables(Balle* balle)
     /// Quand l'obstacle C est en bas a droite de la balle
     if((balle->getX() != m_col-1) && (balle->getY() != m_lig-1) && (m_plateau[balle->getX()+1][balle->getY()+1] == 'C') && (balle->getDepX()==1) && (balle->getDepY()==1) )
     {
-        if((m_plateau[balle->getX()+1][balle->getY()] == 'C')) /// A-t-on un C a droite de la balle ?
+        if(!(m_plateau[balle->getX()+1][balle->getY()] == '.')) /// A-t-on un C a droite de la balle ?
         {
             balle->setDepX(-balle->getDepX());
         }
-        else if((m_plateau[balle->getX()][balle->getY()+1] == 'C')) /// A-t-on un C en dessous de la balle ?
+        else if(!(m_plateau[balle->getX()][balle->getY()+1] == '.')) /// A-t-on un C en dessous de la balle ?
         {
             balle->setDepY(-balle->getDepY());
         }
@@ -998,11 +998,11 @@ void Niveau::verificationBalle_BlocsCassables(Balle* balle)
     /// Quand l'obstacle C est en bas a gauche de la balle
     if((balle->getX() != 0) && (balle->getY() != m_lig-1) && (m_plateau[balle->getX()-1][balle->getY()+1] == 'C') && (balle->getDepX()==-1) && (balle->getDepY()==1) )
     {
-        if((m_plateau[balle->getX()-1][balle->getY()] == 'C')) /// A-t-on un C a gauche de la balle ?
+        if(!(m_plateau[balle->getX()-1][balle->getY()] == '.')) /// A-t-on un C a gauche de la balle ?
         {
             balle->setDepX(-balle->getDepX());
         }
-        else if((m_plateau[balle->getX()][balle->getY()+1] == 'C')) /// A-t-on un C en dessous de la balle ?
+        else if(!(m_plateau[balle->getX()][balle->getY()+1] == '.')) /// A-t-on un C en dessous de la balle ?
         {
             balle->setDepY(-balle->getDepY());
         }
@@ -1016,11 +1016,11 @@ void Niveau::verificationBalle_BlocsCassables(Balle* balle)
     /// Quand l'obstacle C est en haut a droite de la balle
     if((balle->getX() != m_col-1) && (balle->getY() != 0) && (m_plateau[balle->getX()+1][balle->getY()-1] == 'C') && (balle->getDepX()==1) && (balle->getDepY()==-1) )
     {
-        if((m_plateau[balle->getX()][balle->getY()-1] == 'C')) /// A-t-on un C au dessus de la balle ?
+        if(!(m_plateau[balle->getX()][balle->getY()-1] == '.')) /// A-t-on un C au dessus de la balle ?
         {
             balle->setDepY(-balle->getDepY());
         }
-        else if((m_plateau[balle->getX()+1][balle->getY()] == 'C')) /// A-t-on un C a droite de la balle ?
+        else if(!(m_plateau[balle->getX()+1][balle->getY()] == '.')) /// A-t-on un C a droite de la balle ?
         {
             balle->setDepX(-balle->getDepX());
         }
@@ -1034,11 +1034,11 @@ void Niveau::verificationBalle_BlocsCassables(Balle* balle)
     /// Quand l'obstacle C est en haut a gauche de la balle
     if((balle->getX() != 0) && (balle->getY() != 0) && (m_plateau[balle->getX()-1][balle->getY()-1] == 'C') && (balle->getDepX()==-1) && (balle->getDepY()==-1) )
     {
-        if((m_plateau[balle->getX()][balle->getY()-1] == 'C')) /// A-t-on un C au dessus de la balle ?
+        if(!(m_plateau[balle->getX()][balle->getY()-1] == '.')) /// A-t-on un C au dessus de la balle ?
         {
             balle->setDepY(-balle->getDepY());
         }
-        else if((m_plateau[balle->getX()-1][balle->getY()] == 'C')) /// A-t-on un C a gauche de la balle ?
+        else if(!(m_plateau[balle->getX()-1][balle->getY()] == '.')) /// A-t-on un C a gauche de la balle ?
         {
             balle->setDepX(-balle->getDepX());
         }
@@ -1057,11 +1057,11 @@ void Niveau::verificationBalle_BlocsPieges(Balle* balle)
     /// Quand l'obstacle T est en bas a droite de la balle
     if((balle->getX() != m_col-1) && (balle->getY() != m_lig-1) && (m_plateau[balle->getX()+1][balle->getY()+1] == 'T') && (balle->getDepX()==1) && (balle->getDepY()==1) )
     {
-        if((m_plateau[balle->getX()+1][balle->getY()] == 'T')) /// A-t-on un T a droite de la balle ?
+        if(!(m_plateau[balle->getX()+1][balle->getY()] == '.')) /// A-t-on un T a droite de la balle ?
         {
             balle->setDepX(-balle->getDepX());
         }
-        else if((m_plateau[balle->getX()][balle->getY()+1] == 'T')) /// A-t-on un T en dessous de la balle ?
+        else if(!(m_plateau[balle->getX()][balle->getY()+1] == '.')) /// A-t-on un T en dessous de la balle ?
         {
             balle->setDepY(-balle->getDepY());
         }
@@ -1075,11 +1075,11 @@ void Niveau::verificationBalle_BlocsPieges(Balle* balle)
     /// Quand l'obstacle T est en bas a gauche de la balle
     if((balle->getX() != 0) && (balle->getY() != m_lig-1) && (m_plateau[balle->getX()-1][balle->getY()+1] == 'T') && (balle->getDepX()==-1) && (balle->getDepY()==1) )
     {
-        if((m_plateau[balle->getX()-1][balle->getY()] == 'T')) /// A-t-on un T a gauche de la balle ?
+        if(!(m_plateau[balle->getX()-1][balle->getY()] == '.')) /// A-t-on un T a gauche de la balle ?
         {
             balle->setDepX(-balle->getDepX());
         }
-        else if((m_plateau[balle->getX()][balle->getY()+1] == 'T')) /// A-t-on un T en dessous de la balle ?
+        else if(!(m_plateau[balle->getX()][balle->getY()+1] == '.')) /// A-t-on un T en dessous de la balle ?
         {
             balle->setDepY(-balle->getDepY());
         }
@@ -1093,11 +1093,11 @@ void Niveau::verificationBalle_BlocsPieges(Balle* balle)
     /// Quand l'obstacle T est en haut a droite de la balle
     if((balle->getX() != m_col-1) && (balle->getY() != 0) && (m_plateau[balle->getX()+1][balle->getY()-1] == 'T') && (balle->getDepX()==1) && (balle->getDepY()==-1) )
     {
-        if((m_plateau[balle->getX()][balle->getY()-1] == 'T')) /// A-t-on un T au dessus de la balle ?
+        if(!(m_plateau[balle->getX()][balle->getY()-1] == '.')) /// A-t-on un T au dessus de la balle ?
         {
             balle->setDepY(-balle->getDepY());
         }
-        else if((m_plateau[balle->getX()+1][balle->getY()] == 'T')) /// A-t-on un T a droite de la balle ?
+        else if(!(m_plateau[balle->getX()+1][balle->getY()] == '.')) /// A-t-on un T a droite de la balle ?
         {
             balle->setDepX(-balle->getDepX());
         }
@@ -1111,11 +1111,11 @@ void Niveau::verificationBalle_BlocsPieges(Balle* balle)
     /// Quand l'obstacle T est en haut a gauche de la balle
     if((balle->getX() != 0) && (balle->getY() != 0) && (m_plateau[balle->getX()-1][balle->getY()-1] == 'T') && (balle->getDepX()==-1) && (balle->getDepY()==-1) )
     {
-        if((m_plateau[balle->getX()][balle->getY()-1] == 'T')) /// A-t-on un T au dessus de la balle ?
+        if(!(m_plateau[balle->getX()][balle->getY()-1] == '.')) /// A-t-on un T au dessus de la balle ?
         {
             balle->setDepY(-balle->getDepY());
         }
-        else if((m_plateau[balle->getX()-1][balle->getY()] == 'T')) /// A-t-on un T a gauche de la balle ?
+        else if(!(m_plateau[balle->getX()-1][balle->getY()] == '.')) /// A-t-on un T a gauche de la balle ?
         {
             balle->setDepX(-balle->getDepX());
         }
