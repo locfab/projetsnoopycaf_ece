@@ -20,7 +20,6 @@ void Balle::deplacement() // Deplace la balle en diagonale selon depx et depy qu
 }
 void Balle::directionDuDeplacementSuivant() // doit gerer depx et depy et les changer en fct du terrarain et des collisions
 {
-    char lettreIntermediaire;
 
     if( ((getX() + getDepX()) < 0) )
     {

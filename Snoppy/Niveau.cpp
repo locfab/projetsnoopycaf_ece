@@ -149,7 +149,7 @@ void Niveau::setTempsRestant(double newTempsRestant)
 /// Getter sur le déplacement de la balle
 void Niveau::setDeplacementBalle()
 {
-    for(int i(0); i< m_vectBalle.size(); i++)
+    for(unsigned i(0); i< m_vectBalle.size(); i++)
     {
         m_vectBalle[i].deplacement();
     }
@@ -181,7 +181,7 @@ void Niveau::changerPlateau(PersoSnoopy* snoopy)// regenerer un plateau avec les
             this->m_plateau[i][j] = '.';// on initialise avec des points
         }
     }
-    for(int i(0); i< m_vectBalle.size();i++)
+    for(unsigned i(0); i< m_vectBalle.size();i++)
     {
       if(verificationBalle_Bords(&m_vectBalle[i]) == '1')//on met la balle à partir de nouvelle coordonnes
         {
@@ -210,7 +210,7 @@ void Niveau::changerPlateau(PersoSnoopy* snoopy)// regenerer un plateau avec les
 /// On appelle la vérification de tous les blocs
 void Niveau::checkerPlateauPourBalle()
 {
-    for(int i(0); i< m_vectBalle.size(); i++)
+    for(unsigned i(0); i< m_vectBalle.size(); i++)
     {
         verificationBalle_BlocsPoussables(&m_vectBalle[i]);
         verificationBalle_BlocsCassables(&m_vectBalle[i]);
@@ -429,7 +429,6 @@ void Niveau::creerObjetSauv(std::string nom, PersoSnoopy* snoopy, Niveau* niveau
     int niveauDejaAtteint;
     bool partieEnCours;
     int tailleTableau;
-    int rien(0);
     std::ostringstream nivSuiv;
 
 
@@ -875,7 +874,7 @@ void Niveau::setCordSnoopClav(PersoSnoopy* snoopy, Niveau* niveau, char toucheUt
 
 bool Niveau::toucheBalle(PersoSnoopy* snoopy, Niveau* niveau)//savoir la la balle touche snoopy
 {
-      for(int i(0); i< m_vectBalle.size(); i++)
+      for(unsigned i(0); i< m_vectBalle.size(); i++)
       {
         if(snoopy->getX() == niveau->m_vectBalle[i].getX() && snoopy->getY() == niveau->m_vectBalle[i].getY())
           {

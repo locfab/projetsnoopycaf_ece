@@ -2,7 +2,7 @@
 #include "BlocsPoussables.h"
 
 
-BlocsPoussables::BlocsPoussables(): Blocs(), m_saLetrre('P')
+BlocsPoussables::BlocsPoussables(): Blocs(), m_saLetrre('P'), m_poussable(true)
 {
 }
 
