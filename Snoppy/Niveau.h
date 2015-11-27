@@ -56,6 +56,7 @@ class Niveau
     void setTempsRestant(double newTempsRestant);
 	void setNiveauCourant();
 	void setCordSnoopClav(PersoSnoopy* snoopy, Niveau* niveau, char toucheUtisateur);
+	void setDeplacementBalle();
 
 	char verificationBalle_Bords(Balle* balle);
 	void verificationBalle_BlocsPoussables(Balle* balle);
@@ -65,7 +66,7 @@ class Niveau
 
 	Console *pConsole = NULL;
 
-	void getDeplacementBalle(std::vector< std::vector<char> > plateau);
+	
 
 	void gererBonus(PersoSnoopy* snoopy);
 

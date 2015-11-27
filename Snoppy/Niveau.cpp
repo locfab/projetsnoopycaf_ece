@@ -104,12 +104,6 @@ void Niveau::afficherPlateau(PersoSnoopy* snoopy, char decisionJoueurMenu, std::
         std::cout << "Score : " << snoopy->getScore() << "  " << std::endl;
         pConsole->gotoLigCol(11, 50);
         std::cout << "Meilleur niveau atteint : " << snoopy->getNiveauDejaAtteint() << "  " << std::endl;
-       /* pConsole->gotoLigCol(12, 50);
-        std::cout << "Cord balle : " << m_vectBalle[0].getX() << "   " << m_vectBalle[0].getY() <<  "   " <<std::endl;
-        pConsole->gotoLigCol(13, 50);
-        std::cout << "Cord balle dep : " << m_vectBalle[0].getDepX() << "    " << m_vectBalle[0].getDepY() << "   " << std::endl;
-        pConsole->gotoLigCol(14, 50);
-        std::cout << "nb balle : " << m_vectBalle.size() << "   " << std::endl;*/
     }
     if(decisionJoueurMenu == '3')
     {
@@ -153,11 +147,11 @@ void Niveau::setTempsRestant(double newTempsRestant)
 }
 
 /// Getter sur le déplacement de la balle
-void Niveau::getDeplacementBalle(std::vector< std::vector<char> > plateau)
+void Niveau::setDeplacementBalle()
 {
     for(int i(0); i< m_vectBalle.size(); i++)
     {
-        m_vectBalle[i].deplacement(plateau);
+        m_vectBalle[i].deplacement();
     }
 }
 

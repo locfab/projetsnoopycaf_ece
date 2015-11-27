@@ -43,7 +43,7 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
 
     while(onContinu(m_snoopy, m_niveau, esc, timeOut, accepter, save, decisionJoueurMenu)) ///Boucle de jeu tant qui indique c'est tous les parametres pour continuer à jouer sont reunit
     {
-            m_niveau->getDeplacementBalle(m_niveau->getPlateau());
+            m_niveau->setDeplacementBalle();
             m_niveau->checkerPlateauPourBalle();
             m_niveau->changerPlateau(m_snoopy);
             m_niveau->setCordSnoopClav(m_snoopy, m_niveau, toucheUtilisateur);

@@ -14,11 +14,11 @@ Balle::~Balle()
 {
 }
 
-void Balle::deplacement(std::vector< std::vector<char> > plateau) // Deplace la balle en diagonale selon depx et depy qui pourront etre changer en fct du terrain grace a la fct directionDuDeplacementSuivant
+void Balle::deplacement() // Deplace la balle en diagonale selon depx et depy qui pourront etre changer en fct du terrain grace a la fct directionDuDeplacementSuivant
 {
-	directionDuDeplacementSuivant(plateau);
+	directionDuDeplacementSuivant();
 }
-void Balle::directionDuDeplacementSuivant(std::vector< std::vector<char> > plateau) // doit gerer depx et depy et les changer en fct du terrarain et des collisions
+void Balle::directionDuDeplacementSuivant() // doit gerer depx et depy et les changer en fct du terrarain et des collisions
 {
     char lettreIntermediaire;
 
