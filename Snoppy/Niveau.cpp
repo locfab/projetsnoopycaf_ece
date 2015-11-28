@@ -74,7 +74,28 @@ void Niveau::afficherPlateau(PersoSnoopy* snoopy)
     {
         for (int i=0; i< col; i++)
         {
-            std::cout << this->m_plateau[i][j] << " ";
+
+
+            switch(m_plateau[i][j])
+            {
+            case 'S':
+                pConsole->setColor(COLOR_PURPLE);
+                std::cout << this->m_plateau[i][j] << " ";
+                break;
+            case 'P':
+                pConsole->setColor(COLOR_PURPLE);
+            default:
+                pConsole->setColor(COLOR_WHITE);
+                break;
+
+
+
+
+
+            }
+
+
+
         }
         std::cout << std::endl;
         std::cout << std::endl;
