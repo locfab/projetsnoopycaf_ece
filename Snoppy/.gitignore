@@ -1,6 +1,7 @@
 *.o
 *.a
 sauvegarde/*.txt
+savegarde/!score.txt
 Snoppy/sauvegarde/*.txt
 bin/Debug/Snoppy.exe
 Snoppy.layout
