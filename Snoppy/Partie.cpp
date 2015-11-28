@@ -73,7 +73,7 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
 
         if(save != 0) { sauvegarde(pseudo, m_snoopy, m_niveau, partieEnCours); }
         if(!partieEnCours) {prepaEtLancerNivSuiv(m_snoopy, m_niveau, pseudo, decisionJoueurNiveau, partieEnCours);}
-        setScoreMax(10);
+
     }
     if(decisionJoueurMenu == '3')//menu 3 super Utilsateur
     {
@@ -82,7 +82,7 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
         if (m_niveau->toucheBalle(m_snoopy, m_niveau)) { m_snoopy->setVivant(false);}
         if (!m_snoopy->getVivant()) { gestionDeMort(m_niveau, m_snoopy, pseudo, nomFichier); }
     }
-
+ setScoreMax(1);
 
 }
 
@@ -469,7 +469,7 @@ void Partie::setScoreMax(double newTempsRestant)
         }
 
 
- if(Sniveau>meilleurScoreAct)
+ if(Sniveau>meilleurScoreAct && Sniveau<60)
  {
 
 
