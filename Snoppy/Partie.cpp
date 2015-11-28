@@ -30,7 +30,7 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
     double tempsDePause = 0;
     int save = 0;
     char toucheUtilisateur('@');
-    float vitesseMultiBoucle(1);
+    double vitesseMultiBoucle(1);
 
     if(decisionJoueurNiveau == "1" ) { vitesseMultiBoucle = 1.2; }// pour faire aller plus vite lea balle en fct des niveaux
     if(decisionJoueurNiveau == "2" ) { vitesseMultiBoucle = 0.9; }
@@ -70,6 +70,7 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
         if (!m_snoopy->getVivant()) { gestionDeMort(m_niveau, m_snoopy, pseudo, nomFichier); }
         if(m_snoopy->getNbrVie()<=0) { gestionPlusDeVie(m_snoopy, m_niveau, pseudo, nomFichier, save); }//si plus de vies
         if(m_niveau->is_readable(nomFichier)) { changerVie(pseudo, m_snoopy); }
+        setScoreMax(m_snoopy->getScore());
 
         if(save != 0) { sauvegarde(pseudo, m_snoopy, m_niveau, partieEnCours); }
         if(!partieEnCours) {prepaEtLancerNivSuiv(m_snoopy, m_niveau, pseudo, decisionJoueurNiveau, partieEnCours);}
@@ -82,7 +83,7 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
         if (m_niveau->toucheBalle(m_snoopy, m_niveau)) { m_snoopy->setVivant(false);}
         if (!m_snoopy->getVivant()) { gestionDeMort(m_niveau, m_snoopy, pseudo, nomFichier); }
     }
- setScoreMax(1);
+
 
 }
 
@@ -167,6 +168,7 @@ void Partie::prepaSauvPartieGagnee(Niveau* niveau, PersoSnoopy* snoopy, bool& pa
         snoopy->setNiveauActuel(snoopy->getNiveauActuel()+1);
         if(m_snoopy->getNiveauActuel() >= snoopy->getNiveauDejaAtteint())//on change la valeur du melleur niveau jamais atteint si c'est le cas
         {
+            snoopy->setScore(snoopy->getScore() + niveau->getTempsRestant()*100);
             snoopy->setNiveauDejaAtteint(snoopy->getNiveauActuel());
             partieEnCours = false;
         }
@@ -436,10 +438,8 @@ bool Partie::is_readable( const std::string & file )//savoir si le ficheir exist
     return !fichier.fail();
 }
 
-void Partie::setScoreMax(double newTempsRestant)
+void Partie::setScoreMax(int scoreJoueur)
 {
-    double Sniveau;
-    Sniveau=newTempsRestant*100;
 
         std::string const dossier("sauvegarde//");
         std::string nom("score");
@@ -449,44 +449,35 @@ void Partie::setScoreMax(double newTempsRestant)
 
         int meilleurScoreAct=0;
 
-      if(is_readable(nomFichier))
+        if(is_readable(nomFichier))
         {
 
+            std::ifstream fichier(nomFichier.c_str(), std::ios::in);  // on ouvre
 
+            if(fichier)
+            {
+                fichier>>meilleurScoreAct;
 
-        std::ifstream fichier(nomFichier.c_str(), std::ios::in);  // on ouvre
-
-        if(fichier)
-        {
-            fichier>>meilleurScoreAct;
-
-        fichier.close();
-    }
-    else
-    {
-        std::cout << "Impossible d'ouvrir le fichier !!" << std::endl;
-    }
+            fichier.close();
+            }
+            else
+            {
+                std::cout << "Impossible d'ouvrir le fichier !!" << std::endl;
+            }
         }
 
 
- if(Sniveau>meilleurScoreAct && Sniveau<60)
- {
+        if(scoreJoueur > meilleurScoreAct && scoreJoueur < 60*60*60*100)
+         {
+          std::ofstream monFlux(nomFichier.c_str());
 
-
-
-
-      std::ofstream monFlux(nomFichier.c_str());
-        int nombre(0);
-
-        if(monFlux)
-        {
-            monFlux << Sniveau;
-        }
-        else
-        {
-            std::cout << "ERREUR: Impossible d'ouvrir le fichier." << std::endl;
-        }
-
-
-
-}}
+            if(monFlux)
+            {
+                monFlux << scoreJoueur;
+            }
+            else
+            {
+                std::cout << "ERREUR: Impossible d'ouvrir le fichier." << std::endl;
+            }
+         }
+}
