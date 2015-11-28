@@ -70,7 +70,7 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
         if (!m_snoopy->getVivant()) { gestionDeMort(m_niveau, m_snoopy, pseudo, nomFichier); }
         if(m_snoopy->getNbrVie()<=0) { gestionPlusDeVie(m_snoopy, m_niveau, pseudo, nomFichier, save); }//si plus de vies
         if(m_niveau->is_readable(nomFichier)) { changerVie(pseudo, m_snoopy); }
-        setScoreMax(m_snoopy->getScore());
+        setScoreMax(m_snoopy->getScore(), nom);
 
         if(save != 0) { sauvegarde(pseudo, m_snoopy, m_niveau, partieEnCours); }
         if(!partieEnCours) {prepaEtLancerNivSuiv(m_snoopy, m_niveau, pseudo, decisionJoueurNiveau, partieEnCours);}
@@ -165,10 +165,10 @@ void Partie::prepaSauvPartieGagnee(Niveau* niveau, PersoSnoopy* snoopy, bool& pa
         niveau->pConsole->gotoLigCol(12, 30);
         std::cout << "Vous avez attraper tous les oiseaux, vous pouvez aller au niveau suivant";
         niveau->getAttendre(2.3);
+        snoopy->setScore(snoopy->getScore(snoopy->getNiveauActuel()) + niveau->getTempsRestant()*100, snoopy->getNiveauActuel() );
         snoopy->setNiveauActuel(snoopy->getNiveauActuel()+1);
         if(m_snoopy->getNiveauActuel() >= snoopy->getNiveauDejaAtteint())//on change la valeur du melleur niveau jamais atteint si c'est le cas
         {
-            snoopy->setScore(snoopy->getScore() + niveau->getTempsRestant()*100);
             snoopy->setNiveauDejaAtteint(snoopy->getNiveauActuel());
             partieEnCours = false;
         }
@@ -259,7 +259,9 @@ void Partie::gestionPlusDeVie(PersoSnoopy* snoopy, Niveau* niveau, std::string p
         niveau->getAttendre(2.3);
         snoopy->setNiveauActuel(1);
         snoopy->setNbrVie(3);
-        snoopy->setScore(0);
+/*        snoopy->setScore(0,1);
+        snoopy->setScore(0,2);
+        snoopy->setScore(0,3);*/
         if(niveau->is_readable(nomFichier))//pour ne pas modifier un fichier qui n'existe pas
         {
             changerVie(pseudo, snoopy);
@@ -339,7 +341,7 @@ void Partie::sauvegarde(std::string pseudo, PersoSnoopy* snoopy, Niveau* niveau,
                 }
                 monFlux << std::endl;
 
-            monFlux << 's' << ' ' << snoopy->getX() << ' ' << snoopy->getY() << ' ' << snoopy->getNbrVie() << ' ' << snoopy->getScore() << std::endl;
+            monFlux << 's' << ' ' << snoopy->getX() << ' ' << snoopy->getY() << ' ' << snoopy->getNbrVie() << ' ' << snoopy->getScore(1) << ' ' << snoopy->getScore(2) << ' ' << snoopy->getScore(3) << std::endl;
 
             monFlux << 'B';
 
@@ -438,7 +440,7 @@ bool Partie::is_readable( const std::string & file )//savoir si le ficheir exist
     return !fichier.fail();
 }
 
-void Partie::setScoreMax(int scoreJoueur)
+void Partie::setScoreMax(int scoreJoueur, std::string pseudo)
 {
 
         std::string const dossier("sauvegarde//");
@@ -473,7 +475,8 @@ void Partie::setScoreMax(int scoreJoueur)
 
             if(monFlux)
             {
-                monFlux << scoreJoueur;
+                monFlux << scoreJoueur << " ";
+                monFlux << pseudo;
             }
             else
             {

@@ -461,7 +461,7 @@ void Niveau::creerObjetSauv(std::string nom, PersoSnoopy* snoopy, Niveau* niveau
     std::string const extention(".txt");
     std::string nomFichier = dossier + nom + extention;
 
-    int a, b, c, d;
+    int a, b, c, d, e, f;
     Oiseau *p_Oiseau;
     Blocs* p_Blocs;
     Balle* p_balle;
@@ -512,12 +512,18 @@ void Niveau::creerObjetSauv(std::string nom, PersoSnoopy* snoopy, Niveau* niveau
             c = nb;
             fichier >> nb;
             d = nb;
+            fichier >> nb;
+            e = nb;
+            fichier >> nb;
+            f = nb;
 
 
             snoopy->setX(a);
             snoopy->setY(b);
             snoopy->setNbrVie(c);
-            snoopy->setScore(d);
+            snoopy->setScore(d, 1);
+            snoopy->setScore(e, 2);
+            snoopy->setScore(f, 3);
             snoopy->setNiveauActuel(niveauActuel);//recuper en haut de la methode
             snoopy->setNiveauDejaAtteint(niveauDejaAtteint);//recuper en haut de la methode
 

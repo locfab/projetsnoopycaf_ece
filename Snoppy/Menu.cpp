@@ -181,40 +181,41 @@ void Menu::highscore( int TempsRestant, int score)
         std::string const extention(".txt");
         std::string nomFichier = dossier + nom + extention;
 
-        int meilleurScoreAct=0;
+    int meilleurScoreAct=0;
+    std::string pseudo;
 
-        if(score> meilleurScoreAct)
-        {
-            meilleurScoreAct=score;
-        }
+    if(score> meilleurScoreAct)
+    {
+        meilleurScoreAct=score;
+    }
 
-        if(is_readable(nomFichier))
-        {
-
+    if(is_readable(nomFichier))
+    {
         std::ifstream fichier(nomFichier.c_str(), std::ios::in);  // on ouvre
 
-    if(fichier)
-    {
+        if(fichier)
+        {
 
-     fichier>>meilleurScoreAct;
+         fichier>> meilleurScoreAct;
+         fichier>> pseudo;
+         if(meilleurScoreAct > 0)
+         std::cout << "Le meilleur score jamais atteint est : " << meilleurScoreAct << ", obtenu par " << pseudo << std::endl;
+         if(meilleurScoreAct == 0)
+         std::cout << "Pas encore de record... " << std::endl;
+         if(meilleurScoreAct <0)
+         std::cout << "Probleme score negatif... " << std::endl;
 
-     fichier.close();
-
-
-    }
-    else
-    {
-        std::cout << "Impossible d'ouvrir le fichier !!" << std::endl;
-    }
-
-
-
+         fichier.close();
 
 
         }
+        else
+        {
+            std::cout << "Impossible d'ouvrir le fichier !!" << std::endl;
+        }
+    }
 
 
-        std::cout << "Le meilleur score jamais atteint est : " << meilleurScoreAct << "." << std::endl;
 
  }
 

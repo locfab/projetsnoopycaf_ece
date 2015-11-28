@@ -1,7 +1,7 @@
 #ifndef PERSOSNOOPY_H_INCLUDED
 #define PERSOSNOOPY_H_INCLUDED
 #include <string>
-
+#include <vector>
 
 
 class PersoSnoopy
@@ -10,7 +10,7 @@ class PersoSnoopy
 
     PersoSnoopy();
     PersoSnoopy(int x, int y);
-    PersoSnoopy(int x, int y, int score, int vie);
+    PersoSnoopy(int x, int y, int scoreNiv1, int scoreNiv2, int scoreNiv3, int vie);
     ~PersoSnoopy();
 
     void deplacement(bool droite, bool haut);
@@ -20,7 +20,7 @@ class PersoSnoopy
     void setNbrOiseauxANul();
     void setVivant(bool vivant);
     void setNbrVie(int vie);
-    void setScore(int score);
+    void setScore(int score, int niv);
     void setCoordonnees(int x, int y);
     void setModeDemolition(bool modeDemolition);
     void setX(int x);
@@ -35,6 +35,7 @@ class PersoSnoopy
     bool getVivant() const;
     int getNbrVie() const;
     int getScore() const;
+    int getScore(int niv) const;
     int getX() const;
     int getY() const;
     bool getModeDemolition() const;
@@ -47,7 +48,7 @@ class PersoSnoopy
     protected:
 
     int m_nbOiseauxAttrap;
-    int m_score;
+    std::vector <int> m_scoreVectParNiv;
     int m_vie;
     int m_x;
     int m_y;

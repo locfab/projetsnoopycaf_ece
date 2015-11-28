@@ -1,17 +1,31 @@
 #include <iostream>
 #include "PersoSnoopy.h"
 
-PersoSnoopy::PersoSnoopy(): m_saLetrre('S'),m_vivant(true), m_modeDemolition(false), m_nbOiseauxAttrap(0), m_vie(3), m_score(0), m_niveauActuel(1), m_niveauDejaAtteint(1), m_toucherParPiege(false)
+PersoSnoopy::PersoSnoopy()
+            : m_saLetrre('S'),m_vivant(true), m_modeDemolition(false), m_nbOiseauxAttrap(0), m_vie(3),
+              m_niveauActuel(1), m_niveauDejaAtteint(1), m_toucherParPiege(false)
 {
+    m_scoreVectParNiv.push_back(0);
+    m_scoreVectParNiv.push_back(0);
+    m_scoreVectParNiv.push_back(0);
 }
 
-PersoSnoopy::PersoSnoopy(int x, int y): m_x(x), m_y(y), m_nbOiseauxAttrap(0), m_vie(3), m_saLetrre('S'), m_vivant(true), m_modeDemolition(false), m_score(0), m_niveauActuel(1), m_niveauDejaAtteint(1), m_toucherParPiege(false)
+PersoSnoopy::PersoSnoopy(int x, int y)
+          : m_x(x), m_y(y), m_nbOiseauxAttrap(0), m_vie(3), m_saLetrre('S'), m_vivant(true), m_modeDemolition(false),
+            m_niveauActuel(1), m_niveauDejaAtteint(1), m_toucherParPiege(false)
 {
+    m_scoreVectParNiv.push_back(0);
+    m_scoreVectParNiv.push_back(0);
+    m_scoreVectParNiv.push_back(0);
 }
 
-PersoSnoopy::PersoSnoopy(int x, int y, int score, int vie)
-			: m_x(x), m_y(y), m_nbOiseauxAttrap(0), m_vie(vie), m_saLetrre('S'), m_vivant(true), m_modeDemolition(false), m_score(score), m_niveauActuel(1), m_niveauDejaAtteint(1), m_toucherParPiege(false)
+PersoSnoopy::PersoSnoopy(int x, int y, int scoreNiv1, int scoreNiv2, int scoreNiv3, int vie)
+			: m_x(x), m_y(y), m_nbOiseauxAttrap(0), m_vie(vie), m_saLetrre('S'), m_vivant(true), m_modeDemolition(false),
+        m_niveauActuel(1), m_niveauDejaAtteint(1), m_toucherParPiege(false)
 {
+    m_scoreVectParNiv.push_back(scoreNiv1);
+    m_scoreVectParNiv.push_back(scoreNiv2);
+    m_scoreVectParNiv.push_back(scoreNiv3);
 }
 PersoSnoopy::~PersoSnoopy()
 {
@@ -38,9 +52,10 @@ void PersoSnoopy::setNbrVie(int vie)
    if(m_vie >=0 && m_vie < 10)//A ne pas modifier!!! si on met au dessus de 10, ou negatif, ca bloque tout on ne pourra plus modifier dans le fichier
     m_vie = vie;
 }
-void PersoSnoopy::setScore(int score)
+void PersoSnoopy::setScore(int score, int niv)
 {
-    m_score = score;
+    if(niv > 0 && niv < 3)
+    m_scoreVectParNiv[niv-1] = score;
 }
 
 void PersoSnoopy::setCoordonnees(int x, int y)
@@ -118,7 +133,14 @@ int PersoSnoopy::getNbrVie() const
 }
 int PersoSnoopy::getScore() const
 {
-    return m_score;
+    return m_scoreVectParNiv[0] + m_scoreVectParNiv[1] + m_scoreVectParNiv[2];
+}
+int PersoSnoopy::getScore(int niv) const
+{
+    if(niv > 0 && niv < 4)
+    return m_scoreVectParNiv[niv-1];
+    else
+    return 0;
 }
 int PersoSnoopy::getX() const
 {
