@@ -1211,4 +1211,3 @@ bool Niveau::is_readable( const std::string & file )//savoir si le ficheir exist
     return !fichier.fail();
 }
 
-

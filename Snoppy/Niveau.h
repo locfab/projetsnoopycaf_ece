@@ -66,11 +66,14 @@ class Niveau
 
 	Console *pConsole = NULL;
 
-	
+
 
 	void gererBonus(PersoSnoopy* snoopy);
 
 	bool is_readable( const std::string & file );
+
+
+    float Niveau::Score(double newTempsRestant)
 
 
    protected:
