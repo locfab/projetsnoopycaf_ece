@@ -5,10 +5,11 @@
 Balle::Balle(): m_saLetrre('B')
 {
 }
-///BALLE
+/// Balle constructeur par copie
 Balle::Balle(int x, int y) : m_x(x), m_y(y), m_saLetrre('B')
 {
 }
+/// Balle
 Balle::Balle(int x, int y, int depx, int depy) : m_x(x), m_y(y), m_saLetrre('B')
 {
 	setDepX(depx);
