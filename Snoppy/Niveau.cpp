@@ -79,22 +79,46 @@ void Niveau::afficherPlateau(PersoSnoopy* snoopy)
             switch(m_plateau[i][j])
             {
             case 'S':
-                pConsole->setColor(COLOR_PURPLE);
+                pConsole->setColor(COLOR_WHITE);
                 std::cout << this->m_plateau[i][j] << " ";
                 break;
             case 'P':
-                pConsole->setColor(COLOR_PURPLE);
-            default:
-                pConsole->setColor(COLOR_WHITE);
+                pConsole->setColor(COLOR_RED);
+                std::cout << this->m_plateau[i][j] << " ";
                 break;
-
-
-
+            case 'C':
+                pConsole->setColor(COLOR_BLUE);
+                std::cout << this->m_plateau[i][j] << " ";
+                break;
+            case 'T':
+                pConsole->setColor(COLOR_GREEN);
+                std::cout << this->m_plateau[i][j] << " ";
+                break;
+            case 'O':
+                pConsole->setColor(COLOR_YELLOW);
+                std::cout << this->m_plateau[i][j] << " ";
+                break;
+            case '.':
+                pConsole->setColor(COLOR_WHITE);
+                std::cout << this->m_plateau[i][j] << " ";
+                break;
+            case 'm':
+                pConsole->setColor(COLOR_PURPLE);
+                std::cout << this->m_plateau[i][j] << " ";
+                break;
+            case 'B':
+                pConsole->setColor(COLOR_WHITE);
+                std::cout << this->m_plateau[i][j] << " ";
+                break;
+            default:
+                pConsole->setColor(COLOR_PURPLE);
+                std::cout << this->m_plateau[i][j] << " ";
+                break;
 
 
             }
 
-
+pConsole->setColor(COLOR_WHITE);
 
         }
         std::cout << std::endl;
