@@ -1210,12 +1210,3 @@ bool Niveau::is_readable( const std::string & file )//savoir si le ficheir exist
     std::ifstream fichier( file.c_str() );
     return !fichier.fail();
 }
-
-void Niveau::Score(double newTempsRestant)
-{
-    double Sniveau;
-    Sniveau=tempsRestant*100;
-    ç
-
-
-}

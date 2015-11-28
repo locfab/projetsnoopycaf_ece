@@ -183,7 +183,7 @@ void Menu::highscore( int TempsRestant, int score)
 
         int meilleurScoreAct=0;
 
-        if(score>= meilleurScoreAct)
+        if(score> meilleurScoreAct)
         {
             meilleurScoreAct=score;
         }
@@ -212,17 +212,6 @@ void Menu::highscore( int TempsRestant, int score)
 
         }
 
-        std::ofstream monFlux(nomFichier.c_str());
-        int nombre(0);
-
-        if(monFlux)
-        {
-
-        }
-        else
-        {
-            std::cout << "ERREUR: Impossible d'ouvrir le fichier." << std::endl;
-        }
 
         std::cout << "Le meilleur score jamais atteint est : " << meilleurScoreAct << "." << std::endl;
 
