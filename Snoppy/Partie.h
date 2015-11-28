@@ -15,6 +15,8 @@ class Partie
         Niveau *m_niveau;
         void chargerPartieAvecMenu1(std::string nom, PersoSnoopy* snoopy, Niveau* niveau, std::string decisionJoueurNiveau);
         void chargerPartieAvecMenu2(std::string nom, PersoSnoopy* snoopy, Niveau* niveau, std::string decisionJoueurNiveau);
+        void setScoreMax(double newTempsRestant);
+        bool is_readable( const std::string & file );
 
     public:
 

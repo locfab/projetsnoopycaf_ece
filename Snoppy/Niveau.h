@@ -73,7 +73,6 @@ class Niveau
 	bool is_readable( const std::string & file );
 
 
-    float Niveau::Score(double newTempsRestant)
 
 
    protected:

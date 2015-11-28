@@ -58,7 +58,7 @@ void Menu::choix(char decisionJoueur)
             this->creerPartie(decisionJoueur);
             break;
          case '4':
-          //  highscore(10,0);
+           highscore(10,0);
             break;
          case '5':
             system("cls");
@@ -150,7 +150,7 @@ void Menu::creerPartie(char decisionJoueurMenu)
     afficherMenu();
 }
 
-/
+
 char Menu::getChoixMenu() const
 {
   return m_choixMenu;
@@ -188,18 +188,19 @@ void Menu::highscore( int TempsRestant, int score)
             meilleurScoreAct=score;
         }
 
-      if(is_readable(nomFichier))
+        if(is_readable(nomFichier))
         {
-
-
 
         std::ifstream fichier(nomFichier.c_str(), std::ios::in);  // on ouvre
 
-        if(fichier)
-        {
-            fichier>>meilleurScoreAct;
+    if(fichier)
+    {
 
-        fichier.close();
+     fichier>>meilleurScoreAct;
+
+     fichier.close();
+
+
     }
     else
     {

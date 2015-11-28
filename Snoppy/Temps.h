@@ -15,6 +15,7 @@ class Temps
         ~Temps();
         void attendre(double temps);
         double getTempsMax();
+        void Score(double newTempsRestant);
 
 
 };
