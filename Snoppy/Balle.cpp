@@ -1,8 +1,12 @@
 #include <iostream>
 #include "Balle.h"
 
-
+/// Balle constructeur par default
 Balle::Balle(): m_saLetrre('B')
+{
+}
+///BALLE
+Balle::Balle(int x, int y) : m_x(x), m_y(y), m_saLetrre('B')
 {
 }
 Balle::Balle(int x, int y, int depx, int depy) : m_x(x), m_y(y), m_saLetrre('B')
