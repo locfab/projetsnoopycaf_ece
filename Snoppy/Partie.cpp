@@ -30,7 +30,7 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
     double tempsDePause = 0;
     int save = 0;
     char toucheUtilisateur('@');
-    float vitesseMultiBoucle(1);
+    double vitesseMultiBoucle(1);
 
     if(decisionJoueurNiveau == "1" ) { vitesseMultiBoucle = 1.2; }// pour faire aller plus vite lea balle en fct des niveaux
     if(decisionJoueurNiveau == "2" ) { vitesseMultiBoucle = 0.9; }
