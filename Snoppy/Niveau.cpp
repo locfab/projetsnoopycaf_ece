@@ -236,8 +236,6 @@ void Niveau::changerPlateau(PersoSnoopy* snoopy)// regenerer un plateau avec les
         }
     }
 
-    m_plateau[snoopy->getX()][snoopy->getY()] = 'S';//on place snoopy
-
     if(m_bonusAttrap != NULL) {m_plateau[m_bonusAttrap->getX()][m_bonusAttrap->getY()] = 3-(char)diffTemps + '0';}
     if(m_bonusMultiBalle != NULL) {m_plateau[m_bonusMultiBalle->getX()][m_bonusMultiBalle->getY()] = m_bonusMultiBalle->getLettre();}
 
@@ -250,6 +248,7 @@ void Niveau::changerPlateau(PersoSnoopy* snoopy)// regenerer un plateau avec les
     {
        m_plateau[m_tabOiseau[i].getX()][m_tabOiseau[i].getY()] = 'O' ;// on place les oiseaus
     }
+    m_plateau[snoopy->getX()][snoopy->getY()] = 'S';//on place snoopy
 }
 
 /// On appelle la vérification de tous les blocs

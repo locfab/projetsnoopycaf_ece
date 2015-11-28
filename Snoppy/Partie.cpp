@@ -30,6 +30,12 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
     double tempsDePause = 0;
     int save = 0;
     char toucheUtilisateur('@');
+    float vitesseMultiBoucle(1);
+
+    if(decisionJoueurNiveau == "1" ) { vitesseMultiBoucle = 1.2; }// pour faire aller plus vite lea balle en fct des niveaux
+    if(decisionJoueurNiveau == "2" ) { vitesseMultiBoucle = 0.9; }
+    if(decisionJoueurNiveau == "3" ) { vitesseMultiBoucle = 0.6; }
+
 
     std::string const dossier("sauvegarde//");
     std::string nom(pseudo);
@@ -49,7 +55,7 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
             m_niveau->setCordSnoopClav(m_snoopy, m_niveau, toucheUtilisateur);
             m_niveau->gererBonus(m_snoopy);
             m_niveau->afficherPlateau(m_snoopy, decisionJoueurMenu, decisionJoueurNiveau);
-            m_niveau->getAttendre(0.08);         /// Temporisation de 0.1 seconde
+            m_niveau->getAttendre(0.09*vitesseMultiBoucle);         /// Temporisation de 0.1 seconde
             recupererEntresClav(m_niveau, m_snoopy, pause, save, esc, toucheUtilisateur);
             gestionDePause(m_niveau, pause, toucheUtilisateur, tempsDePause, esc);
     }
