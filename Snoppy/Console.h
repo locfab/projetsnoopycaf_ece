@@ -2,6 +2,8 @@
 #define CONSOLE_H_INCLUDED
 
 #include <iostream>
+#include <conio.h>
+#include <windows.h>
 
 enum Color
 {

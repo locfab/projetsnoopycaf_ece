@@ -35,7 +35,7 @@ class PersoSnoopy
     bool getVivant() const;
     int getNbrVie() const;
     int getScore() const;
-    int getScore(int niv) const;
+    int getScoreParNiv(int niv) const;
     int getX() const;
     int getY() const;
     bool getModeDemolition() const;

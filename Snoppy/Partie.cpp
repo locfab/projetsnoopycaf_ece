@@ -1,6 +1,5 @@
 #include "Partie.h"
-#include <string>
-#include <vector>
+
 
 
 
@@ -165,7 +164,7 @@ void Partie::prepaSauvPartieGagnee(Niveau* niveau, PersoSnoopy* snoopy, bool& pa
         niveau->pConsole->gotoLigCol(12, 30);
         std::cout << "Vous avez attraper tous les oiseaux, vous pouvez aller au niveau suivant";
         niveau->getAttendre(2.3);
-        snoopy->setScore(snoopy->getScore(snoopy->getNiveauActuel()) + niveau->getTempsRestant()*100, snoopy->getNiveauActuel() );
+        snoopy->setScore(snoopy->getScoreParNiv(snoopy->getNiveauActuel()) + niveau->getTempsRestant()*100, snoopy->getNiveauActuel() );
         snoopy->setNiveauActuel(snoopy->getNiveauActuel()+1);
         if(m_snoopy->getNiveauActuel() >= snoopy->getNiveauDejaAtteint())//on change la valeur du melleur niveau jamais atteint si c'est le cas
         {
@@ -341,7 +340,7 @@ void Partie::sauvegarde(std::string pseudo, PersoSnoopy* snoopy, Niveau* niveau,
                 }
                 monFlux << std::endl;
 
-            monFlux << 's' << ' ' << snoopy->getX() << ' ' << snoopy->getY() << ' ' << snoopy->getNbrVie() << ' ' << snoopy->getScore(1) << ' ' << snoopy->getScore(2) << ' ' << snoopy->getScore(3) << std::endl;
+            monFlux << 's' << ' ' << snoopy->getX() << ' ' << snoopy->getY() << ' ' << snoopy->getNbrVie() << ' ' << snoopy->getScoreParNiv(1) << ' ' << snoopy->getScoreParNiv(2) << ' ' << snoopy->getScoreParNiv(3) << std::endl;
 
             monFlux << 'B';
 

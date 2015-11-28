@@ -1,7 +1,6 @@
 #ifndef BLOCS_H_INCLUDED
 #define BLOCS_H_INCLUDED
 
-
 class Blocs
 {
     public:

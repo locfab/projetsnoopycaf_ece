@@ -1,20 +1,18 @@
 #ifndef NIVEAU_H_INCLUDED
 #define NIVEAU_H_INCLUDED
 
+
 #include <iostream>
 #include <vector>
 #include <windows.h>
 #include "Console.h"
-
-
-#include "Menu.h"
-#include "Balle.h"
-#include "Oiseau.h"
-#include "Temps.h"
 #include "Blocs.h"
 #include "BlocsPoussables.h"
 #include "BlocsCassables.h"
 #include "BlocsPieges.h"
+#include "Balle.h"
+#include "Oiseau.h"
+#include "Temps.h"
 #include "PersoSnoopy.h"
 #include "BonusMultiBalle.h"
 #include "BonusAttrap.h"

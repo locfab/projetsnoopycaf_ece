@@ -1,6 +1,5 @@
 #include "Console.h"
-#include <conio.h>
-#include <windows.h>
+
 
 Console* Console::m_instance = NULL;
 

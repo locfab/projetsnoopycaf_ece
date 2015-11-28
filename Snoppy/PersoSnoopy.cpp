@@ -54,7 +54,7 @@ void PersoSnoopy::setNbrVie(int vie)
 }
 void PersoSnoopy::setScore(int score, int niv)
 {
-    if(niv > 0 && niv < 3)
+    if(niv > 0 && niv < 4 && score > m_scoreVectParNiv[niv-1] )
     m_scoreVectParNiv[niv-1] = score;
 }
 
@@ -135,7 +135,7 @@ int PersoSnoopy::getScore() const
 {
     return m_scoreVectParNiv[0] + m_scoreVectParNiv[1] + m_scoreVectParNiv[2];
 }
-int PersoSnoopy::getScore(int niv) const
+int PersoSnoopy::getScoreParNiv(int niv) const
 {
     if(niv > 0 && niv < 4)
     return m_scoreVectParNiv[niv-1];

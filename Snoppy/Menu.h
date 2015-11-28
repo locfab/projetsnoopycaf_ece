@@ -1,6 +1,10 @@
 #ifndef MENU_H_INCLUDED
 #define MENU_H_INCLUDED
 #include <string>
+#include <iostream>
+#include <conio.h>
+#include <windows.h>
+#include "Partie.h"
 
 class Menu
 {

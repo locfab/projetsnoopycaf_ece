@@ -1,6 +1,6 @@
 #include <iostream>
 #include "Menu.h"
-#include "Partie.h"
+
 
 
 
@@ -181,6 +181,8 @@ void Menu::highscore( int TempsRestant, int score)
         std::string const extention(".txt");
         std::string nomFichier = dossier + nom + extention;
 
+        char caracRetour('@');
+
     int meilleurScoreAct=0;
     std::string pseudo;
 
@@ -195,19 +197,22 @@ void Menu::highscore( int TempsRestant, int score)
 
         if(fichier)
         {
+            system("cls");
+            fichier>> meilleurScoreAct;
+            fichier>> pseudo;
+            if(meilleurScoreAct > 0){
+            std::cout << "Le meilleur score jamais atteint est : " << meilleurScoreAct << ", obtenu par " << pseudo << std::endl;}
+            if(meilleurScoreAct == 0){
+            std::cout << "Pas encore de record... " << std::endl;}
+            if(meilleurScoreAct <0){
+            std::cout << "Probleme score negatif... " << std::endl;}
+            if(meilleurScoreAct == 'EOF'){
+            std::cout << "Pas encore de record... " << std::endl;}
 
-         fichier>> meilleurScoreAct;
-         fichier>> pseudo;
-         if(meilleurScoreAct > 0)
-         std::cout << "Le meilleur score jamais atteint est : " << meilleurScoreAct << ", obtenu par " << pseudo << std::endl;
-         if(meilleurScoreAct == 0)
-         std::cout << "Pas encore de record... " << std::endl;
-         if(meilleurScoreAct <0)
-         std::cout << "Probleme score negatif... " << std::endl;
+            std::cout << std::endl;
+            std::cout << "appuyer sur 'r' pour revenir au menu " << std::endl;
 
-         fichier.close();
-
-
+            fichier.close();
         }
         else
         {
@@ -215,7 +220,15 @@ void Menu::highscore( int TempsRestant, int score)
         }
     }
 
+    while(caracRetour != 'r')
+    {
+        if(kbhit())
+        {
+        caracRetour = getch();
+        }
+    }
 
+    afficherMenu();
 
  }
 

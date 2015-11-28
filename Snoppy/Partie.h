@@ -4,6 +4,8 @@
 #include "PersoSnoopy.h"
 #include "Niveau.h"
 #include <fstream>
+#include <string>
+#include <vector>
 
 
 /// Classe Partie gérant les niveaux et personnage

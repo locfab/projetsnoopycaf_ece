@@ -9,7 +9,7 @@ class BlocsPieges : public Blocs
     BlocsPieges();
     BlocsPieges(int x, int y);
     virtual ~BlocsPieges();
-    
+
     char getLettre() const;
 
     protected:
