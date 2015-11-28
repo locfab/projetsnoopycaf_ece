@@ -12,7 +12,7 @@ class Menu
 	void afficherMenu();
 	void choix(char decisionJoueur);
 	void creerPartie(char decisionJoueurMenu);
-	void highScores() const;
+    void highscore( int TempsRestant, int score);
 	bool is_readable( const std::string & file );
 
 	void setChoixMenu(char choixMenu);

@@ -57,6 +57,9 @@ void Menu::choix(char decisionJoueur)
          case '3':
             this->creerPartie(decisionJoueur);
             break;
+         case '4':
+           highscore(10,0);
+            break;
          case '5':
             system("cls");
             for(int i(0); i<7; i++)std::cout << std::endl;
@@ -147,10 +150,13 @@ void Menu::creerPartie(char decisionJoueurMenu)
     afficherMenu();
 }
 
+
 char Menu::getChoixMenu() const
 {
   return m_choixMenu;
 }
+
+///Choix du Menu
 void Menu::setChoixMenu(char choixMenu)
 {
     if(this->getChoixMenu()<'1' || this->getChoixMenu()>'5')
@@ -159,8 +165,56 @@ void Menu::setChoixMenu(char choixMenu)
     this->m_choixMenu ='0';
 }
 
+/// Fonction qui renvoie erreure si le fichier n'est pas lisible
 bool Menu::is_readable( const std::string & file )
 {
     std::ifstream fichier( file.c_str() );
     return !fichier.fail();
 }
+
+///Highscore
+void Menu::highscore( int TempsRestant, int score)
+
+ {
+        std::string const dossier("sauvegarde//");
+        std::string nom("score");
+        std::string const extention(".txt");
+        std::string nomFichier = dossier + nom + extention;
+
+        int meilleurScoreAct=0;
+
+        if(score> meilleurScoreAct)
+        {
+            meilleurScoreAct=score;
+        }
+
+        if(is_readable(nomFichier))
+        {
+
+        std::ifstream fichier(nomFichier.c_str(), std::ios::in);  // on ouvre
+
+    if(fichier)
+    {
+
+     fichier>>meilleurScoreAct;
+
+     fichier.close();
+
+
+    }
+    else
+    {
+        std::cout << "Impossible d'ouvrir le fichier !!" << std::endl;
+    }
+
+
+
+
+
+        }
+
+
+        std::cout << "Le meilleur score jamais atteint est : " << meilleurScoreAct << "." << std::endl;
+
+ }
+

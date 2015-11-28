@@ -70,9 +70,11 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
         if (!m_snoopy->getVivant()) { gestionDeMort(m_niveau, m_snoopy, pseudo, nomFichier); }
         if(m_snoopy->getNbrVie()<=0) { gestionPlusDeVie(m_snoopy, m_niveau, pseudo, nomFichier, save); }//si plus de vies
         if(m_niveau->is_readable(nomFichier)) { changerVie(pseudo, m_snoopy); }
+        setScoreMax(m_snoopy->getScore());
 
         if(save != 0) { sauvegarde(pseudo, m_snoopy, m_niveau, partieEnCours); }
         if(!partieEnCours) {prepaEtLancerNivSuiv(m_snoopy, m_niveau, pseudo, decisionJoueurNiveau, partieEnCours);}
+
     }
     if(decisionJoueurMenu == '3')//menu 3 super Utilsateur
     {
@@ -166,6 +168,7 @@ void Partie::prepaSauvPartieGagnee(Niveau* niveau, PersoSnoopy* snoopy, bool& pa
         snoopy->setNiveauActuel(snoopy->getNiveauActuel()+1);
         if(m_snoopy->getNiveauActuel() >= snoopy->getNiveauDejaAtteint())//on change la valeur du melleur niveau jamais atteint si c'est le cas
         {
+            snoopy->setScore(snoopy->getScore() + niveau->getTempsRestant()*100);
             snoopy->setNiveauDejaAtteint(snoopy->getNiveauActuel());
             partieEnCours = false;
         }
@@ -428,4 +431,53 @@ void Partie::sauvegarde(std::string pseudo, PersoSnoopy* snoopy, Niveau* niveau,
         {
             std::cout << "ERREUR: Impossible d'ouvrir le fichier." << std::endl;
         }
+}
+bool Partie::is_readable( const std::string & file )//savoir si le ficheir existe
+{
+    std::ifstream fichier( file.c_str() );
+    return !fichier.fail();
+}
+
+void Partie::setScoreMax(int scoreJoueur)
+{
+
+        std::string const dossier("sauvegarde//");
+        std::string nom("score");
+        std::string const extention(".txt");
+        std::string nomFichier = dossier + nom + extention;
+
+
+        int meilleurScoreAct=0;
+
+        if(is_readable(nomFichier))
+        {
+
+            std::ifstream fichier(nomFichier.c_str(), std::ios::in);  // on ouvre
+
+            if(fichier)
+            {
+                fichier>>meilleurScoreAct;
+
+            fichier.close();
+            }
+            else
+            {
+                std::cout << "Impossible d'ouvrir le fichier !!" << std::endl;
+            }
+        }
+
+
+        if(scoreJoueur > meilleurScoreAct && scoreJoueur < 60*60*60*100)
+         {
+          std::ofstream monFlux(nomFichier.c_str());
+
+            if(monFlux)
+            {
+                monFlux << scoreJoueur;
+            }
+            else
+            {
+                std::cout << "ERREUR: Impossible d'ouvrir le fichier." << std::endl;
+            }
+         }
 }
