@@ -32,7 +32,9 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
     double tempsDePause = 0;
     int save = 0;
     char toucheUtilisateur('@');
+    double const vitesseBoucle(0.09);
     double vitesseMultiBoucle(1);
+
 
     if(decisionJoueurNiveau == "1" ) { vitesseMultiBoucle = 1.2; }// pour faire aller plus vite lea balle en fct des niveaux
     if(decisionJoueurNiveau == "2" ) { vitesseMultiBoucle = 0.9; }
@@ -56,9 +58,10 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
             m_niveau->setCordSnoopClav(m_snoopy, m_niveau, toucheUtilisateur);
             m_niveau->gererBonus(m_snoopy);
             m_niveau->afficherPlateau(m_snoopy, decisionJoueurMenu, decisionJoueurNiveau);
-            m_niveau->getAttendre(0.09*vitesseMultiBoucle);         /// Temporisation varaiable seconde
             recupererEntresClav(m_niveau, m_snoopy, pause, save, esc, toucheUtilisateur);
             gestionDePause(m_niveau, pause, toucheUtilisateur, tempsDePause, esc);
+
+            m_niveau->getAttendre(vitesseBoucle*vitesseMultiBoucle);         /// Temporisation varaiable seconde
     }
 
     if(decisionJoueurMenu != '3')// menu 1 et 2 sans mot de passe super Utilsateur

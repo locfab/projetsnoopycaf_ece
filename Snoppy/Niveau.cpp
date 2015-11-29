@@ -345,14 +345,16 @@ void Niveau::gererBonus(PersoSnoopy* snoopy)
 {
 
     int i,j;
+    int const freqApparitionMultiBalle = 10;
+    int const freqApparitionAttrap = 10;
     Balle *balleTamp;
     std::srand(std::time(0));
 
     if(m_bonusAttrap == NULL)// si le bonus n'existe pas on le crée aleatoirement
     {
-       i= std::rand()%20;
-       j= std::rand()%10;
-        if(std::rand()%30 == 0 && m_plateau[i][j] == '.')
+       i= std::rand()%m_col;
+       j= std::rand()%m_lig;
+        if(std::rand()%freqApparitionAttrap == 0 && m_plateau[i][j] == '.')
         {
            m_bonusAttrap = new BonusAttrap(i,j,this->getTempsRestant());//on l'initialise et on lui donne son heure de ceatio,
         }
@@ -376,9 +378,9 @@ void Niveau::gererBonus(PersoSnoopy* snoopy)
 
     if(m_bonusMultiBalle == NULL)//si le bonus n'existe pas on le genere aleatoirement
     {
-       i= std::rand()%20;
-       j= std::rand()%10;
-        if(std::rand()%15 == 0 && m_plateau[i][j] == '.')
+       i= std::rand()%m_col;
+       j= std::rand()%m_lig;
+        if(std::rand()%freqApparitionMultiBalle == 0 && m_plateau[i][j] == '.')
         {
            m_bonusMultiBalle = new BonusMultiBalle(i,j,this->getTempsRestant());//meme chose quue pour bonus au dessus
         }
@@ -396,7 +398,7 @@ void Niveau::gererBonus(PersoSnoopy* snoopy)
         {
           if(m_bonusMultiBalle != NULL && m_vectBalle[i].getX() == m_bonusMultiBalle->getX() && m_vectBalle[i].getY() == m_bonusMultiBalle->getY())
             {//si un balles ont les meme coord le bonus
-            balleTamp = new Balle(m_vectBalle[i].getX(),m_vectBalle[i].getY(),m_vectBalle[i].getDepX(),m_vectBalle[i].getDepY());// on en creer un nouvelle avec des coordDep differents
+            balleTamp = new Balle(m_vectBalle[i].getX(),m_vectBalle[i].getY(),-m_vectBalle[i].getDepX(),-m_vectBalle[i].getDepY());// on en creer un nouvelle avec des coordDep differents
             m_vectBalle.push_back(*balleTamp);
             delete m_bonusMultiBalle;//et on supprime le nonus
             m_bonusMultiBalle = NULL;
