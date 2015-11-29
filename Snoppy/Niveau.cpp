@@ -348,60 +348,60 @@ void Niveau::gererBonus(PersoSnoopy* snoopy)
     Balle *balleTamp;
     std::srand(std::time(0));
 
-    if(m_bonusAttrap == NULL)
+    if(m_bonusAttrap == NULL)// si le bonus n'existe pas on le crée aleatoirement
     {
        i= std::rand()%20;
        j= std::rand()%10;
         if(std::rand()%30 == 0 && m_plateau[i][j] == '.')
         {
-           m_bonusAttrap = new BonusAttrap(i,j,this->getTempsRestant());
+           m_bonusAttrap = new BonusAttrap(i,j,this->getTempsRestant());//on l'initialise et on lui donne son heure de ceatio,
         }
 
     }
-    else if(m_bonusAttrap != NULL && m_bonusAttrap->getTempsALaCreation()-getTempsRestant()>3)
+    else if(m_bonusAttrap != NULL && m_bonusAttrap->getTempsALaCreation()-getTempsRestant()>3)//si ca fait plus de trois second qu'il vit
     {
-        delete m_bonusAttrap;
+        delete m_bonusAttrap;//on l'enleve
         m_bonusAttrap = NULL;
     }
-    else if (m_bonusAttrap != NULL && m_bonusAttrap->getTempsALaCreation()-getTempsRestant()<3)
+    else if (m_bonusAttrap != NULL && m_bonusAttrap->getTempsALaCreation()-getTempsRestant()<3)//si ca fait moins de trois de trois second on regarde si il est attrapé
     {
-        if(snoopy->getX() == m_bonusAttrap->getX() && snoopy->getY() == m_bonusAttrap->getY())
+        if(snoopy->getX() == m_bonusAttrap->getX() && snoopy->getY() == m_bonusAttrap->getY())//si il est au meme coordonné que snoopy
         {
-            snoopy->setNbrVie(snoopy->getNbrVie()+1);
-            delete m_bonusAttrap;
+            snoopy->setNbrVie(snoopy->getNbrVie()+1);//vie++
+            delete m_bonusAttrap;//on suppime le bonus
             m_bonusAttrap = NULL;
 
         }
     }
 
-    if(m_bonusMultiBalle == NULL)
+    if(m_bonusMultiBalle == NULL)//si le bonus n'existe pas on le genere aleatoirement
     {
        i= std::rand()%20;
        j= std::rand()%10;
         if(std::rand()%15 == 0 && m_plateau[i][j] == '.')
         {
-           m_bonusMultiBalle = new BonusMultiBalle(i,j,this->getTempsRestant());
+           m_bonusMultiBalle = new BonusMultiBalle(i,j,this->getTempsRestant());//meme chose quue pour bonus au dessus
         }
 
     }
-    else if(m_bonusMultiBalle->getTempsALaCreation()-getTempsRestant()>3)
+    else if(m_bonusMultiBalle->getTempsALaCreation()-getTempsRestant()>3)//idem au dessus
     {
         delete m_bonusMultiBalle;
         m_bonusMultiBalle = NULL;
     }
-    else if (m_bonusMultiBalle->getTempsALaCreation()-getTempsRestant()<3)
+    else if (m_bonusMultiBalle->getTempsALaCreation()-getTempsRestant()<3)//idem au dessu
     {
         int taille = m_vectBalle.size();
         for(int i(0); i< taille; i++)
         {
           if(m_bonusMultiBalle != NULL && m_vectBalle[i].getX() == m_bonusMultiBalle->getX() && m_vectBalle[i].getY() == m_bonusMultiBalle->getY())
-            {
-            balleTamp = new Balle(m_vectBalle[i].getX(),m_vectBalle[i].getY(),-m_vectBalle[i].getDepX(),-m_vectBalle[i].getDepY());
+            {//si un balles ont les meme coord le bonus
+            balleTamp = new Balle(m_vectBalle[i].getX(),m_vectBalle[i].getY(),m_vectBalle[i].getDepX(),m_vectBalle[i].getDepY());// on en creer un nouvelle avec des coordDep differents
             m_vectBalle.push_back(*balleTamp);
-            delete m_bonusMultiBalle;
+            delete m_bonusMultiBalle;//et on supprime le nonus
             m_bonusMultiBalle = NULL;
             }
-          if(m_bonusMultiBalle != NULL && snoopy->getX() == m_bonusMultiBalle->getX() && snoopy->getY() == m_bonusMultiBalle->getY())
+          if(m_bonusMultiBalle != NULL && snoopy->getX() == m_bonusMultiBalle->getX() && snoopy->getY() == m_bonusMultiBalle->getY())//possibilite de supprimmer le bonus sisnoopy va dessus
             {
             delete m_bonusMultiBalle;
             m_bonusMultiBalle = NULL;
@@ -698,30 +698,29 @@ void Niveau::creerObjetSauv(std::string nom, PersoSnoopy* snoopy, Niveau* niveau
             fichier >> nb;
             valeur = nb;
 
-            if(!partieEnCours)
+            if(!partieEnCours)//si jamais la partie avait ete terminée, alors on supprime quelque donne et on appelle la creartion des objet commme si on ete au debut d'une partie
             {
-                nivSuiv << snoopy->getNiveauActuel();
-                niveau->setPlateauDeb(nivSuiv.str());
-                snoopy->setNbrOiseauxANul();
+                nivSuiv << snoopy->getNiveauActuel();//on remplce le int par un sring (technique)
+                niveau->setPlateauDeb(nivSuiv.str());// on reinitialise un tableau
+                snoopy->setNbrOiseauxANul();//on met les oiseau a nul
 
-                tailleTableau = getTabBlocs().size();
+                tailleTableau = getTabBlocs().size();//on supprime les blocs du tabblocs avec delete et pushback
                 for(int i(0); i<tailleTableau; i++){
                 delete m_tabBlocs[i];}
-
                 for(int i(0); i<tailleTableau; i++){
                 m_tabBlocs.pop_back();}
 
-                tailleTableau = getTabOiseau().size();
+                tailleTableau = getTabOiseau().size();//on supprime les oiseau
                 for(int i(0); i<tailleTableau; i++){
                 m_tabOiseau.pop_back();}
 
-                tailleTableau = m_vectBalle.size();
+                tailleTableau = m_vectBalle.size();//on supprime les balles
                 for(int i(0); i<tailleTableau; i++){
                 m_vectBalle.pop_back();}
 
 
-                niveau->creerObjetDebut(snoopy, nom, nivSuiv.str());
-                niveau->initCoordSnoop(snoopy);
+                niveau->creerObjetDebut(snoopy, nom, nivSuiv.str());//on reinitiamise les objets
+                niveau->initCoordSnoop(snoopy);//on reinitialise les coord de snoopy a partir du nouveau plateau
             }
 
         fichier.close();
@@ -741,7 +740,7 @@ void Niveau::initCoordSnoop(PersoSnoopy* snoopy)//initialisation des coordonne d
     {
         for (int i=0; i< m_col; i++)
         {
-            if(this->m_plateau[i][j]=='S')
+            if(this->m_plateau[i][j]=='S')//on cherche la case ou il y a un s et on les met dans snoop
             {
             snoopy->setCoordonnees(i,j);
             }

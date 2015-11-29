@@ -175,7 +175,11 @@ void Partie::prepaSauvPartieGagnee(Niveau* niveau, PersoSnoopy* snoopy, bool& pa
         niveau->getAttendre(0.75);
         system("cls");
         niveau->pConsole->gotoLigCol(12, 30);
+        if(snoopy->getNiveauActuel() < 3)
         std::cout << "Vous avez attraper tous les oiseaux, vous pouvez aller au niveau suivant";
+        else
+        std::cout << "Vous avez gagné" << std::endl;
+
         niveau->getAttendre(2.3);
         snoopy->setScoreSiPlusGd(niveau->getTempsRestant()*100, snoopy->getNiveauActuel() );
         snoopy->setNiveauActuel(snoopy->getNiveauActuel()+1);
@@ -216,7 +220,7 @@ void Partie::changerVie(std::string nom, PersoSnoopy* snoopy, bool plusDeVie)///
     while(maSauvegarde[i] != ' ') i++;
     i++;
 
-    if(plusDeVie)
+    if(plusDeVie) //permet de dire à chaque fois, defete, -1 vie, si il faut remettre le score à 0, il permmettra de revvir à 0 mais continuer à jouer normal
     maSauvegarde[i] = '1';
     else
     maSauvegarde[i] = '0';
