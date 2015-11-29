@@ -6,7 +6,7 @@ BlocsPoussables::BlocsPoussables(): Blocs(), m_saLetrre('P'), m_poussable(true)
 {
 }
 
-BlocsPoussables::BlocsPoussables(int x, int y, bool poussable): Blocs(x,y), m_poussable(poussable), m_saLetrre('P')
+BlocsPoussables::BlocsPoussables(int x, int y, bool poussable): Blocs(x,y), m_saLetrre('P'), m_poussable(poussable)
 {
 }
 BlocsPoussables::~BlocsPoussables()

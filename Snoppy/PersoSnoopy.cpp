@@ -2,7 +2,7 @@
 #include "PersoSnoopy.h"
 
 PersoSnoopy::PersoSnoopy()
-            : m_saLetrre('S'),m_vivant(true), m_modeDemolition(false), m_nbOiseauxAttrap(0), m_vie(3),
+            : m_nbOiseauxAttrap(0), m_vie(3), m_x(-1), m_y(-1), m_vivant(true), m_saLetrre('S'), m_modeDemolition(false),
               m_niveauActuel(1), m_niveauDejaAtteint(1), m_toucherParPiege(false)
 {
     m_scoreVectParNiv.push_back(0);
@@ -12,7 +12,7 @@ PersoSnoopy::PersoSnoopy()
 
 
 PersoSnoopy::PersoSnoopy(int x, int y, int scoreNiv1, int scoreNiv2, int scoreNiv3, int vie)
-			: m_x(x), m_y(y), m_nbOiseauxAttrap(0), m_vie(vie), m_saLetrre('S'), m_vivant(true), m_modeDemolition(false),
+			: m_nbOiseauxAttrap(0), m_vie(vie), m_x(x), m_y(y), m_vivant(true), m_saLetrre('S'), m_modeDemolition(false),
         m_niveauActuel(1), m_niveauDejaAtteint(1), m_toucherParPiege(false)
 {
     m_scoreVectParNiv.push_back(scoreNiv1);

@@ -4,7 +4,7 @@
 
 
 
-Menu::Menu(): m_choixMenu('0'), m_motDePasse("Snoop")
+Menu::Menu(): m_motDePasse("Snoop"), m_choixMenu('0')
 {
 
 }
@@ -202,6 +202,8 @@ void Menu::highscore( int TempsRestant, int score)
 
         if(fichier)
         {
+            if(fichier.eof()){
+            std::cout << "Pas encore de record... " << std::endl;}
             fichier>> meilleurScoreAct;
             fichier>> pseudo;
             if(meilleurScoreAct > 0){
@@ -210,11 +212,6 @@ void Menu::highscore( int TempsRestant, int score)
             std::cout << "Pas encore de record... " << std::endl;}
             if(meilleurScoreAct <0){
             std::cout << "Probleme score negatif... " << std::endl;}
-            if(meilleurScoreAct == 'EOF'){
-            std::cout << "Pas encore de record... " << std::endl;}
-
-
-
 
             fichier.close();
         }
