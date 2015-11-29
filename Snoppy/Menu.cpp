@@ -84,7 +84,7 @@ void Menu::creerPartie(char decisionJoueurMenu)
     std::string const extention(".txt");
     std::string nomFichier;
 
-    Partie *m_partie = new Partie();
+
 
     if(decisionJoueurMenu == '1')
     {
@@ -95,6 +95,7 @@ void Menu::creerPartie(char decisionJoueurMenu)
 
          if(!is_readable(nomFichier) && nom != "r")
             {
+            Partie *m_partie = new Partie(decisionJoueurMenu, "1", nom);
             m_partie->jouer(m_partie, decisionJoueurMenu, nom, "1");
             delete m_partie;
             }
@@ -116,6 +117,7 @@ void Menu::creerPartie(char decisionJoueurMenu)
 
             if(decisionJoueurNiveau != "r" )
                {
+                Partie *m_partie = new Partie(decisionJoueurMenu, decisionJoueurNiveau, nom);
                 m_partie->jouer(m_partie, decisionJoueurMenu, nom, decisionJoueurNiveau);
                 delete m_partie;
                }
@@ -137,6 +139,7 @@ void Menu::creerPartie(char decisionJoueurMenu)
 
             if(decisionJoueurNiveau != "r" )
                {
+                Partie *m_partie = new Partie(decisionJoueurMenu, decisionJoueurNiveau, "rien");
                 m_partie->jouer(m_partie, decisionJoueurMenu, "rien", decisionJoueurNiveau);
                 delete m_partie;
                }
@@ -210,8 +213,8 @@ void Menu::highscore( int TempsRestant, int score)
             if(meilleurScoreAct == 'EOF'){
             std::cout << "Pas encore de record... " << std::endl;}
 
-            
-            
+
+
 
             fichier.close();
         }

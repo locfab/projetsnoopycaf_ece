@@ -23,6 +23,7 @@ class Partie
     public:
 
         Partie();
+        Partie(char decisionJoueurMenu, std::string decisionJoueurNiveau, std::string pseudo);
         ~Partie();
         void jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, std::string decisionJoueurNiveau);
         void changerVie(std::string nom, PersoSnoopy* snoopy, bool plusDeVie);

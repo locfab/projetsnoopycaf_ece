@@ -4,10 +4,12 @@
 
 
 ///Constructeur par défaut
-Partie::Partie()
+Partie::Partie(char decisionJoueurMenu, std::string decisionJoueurNiveau, std::string pseudo)
 {
     m_snoopy = new PersoSnoopy();
     m_niveau = new Niveau();
+
+    chargerPartieAvecMenu(pseudo, m_snoopy, m_niveau, decisionJoueurNiveau, decisionJoueurMenu);
 }
 
 ///Destructeur
@@ -44,7 +46,6 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
     system("cls");
 
 
-    chargerPartieAvecMenu(pseudo, m_snoopy, m_niveau, decisionJoueurNiveau, decisionJoueurMenu);
     if(decisionJoueurMenu !='3' && atoi(decisionJoueurNiveau.c_str()) > m_snoopy->getNiveauDejaAtteint()) accepter = false;
 
     while(onContinu(m_snoopy, m_niveau, esc, timeOut, accepter, save, decisionJoueurMenu)) ///Boucle de jeu tant qui indique c'est tous les parametres pour continuer à jouer sont reunit
@@ -94,6 +95,8 @@ void Partie::prepaEtLancerNivSuiv(PersoSnoopy* snoopy, Niveau*niveau, std::strin
 
     m_snoopy = new PersoSnoopy();
     m_niveau = new Niveau();
+
+    chargerPartieAvecMenu(pseudo, m_snoopy, m_niveau, "0", '2');
 
 
     jouer(this, '2', pseudo, "0");
