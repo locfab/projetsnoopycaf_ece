@@ -10,14 +10,6 @@ PersoSnoopy::PersoSnoopy()
     m_scoreVectParNiv.push_back(0);
 }
 
-PersoSnoopy::PersoSnoopy(int x, int y)
-          : m_x(x), m_y(y), m_nbOiseauxAttrap(0), m_vie(3), m_saLetrre('S'), m_vivant(true), m_modeDemolition(false),
-            m_niveauActuel(1), m_niveauDejaAtteint(1), m_toucherParPiege(false)
-{
-    m_scoreVectParNiv.push_back(0);
-    m_scoreVectParNiv.push_back(0);
-    m_scoreVectParNiv.push_back(0);
-}
 
 PersoSnoopy::PersoSnoopy(int x, int y, int scoreNiv1, int scoreNiv2, int scoreNiv3, int vie)
 			: m_x(x), m_y(y), m_nbOiseauxAttrap(0), m_vie(vie), m_saLetrre('S'), m_vivant(true), m_modeDemolition(false),
@@ -52,11 +44,18 @@ void PersoSnoopy::setNbrVie(int vie)
    if(m_vie >=0 && m_vie < 10)//A ne pas modifier!!! si on met au dessus de 10, ou negatif, ca bloque tout on ne pourra plus modifier dans le fichier
     m_vie = vie;
 }
-void PersoSnoopy::setScore(int score, int niv)
+void PersoSnoopy::setScoreSiPlusGd(int score, int niv)
 {
     if(niv > 0 && niv < 4 && score > m_scoreVectParNiv[niv-1] )
     m_scoreVectParNiv[niv-1] = score;
 }
+void PersoSnoopy::setScoreNul()
+{
+  m_scoreVectParNiv[0] = 0;
+  m_scoreVectParNiv[1] = 0;
+  m_scoreVectParNiv[2] = 0;
+}
+
 
 void PersoSnoopy::setCoordonnees(int x, int y)
 {
@@ -140,7 +139,7 @@ int PersoSnoopy::getScoreParNiv(int niv) const
     if(niv > 0 && niv < 4)
     return m_scoreVectParNiv[niv-1];
     else
-    return 0;
+    return 1;
 }
 int PersoSnoopy::getX() const
 {

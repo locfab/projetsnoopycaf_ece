@@ -191,13 +191,14 @@ void Menu::highscore( int TempsRestant, int score)
         meilleurScoreAct=score;
     }
 
+    system("cls");
+
     if(is_readable(nomFichier))
     {
         std::ifstream fichier(nomFichier.c_str(), std::ios::in);  // on ouvre
 
         if(fichier)
         {
-            system("cls");
             fichier>> meilleurScoreAct;
             fichier>> pseudo;
             if(meilleurScoreAct > 0){
@@ -209,8 +210,8 @@ void Menu::highscore( int TempsRestant, int score)
             if(meilleurScoreAct == 'EOF'){
             std::cout << "Pas encore de record... " << std::endl;}
 
-            std::cout << std::endl;
-            std::cout << "appuyer sur 'r' pour revenir au menu " << std::endl;
+            
+            
 
             fichier.close();
         }
@@ -220,6 +221,13 @@ void Menu::highscore( int TempsRestant, int score)
         }
     }
 
+    if(!is_readable(nomFichier))
+    {
+    std::cout << "Pas encore de record... ";
+    }
+
+    std::cout << std::endl;
+    std::cout << "appuyer sur 'r' pour revenir au menu " << std::endl;
     while(caracRetour != 'r')
     {
         if(kbhit())

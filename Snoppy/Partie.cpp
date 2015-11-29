@@ -54,21 +54,21 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
             m_niveau->setCordSnoopClav(m_snoopy, m_niveau, toucheUtilisateur);
             m_niveau->gererBonus(m_snoopy);
             m_niveau->afficherPlateau(m_snoopy, decisionJoueurMenu, decisionJoueurNiveau);
-            m_niveau->getAttendre(0.09*vitesseMultiBoucle);         /// Temporisation de 0.1 seconde
+            m_niveau->getAttendre(0.09*vitesseMultiBoucle);         /// Temporisation varaiable seconde
             recupererEntresClav(m_niveau, m_snoopy, pause, save, esc, toucheUtilisateur);
             gestionDePause(m_niveau, pause, toucheUtilisateur, tempsDePause, esc);
     }
 
     if(decisionJoueurMenu != '3')// menu 1 et 2 sans mot de passe super Utilsateur
     {
-        if(m_niveau->getTempsRestant() <= 0) { tempsEcoule(m_niveau, timeOut); } /// Est-ce que le temps restant est inférieur à 0 ?
+        if(m_niveau->getTempsRestant() <= 0) { tempsEcoule(m_niveau, m_snoopy, nomFichier, timeOut); } /// Est-ce que le temps restant est inférieur à 0 ?
         if(esc != 0) { quitterSansEnregister(m_niveau); }//si echap n'a pas ete apuiye
         if (!accepter) { niveauJamaisAtteintRetour(m_niveau, m_snoopy); }
         if(m_snoopy->getNbOiseauAttrap()==4){ prepaSauvPartieGagnee(m_niveau, m_snoopy, partieEnCours, save); }
         if (m_niveau->toucheBalle(m_snoopy, m_niveau)) { m_snoopy->setVivant(false);}
         if (!m_snoopy->getVivant()) { gestionDeMort(m_niveau, m_snoopy, pseudo, nomFichier); }
-        if(m_snoopy->getNbrVie()<=0) { gestionPlusDeVie(m_snoopy, m_niveau, pseudo, nomFichier, save); }//si plus de vies
         if(m_niveau->is_readable(nomFichier)) { changerVie(pseudo, m_snoopy); }
+        if(m_snoopy->getNbrVie()<=0) { gestionPlusDeVie(m_snoopy, m_niveau, pseudo, nomFichier, save, decisionJoueurNiveau); }//si plus de vies
         setScoreMax(m_snoopy->getScore(), nom);
 
         if(save != 0) { sauvegarde(pseudo, m_snoopy, m_niveau, partieEnCours); }
@@ -76,11 +76,11 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
 
     }
     if(decisionJoueurMenu == '3')//menu 3 super Utilsateur
-    {
+    {   if(m_niveau->getTempsRestant() <= 0) { tempsEcoule(m_niveau, m_snoopy, nomFichier, timeOut); }
         if(esc != 0) { quitterSansEnregister(m_niveau); }//si echap n'a pas ete apuiye
         if(m_snoopy->getNbOiseauAttrap()==4){ prepaSauvPartieGagnee(m_niveau, m_snoopy, partieEnCours, save); }
-        if (m_niveau->toucheBalle(m_snoopy, m_niveau)) { m_snoopy->setVivant(false);}
-        if (!m_snoopy->getVivant()) { gestionDeMort(m_niveau, m_snoopy, pseudo, nomFichier); }
+        if(m_niveau->toucheBalle(m_snoopy, m_niveau)) { m_snoopy->setVivant(false);}
+        if(!m_snoopy->getVivant()) { gestionDeMort(m_niveau, m_snoopy, pseudo, nomFichier); }
     }
 
 
@@ -131,13 +131,25 @@ void Partie::gestionDePause(Niveau* niveau, int& pause, char& toucheUtilisateur,
 }
 
 
-void Partie::tempsEcoule(Niveau* niveau, int& timeOut)//faut les action necessaire quand le temps est ecoule
+void Partie::tempsEcoule(Niveau* niveau, PersoSnoopy* snoopy, std::string pseudo, int& timeOut)//faut les action necessaire quand le temps est ecoule
 {
+
+        std::string const dossier("sauvegarde//");
+        std::string nom(pseudo);
+        std::string const extention(".txt");
+        std::string nomFichier = dossier + nom + extention;
+
         timeOut = 1;
         system("cls");
         niveau->pConsole->gotoLigCol(12, 30);
         std::cout << "Temps ecoule !";
-        niveau->getAttendre(0.75);
+        niveau->getAttendre(2);
+        snoopy->setNbrVie(snoopy->getNbrVie()-1);
+        if(niveau->is_readable(nomFichier))//pour ne pas modifier un fichier qui n'existe pas
+        {
+        changerVie(nom, snoopy);
+        }
+
 }
 
 void Partie::quitterSansEnregister(Niveau* niveau)
@@ -164,7 +176,7 @@ void Partie::prepaSauvPartieGagnee(Niveau* niveau, PersoSnoopy* snoopy, bool& pa
         niveau->pConsole->gotoLigCol(12, 30);
         std::cout << "Vous avez attraper tous les oiseaux, vous pouvez aller au niveau suivant";
         niveau->getAttendre(2.3);
-        snoopy->setScore(snoopy->getScoreParNiv(snoopy->getNiveauActuel()) + niveau->getTempsRestant()*100, snoopy->getNiveauActuel() );
+        snoopy->setScoreSiPlusGd(niveau->getTempsRestant()*100, snoopy->getNiveauActuel() );
         snoopy->setNiveauActuel(snoopy->getNiveauActuel()+1);
         if(m_snoopy->getNiveauActuel() >= snoopy->getNiveauDejaAtteint())//on change la valeur du melleur niveau jamais atteint si c'est le cas
         {
@@ -247,20 +259,18 @@ void Partie::gestionDeMort(Niveau* niveau, PersoSnoopy* snoopy, std::string pseu
     {
       changerVie(pseudo, snoopy);
     }
+
 }
 
-void Partie::gestionPlusDeVie(PersoSnoopy* snoopy, Niveau* niveau, std::string pseudo, std::string nomFichier, int& save)//si il n'y a plus de vie
+void Partie::gestionPlusDeVie(PersoSnoopy* snoopy, Niveau* niveau, std::string pseudo, std::string nomFichier, int& save, std::string decisionJoueurNiveau)//si il n'y a plus de vie
 {
         niveau->getAttendre(0.75);
         system("cls");
         niveau->pConsole->gotoLigCol(12, 12);
         std::cout << "Game Over, Vous avez toujours acces au niveau que vous avez atteint mais votre score est nul";
         niveau->getAttendre(2.3);
-        snoopy->setNiveauActuel(1);
         snoopy->setNbrVie(3);
-/*        snoopy->setScore(0,1);
-        snoopy->setScore(0,2);
-        snoopy->setScore(0,3);*/
+        snoopy->setScoreNul();
         if(niveau->is_readable(nomFichier))//pour ne pas modifier un fichier qui n'existe pas
         {
             changerVie(pseudo, snoopy);
@@ -278,7 +288,7 @@ void Partie::chargerPartieAvecMenu(std::string nom, PersoSnoopy* snoopy, Niveau*
 }
 void Partie::chargerPartieAvecMenu1(std::string nom, PersoSnoopy* snoopy, Niveau* niveau, std::string decisionJoueurNiveau)
 {
-    niveau->setPlateau(decisionJoueurNiveau);
+    niveau->setPlateauDeb(decisionJoueurNiveau);
     niveau->creerObjetDebut(snoopy, nom, decisionJoueurNiveau);//charger les obget par defaut
     niveau->initCoordSnoop(snoopy);
 }
@@ -287,12 +297,12 @@ void Partie::chargerPartieAvecMenu2(std::string nom, PersoSnoopy* snoopy, Niveau
     //il faut voire si il a deja depasse ce niveau
         if(decisionJoueurNiveau == "0")
         {
-            niveau->setPlateau("1");//juste une initialisation
+            niveau->setPlateauDeb("1");//juste une initialisation
             niveau->creerObjetSauv(nom, snoopy, niveau, decisionJoueurNiveau);//cahrger a partir de sauvegarde ou rappelera à l'interieur la creerObjetrDebut, si la partie ete terminee
         }
         else
         {
-            niveau->setPlateau(decisionJoueurNiveau);
+            niveau->setPlateauDeb(decisionJoueurNiveau);
             niveau->creerObjetDebut(snoopy, nom, decisionJoueurNiveau);//creation par defaut
             niveau->initCoordSnoop(snoopy);
 
@@ -325,6 +335,9 @@ void Partie::sauvegarde(std::string pseudo, PersoSnoopy* snoopy, Niveau* niveau,
         std::string nomFichier = dossier + nom + extention;
         std::ofstream monFlux(nomFichier.c_str());
         int nombre(0);
+
+       /* std::cout << snoopy->getScoreParNiv(1) << " " << snoopy->getScoreParNiv(2) << " " << snoopy->getScoreParNiv(3) << std::endl;
+        while(nombre==0){}*/
 
         if(monFlux)
         {

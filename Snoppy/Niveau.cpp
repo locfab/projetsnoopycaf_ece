@@ -36,7 +36,7 @@ Niveau::~Niveau()
     delete m_bonusMultiBalle;
 }
 
-void Niveau::setPlateau(std::string niveau)
+void Niveau::setPlateauDeb(std::string niveau)
 {
 
     std::string nb = niveau; //choisir quel fichier on ouvre 1, 2 ,3
@@ -74,11 +74,38 @@ void Niveau::setPlateau(std::string niveau)
 
 }
 
+void Niveau::setPlateauDejaCree(std::string niveau)
+{
+
+    std::string nb = niveau; //choisir quel fichier on ouvre 1, 2 ,3
+    std::string debut("matriceNiveau");
+    std::string fin("UtilisableSansEspace.txt");
+    std::string nomFichier = debut + nb + fin;
+
+        std::ifstream fichier(nomFichier.c_str(), std::ios::in);  // on ouvre
+
+        if(fichier)
+        {
+            char caractere;  // notre variable o sera stockŽ le caractre
+
+            for (int j=0; j< m_lig; j++)
+            {
+                for (int i=0; i< m_col; i++)
+                {
+                    fichier.get(caractere);  // on lit un caractre et on le stocke dans caractere
+                    m_plateau[i][j]=caractere;
+                }
+            }
+
+            fichier.close();
+        }
+        else
+            std::cout << "Impossible d'ouvrir le fichier !!!" << std::endl;
+
+}
+
 void Niveau::afficherPlateau(PersoSnoopy* snoopy, char decisionJoueurMenu, std::string decisionJoueurNiveau)
 {
-    pConsole->gotoLigCol(5, 50);
-    std::cout << "Temps restant : " << (int)getTempsRestant() << "  ";
-    setTempsRestant(getTempsRestant()); /// Calcul du nouveau temps restant
     pConsole->gotoLigCol(0, 0);
 
     for (int j=0; j< m_lig; j++)
@@ -139,6 +166,8 @@ pConsole->setColor(COLOR_WHITE);
 
     if(decisionJoueurMenu != '3')//si pas menu mot de passe
     {
+        pConsole->gotoLigCol(5, 50);
+        std::cout << "Temps restant : " << (int)getTempsRestant() << "  "; setTempsRestant(getTempsRestant()); /// Calcul du nouveau temps restant
         pConsole->gotoLigCol(4, 50);
         std::cout << "Niveau actuel : " << snoopy->getNiveauActuel() << "  " << std::endl;
         pConsole->gotoLigCol(6, 50);
@@ -152,6 +181,8 @@ pConsole->setColor(COLOR_WHITE);
     }
     if(decisionJoueurMenu == '3')
     {
+        pConsole->gotoLigCol(5, 50);
+        std::cout << "Temps restant : " << (int)getTempsRestant() << "  "; setTempsRestant(getTempsRestant()); /// Calcul du nouveau temps restant
         pConsole->gotoLigCol(6, 50);
         std::cout << "Niveau actuel : " << decisionJoueurNiveau << "  " << std::endl;
         pConsole->gotoLigCol(7, 50);
@@ -226,15 +257,6 @@ void Niveau::changerPlateau(PersoSnoopy* snoopy)// regenerer un plateau avec les
             this->m_plateau[i][j] = '.';// on initialise avec des points
         }
     }
-    for(unsigned i(0); i< m_vectBalle.size();i++)
-    {
-      if(verificationBalle_Bords(&m_vectBalle[i]) == '1')//on met la balle à partir de nouvelle coordonnes
-        {
-           m_vectBalle[i].setX();
-           m_vectBalle[i].setY();
-           m_plateau[m_vectBalle[i].getX()][m_vectBalle[i].getY()] = 'B';
-        }
-    }
 
     if(m_bonusAttrap != NULL) {m_plateau[m_bonusAttrap->getX()][m_bonusAttrap->getY()] = 3-(char)diffTemps + '0';}
     if(m_bonusMultiBalle != NULL) {m_plateau[m_bonusMultiBalle->getX()][m_bonusMultiBalle->getY()] = m_bonusMultiBalle->getLettre();}
@@ -247,6 +269,15 @@ void Niveau::changerPlateau(PersoSnoopy* snoopy)// regenerer un plateau avec les
     for(unsigned i=0; i<m_tabOiseau.size();++i)
     {
        m_plateau[m_tabOiseau[i].getX()][m_tabOiseau[i].getY()] = 'O' ;// on place les oiseaus
+    }
+    for(unsigned i(0); i< m_vectBalle.size();i++)
+    {
+      if(verificationBalle_Bords(&m_vectBalle[i]) == '1')//on met la balle à partir de nouvelle coordonnes
+        {
+           m_vectBalle[i].setX();
+           m_vectBalle[i].setY();
+           m_plateau[m_vectBalle[i].getX()][m_vectBalle[i].getY()] = 'B';
+        }
     }
     m_plateau[snoopy->getX()][snoopy->getY()] = 'S';//on place snoopy
 }
@@ -315,24 +346,24 @@ void Niveau::gererBonus(PersoSnoopy* snoopy)
 
     int i,j;
     Balle *balleTamp;
-    srand(time(0));
+    std::srand(std::time(0));
 
     if(m_bonusAttrap == NULL)
     {
-       i= rand()%20;
-       j= rand()%10;
-        if(rand()%30 == 0 && m_plateau[i][j] == '.')
+       i= std::rand()%20;
+       j= std::rand()%10;
+        if(std::rand()%30 == 0 && m_plateau[i][j] == '.')
         {
            m_bonusAttrap = new BonusAttrap(i,j,this->getTempsRestant());
         }
 
     }
-    else if(m_bonusAttrap->getTempsALaCreation()-getTempsRestant()>3)
+    else if(m_bonusAttrap != NULL && m_bonusAttrap->getTempsALaCreation()-getTempsRestant()>3)
     {
         delete m_bonusAttrap;
         m_bonusAttrap = NULL;
     }
-    else if (m_bonusAttrap->getTempsALaCreation()-getTempsRestant()<3)
+    else if (m_bonusAttrap != NULL && m_bonusAttrap->getTempsALaCreation()-getTempsRestant()<3)
     {
         if(snoopy->getX() == m_bonusAttrap->getX() && snoopy->getY() == m_bonusAttrap->getY())
         {
@@ -345,9 +376,9 @@ void Niveau::gererBonus(PersoSnoopy* snoopy)
 
     if(m_bonusMultiBalle == NULL)
     {
-       i= rand()%20;
-       j= rand()%10;
-        if(rand()%3 == 0 && m_plateau[i][j] == '.')
+       i= std::rand()%20;
+       j= std::rand()%10;
+        if(std::rand()%15 == 0 && m_plateau[i][j] == '.')
         {
            m_bonusMultiBalle = new BonusMultiBalle(i,j,this->getTempsRestant());
         }
@@ -389,6 +420,7 @@ void Niveau::creerObjetDebut(PersoSnoopy* snoopy, std::string nom, std::string d
     std::string nomFichier = dossier + nom + extention;
 
     int a;
+    std::string mot;
 
     Oiseau *p_Oiseau;
     Blocs* p_Blocs;
@@ -433,8 +465,6 @@ void Niveau::creerObjetDebut(PersoSnoopy* snoopy, std::string nom, std::string d
               p_Blocs = NULL;
             }
 
-
-
             if(is_readable(nomFichier))//si le fichier existe, (cette fonction est appelé quand le ficheir existe si le niveau avez ete gagner)
             {
                std::ifstream fichier(nomFichier.c_str(), std::ios::in);  // on ouvre
@@ -445,7 +475,16 @@ void Niveau::creerObjetDebut(PersoSnoopy* snoopy, std::string nom, std::string d
                     fichier >> a;//ON recupere le deja atteint par le joueur dans le passe
                     snoopy->setNiveauDejaAtteint(a);
                     snoopy->setNiveauActuel(atoi(decisionJoueurNiveau.c_str()));//on lui met le niveau actuelle dans lequel on va jouer
+                    fichier >> mot; fichier >> mot;//on passe les mot
+                    fichier >> mot; fichier >> mot;//on passe les mot
+                    fichier >> mot; fichier >> mot;//on passe les mot
 
+                    fichier >> a;//on remet les point gagnées par niveau
+                    snoopy->setScoreSiPlusGd(a,1);
+                    fichier >> a;//on remet les point gagnées par niveau
+                    snoopy->setScoreSiPlusGd(a,2);
+                    fichier >> a;//on remet les point gagnées par niveau
+                    snoopy->setScoreSiPlusGd(a,3);
                 }
             }
         }
@@ -473,6 +512,7 @@ void Niveau::creerObjetSauv(std::string nom, PersoSnoopy* snoopy, Niveau* niveau
     int niveauDejaAtteint;
     bool partieEnCours;
     int tailleTableau;
+    int rien(0);
     std::ostringstream nivSuiv;
 
 
@@ -521,9 +561,10 @@ void Niveau::creerObjetSauv(std::string nom, PersoSnoopy* snoopy, Niveau* niveau
             snoopy->setX(a);
             snoopy->setY(b);
             snoopy->setNbrVie(c);
-            snoopy->setScore(d, 1);
-            snoopy->setScore(e, 2);
-            snoopy->setScore(f, 3);
+            snoopy->setScoreSiPlusGd(d, 1);
+            snoopy->setScoreSiPlusGd(e, 2);
+            snoopy->setScoreSiPlusGd(f, 3);
+
             snoopy->setNiveauActuel(niveauActuel);//recuper en haut de la methode
             snoopy->setNiveauDejaAtteint(niveauDejaAtteint);//recuper en haut de la methode
 
@@ -538,20 +579,18 @@ void Niveau::creerObjetSauv(std::string nom, PersoSnoopy* snoopy, Niveau* niveau
 
             for (int i(0); i<valeur; i++)
             {
-            fichier >> nb;
-            a = nb;
-            fichier >> nb;
-            b = nb;
-            fichier >> nb;
-            c = nb;
-            fichier >> nb;
-            d = nb;
+                fichier >> nb;
+                a = nb;
+                fichier >> nb;
+                b = nb;
+                fichier >> nb;
+                c = nb;
+                fichier >> nb;
+                d = nb;
 
-            //while(rien == 0){std::cout << a << " "<< b << " " << c << ' ' << d << std::endl;}
-
-            p_balle = new Balle(a,b,c,d);
-            m_vectBalle.push_back(*p_balle);
-            p_balle = NULL;
+                p_balle = new Balle(a,b,c,d);
+                m_vectBalle.push_back(*p_balle);
+                p_balle = NULL;
             }
 
 
@@ -657,7 +696,7 @@ void Niveau::creerObjetSauv(std::string nom, PersoSnoopy* snoopy, Niveau* niveau
             if(!partieEnCours)
             {
                 nivSuiv << snoopy->getNiveauActuel();
-                niveau->setPlateau(nivSuiv.str());
+                niveau->setPlateauDeb(nivSuiv.str());
                 snoopy->setNbrOiseauxANul();
 
                 tailleTableau = getTabBlocs().size();

@@ -9,7 +9,6 @@ class PersoSnoopy
     public:
 
     PersoSnoopy();
-    PersoSnoopy(int x, int y);
     PersoSnoopy(int x, int y, int scoreNiv1, int scoreNiv2, int scoreNiv3, int vie);
     ~PersoSnoopy();
 
@@ -20,7 +19,8 @@ class PersoSnoopy
     void setNbrOiseauxANul();
     void setVivant(bool vivant);
     void setNbrVie(int vie);
-    void setScore(int score, int niv);
+    void setScoreSiPlusGd(int score, int niv);
+    void setScoreNul();
     void setCoordonnees(int x, int y);
     void setModeDemolition(bool modeDemolition);
     void setX(int x);

@@ -29,12 +29,12 @@ class Partie
         void recupererEntresClav(Niveau* niveau, PersoSnoopy* snoopy, int& pause, int& save, int& esc, char& toucheUtilisateur);
         void chargerPartieAvecMenu(std::string nom, PersoSnoopy* snoopy, Niveau* niveau, std::string decisionJoueurNiveau, char decisionJoueurMenu);
         void sauvegarde(std::string pseudo, PersoSnoopy* snoopy, Niveau* niveau, bool partieEnCours);
-        void tempsEcoule(Niveau* niveau, int& timeOut);
+        void tempsEcoule(Niveau* niveau, PersoSnoopy* snoopy, std::string pseudo, int& timeOut);
         void quitterSansEnregister(Niveau* niveau);
         void niveauJamaisAtteintRetour(Niveau* niveau, PersoSnoopy* snoopy);
         void prepaSauvPartieGagnee(Niveau* niveau, PersoSnoopy* snoopy, bool& partieEnCours, int& save);
         void gestionDeMort(Niveau* niveau, PersoSnoopy* snoopy, std::string pseudo, std::string nomFichier);
-        void gestionPlusDeVie(PersoSnoopy* snoopy, Niveau* niveau, std::string pseudo, std::string nomFichier, int& save);
+        void gestionPlusDeVie(PersoSnoopy* snoopy, Niveau* niveau, std::string pseudo, std::string nomFichier, int& save, std::string decisionJoueurNiveau);
         void gestionDePause(Niveau* niveau, int& pause, char& toucheUtilisateur, double& tempsDePause, int& esc);
         bool onContinu(PersoSnoopy* snoopy, Niveau*niveau, int esc, int timeOut, bool accepter, int save, char decisionJoueurMenu);
         void prepaEtLancerNivSuiv(PersoSnoopy* snoopy, Niveau*niveau, std::string pseudo, std::string decisionJoueurNiveau, bool partieEnCours);
