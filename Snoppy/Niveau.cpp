@@ -167,7 +167,7 @@ pConsole->setColor(COLOR_WHITE);
     if(decisionJoueurMenu != '3')//si pas menu mot de passe
     {
         pConsole->gotoLigCol(5, 50);
-        std::cout << "Temps restant : " << (int)getTempsRestant() << "  "; setTempsRestant(getTempsRestant()); /// Calcul du nouveau temps restant
+        std::cout << "Temps restant : " << ((int)getTempsRestant() - (int)clock())/1000  << "  "; //setTempsRestant(getTempsRestant()); /// Calcul du nouveau temps restant
         pConsole->gotoLigCol(4, 50);
         std::cout << "Niveau actuel : " << snoopy->getNiveauActuel() << "  " << std::endl;
         pConsole->gotoLigCol(6, 50);
@@ -182,7 +182,7 @@ pConsole->setColor(COLOR_WHITE);
     if(decisionJoueurMenu == '3')
     {
         pConsole->gotoLigCol(5, 50);
-        std::cout << "Temps restant : " << (int)getTempsRestant() << "  "; setTempsRestant(getTempsRestant()); /// Calcul du nouveau temps restant
+        std::cout << "Temps restant : " << ((int)getTempsRestant() - (int)clock())/1000  << "  "; //setTempsRestant(getTempsRestant()); /// Calcul du nouveau temps restant
         pConsole->gotoLigCol(6, 50);
         std::cout << "Niveau actuel : " << decisionJoueurNiveau << "  " << std::endl;
         pConsole->gotoLigCol(7, 50);
@@ -216,10 +216,7 @@ double Niveau::getTempsRestant()
 /// Setter du nouveau temps restant
 void Niveau::setTempsRestant(double newTempsRestant)
 {
-    if(newTempsRestant >= 0)
-    {
-        m_tempsRestant = m_temps->getTempsMax() - (double)clock() / CLOCKS_PER_SEC;
-    }
+    m_tempsRestant = newTempsRestant;
 }
 
 /// Getter sur le déplacement de la balle
@@ -248,7 +245,7 @@ std::vector<Balle> Niveau::getVectBalle()
 void Niveau::changerPlateau(PersoSnoopy* snoopy)// regenerer un plateau avec les nouvelles modication à partir des objet existant
 {
     int diffTemps;
-    if(m_bonusAttrap != NULL){diffTemps = m_bonusAttrap->getTempsALaCreation()-getTempsRestant();}
+    if(m_bonusAttrap != NULL){diffTemps = ((int)clock()-m_bonusAttrap->getTempsALaCreation())/1000;}
 
     for (int j=0; j< m_lig; j++)
     {
@@ -345,8 +342,8 @@ void Niveau::gererBonus(PersoSnoopy* snoopy)
 {
 
     int i,j;
-    int const freqApparitionMultiBalle = 10;
-    int const freqApparitionAttrap = 10;
+    int const freqApparitionMultiBalle = 1;
+    int const freqApparitionAttrap = 1;
     Balle *balleTamp;
     std::srand(std::time(0));
 
@@ -356,16 +353,16 @@ void Niveau::gererBonus(PersoSnoopy* snoopy)
        j= std::rand()%m_lig;
         if(std::rand()%freqApparitionAttrap == 0 && m_plateau[i][j] == '.')
         {
-           m_bonusAttrap = new BonusAttrap(i,j,this->getTempsRestant());//on l'initialise et on lui donne son heure de ceatio,
+           m_bonusAttrap = new BonusAttrap(i,j,(int)clock());//on l'initialise et on lui donne son heure de ceatio,
         }
 
     }
-    else if(m_bonusAttrap != NULL && m_bonusAttrap->getTempsALaCreation()-getTempsRestant()>3)//si ca fait plus de trois second qu'il vit
+    else if(m_bonusAttrap != NULL && (int)clock() - m_bonusAttrap->getTempsALaCreation()>3*1000)//si ca fait plus de trois second qu'il vit
     {
         delete m_bonusAttrap;//on l'enleve
         m_bonusAttrap = NULL;
     }
-    else if (m_bonusAttrap != NULL && m_bonusAttrap->getTempsALaCreation()-getTempsRestant()<3)//si ca fait moins de trois de trois second on regarde si il est attrapé
+    else if (m_bonusAttrap != NULL && (int)clock() - m_bonusAttrap->getTempsALaCreation()<3*1000)//si ca fait moins de trois de trois second on regarde si il est attrapé
     {
         if(snoopy->getX() == m_bonusAttrap->getX() && snoopy->getY() == m_bonusAttrap->getY())//si il est au meme coordonné que snoopy
         {
@@ -382,16 +379,16 @@ void Niveau::gererBonus(PersoSnoopy* snoopy)
        j= std::rand()%m_lig;
         if(std::rand()%freqApparitionMultiBalle == 0 && m_plateau[i][j] == '.')
         {
-           m_bonusMultiBalle = new BonusMultiBalle(i,j,this->getTempsRestant());//meme chose quue pour bonus au dessus
+           m_bonusMultiBalle = new BonusMultiBalle(i,j,clock());//meme chose quue pour bonus au dessus
         }
 
     }
-    else if(m_bonusMultiBalle->getTempsALaCreation()-getTempsRestant()>3)//idem au dessus
+    else if((int)clock() - m_bonusMultiBalle->getTempsALaCreation()>3*1000)//idem au dessus
     {
         delete m_bonusMultiBalle;
         m_bonusMultiBalle = NULL;
     }
-    else if (m_bonusMultiBalle->getTempsALaCreation()-getTempsRestant()<3)//idem au dessu
+    else if ((int)clock() - m_bonusMultiBalle->getTempsALaCreation()<3*1000)//idem au dessu
     {
         int taille = m_vectBalle.size();
         for(int i(0); i< taille; i++)
@@ -466,6 +463,8 @@ void Niveau::creerObjetDebut(PersoSnoopy* snoopy, std::string nom, std::string d
               m_tabBlocs.push_back(p_Blocs);
               p_Blocs = NULL;
             }
+
+            setTempsRestant((double)clock() + m_temps->getTempsMax()*1000);
 
             if(is_readable(nomFichier))//si le fichier existe, (cette fonction est appelé quand le ficheir existe si le niveau avez ete gagner)
             {
@@ -698,7 +697,7 @@ void Niveau::creerObjetSauv(std::string nom, PersoSnoopy* snoopy, Niveau* niveau
             //recuperation du temps, peut etre mettre un float?
 
             fichier >> nb;
-            valeur = nb;
+            setTempsRestant((double)clock() + nb*1000);
 
             if(!partieEnCours)//si jamais la partie avait ete terminée, alors on supprime quelque donne et on appelle la creartion des objet commme si on ete au debut d'une partie
             {
