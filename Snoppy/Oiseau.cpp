@@ -2,7 +2,7 @@
 #include "Oiseau.h"
 
 
-Oiseau::Oiseau(): m_saLetrre('O')
+Oiseau::Oiseau(): m_x(-1),m_y(-1), m_saLetrre('O')
 {
 
 }

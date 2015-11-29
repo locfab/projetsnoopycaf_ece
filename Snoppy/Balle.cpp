@@ -2,13 +2,10 @@
 #include "Balle.h"
 
 /// Balle constructeur par default
-Balle::Balle(): m_saLetrre('B')
+Balle::Balle(): m_x(-1), m_y(-1), m_depx(0), m_depy(0), m_saLetrre('B')
 {
 }
-/// Balle constructeur par copie
-Balle::Balle(int x, int y) : m_x(x), m_y(y), m_saLetrre('B')
-{
-}
+
 /// Balle
 Balle::Balle(int x, int y, int depx, int depy) : m_x(x), m_y(y), m_saLetrre('B')
 {

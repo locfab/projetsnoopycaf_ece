@@ -1,7 +1,7 @@
 #include <iostream>
 #include "BonusMultiBalle.h"
 
-BonusMultiBalle::BonusMultiBalle(): m_saLetrre('m'), m_tempsALaCreation(0)
+BonusMultiBalle::BonusMultiBalle(): m_x(-1), m_y(-1), m_saLetrre('m'), m_tempsALaCreation(0)
 {
 }
 

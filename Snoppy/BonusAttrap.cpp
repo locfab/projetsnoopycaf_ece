@@ -2,7 +2,7 @@
 #include "BonusAttrap.h"
 
 
-BonusAttrap::BonusAttrap(): m_saLetrre('b'), m_tempsALaCreation(0)
+BonusAttrap::BonusAttrap(): m_x(-1), m_y(-1), m_saLetrre('b'), m_tempsALaCreation(0)
 {
 }
 
