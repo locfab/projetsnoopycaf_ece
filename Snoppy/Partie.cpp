@@ -66,7 +66,7 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
 
     if(decisionJoueurMenu != '3')// menu 1 et 2 sans mot de passe super Utilsateur
     {
-        if(m_niveau->getTempsRestant() - clock() <= 0) { tempsEcoule(m_niveau, m_snoopy, nomFichier, timeOut); } /// Est-ce que le temps restant est inférieur à 0 ?
+        if(m_niveau->getHeureCrea() - clock() <= 0) { tempsEcoule(m_niveau, m_snoopy, nomFichier, timeOut); } /// Est-ce que le temps restant est inférieur à 0 ?
         if(esc != 0) { quitterSansEnregister(m_niveau); }//si echap n'a pas ete apuiye
         if (!accepter) { niveauJamaisAtteintRetour(m_niveau, m_snoopy); }
         if(m_snoopy->getNbOiseauAttrap()==4){ prepaSauvPartieGagnee(m_niveau, m_snoopy, partieEnCours, save); }
@@ -81,7 +81,7 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
 
     }
     if(decisionJoueurMenu == '3')//menu 3 super Utilsateur
-    {   if(m_niveau->getTempsRestant() <= 0) { tempsEcoule(m_niveau, m_snoopy, nomFichier, timeOut); plusDeVie = true; }
+    {   if(m_niveau->getHeureCrea() <= 0) { tempsEcoule(m_niveau, m_snoopy, nomFichier, timeOut); plusDeVie = true; }
         if(esc != 0) { quitterSansEnregister(m_niveau); }//si echap n'a pas ete apuiye
         if(m_snoopy->getNbOiseauAttrap()==4){ prepaSauvPartieGagnee(m_niveau, m_snoopy, partieEnCours, save); }
         if(m_niveau->toucheBalle(m_snoopy, m_niveau)) { m_snoopy->setVivant(false);}
@@ -135,7 +135,7 @@ void Partie::gestionDePause(Niveau* niveau, int& pause, char& toucheUtilisateur,
              niveau->getAttendre(0.4);
              system("cls");
          }
-    niveau->setTempsRestant(niveau->getTempsRestant() + (clock() - tempsDebutPause));
+    niveau->setHeureCrea(niveau->getHeureCrea() + (clock() - tempsDebutPause));
 }
 
 
@@ -188,7 +188,7 @@ void Partie::prepaSauvPartieGagnee(Niveau* niveau, PersoSnoopy* snoopy, bool& pa
         std::cout << "Vous avez gagné" << std::endl;
 
         niveau->getAttendre(2.3);
-        snoopy->setScoreSiPlusGd((((int)niveau->getTempsRestant() - (int)clock())/1000)*100, snoopy->getNiveauActuel() );
+        snoopy->setScoreSiPlusGd((((int)niveau->getHeureCrea() - (int)clock())/1000)*100, snoopy->getNiveauActuel() );
         snoopy->setNiveauActuel(snoopy->getNiveauActuel()+1);
         if(m_snoopy->getNiveauActuel() >= snoopy->getNiveauDejaAtteint())//on change la valeur du melleur niveau jamais atteint si c'est le cas
         {
@@ -339,7 +339,7 @@ bool Partie::onContinu(PersoSnoopy* snoopy, Niveau*niveau, int esc, int timeOut,
     {
         if(snoopy->getVivant() && snoopy->getNbOiseauAttrap()<4 && snoopy->getNbrVie()>0)
         {
-            if(!niveau->toucheBalle(snoopy, niveau) && (niveau->getTempsRestant()- clock()>0))
+            if(!niveau->toucheBalle(snoopy, niveau) && (niveau->getHeureCrea()- clock()>0))
             {
                 return true;
             }
@@ -461,7 +461,7 @@ void Partie::sauvegarde(std::string pseudo, PersoSnoopy* snoopy, Niveau* niveau,
               monFlux << std::endl;
 
             monFlux << 't';
-                monFlux << " " << ((int)niveau->getTempsRestant() - (int)clock())/1000<< std::endl;
+                monFlux << " " << ((int)niveau->getHeureCrea() - (int)clock())/1000<< std::endl;
 
         }
         else

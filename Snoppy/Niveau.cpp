@@ -13,7 +13,7 @@ Niveau::Niveau()
     // Alloue la mémoire du pointeur
     pConsole = Console::getInstance();
     m_temps = new Temps();
-    m_tempsRestant = m_temps->getTempsMax();
+    m_heureCrea = m_temps->getTempsMax();
     m_bonusAttrap=NULL;
     m_bonusMultiBalle=NULL;
 
@@ -167,7 +167,7 @@ pConsole->setColor(COLOR_WHITE);
     if(decisionJoueurMenu != '3')//si pas menu mot de passe
     {
         pConsole->gotoLigCol(5, 50);
-        std::cout << "Temps restant : " << ((int)getTempsRestant() - (int)clock())/1000  << "  "; //setTempsRestant(getTempsRestant()); /// Calcul du nouveau temps restant
+        std::cout << "Temps restant : " << ((int)getHeureCrea() - (int)clock())/1000  << "  "; //setTempsRestant(getTempsRestant()); /// Calcul du nouveau temps restant
         pConsole->gotoLigCol(4, 50);
         std::cout << "Niveau actuel : " << snoopy->getNiveauActuel() << "  " << std::endl;
         pConsole->gotoLigCol(6, 50);
@@ -182,7 +182,7 @@ pConsole->setColor(COLOR_WHITE);
     if(decisionJoueurMenu == '3')
     {
         pConsole->gotoLigCol(5, 50);
-        std::cout << "Temps restant : " << ((int)getTempsRestant() - (int)clock())/1000  << "  "; //setTempsRestant(getTempsRestant()); /// Calcul du nouveau temps restant
+        std::cout << "Temps restant : " << ((int)getHeureCrea() - (int)clock())/1000  << "  "; //setTempsRestant(getTempsRestant()); /// Calcul du nouveau temps restant
         pConsole->gotoLigCol(6, 50);
         std::cout << "Niveau actuel : " << decisionJoueurNiveau << "  " << std::endl;
         pConsole->gotoLigCol(7, 50);
@@ -208,15 +208,15 @@ double Niveau::getTemps()
 }
 
 /// Getter du temps restant
-double Niveau::getTempsRestant()
+double Niveau::getHeureCrea()
 {
-    return m_tempsRestant;
+    return m_heureCrea;
 }
 
 /// Setter du nouveau temps restant
-void Niveau::setTempsRestant(double newTempsRestant)
+void Niveau::setHeureCrea(double newTempsRestant)
 {
-    m_tempsRestant = newTempsRestant;
+    m_heureCrea = newTempsRestant;
 }
 
 /// Getter sur le déplacement de la balle
@@ -464,7 +464,7 @@ void Niveau::creerObjetDebut(PersoSnoopy* snoopy, std::string nom, std::string d
               p_Blocs = NULL;
             }
 
-            setTempsRestant((double)clock() + m_temps->getTempsMax()*1000);
+            setHeureCrea((double)clock() + m_temps->getTempsMax()*1000);
 
             if(is_readable(nomFichier))//si le fichier existe, (cette fonction est appelé quand le ficheir existe si le niveau avez ete gagner)
             {
@@ -697,7 +697,7 @@ void Niveau::creerObjetSauv(std::string nom, PersoSnoopy* snoopy, Niveau* niveau
             //recuperation du temps, peut etre mettre un float?
 
             fichier >> nb;
-            setTempsRestant((double)clock() + nb*1000);
+            setHeureCrea((double)clock() + nb*1000);
 
             if(!partieEnCours)//si jamais la partie avait ete terminée, alors on supprime quelque donne et on appelle la creartion des objet commme si on ete au debut d'une partie
             {

@@ -46,13 +46,13 @@ class Niveau
 
 	double getTemps();
     void getAttendre(double secondes);
-    double getTempsRestant();
+    double getHeureCrea();
     char getNiveauCourant();
     Blocs* getBlocsAuCord(std::vector<Blocs*>, int x, int y);
     int getPositionBlocs(Niveau* niveau, Blocs* blocs);
     int getPosiOiseauAuNivTab(std::vector<Oiseau> const tabOiseau, int x, int y);
 
-    void setTempsRestant(double newTempsRestant);
+    void setHeureCrea(double newTempsRestant);
 	void setNiveauCourant();
 	void setCordSnoopClav(PersoSnoopy* snoopy, Niveau* niveau, char toucheUtisateur);
 	void setDeplacementBalle();
@@ -78,7 +78,7 @@ class Niveau
 
 	char m_niveauCourant;
 	std::vector< std::vector<char> > m_plateau;
-	double m_tempsRestant;
+	double m_heureCrea;
     Temps *m_temps;
     std::vector<Balle> m_vectBalle;
     BonusMultiBalle* m_bonusMultiBalle;
