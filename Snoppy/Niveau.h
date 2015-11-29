@@ -78,8 +78,6 @@ class Niveau
 
 	char m_niveauCourant;
 	std::vector< std::vector<char> > m_plateau;
-	int m_lignes;
-	int m_colonnes;
 	double m_tempsRestant;
     Temps *m_temps;
     std::vector<Balle> m_vectBalle;
