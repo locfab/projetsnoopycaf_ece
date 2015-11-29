@@ -26,6 +26,7 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
     int pause = 0;
     bool accepter(true);
     bool partieEnCours(true);
+    bool plusDeVie(false);
     double tempsDePause = 0;
     int save = 0;
     char toucheUtilisateur('@');
@@ -67,16 +68,16 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
         if(m_snoopy->getNbOiseauAttrap()==4){ prepaSauvPartieGagnee(m_niveau, m_snoopy, partieEnCours, save); }
         if (m_niveau->toucheBalle(m_snoopy, m_niveau)) { m_snoopy->setVivant(false);}
         if (!m_snoopy->getVivant()) { gestionDeMort(m_niveau, m_snoopy, pseudo, nomFichier); }
-        if(m_niveau->is_readable(nomFichier)) { changerVie(pseudo, m_snoopy); }
-        if(m_snoopy->getNbrVie()<=0) { gestionPlusDeVie(m_snoopy, m_niveau, pseudo, nomFichier, save, decisionJoueurNiveau); }//si plus de vies
+        if(m_niveau->is_readable(nomFichier)) { changerVie(pseudo, m_snoopy, plusDeVie); }
+        if(m_snoopy->getNbrVie()<=0) { gestionPlusDeVie(m_snoopy, m_niveau, pseudo, nomFichier, save, decisionJoueurNiveau); plusDeVie = true; }//si plus de vies
         setScoreMax(m_snoopy->getScore(), nom);
 
-        if(save != 0) { sauvegarde(pseudo, m_snoopy, m_niveau, partieEnCours); }
+        if(save != 0) { sauvegarde(pseudo, m_snoopy, m_niveau, partieEnCours, plusDeVie); }
         if(!partieEnCours) {prepaEtLancerNivSuiv(m_snoopy, m_niveau, pseudo, decisionJoueurNiveau, partieEnCours);}
 
     }
     if(decisionJoueurMenu == '3')//menu 3 super Utilsateur
-    {   if(m_niveau->getTempsRestant() <= 0) { tempsEcoule(m_niveau, m_snoopy, nomFichier, timeOut); }
+    {   if(m_niveau->getTempsRestant() <= 0) { tempsEcoule(m_niveau, m_snoopy, nomFichier, timeOut); plusDeVie = true; }
         if(esc != 0) { quitterSansEnregister(m_niveau); }//si echap n'a pas ete apuiye
         if(m_snoopy->getNbOiseauAttrap()==4){ prepaSauvPartieGagnee(m_niveau, m_snoopy, partieEnCours, save); }
         if(m_niveau->toucheBalle(m_snoopy, m_niveau)) { m_snoopy->setVivant(false);}
@@ -147,7 +148,7 @@ void Partie::tempsEcoule(Niveau* niveau, PersoSnoopy* snoopy, std::string pseudo
         snoopy->setNbrVie(snoopy->getNbrVie()-1);
         if(niveau->is_readable(nomFichier))//pour ne pas modifier un fichier qui n'existe pas
         {
-        changerVie(nom, snoopy);
+        changerVie(nom, snoopy, false);
         }
 
 }
@@ -186,7 +187,7 @@ void Partie::prepaSauvPartieGagnee(Niveau* niveau, PersoSnoopy* snoopy, bool& pa
         save = 1;
 }
 
-void Partie::changerVie(std::string nom, PersoSnoopy* snoopy)/// le but de cette fonction est de changer seulement la vie dans le fichier et non pas tout le fichier et donc de revir à l'endroit de la derniere sauvegarde avec seulement une vie en moins
+void Partie::changerVie(std::string nom, PersoSnoopy* snoopy, bool plusDeVie)/// le but de cette fonction est de changer seulement la vie dans le fichier et non pas tout le fichier et donc de revir à l'endroit de la derniere sauvegarde avec seulement une vie en moins
 {
     std::string const dossier("sauvegarde//");
     std::string const extention(".txt");
@@ -208,6 +209,17 @@ void Partie::changerVie(std::string nom, PersoSnoopy* snoopy)/// le but de cette
     {
         std::cout << "ERREUR: Impossible d'ouvrir le fichier==" << std::endl;
     }
+    while(maSauvegarde[i] != ' ') i++;//ces while avec ces ' ', permette de ce placer au niveau des vies
+    i++;
+    while(maSauvegarde[i] != ' ') i++;
+    i++;
+    while(maSauvegarde[i] != ' ') i++;
+    i++;
+
+    if(plusDeVie)
+    maSauvegarde[i] = '1';
+    else
+    maSauvegarde[i] = '0';
 
     while(maSauvegarde[i] != 's') i++;// permet d'aller au niveau de snoopy
     i++;
@@ -257,7 +269,7 @@ void Partie::gestionDeMort(Niveau* niveau, PersoSnoopy* snoopy, std::string pseu
     snoopy->setNbrVie(snoopy->getNbrVie()-1);
     if(niveau->is_readable(nomFichier))//pour ne pas modifier un fichier qui n'existe pas
     {
-      changerVie(pseudo, snoopy);
+      changerVie(pseudo, snoopy, false);
     }
 
 }
@@ -273,7 +285,7 @@ void Partie::gestionPlusDeVie(PersoSnoopy* snoopy, Niveau* niveau, std::string p
         snoopy->setScoreNul();
         if(niveau->is_readable(nomFichier))//pour ne pas modifier un fichier qui n'existe pas
         {
-            changerVie(pseudo, snoopy);
+            changerVie(pseudo, snoopy, true);
         }
 }
 
@@ -327,7 +339,7 @@ bool Partie::onContinu(PersoSnoopy* snoopy, Niveau*niveau, int esc, int timeOut,
 
 
 
-void Partie::sauvegarde(std::string pseudo, PersoSnoopy* snoopy, Niveau* niveau, bool partieEnCours)
+void Partie::sauvegarde(std::string pseudo, PersoSnoopy* snoopy, Niveau* niveau, bool partieEnCours, bool plusDeVie)
 {
         std::string const dossier("sauvegarde//");
         std::string nom(pseudo);
@@ -341,7 +353,7 @@ void Partie::sauvegarde(std::string pseudo, PersoSnoopy* snoopy, Niveau* niveau,
 
         if(monFlux)
         {
-            monFlux << partieEnCours << ' ' << snoopy->getNiveauActuel() << ' ' << snoopy->getNiveauDejaAtteint() << std::endl;;
+            monFlux << partieEnCours << ' ' << snoopy->getNiveauActuel() << ' ' << snoopy->getNiveauDejaAtteint() << ' ' << plusDeVie << std::endl;
 
             monFlux << 'p' << ' ';
                 for(int j=0; j< 10; j++)

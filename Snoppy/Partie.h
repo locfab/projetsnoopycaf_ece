@@ -25,10 +25,10 @@ class Partie
         Partie();
         ~Partie();
         void jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, std::string decisionJoueurNiveau);
-        void changerVie(std::string nom, PersoSnoopy* snoopy);
+        void changerVie(std::string nom, PersoSnoopy* snoopy, bool plusDeVie);
         void recupererEntresClav(Niveau* niveau, PersoSnoopy* snoopy, int& pause, int& save, int& esc, char& toucheUtilisateur);
         void chargerPartieAvecMenu(std::string nom, PersoSnoopy* snoopy, Niveau* niveau, std::string decisionJoueurNiveau, char decisionJoueurMenu);
-        void sauvegarde(std::string pseudo, PersoSnoopy* snoopy, Niveau* niveau, bool partieEnCours);
+        void sauvegarde(std::string pseudo, PersoSnoopy* snoopy, Niveau* niveau, bool partieEnCours, bool plusDeVie);
         void tempsEcoule(Niveau* niveau, PersoSnoopy* snoopy, std::string pseudo, int& timeOut);
         void quitterSansEnregister(Niveau* niveau);
         void niveauJamaisAtteintRetour(Niveau* niveau, PersoSnoopy* snoopy);

@@ -478,6 +478,8 @@ void Niveau::creerObjetDebut(PersoSnoopy* snoopy, std::string nom, std::string d
                     fichier >> mot; fichier >> mot;//on passe les mot
                     fichier >> mot; fichier >> mot;//on passe les mot
                     fichier >> mot; fichier >> mot;//on passe les mot
+                    fichier >> mot;
+
 
                     fichier >> a;//on remet les point gagnées par niveau
                     snoopy->setScoreSiPlusGd(a,1);
@@ -512,7 +514,7 @@ void Niveau::creerObjetSauv(std::string nom, PersoSnoopy* snoopy, Niveau* niveau
     int niveauDejaAtteint;
     bool partieEnCours;
     int tailleTableau;
-    int rien(0);
+    bool plusDeVie;
     std::ostringstream nivSuiv;
 
 
@@ -523,6 +525,7 @@ void Niveau::creerObjetSauv(std::string nom, PersoSnoopy* snoopy, Niveau* niveau
             fichier >> partieEnCours;
             fichier >> niveauActuel;
             fichier >> niveauDejaAtteint;
+            fichier >> plusDeVie;
             fichier.get(caractere);
 
             fichier >> mot;
@@ -564,6 +567,8 @@ void Niveau::creerObjetSauv(std::string nom, PersoSnoopy* snoopy, Niveau* niveau
             snoopy->setScoreSiPlusGd(d, 1);
             snoopy->setScoreSiPlusGd(e, 2);
             snoopy->setScoreSiPlusGd(f, 3);
+            if(plusDeVie){
+            snoopy->setScoreNul();}
 
             snoopy->setNiveauActuel(niveauActuel);//recuper en haut de la methode
             snoopy->setNiveauDejaAtteint(niveauDejaAtteint);//recuper en haut de la methode
