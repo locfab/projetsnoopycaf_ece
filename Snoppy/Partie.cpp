@@ -122,7 +122,7 @@ void Partie::recupererEntresClav(Niveau* niveau, PersoSnoopy* snoopy, int& pause
 
 void Partie::gestionDePause(Niveau* niveau, int& pause, char& toucheUtilisateur, double& tempsDePause, int& esc)
 {
-    unsigned tempsDebutPause = clock();
+    unsigned tempsDebutPause = clock();// on marque l'heure de debut de pause
          while (pause == 1)
          {
              system("cls");
@@ -135,7 +135,7 @@ void Partie::gestionDePause(Niveau* niveau, int& pause, char& toucheUtilisateur,
              niveau->getAttendre(0.4);
              system("cls");
          }
-    niveau->setHeureCrea(niveau->getHeureCrea() + (clock() - tempsDebutPause));
+    niveau->setHeureCrea(niveau->getHeureCrea() + (clock() - tempsDebutPause)); //on ajoute a l'heure de cration le temps de pause
 }
 
 

@@ -46,10 +46,10 @@ void Niveau::setPlateauDeb(std::string niveau)
 
         std::ifstream fichier(nomFichier.c_str(), std::ios::in);  // on ouvre
 
-        std::vector< std::vector<char> > grille(m_col);
+        std::vector< std::vector<char> > grille(m_col);//on allou des case de type vetor<char>
         for(int i(0); i < m_col; ++i)
         {
-            grille[i] = std::vector<char>(m_lig);
+            grille[i] = std::vector<char>(m_lig);//on insere à chaque case du tableau un nouveau tvector
         }
 
         if(fichier)
@@ -61,7 +61,7 @@ void Niveau::setPlateauDeb(std::string niveau)
                 for (int i=0; i< m_col; i++)
                 {
                     fichier.get(caractere);  // on lit un caractre et on le stocke dans caractere
-                    grille[i][j]=caractere;
+                    grille[i][j]=caractere;  //on le met dirrectement das le plateau
                 }
             }
 
@@ -70,7 +70,7 @@ void Niveau::setPlateauDeb(std::string niveau)
         else
             std::cout << "Impossible d'ouvrir le fichier !!!" << std::endl;
 
-        this->m_plateau = grille;// peut etre mettre un getter
+        this->m_plateau = grille;// on met grille dans l'attribut plzteau
 
 }
 
@@ -105,7 +105,7 @@ void Niveau::setPlateauDejaCree(std::string niveau)
 }
 
 void Niveau::afficherPlateau(PersoSnoopy* snoopy, char decisionJoueurMenu, std::string decisionJoueurNiveau)
-{
+{//on affiche les plataeux on voit que les couleurs sint choisi par un case
     pConsole->gotoLigCol(0, 0);
 
     for (int j=0; j< m_lig; j++)
@@ -164,7 +164,7 @@ pConsole->setColor(COLOR_WHITE);
     }
 
 
-    if(decisionJoueurMenu != '3')//si pas menu mot de passe
+    if(decisionJoueurMenu != '3')//si pas menu mot de passe,, on affciche plus de donnné
     {
         pConsole->gotoLigCol(5, 50);
         std::cout << "Temps restant : " << ((int)getHeureCrea() - (int)clock())/1000  << "  "; //setTempsRestant(getTempsRestant()); /// Calcul du nouveau temps restant
@@ -179,7 +179,7 @@ pConsole->setColor(COLOR_WHITE);
         pConsole->gotoLigCol(11, 50);
         std::cout << "Meilleur niveau atteint : " << snoopy->getNiveauDejaAtteint() << "  " << std::endl;
     }
-    if(decisionJoueurMenu == '3')
+    if(decisionJoueurMenu == '3')//si mot de pzsse moins bonne navigation
     {
         pConsole->gotoLigCol(5, 50);
         std::cout << "Temps restant : " << ((int)getHeureCrea() - (int)clock())/1000  << "  "; //setTempsRestant(getTempsRestant()); /// Calcul du nouveau temps restant

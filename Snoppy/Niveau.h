@@ -35,12 +35,12 @@ class Niveau
 	void checkerPlateauPourBalle();
 	bool toucheBalle(PersoSnoopy* snoopy, Niveau* niveau);
 
-	std::vector<Blocs*> getTabBlocs();
-	std::vector<Oiseau> getTabOiseau();
-	std::vector<Balle> getVectBalle();
+	std::vector<Blocs*> getTabBlocs();//recupere le vect
+	std::vector<Oiseau> getTabOiseau();//recupere le vect
+	std::vector<Balle> getVectBalle();//recupere le vect
 
-	void creerObjetDebut(PersoSnoopy* snoopy, std::string nom, std::string decisionJoueurNiveau);
-	void creerObjetSauv(std::string nom, PersoSnoopy* snoopy, Niveau* niveau, std::string decisionJoueurNiveau);
+	void creerObjetDebut(PersoSnoopy* snoopy, std::string nom, std::string decisionJoueurNiveau);//creer des objets sans de sauvegardes
+	void creerObjetSauv(std::string nom, PersoSnoopy* snoopy, Niveau* niveau, std::string decisionJoueurNiveau);//avec sauvegarde
 
     void initCoordSnoop(PersoSnoopy* snoopy);
 
@@ -57,6 +57,8 @@ class Niveau
 	void setCordSnoopClav(PersoSnoopy* snoopy, Niveau* niveau, char toucheUtisateur);
 	void setDeplacementBalle();
 
+	/*on va faire pour tout lees types de blocs des 
+	vérifiction pour connzitre le mouvement de la balle*/
 	char verificationBalle_Bords(Balle* balle);
 	void verificationBalle_BlocsPoussables(Balle* balle);
 	void verificationBalle_BlocsCassables(Balle* balle);
@@ -67,7 +69,7 @@ class Niveau
 
 
 
-	void gererBonus(PersoSnoopy* snoopy);
+	void gererBonus(PersoSnoopy* snoopy);//permet de gerer les deux gros bonus du jeu
 
 	bool is_readable( const std::string & file );
 
