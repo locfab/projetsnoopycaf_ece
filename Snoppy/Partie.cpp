@@ -129,6 +129,7 @@ void Partie::gestionDePause(Niveau* niveau, int& pause, char& toucheUtilisateur,
              tempsDePause = clock() / CLOCKS_PER_SEC;
              std::cout << "Pause !...";
              toucheUtilisateur = niveau->pConsole->getInputKey();
+             while(kbhit()){ getch();}// pour vider le buffer
              if((toucheUtilisateur == 'P')||(toucheUtilisateur == 'p')) pause = 0;
              esc = GetAsyncKeyState(VK_ESCAPE);
              if(esc != 0) pause = 0;
