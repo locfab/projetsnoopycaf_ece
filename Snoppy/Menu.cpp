@@ -18,28 +18,56 @@ void Menu::afficherMenu()
 {
     std::string choixMenu("0");
     setChoixMenu(choixMenu[0]);
+    char position('1');
+    char valeurEntree;
+    int a(0);
 
-
-    while(this->getChoixMenu()<'1' || this->getChoixMenu()>'5')
-     {
-        this->setChoixMenu('0');
-
-        system("cls");
-
-        std::cout << "\n\n\n\t\t\t\tLa Revanche de Snoopy" << std::endl << std::endl;
-        std::cout << "\n\n\n\t\t\t\t1- Jouer" << std::endl << std::endl;
+        std::cout << "\n\n\n\t\t\t\tLa Revanche de Snoopy \n\n\n" << std::endl << std::endl;
+        std::cout << "=>";
+        std::cout << "\t\t\t\t1- Jouer" << std::endl << std::endl;
         std::cout << "\t\t\t\t2- Charger partie" << std::endl << std::endl;
         std::cout << "\t\t\t\t3- Mot de passe" << std::endl << std::endl;
         std::cout << "\t\t\t\t4- Score" << std::endl << std::endl;
         std::cout << "\t\t\t\t5- Quitter" << std::endl << std::endl;
+        std::cout << "1" << std::endl << std::endl << std::endl << "     Defilement avec 'i' , 'j' et 'e' ou 'espace' pour Entrer" << std::endl ;
+    while(this->getChoixMenu()<'1' || this->getChoixMenu()>'5')
+     {
+        this->setChoixMenu('0');
 
-        std::cout << "Faites votre choix:  ";
-        while(kbhit()){ getch();}// pour vider le buffer
-        std::cin >> choixMenu;
-        if(choixMenu.size()== 1)
-        this->setChoixMenu(choixMenu[0]);
-        else
-        choixMenu = "0";
+        if(kbhit())
+        {
+        valeurEntree = getch();
+        system("cls");
+
+
+        if(valeurEntree == 'i' && position > '1')
+        position -= 1;
+        if(valeurEntree == 'k' && position < '5')
+        position += 1;
+
+        std::cout << "\n\n\n\t\t\t\tLa Revanche de Snoopy \n\n\n" << std::endl << std::endl;
+        if(position == '1') std::cout << "=>";
+        std::cout << "\t\t\t\t1- Jouer" << std::endl << std::endl;
+        if(position == '2') std::cout << "=>";
+        std::cout << "\t\t\t\t2- Charger partie" << std::endl << std::endl;
+        if(position == '3') std::cout << "=>";
+        std::cout << "\t\t\t\t3- Mot de passe" << std::endl << std::endl;
+        if(position == '4') std::cout << "=>";
+        std::cout << "\t\t\t\t4- Score" << std::endl << std::endl;
+        if(position == '5') std::cout << "=>";
+        std::cout << "\t\t\t\t5- Quitter" << std::endl << std::endl;
+        std::cout << position << std::endl << std::endl << std::endl << "     Defilement avec 'i' , 'j' et 'e' ou 'espace' pour Entrer" << std::endl ;
+        }
+
+        if(valeurEntree=='e' || valeurEntree == 'E' || valeurEntree == 32)
+        {
+            choixMenu[0] = position;
+            if(choixMenu.size()== 1)
+            this->setChoixMenu(choixMenu[0]);
+            else
+            choixMenu = "0";
+        }
+
      }
 
      this->choix(getChoixMenu());
