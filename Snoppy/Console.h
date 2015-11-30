@@ -25,7 +25,7 @@ class Console
         ~Console();
 
         // Empecher la copie d'objet...
-        Console& operator= (const Console&){ return *this;}
+        Console& operator=(const Console&){ return *this;}
         Console (const Console&){}
 
         // Attributs
