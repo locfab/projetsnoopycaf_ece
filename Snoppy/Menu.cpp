@@ -26,11 +26,12 @@ void Menu::afficherMenu()
 
         system("cls");
 
-        std::cout << "1- Jouer" << std::endl << std::endl;
-        std::cout << "2- Charger partie" << std::endl << std::endl;
-        std::cout << "3- Mot de passe" << std::endl << std::endl;
-        std::cout << "4- Score" << std::endl << std::endl;
-        std::cout << "5- Quitter" << std::endl << std::endl;
+        std::cout << "\n\n\n\t\t\t\tLa Revanche de Snoopy" << std::endl << std::endl;
+        std::cout << "\n\n\n\t\t\t\t1- Jouer" << std::endl << std::endl;
+        std::cout << "\t\t\t\t2- Charger partie" << std::endl << std::endl;
+        std::cout << "\t\t\t\t3- Mot de passe" << std::endl << std::endl;
+        std::cout << "\t\t\t\t4- Score" << std::endl << std::endl;
+        std::cout << "\t\t\t\t5- Quitter" << std::endl << std::endl;
 
         std::cout << "Faites votre choix:  ";
         while(kbhit()){ getch();}// pour vider le buffer
@@ -88,7 +89,8 @@ void Menu::creerPartie(char decisionJoueurMenu)
 
     if(decisionJoueurMenu == '1')
     {
-        std::cout << "Creer votre pseudo ou 'r' pour revenir" << std::endl;
+        system("cls");
+        std::cout << "\n\n\n\n\n Creez votre pseudo ou appuyez sur 'r' pour revenir en arriere : ";
         std::cin >> pseudoDonne;
         nom = pseudoDonne;
         nomFichier = dossier + nom + extention;
@@ -103,7 +105,9 @@ void Menu::creerPartie(char decisionJoueurMenu)
 
     if(decisionJoueurMenu == '2')
     {
-        std::cout << "Entrer votre pseudo ou 'r' pour revenir" << std::endl;
+        system("cls");
+
+        std::cout << "\n\n\n\n\n\tEntrer votre pseudo ou 'r' pour revenir : ";
         std::cin >> pseudoDonne;
         nom = pseudoDonne;
         nomFichier = dossier + nom + extention;
@@ -111,7 +115,7 @@ void Menu::creerPartie(char decisionJoueurMenu)
         {
             while((decisionJoueurNiveau<"0" || decisionJoueurNiveau>"3") && decisionJoueurNiveau != "r")
                 {
-                std::cout << "Aller au niveau deja atteint avec '1', '2' ou '3' ou revenir a la derniere sauvegarde en avec '0', 'r' pour revenir" << std::endl;
+                std::cout << "\n\n\nAller au niveau deja atteint avec '1', '2' ou '3'\nRevenir a la derniere sauvegarde avec '0'\nRevenir en arriere avec 'r'" << std::endl;
                 std::cin >> decisionJoueurNiveau;
                 }
 
@@ -127,13 +131,15 @@ void Menu::creerPartie(char decisionJoueurMenu)
 
     if(decisionJoueurMenu == '3')
     {
-        std::cout << "Entrer le mot de passe ou 'r' pour revenir" << std::endl;
+        system("cls");
+        std::cout << "\n\n\n\n\n Appuyez sur 'r' pour revenir en arriere." << std::endl << std::endl;
+        std::cout << " Entrez le mot de passe : ";
         std::cin >> motDePasse;
         if(motDePasse == m_motDePasse && nom != "r")
         {
             while((decisionJoueurNiveau<"1" || decisionJoueurNiveau>"3") && decisionJoueurNiveau != "r")
                 {
-                std::cout << "Aller au niveau deja atteint avec '1', '2' ou '3' ou 'r' pour revenir" << std::endl;
+                std::cout << "\n\n Choisissez le niveau souhaite parmi (1), (2) et (3) : ";
                 std::cin >> decisionJoueurNiveau;
                 }
 
@@ -203,13 +209,13 @@ void Menu::highscore( int TempsRestant, int score)
         if(fichier)
         {
             if(fichier.eof()){
-            std::cout << "Pas encore de record... " << std::endl;}
+            std::cout << "\n\n\n\n Pas encore de record... " << std::endl;}
             fichier>> meilleurScoreAct;
             fichier>> pseudo;
             if(meilleurScoreAct > 0){
-            std::cout << "Le meilleur score jamais atteint est : " << meilleurScoreAct << ", obtenu par " << pseudo << std::endl;}
+            std::cout << "\n\n\n Le meilleur score jamais atteint est de " << meilleurScoreAct << " points, obtenu par " << pseudo << std::endl;}
             if(meilleurScoreAct == 0){
-            std::cout << "Pas encore de record... " << std::endl;}
+            std::cout << "\n\n\n Pas encore de record... " << std::endl;}
             if(meilleurScoreAct <0){
             std::cout << "Probleme score negatif... " << std::endl;}
 
@@ -223,11 +229,11 @@ void Menu::highscore( int TempsRestant, int score)
 
     if(!is_readable(nomFichier))
     {
-    std::cout << "Pas encore de record... ";
+    std::cout << "\n\n\n Pas encore de record... ";
     }
 
-    std::cout << std::endl;
-    std::cout << "appuyer sur 'r' pour revenir au menu " << std::endl;
+    std::cout << std::endl << std::endl << std::endl << std::endl << std::endl;
+    std::cout << " Appuyer sur 'r' pour revenir au menu principal" << std::endl;
     while(caracRetour != 'r')
     {
         if(kbhit())

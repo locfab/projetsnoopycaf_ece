@@ -127,7 +127,7 @@ void Partie::gestionDePause(Niveau* niveau, int& pause, char& toucheUtilisateur,
          {
              system("cls");
              tempsDePause = clock() / CLOCKS_PER_SEC;
-             std::cout << "Pause !...";
+             std::cout << "\n\n\n\n\n\n\n\n\n\n\t\t\t\tPause !";
              toucheUtilisateur = niveau->pConsole->getInputKey();
              while(kbhit()){ getch();}// pour vider le buffer
              if((toucheUtilisateur == 'P')||(toucheUtilisateur == 'p')) pause = 0;
@@ -151,7 +151,7 @@ void Partie::tempsEcoule(Niveau* niveau, PersoSnoopy* snoopy, std::string pseudo
         timeOut = 1;
         system("cls");
         niveau->pConsole->gotoLigCol(12, 30);
-        std::cout << "Temps ecoule !";
+        std::cout << "\n\n\n\n\n\n\n\n\n\n\t\t\t\tTemps ecoule !";
         niveau->getAttendre(2);
         snoopy->setNbrVie(snoopy->getNbrVie()-1);
         if(niveau->is_readable(nomFichier))//pour ne pas modifier un fichier qui n'existe pas
@@ -165,7 +165,7 @@ void Partie::quitterSansEnregister(Niveau* niveau)
 {
         system("cls");
         niveau->pConsole->gotoLigCol(12, 30);
-        std::cout << "Vous avez quitte la partie";
+        std::cout << "\n\n\n\n\n\n\n\n\n\n\t\t\t\tVous avez quitte la partie";
         niveau->getAttendre(0.75);
 }
 
@@ -173,8 +173,7 @@ void Partie::niveauJamaisAtteintRetour(Niveau* niveau, PersoSnoopy* snoopy)
 {
         system("cls");
         niveau->pConsole->gotoLigCol(12, 30);
-        std::cout << "Niveau jamais atteint, votre meilleur niveau jamais atteint est:" << std::endl;
-        std::cout << "   le: " << snoopy->getNiveauDejaAtteint() << std::endl;
+        std::cout << "\n\n\n Votre meilleur niveau jamais atteint est le niveau : " << snoopy->getNiveauDejaAtteint() << std::endl;
         niveau->getAttendre(2);
 }
 
@@ -182,11 +181,11 @@ void Partie::prepaSauvPartieGagnee(Niveau* niveau, PersoSnoopy* snoopy, bool& pa
 {
         niveau->getAttendre(0.75);
         system("cls");
-        niveau->pConsole->gotoLigCol(12, 30);
+        niveau->pConsole->gotoLigCol(10, 30);
         if(snoopy->getNiveauActuel() < 3)
-        std::cout << "Vous avez attraper tous les oiseaux, vous pouvez aller au niveau suivant";
+        std::cout << " Vous avez attraper tous les oiseaux, vous pouvez aller au niveau suivant";
         else
-        std::cout << "Vous avez gagné" << std::endl;
+        std::cout << "\n\n\n\n\n\n\n\n\n\n\t\t\t\tVous avez gagne !" << std::endl;
 
         niveau->getAttendre(2.3);
         snoopy->setScoreSiPlusGd((((int)niveau->getHeureCrea() - (int)clock())/1000)*100, snoopy->getNiveauActuel() );
@@ -265,7 +264,7 @@ void Partie::gestionDeMort(Niveau* niveau, PersoSnoopy* snoopy, std::string pseu
     {
         niveau->getAttendre(1.25);
         system("cls");
-        niveau->pConsole->gotoLigCol(12, 30);
+        niveau->pConsole->gotoLigCol(12, 21);
         std::cout << "Vous etes mort, touche par un piege";
     }
     if (niveau->toucheBalle(snoopy, niveau))
@@ -274,7 +273,7 @@ void Partie::gestionDeMort(Niveau* niveau, PersoSnoopy* snoopy, std::string pseu
         std::cout <<'B';
         niveau->getAttendre(0.75);
         system("cls");
-        niveau->pConsole->gotoLigCol(12, 30);
+        niveau->pConsole->gotoLigCol(12, 21);
         std::cout << "Vous etes mort, touche par la balle";
     }
     niveau->getAttendre(2.3);
@@ -290,8 +289,8 @@ void Partie::gestionPlusDeVie(PersoSnoopy* snoopy, Niveau* niveau, std::string p
 {
         niveau->getAttendre(0.75);
         system("cls");
-        niveau->pConsole->gotoLigCol(12, 12);
-        std::cout << "Game Over, Vous avez toujours acces au niveau que vous avez atteint mais votre score est nul";
+        niveau->pConsole->gotoLigCol(10, 10);
+        std::cout << "Game Over, vous avez toujours acces au niveau que vous avez atteint mais votre score est nul";
         niveau->getAttendre(2.3);
         snoopy->setNbrVie(3);
         snoopy->setScoreNul();
