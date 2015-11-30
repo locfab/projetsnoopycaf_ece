@@ -469,6 +469,7 @@ void Niveau::creerObjetDebut(PersoSnoopy* snoopy, std::string nom, std::string d
             if(is_readable(nomFichier))//si le fichier existe, (cette fonction est appelé quand le ficheir existe si le niveau avez ete gagner)
             {
                std::ifstream fichier(nomFichier.c_str(), std::ios::in);  // on ouvre
+               bool plusDeVie;
                 if(fichier)
                 {
                     fichier >> a;//on passe les caratere
@@ -476,10 +477,12 @@ void Niveau::creerObjetDebut(PersoSnoopy* snoopy, std::string nom, std::string d
                     fichier >> a;//ON recupere le deja atteint par le joueur dans le passe
                     snoopy->setNiveauDejaAtteint(a);
                     snoopy->setNiveauActuel(atoi(decisionJoueurNiveau.c_str()));//on lui met le niveau actuelle dans lequel on va jouer
+                    fichier >> plusDeVie;
+
+                    fichier >> mot;//on passe les mot
                     fichier >> mot; fichier >> mot;//on passe les mot
                     fichier >> mot; fichier >> mot;//on passe les mot
-                    fichier >> mot; fichier >> mot;//on passe les mot
-                    
+        
                     fichier >> a;
                     snoopy->setNbrVie(a);
                     fichier >> a;//on remet les point gagnées par niveau
@@ -488,6 +491,11 @@ void Niveau::creerObjetDebut(PersoSnoopy* snoopy, std::string nom, std::string d
                     snoopy->setScoreSiPlusGd(a,2);
                     fichier >> a;//on remet les point gagnées par niveau
                     snoopy->setScoreSiPlusGd(a,3);
+                    if(plusDeVie)
+                    {
+                    snoopy->setScoreNul();
+                    }
+
                 }
             }
         }

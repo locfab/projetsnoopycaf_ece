@@ -72,7 +72,7 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
         if(m_snoopy->getNbOiseauAttrap()==4){ prepaSauvPartieGagnee(m_niveau, m_snoopy, partieEnCours, save); }
         if (m_niveau->toucheBalle(m_snoopy, m_niveau)) { m_snoopy->setVivant(false);}
         if (!m_snoopy->getVivant()) { gestionDeMort(m_niveau, m_snoopy, pseudo, nomFichier); }
-        if(m_niveau->is_readable(nomFichier)) { changerVie(pseudo, m_snoopy, plusDeVie); }
+        if(m_niveau->is_readable(nomFichier) && esc == 0 && !accepter) { changerVie(pseudo, m_snoopy, plusDeVie); }
         if(m_snoopy->getNbrVie()<=0) { gestionPlusDeVie(m_snoopy, m_niveau, pseudo, nomFichier, save, decisionJoueurNiveau); plusDeVie = true; }//si plus de vies
         setScoreMax(m_snoopy->getScore(), nom);
 
