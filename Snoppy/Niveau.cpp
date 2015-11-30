@@ -342,8 +342,8 @@ void Niveau::gererBonus(PersoSnoopy* snoopy)
 {
 
     int i,j;
-    int const freqApparitionMultiBalle = 1;
-    int const freqApparitionAttrap = 1;
+    int const freqApparitionMultiBalle = 10;
+    int const freqApparitionAttrap = 10;
     Balle *balleTamp;
     std::srand(std::time(0));
 
@@ -479,9 +479,9 @@ void Niveau::creerObjetDebut(PersoSnoopy* snoopy, std::string nom, std::string d
                     fichier >> mot; fichier >> mot;//on passe les mot
                     fichier >> mot; fichier >> mot;//on passe les mot
                     fichier >> mot; fichier >> mot;//on passe les mot
-                    fichier >> mot;
-
-
+                    
+                    fichier >> a;
+                    snoopy->setNbrVie(a);
                     fichier >> a;//on remet les point gagnées par niveau
                     snoopy->setScoreSiPlusGd(a,1);
                     fichier >> a;//on remet les point gagnées par niveau
