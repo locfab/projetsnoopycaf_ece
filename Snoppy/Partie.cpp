@@ -24,7 +24,8 @@ Partie::~Partie()
 void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, std::string decisionJoueurNiveau)
 {
     int timeOut = 0;
-    int esc = 0;
+    int esc = GetAsyncKeyState(VK_ESCAPE);//pour ne pas sortir a l'entree si on a clique sur echap dans le menu ou pendant le passage des nivezaux
+    esc = 0;
     int pause = 0;
     bool accepter(true);
     bool partieEnCours(true);

@@ -21,6 +21,7 @@ void Menu::afficherMenu()
     char position('1');
     char valeurEntree;
     int a(0);
+    system("cls");
 
         std::cout << "\n\n\n\t\t\t\tLa Revanche de Snoopy \n\n\n" << std::endl << std::endl;
         std::cout << "=>";
@@ -29,7 +30,8 @@ void Menu::afficherMenu()
         std::cout << "\t\t\t\t3- Mot de passe" << std::endl << std::endl;
         std::cout << "\t\t\t\t4- Score" << std::endl << std::endl;
         std::cout << "\t\t\t\t5- Quitter" << std::endl << std::endl;
-        std::cout << "1" << std::endl << std::endl << std::endl << "     Defilement avec 'i' , 'j' et 'e' ou 'espace' pour Entrer" << std::endl ;
+        std::cout << "1" << std::endl << std::endl << std::endl << "     Defilement avec 'i' , 'j' et Entrer pour acceder" << std::endl ;
+
     while(this->getChoixMenu()<'1' || this->getChoixMenu()>'5')
      {
         this->setChoixMenu('0');
@@ -56,10 +58,10 @@ void Menu::afficherMenu()
         std::cout << "\t\t\t\t4- Score" << std::endl << std::endl;
         if(position == '5') std::cout << "=>";
         std::cout << "\t\t\t\t5- Quitter" << std::endl << std::endl;
-        std::cout << position << std::endl << std::endl << std::endl << "     Defilement avec 'i' , 'j' et 'e' ou 'espace' pour Entrer" << std::endl ;
+        std::cout << position << std::endl << std::endl << std::endl << "     Defilement avec 'i' , 'j' et Entrer pour acceder" << std::endl ;
         }
 
-        if(valeurEntree=='e' || valeurEntree == 'E' || valeurEntree == 32)
+        if(valeurEntree==13)
         {
             choixMenu[0] = position;
             if(choixMenu.size()== 1)
