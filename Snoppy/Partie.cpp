@@ -49,7 +49,6 @@ void Partie::jouer(Partie *partie, char decisionJoueurMenu, std::string pseudo, 
 
 
     if(decisionJoueurMenu !='3' && atoi(decisionJoueurNiveau.c_str()) > m_snoopy->getNiveauDejaAtteint()) accepter = false;
-
     while(onContinu(m_snoopy, m_niveau, esc, timeOut, accepter, save, decisionJoueurMenu)) ///Boucle de jeu tant qui indique c'est tous les parametres pour continuer à jouer sont reunit
     {
             m_niveau->setDeplacementBalle();
@@ -101,7 +100,7 @@ void Partie::prepaEtLancerNivSuiv(PersoSnoopy* snoopy, Niveau*niveau, std::strin
 
     chargerPartieAvecMenu(pseudo, m_snoopy, m_niveau, "0", '2');
 
-
+    while(kbhit()){ getch();}// pour vider le buffer
     jouer(this, '2', pseudo, "0");
 }
 
@@ -115,6 +114,7 @@ void Partie::recupererEntresClav(Niveau* niveau, PersoSnoopy* snoopy, int& pause
         if((toucheUtilisateur == 'P')||(toucheUtilisateur == 'p')) pause = 1;
         if((toucheUtilisateur == 'S')||(toucheUtilisateur == 's')) save = 1;
         if((toucheUtilisateur == 'A')||(toucheUtilisateur == 'a')) snoopy->setModeDemolition(true);
+        while(kbhit()){ getch();}// pour vider le buffer
     }
 
         esc = GetAsyncKeyState(VK_ESCAPE);

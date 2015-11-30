@@ -33,7 +33,7 @@ void Menu::afficherMenu()
         std::cout << "5- Quitter" << std::endl << std::endl;
 
         std::cout << "Faites votre choix:  ";
-        std::cin.clear();
+        while(kbhit()){ getch();}// pour vider le buffer
         std::cin >> choixMenu;
         if(choixMenu.size()== 1)
         this->setChoixMenu(choixMenu[0]);
